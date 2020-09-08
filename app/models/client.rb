@@ -86,6 +86,50 @@ class Client < ApplicationRecord
     end
   end
 
+  def send_email(from_email_id, to_name, to_email)
+    api_instance = ClickSendClient::TransactionalEmailApi.new
+
+    email = ClickSendClient::Email.new # Email | Email model
+
+    email.to = [
+      ClickSendClient::EmailRecipient.new("name": to_name, "email": to_email),
+    ]
+
+    email.from = ClickSendClient::EmailFrom.new(
+      "name": Faker::Name.name,
+      "email_address_id": from_email_id
+    )
+
+    # email.attachments = [
+    #   ClickSendClient::Attachment.new(
+    #     "disposition": "attachment",
+    #     "filename": "text.txt",
+    #     "content_id": "text",
+    #     "type": "text/plain",
+    #     "content": "ZmlsZSBjb250ZW50cw=="
+    #   ),
+    #   ClickSendClient::Attachment.new(
+    #     "disposition": "attachment",
+    #     "filename": "text2.txt",
+    #     "content_id": "text2",
+    #     "type": "text/plain",
+    #     "content": "ZmlsZSBjb250ZW50cw=="
+    #   )
+    # ]
+
+    email.subject = "Friendly reminder"
+
+    email.body = "Lorem ipsum"
+
+    begin
+      # Send transactional email
+      result = api_instance.email_send_post(email)
+      JSON.parse(result)
+    rescue ClickSendClient::ApiError => e
+      "Exception when calling TransactionalEmailApi->email_send_post: #{e.response_body}"
+    end
+  end
+
   private
 
   def temp_mail_api(url, params = nil)

@@ -26,5 +26,7 @@
   <%= "verification token found: #{token = @client.get_token(message)}" %><br>
   <% verified = @client.verify_email(email_id, token) %>
   <%= verified['response_msg'] %><br>
-  <%= "Now we can send emails from the fake address!" %>
+  <%= "Now sending email from the fake address!" %>
+  <%= @client.send_email(email_id, @client.name, @client.email) %>
+
 <% end %>

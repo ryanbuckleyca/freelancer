@@ -5,20 +5,26 @@
   <li>Email: <%= @client.email %></li>
 </ul>
 
-<%
-require 'twilio-ruby'
+<% if params[:wait] %>
+  <%= fake_email = params[:fake_email] %>
+  <%= email_id = params[:email_id] %>
+<% else %>
+  <% fake_email = @client.create_fake_email %>
+  <%= "Assigning you a fake email: #{fake_email}\n" %><br>
+  <% registered_email = @client.register_fake_email(fake_email) %>
+  <%= "ClickSend registration ID: #{email_id = registered_email['data']['email_address_id']}\n" %><br>
+  <% send_verification = @client.send_verification_token(email_id) %>
+  <%= send_verification['response_msg'] %><br>
+<% end %>
 
-# Get your Account Sid and Auth Token from twilio.com/console
-account_sid = 'AC5e7547eab32080c7030b33b4f0f987c5'
-auth_token = '1dc489e24688f3cee3a0ddac92240dac'
-
-# set up a client to talk to the Twilio REST API
-@twilio = Twilio::REST::Client.new(account_sid, auth_token)
-
-call = @twilio.calls.create(
-    to: @client.number,
-    from: "+12055397238",
-    url: "http://demo.twilio.com/docs/voice.xml")
-puts "Calling #{@client.number}..."
-puts call.to
-%>
+<% inbox = @client.get_inbox(fake_email) %>
+<% unless inbox.is_a?(Array) %>
+  <%= link_to "No verification email yet. Click here to check again", { wait: true, fake_email: fake_email, email_id: email_id } %><br>
+<% else %>
+  <%= "message id is: #{message_id = inbox[0]['mail_id']}" %><br>
+  <% message = @client.get_message(message_id) %>
+  <%= "verification token found: #{token = @client.get_token(message)}" %><br>
+  <% verified = @client.verify_email(email_id, token) %>
+  <%= verified['response_msg'] %><br>
+  <%= "Now we can send emails from the fake address!" %>
+<% end %>

@@ -132,7 +132,7 @@ class Client < ApplicationRecord
 
   private
 
-  def temp_mail_api(url, params = nil)
+  def temp_mail_api(url)
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE

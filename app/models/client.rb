@@ -139,7 +139,7 @@ class Client < ApplicationRecord
 
     request = Net::HTTP::Get.new(url)
     request["x-rapidapi-host"] = 'privatix-temp-mail-v1.p.rapidapi.com'
-    request["x-rapidapi-key"] = '7c042694d9mshc31f0071bff62b8p1944f7jsnea28c991a7dd'
+    request["x-rapidapi-key"] = ENV['TEMP_MAIL_KEY']
 
     response = http.request(request)
     JSON.parse(response.read_body)

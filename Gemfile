@@ -3,7 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-gem 'digest'
 gem 'faker'
 gem 'rest-client'
 gem 'clicksend_client'

@@ -4,22 +4,44 @@ class Client < ApplicationRecord
     auth_token = ENV['TWILIO_AUTH_TOKEN']
     @twilio = Twilio::REST::Client.new(account_sid, auth_token)
     call = @twilio.calls.create(
+      twiml: '<Response><Say>Pay your god damn bill!!</Say></Response>',
       to: number,
-      from: '+12055397238',
-      url: 'http://demo.twilio.com/docs/voice.xml'
+      from: '+18588793879'
     )
     call.to
   end
 
-  def select_email
-    # TODO: find a way to make sure a new email is chosen each day
-    # use Airtable API
-    # for now, just use this one:
-    { id: '12126', address: 'invoicecollectionsteam@outlook.com' }
+  def text
+    account_sid = ENV['TWILIO_ACCOUNT_SID']
+    auth_token = ENV['TWILIO_AUTH_TOKEN']
+    @twilio = Twilio::REST::Client.new(account_sid, auth_token)
+    call = @twilio.calls.create(
+      twiml: '<Response><Say>Pay your god damn bill!!</Say></Response>',
+      to: number,
+      from: '+18588793879'
+    )
+    call.to
   end
 
-  def send_email(from_email_id, to_name, to_email)
+  def email_fr_clicksend
     connect_clicksend
+    api_instance = ClickSendClient::EmailMarketingApi.new
+    begin
+      result = api_instance.allowed_email_address_get
+      json = JSON.parse(result)
+      verified_emails = json['data']['data'].select do |address|
+        address['verified'] == 1
+      end
+      # TODO: get next email address that user has used
+      # for now, get a random one
+      # returns { "email_address_id"=>12133, "email_address"=>"invoicecollectionsteam@yahoo.com" ... }
+      verified_emails.sample
+    rescue ClickSendClient::ApiError => e
+      "Exception when calling EmailMarketingApi->allowed_email_address_get: #{e.response_body}"
+    end
+  end
+
+  def send_email_clicksend(from_email_id, to_name, to_email)
     api_instance = ClickSendClient::TransactionalEmailApi.new
     email = ClickSendClient::Email.new # Email | Email model
     email.to = [ClickSendClient::EmailRecipient.new("name": to_name, "email": to_email)]

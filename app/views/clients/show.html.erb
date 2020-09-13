@@ -5,7 +5,14 @@
   <li>Email: <%= @client.email %></li>
 </ul>
 
-<% fake_email = @client.select_email %>
-<%= "Assigning you a fake email: #{fake_email[:address]}\n" %><br>
-<%= "Now sending email from the fake address!" %>
-<%= @client.send_email(fake_email[:id], @client.name, @client.email) %>
+<!-- should be done once, as each api call is a charge -->
+<!-- works though! comment-out for now to prevent calls -->
+<%# fake_email = @client.email_fr_clicksend %>
+
+<%# "Now sending email! JSON response below:" %>
+<%# send_result = @client.send_email_clicksend(
+      fake_email["email_address_id"],
+      @client.name,
+      @client.email) %>
+
+<%= "Calling from #{@client.call} %>

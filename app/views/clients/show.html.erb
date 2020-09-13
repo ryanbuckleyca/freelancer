@@ -5,14 +5,8 @@
   <li>Email: <%= @client.email %></li>
 </ul>
 
-<!-- should be done once, as each api call is a charge -->
-<!-- works though! comment-out for now to prevent calls -->
-<%# fake_email = @client.email_fr_clicksend %>
-
-<%# "Now sending email! JSON response below:" %>
-<%# send_result = @client.send_email_clicksend(
-      fake_email["email_address_id"],
-      @client.name,
-      @client.email) %>
-
-<%= "Calling from #{@client.call} %>
+<!-- prevent pinging API -->
+<%# "Emailed #{@client.send_email}" %>
+<%# "Called #{@client.send_call}" %>
+<%# "Texted #{@client.send_text}" %>
+<%= "Cost to send letter: #{@client.letter_cost}" %>

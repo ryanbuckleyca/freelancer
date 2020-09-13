@@ -5,7 +5,8 @@
   <li>Email: <%= @client.email %></li>
 </ul>
 
-<% fake_email = @client.select_email %>
-<%= "Assigning you a fake email: #{fake_email[:address]}\n" %><br>
-<%= "Now sending email from the fake address!" %>
-<%= @client.send_email(fake_email[:id], @client.name, @client.email) %>
+<!-- prevent pinging API -->
+<%# "Emailed #{@client.send_email}" %>
+<%# "Called #{@client.send_call}" %>
+<%# "Texted #{@client.send_text}" %>
+<%= "Cost to send letter: #{@client.letter_cost}" %>

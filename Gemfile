@@ -8,6 +8,9 @@ gem 'rest-client'
 gem 'clicksend_client'
 gem 'twilio-ruby'
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'whenever', require: false
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'

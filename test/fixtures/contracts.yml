@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  due_date: 2020-09-13
+  paid: false
+  client: one
+  user: one
+
+two:
+  due_date: 2020-09-13
+  paid: false
+  client: two
+  user: two

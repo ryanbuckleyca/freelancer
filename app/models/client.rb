@@ -2,6 +2,9 @@
 
 # Folks who don't value the time of freelancers
 class Client < ApplicationRecord
+  has_many :contracts
+  has_many :users, through: :contracts
+
   def send_call
     connect_twilio
     call = @twilio.calls.create(
@@ -37,11 +40,11 @@ class Client < ApplicationRecord
     end
   end
 
-  def letter_cost
+  def letter_cost(file)
     connect_clicksend
     api_instance = ClickSendClient::PostLetterApi.new
     post_letter = ClickSendClient::PostLetter.new(
-      'file_url': asset_url('letter.pdf'),
+      'file_url': upload_file_to_clicksend(file),
       'colour': 0,
       'recipients': [
         {
@@ -66,12 +69,36 @@ class Client < ApplicationRecord
       result = api_instance.post_letters_price_post(post_letter)
       JSON.parse(result)
     rescue ClickSendClient::ApiError => e
-      raise
       "Exception when calling PostLetterApi->post_letters_price_post: #{e.response_body}"
     end
   end
 
   private
+
+  def upload_file_to_clicksend(file)
+    api_instance = ClickSendClient::UploadApi.new
+
+    # Open the file you wish to encode
+    data = File.open(file).read
+
+    # Encode the puppy
+    encoded = Base64.encode64(data)
+
+    # UploadFile | Your file to be uploaded
+    upload_file = ClickSendClient::UploadFile.new(
+      content: encoded
+    )
+
+    convert = 'post' # String |
+
+    begin
+      # Upload File
+      result = api_instance.uploads_post(upload_file, convert)
+      JSON.parse(result)['data']['_url']
+    rescue ClickSendClient::ApiError => e
+      "Exception when calling UploadApi->uploads_post: #{e.response_body}"
+    end
+  end
 
   def emails_fr_clicksend
     connect_clicksend # only needs to happen once, i think

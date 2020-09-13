@@ -9,4 +9,4 @@
 <%# "Emailed #{@client.send_email}" %>
 <%# "Called #{@client.send_call}" %>
 <%# "Texted #{@client.send_text}" %>
-<%= "Cost to send letter: #{@client.letter_cost}" %>
+<%= "Letter cost?: #{@client.letter_cost('public/letter.pdf')}" %>

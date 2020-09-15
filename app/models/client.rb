@@ -4,6 +4,8 @@
 class Client < ApplicationRecord
   has_many :contracts
   has_many :users, through: :contracts
+  validates :name, :email, :address_city, :address_line_1, :address_state,
+            :address_country, :address_post_zip, :number, presence: true
 
   def send_call
     connect_twilio

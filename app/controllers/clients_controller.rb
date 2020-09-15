@@ -1,4 +1,5 @@
 class ClientsController < ApplicationController
+  # TODO: add secure params
   def index
     @clients = Client.all
   end

@@ -1,0 +1,4 @@
+<h1>Contract: <%= @contract.description %></h1>
+<li>for client: <%= link_to @contract.client.name, client_path(@contract.client) %></li>
+<li>due: <%= @contract.due_date %></li>
+<li>paid? <%= @contract.paid %></li>

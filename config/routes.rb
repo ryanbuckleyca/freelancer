@@ -3,6 +3,8 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: 'clients#index'
-  resources :clients, only: [:index, :show]
+  root to: 'users#show'
+  resources :clients, only: [:index, :show, :new, :create]
+  resources :contracts
+  resources :users, only: :show
 end

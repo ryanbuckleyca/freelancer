@@ -1,0 +1,19 @@
+<h1>Welcome <%= current_user.name %>!</h1>
+<h2>Your contracts:
+  <small><%= link_to "Add new contract", new_contract_path, class: 'btn btn-sm btn-primary' %></small>
+</h2>
+<% @user.contracts.each do |contract| %>
+<p>
+  <%= link_to contract.description, contract_path(contract.id) %>
+</p>
+<% end %>
+
+<h2>Your clients:
+  <small><%= link_to "Add new client", new_client_path, class: 'btn btn-sm btn-primary' %></small>
+</h2>
+<% @user.clients.each do |client| %>
+<p>
+  <%= link_to client.name, client_path(client) %>
+</p>
+<% end %>
+

@@ -1,12 +1,19 @@
 <h1><%= @client.name %></h1>
 <ul>
-  <li>Address: <%= @client.address %></li>
   <li>Number: <%= @client.number %></li>
   <li>Email: <%= @client.email %></li>
+  <li>City: <%= @client.address_city %></li>
+  <li>Street: <%= @client.address_line_1 %></li>
+  <li>Unit: <%= @client.address_line_2 %></li>
+  <li>State: <%= @client.address_state %></li>
+  <li>Country: <%= @client.address_country %></li>
+  <li>Post/Zip: <%= @client.address_post_zip %></li>
+
 </ul>
 
 <!-- prevent pinging API -->
 <%# "Emailed #{@client.send_email}" %>
 <%# "Called #{@client.send_call}" %>
 <%# "Texted #{@client.send_text}" %>
-<%= "Letter cost?: #{@client.letter_cost('public/letter.pdf')}" %>
+<%# "You can mail a letter for $#{@client.letter_cost('public/letter.pdf')}" %>
+<%# "Mailed #{@client.send_letter('public/letter.pdf')}" %>

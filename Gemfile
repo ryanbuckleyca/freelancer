@@ -7,11 +7,13 @@ ruby '2.6.6'
 
 # custom
 gem 'clicksend_client'
+gem 'country_select'
 gem 'devise'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'faker'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'rest-client'
+gem 'simple_form'
 gem 'twilio-ruby'
 gem 'whenever', require: false
 gem 'wicked_pdf'

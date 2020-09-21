@@ -1,9 +1,14 @@
-<h1>Click on a client to call them</h1>
+<h1>Click on a client to see your contracts with them</h1>
 <ul>
   <% @clients.each do |client| %>
   <li><strong>Client: <%= link_to client.name, client_path(client.id) %></strong></li>
-  <li>Address: <%= client.address %></li>
   <li>Number: <%= client.number %></li>
   <li>Email: <%= client.email %></li>
+  <li>City: <%= client.address_city %></li>
+  <li>Street: <%= client.address_line_1 %></li>
+  <li>Unit: <%= client.address_line_2 %></li>
+  <li>State: <%= client.address_state %></li>
+  <li>Country: <%= client.address_country %></li>
+  <li>Post/Zip: <%= client.address_post_zip %></li>
   <% end %>
 </ul>

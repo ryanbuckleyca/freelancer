@@ -1,0 +1,40 @@
+<%= simple_form_for @client do |f|%>
+    <%= f.input :name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "name" }%>
+    <%= f.input :number,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "phone" }%>
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email" }%>
+    <%= f.input :address_city,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "address_city" }%>
+    <%= f.input :address_line_1,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "address_street" }%>
+    <%= f.input :address_line_2,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: "address_unit" }%>
+    <%= f.input :address_state,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "address_state" }%>
+    <%= f.input :address_country,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "address_country" }%>
+    <%= f.input :address_post_zip,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "address_post_zip" }%>
+    <%= f.submit %>
+<% end %>
+

@@ -42,36 +42,51 @@ class Client < ApplicationRecord
     end
   end
 
-  def letter_cost(file)
+  def create_letter(file)
     connect_clicksend
-    api_instance = ClickSendClient::PostLetterApi.new
-    post_letter = ClickSendClient::PostLetter.new(
+    {
       'file_url': upload_file_to_clicksend(file),
       'colour': 0,
       'recipients': [
         {
           'return_address_id': 0,
           'schedule': 0,
-          'address_postal_code': 'H2W 1Y7',
-          'address_country': 'Canada',
-          'address_line_1': '4107 St. Laurent Blvd',
-          'address_state': 'Quebec',
-          'address_name': 'Ryan Buckley',
-          'address_line_2': 'Apt 2',
-          'address_city': 'Montreal'
+          'address_postal_code': address_post_zip,
+          'address_country': address_country,
+          'address_line_1': address_line_1,
+          'address_state': address_state,
+          'address_name': name,
+          'address_line_2': address_line_2,
+          'address_city': address_city
         }
       ],
       'template_used': 0,
       'duplex': 0,
       'priority_post': 0,
       'source': 'sdk'
-    )
+    }
+  end
 
+  def letter_cost(file)
+    api_instance = ClickSendClient::PostLetterApi.new
+    post_letter = ClickSendClient::PostLetter.new(create_letter(file))
     begin
       result = api_instance.post_letters_price_post(post_letter)
-      JSON.parse(result)
+      json = JSON.parse(result)
+      json['data']['total_price'].round(2)
     rescue ClickSendClient::ApiError => e
       "Exception when calling PostLetterApi->post_letters_price_post: #{e.response_body}"
+    end
+  end
+
+  def send_letter(file)
+    api_instance = ClickSendClient::PostLetterApi.new
+    post_letter = ClickSendClient::PostLetter.new(create_letter(file))
+    begin
+      result = api_instance.post_letters_send_post(post_letter)
+      JSON.parse(result)
+    rescue ClickSendClient::ApiError => e
+      "Exception when calling PostLetterApi->post_letters_send_post: #{e.response_body}"
     end
   end
 

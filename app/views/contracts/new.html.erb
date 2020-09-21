@@ -1,0 +1,9 @@
+<%= simple_form_for @contract do |f|%>
+  <%= f.input :description %>
+  <%= f.association :client %>
+  <%= f.date_field :due_date %>
+  <%= label :paid, 'Paid status' %>
+    <%= f.radio_button :paid, 'true' %> Paid
+    <%= f.radio_button :paid, 'false', :checked => true %> Unpaid
+  <%= f.submit %>
+<% end %>

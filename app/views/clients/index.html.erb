@@ -1,9 +1,0 @@
-<h1>Click on a client to call them</h1>
-<ul>
-  <% @clients.each do |client| %>
-  <li><strong>Client: <%= link_to client.name, client_path(client.id) %></strong></li>
-  <li>Address: <%= client.address %></li>
-  <li>Number: <%= client.number %></li>
-  <li>Email: <%= client.email %></li>
-  <% end %>
-</ul>

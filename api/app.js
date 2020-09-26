@@ -62,15 +62,14 @@ app.use(passport.initialize());
 
 app.use(passport.session());
 
-// TODO: remove if optional
 // You can use this section to keep a smaller payload
-// passport.serializeUser(function (user, done) {
-//   done(null, user);
-// });
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
 
-// passport.deserializeUser(function (user, done) {
-//   done(null, user);
-// });
+passport.deserializeUser(function (user, done) {
+  done(null, user);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

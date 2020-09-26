@@ -9,7 +9,6 @@ var userInViews = require('./lib/middleware/userInViews');
 var authRouter = require('./routes/auth');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var testAPIRouter = require('./routes/testAPI');
 
 var app = express();
 
@@ -86,7 +85,6 @@ app.use(userInViews());
 app.use('/', authRouter);
 app.use('/', indexRouter);
 app.use('/', usersRouter);
-app.use('/', testAPIRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

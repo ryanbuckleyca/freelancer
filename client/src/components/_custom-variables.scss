@@ -1,0 +1,14 @@
+$black: #0B2027;
+$blue: #40798C;
+$green: #70A9A1;
+$gray: #CFD7C7;
+$white: #FEFDF7;
+$light-gray: rgba(81, 84, 78, 0.05);
+
+$colors: (
+  "blue": $blue,
+  "green": $green,
+  "white": $white,
+  "gray": $gray,
+  "gray-dark": $black
+) !default;

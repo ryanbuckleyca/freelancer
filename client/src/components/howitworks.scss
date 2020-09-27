@@ -1,0 +1,42 @@
+@import './_custom-variables.scss';
+
+.howitworks-card {
+  text-size: 12px;
+  border-radius: 25px;
+  padding: 5vw;
+  background-color: $light-gray;
+  .head {
+    height: 120px;
+  }
+  .head img {
+    position: relative;
+    height: 70%;
+    left: -60px;
+    top: -80px;
+  }
+  p {
+    background: white;
+    font-size: 80%;
+    border: 1px solid rgba(1, 1, 1, 0.1);
+    border-radius: 5px;
+    transform: rotate(-1deg);
+    padding: 15px;
+    margin-top: 10px;
+    box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.4);
+  }
+  .body {
+    overflow: hidden;
+    height: 300px;
+  }
+  .body img {
+    height: 300px;
+  }
+  .bottom {
+    align-items: flex-start;
+  }
+  .bottom img {
+    margin-bottom: -125px;
+    margin-top: -30px;
+  }
+
+}

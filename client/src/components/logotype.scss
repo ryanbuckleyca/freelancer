@@ -1,0 +1,20 @@
+/* takes a height prop in component */
+.logotype {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.logotype img {
+  object-fit: contain;
+  flex-grow: 0;
+  height: 50px;
+  width: auto;
+}
+.logotype h1 {
+  flex-grow: 1;
+  text-align: left;
+  white-space: nowrap;
+  font-size: 16px;
+  padding: 0 10px;
+  margin: 0;
+}

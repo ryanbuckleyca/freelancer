@@ -1,0 +1,27 @@
+@import './_custom-variables.scss';
+
+.splash {
+  margin-top: 4em;
+  display: flex;
+  .splash-text {
+    width: 45%;
+  }
+  .splash-img {
+    width: 55%;
+  }
+  img {
+    width: 100%;
+  }
+  p {
+    padding: 8% 0 6%;
+    width: 100%;
+    font-size: 16px;
+    font-family: Avenir;
+    line-height: 125%;
+  }
+  img {
+    flex-grow: 1;
+    width: 110%;
+    margin: -2% -5% 0 5%;
+  }
+}

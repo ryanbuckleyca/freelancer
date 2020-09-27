@@ -1,0 +1,22 @@
+@import './_custom-variables.scss';
+
+.navbar-chequemate {
+  justify-content: space-between;
+  background: none;
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 14px;
+}
+.active .nav-link {
+  color: $blue !important;
+}
+
+.navbar-chequemate .navbar-collapse {
+  flex-grow: 0;
+}
+
+.avatar {
+  height: 40px;
+  border-radius: 50%;
+  float: right;
+}

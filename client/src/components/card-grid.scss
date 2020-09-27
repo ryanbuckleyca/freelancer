@@ -1,0 +1,40 @@
+.card-grid {
+  display: grid;
+  grid-gap: 5%;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+}
+
+.card {
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 250px;
+  border: 0;
+  background-image: url('../images/card-bg1.svg');
+  background-size: 100% 100%;
+  margin: auto;
+  padding: 30px;
+  h3 {
+    font-size: 125%;
+  }
+  .card-text {
+    width: 55%;
+    padding-left: 5%;
+    flex-grow: 1;
+    text-align: left;
+  }
+  .card-img {
+    width: 45%;
+    flex-grow: 0;
+  }
+  img {
+    position: relative;
+    width: 120%;
+    left: -40px;
+  }
+}

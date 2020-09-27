@@ -3,6 +3,8 @@ import Navbar from './navbar';
 import Splash from './splash';
 import TitleCard from './titlecard';
 import HowItWorks from './howitworks';
+import Testimonials from './testimonials';
+import Footer from './footer';
 import './card-grid.scss';
 import money from '../images/bank_note.svg';
 import pr from '../images/pr.svg';
@@ -11,24 +13,25 @@ import currency from '../images/currency.svg';
 
 class Landing extends Component {
   render() {
-    return (
-      <div className='container mt-3'>
-        <Navbar userIsLoggedIn />
-        <br />
+    return (<div className='container'>
         <div className='container my-4'>
+          <Navbar />
+        </div>
+        <br />
+        <div className='container my-5'>
           <Splash />
         </div>
         <br />
-        <div className='container my-4'>
+        <div className='container my-5'>
           <TitleCard />
         </div>
         <br />
-        <div className="text-center m-4">
+        <div className="text-center m-3">
           <h2 className="m-3">Features</h2>
-          <span className="m-5">Here are a few of the features we offer to users.</span>
+          <span className="my-5">Here are a few of the features we offer to users.</span>
         </div>
         <br />
-        <div className="card-grid my-4">
+        <div className="card-grid m-3">
           <div className="card">
             <div className="card-img">
               <img src={money} alt="cash" />
@@ -71,15 +74,22 @@ class Landing extends Component {
           </div>
         </div>
         <br />
-        <div className="text-center m-5">
+        <div className="text-center m-3">
           <h2 className="m-3">How It Works</h2>
         </div>
-        <div className='container my-4'>
+        <div className='container my-5'>
           <HowItWorks />
         </div>
-
-      </div>
-    );
+        <br />
+        <div className='container my-5'>
+          <Testimonials />
+        </div>
+        <br />
+        <hr />
+        <div className='container my-5'>
+          <Footer trial />
+        </div>
+    </div>);
   }
 }
 

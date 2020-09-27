@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Logotype from './logotype';
-import 'bootstrap/dist/css/bootstrap.css';
 import './navbar.scss';
 
 class Navbar extends Component {
@@ -14,7 +13,7 @@ class Navbar extends Component {
       </li>
       <li className="nav-item dropdown">
         <img
-        src="https://kitt.lewagon.com/placeholder/users/ssaunier"
+        src="https://kitt.lewagon.com/placeholder/users/ryanbuckleyca"
         className="avatar dropdown-toggle"
         id="navbarDropdown"
         data="dropdown"

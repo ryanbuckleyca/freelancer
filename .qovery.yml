@@ -1,6 +1,6 @@
 application:
   name: cheque-mate
-  project: Cheque Mate
+  project: Cheque-Mate
   cloud_region: aws/us-east-2
 databases:
 - type: postgresql

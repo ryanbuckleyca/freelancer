@@ -12,13 +12,13 @@ class Footer extends Component {
           <div className="row order-2 col-sm-5 order-sm-0">
             <div className="mx-3 d-flex flex-row flex-sm-column align-items-start w-100 justify-content-between">
               <Logotype height='40' />
-              <div className="text-right text-sm-left align-self-end">
+              <div className="text-right text-sm-left align-self-end align-self-sm-start">
                 <p>
                   info@chequemate.work<br />
                   1-347-272-0159
                 </p>
                 <div>
-                  <small> © 2020 Cheque Mate.<br className="d-block d-md-none" /> All rights reserved.</small>
+                  <small> © 2020 Cheque Mate.<br className="d-block d-lg-none" /> All rights reserved.</small>
                   <small> Company Registration Number: 21479524.</small>
                 </div>
               </div>

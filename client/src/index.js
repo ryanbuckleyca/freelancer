@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/js/src/index';
 import './index.scss';
 import './components/_custom-variables.scss';
 import Landing from './components/landing';

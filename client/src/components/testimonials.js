@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import './testimonials.scss';
+import './cards.scss';
 
 class Testimonials extends Component {
   render() {
     return(
-      <div className="testimonials">
+      <div className="p-5 card-testimonials card-lg">
         <h2>Testimonials</h2>
         <div className="hScroll">
-          <div className="testimony">
+          <div className="card-testimony">
             <div className="avatar">
               <img src="https://kitt.lewagon.com/placeholder/users/ryanbuckleyca"
                 className="avatar" alt="user avatar" />
@@ -20,7 +21,7 @@ class Testimonials extends Component {
               Proin molestie felis leo, vestibulum ullamcorper leo consectetur ac. Donec eros nulla, porttitor quis velit vitae, pulvinar dapibus neque. Quisque malesuada neque a lacus vestibulum aliquam.
             </p>
           </div>
-          <div className="testimony">
+          <div className="card-testimony">
             <div className="avatar">
               <img src="https://kitt.lewagon.com/placeholder/users/nachiket87"
                 className="avatar" alt="user avatar" />
@@ -31,7 +32,7 @@ class Testimonials extends Component {
               Vivamus commodo mauris id mi commodo, sodales tempus leo elementum.
             </p>
           </div>
-          <div className="testimony">
+          <div className="card-testimony">
             <div className="avatar">
               <img src="https://kitt.lewagon.com/placeholder/users/mynameisnirali"
                 className="avatar" alt="user avatar" />

@@ -30,7 +30,7 @@ class Navbar extends Component {
   navVisitor =
     <ul className="navbar-nav mr-auto">
       <li className="nav-item">
-        <a href="/login" className="nav-link">Login</a>
+        <a href="/login" className="nav-link">Login | Sign-Up</a>
       </li>
     </ul>;
 

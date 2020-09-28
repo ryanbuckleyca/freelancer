@@ -10,7 +10,7 @@ class Footer extends Component {
         { this.props.trial ? <div className="container my-5 p-0"><Trial /></div> : null }
         <div className="footer mr-5">
           <div>
-            <Logotype width='40' />
+            <Logotype height='40' />
             <p>info@chequemate.work<br />
             1-347-272-0159</p>
             <small> © Cheque Mate™, 2020. All rights reserved.</small>

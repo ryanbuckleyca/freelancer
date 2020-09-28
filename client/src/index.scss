@@ -1,15 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Suez+One&display=swap');
 @import './components/_custom-variables';
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.btn-success {
-  background: $green;
-  border: none;
-  border-radius: 50px;
-  font-size: 12px;
-}
+@import '~bootstrap/scss/bootstrap.scss';
 
 .container {
   margin: 0 auto;

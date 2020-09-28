@@ -14,15 +14,15 @@ import currency from '../images/currency.svg';
 class Landing extends Component {
   render() {
     return (<div className='container'>
-        <div className='container my-4'>
+        <div className='container my-3'>
           <Navbar />
         </div>
         <br />
-        <div className='container my-5'>
+        <div className='container mt-4 mb-3'>
           <Splash />
         </div>
         <br />
-        <div className='container my-5'>
+        <div className='container my-4'>
           <TitleCard />
         </div>
         <br />

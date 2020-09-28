@@ -1,14 +1,6 @@
 @import './_custom-variables.scss';
 
 .splash {
-  margin-top: 4em;
-  display: flex;
-  .splash-text {
-    width: 45%;
-  }
-  .splash-img {
-    width: 55%;
-  }
   img {
     width: 100%;
   }
@@ -21,7 +13,5 @@
   }
   img {
     flex-grow: 1;
-    width: 110%;
-    margin: -2% -5% 0 5%;
   }
 }

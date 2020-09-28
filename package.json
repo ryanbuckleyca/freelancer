@@ -1,6 +1,11 @@
 {
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  },
   "scripts": {
-      "start": "cd client && npm start && cd ../api && npm start",
-      "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+  "client": "cd client && npm start",
+  "api": "cd api && npm start",
+  "start": "concurrently \"npm run client\" \"npm run api\"",
+  "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   }
 }

@@ -1,12 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Suez+One&display=swap');
 @import './components/_custom-variables';
-@import 'node_modules/bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap.scss';
 
-.btn-success {
-  background: $green;
-  border: none;
-  border-radius: 50px;
-  font-size: 12px;
+.container {
+  margin: 0 auto;
+}
+
+html {
+  overflow-x: hidden;
+}
+body {
+  overflow-x: hidden;
+  width: 100vw;
+  min-width: 460px;
+  margin: 0;
+  padding: 0;
+  background: rgb(246,250,253);
+  background: linear-gradient(180deg, rgba(246,250,253,1) 0%, rgba(255,255,255,1) 100%);
+  font-family: Avenir, Helvetica, sans-serif;
+  line-height: 125%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h2 {
@@ -14,16 +28,6 @@ h2 {
   font-family: Montserrat;
   font-weight: 700;
   color: $black;
-}
-
-body {
-  margin: 0;
-  padding: 10px 0;
-  background: rgb(246,250,253);
-  background: linear-gradient(180deg, rgba(246,250,253,1) 0%, rgba(255,255,255,1) 100%);
-  font-family: 'Avenir', 'Helvetica', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {

@@ -1,0 +1,40 @@
+@import './custom-variables.scss';
+
+.card-testimonials {
+  background: $green;
+  white-space: nowrap;
+  h2 {
+    color: white;
+    margin-bottom: 10%;
+    margin-top: 5%;
+  }
+}
+.hScroll {
+  display: flex;
+}
+
+.card-testimony {
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  padding: 8%;
+  margin-right: 2%;
+  box-shadow: 0 10px 0 rgba(1, 1, 1, 0.2);
+  border: 1px solid $blue;
+  .avatar {
+    margin: 0 10px 0 0;
+  }
+  p {
+    white-space: pre-wrap;
+    width: 300px;
+    color: rgba(1, 1, 1, 0.9);
+  }
+}
+
+.bottom-scroll {
+  margin-top: 1em;
+  display: flex;
+  font-size: 200%;
+  color: white;
+  justify-content: space-between;
+}

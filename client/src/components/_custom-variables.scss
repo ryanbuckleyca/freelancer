@@ -12,3 +12,31 @@ $colors: (
   "gray": $gray,
   "gray-dark": $black
 ) !default;
+
+.navbar {
+  padding: 0;
+}
+
+.btn-outline-success {
+  background: none;
+  border: 1px solid rgba(1, 1, 1, 0.1);
+  box-shadow: 0 5px 5px rgba(1, 1, 1, 0.1);
+  border-radius: 50px;
+  font-size: 14px;
+  color: $green;
+}
+.btn-outline-success:hover {
+  background: none;
+  border: 1px solid $green;
+  box-shadow: 0 0 1px $green;
+  border-radius: 50px;
+  font-size: 14px;
+  color: $green;
+}
+.btn-success {
+  background: $green;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  color: white;
+}

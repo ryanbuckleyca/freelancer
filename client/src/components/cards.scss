@@ -7,20 +7,53 @@
   align-items: center;
 }
 
-.card-sm {
-  font-size: 12px;
-  border: 0;
-  background-color: transparent;
-  background-image: url('../images/card-bg1.svg');
-  background-size: 75% 100%;
-  -moz-background-size: 75% 100%;
-  -webkit-background-size: 75% 100%;
-  background-position: right;
-  background-repeat: no-repeat;
+  .card-sm {
+    z-index: -1;
+    background-image: url('../images/card-bg2.svg');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: 100% 75%;
+    -moz-background-size: 100% 75%;
+    -webkit-background-size: 100% 75%;
+    .card-sm-img {
+      z-index: 2;
+      padding: 0 15% 0;
+    }
+  }
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .card-sm {
+    font-size: 80%;
+    line-height: 125%;
+    border: 0;
+    background-color: transparent;
+    background-image: url('../images/card-bg1.svg');
+    background-size: 75% 100%;
+    -moz-background-size: 75% 100%;
+    -webkit-background-size: 75% 100%;
+    background-position: right;
+    .card-sm-img {
+      z-index: 2;
+    }
+  }
+}
+@media screen and (min-width: 992px) {
+  .card-sm {
+    font-size: 80%;
+    line-height: 125%;
+    border: 0;
+    background-color: transparent;
+    background-image: url('../images/card-bg1.svg');
+    background-size: 75% 100%;
+    -moz-background-size: 75% 100%;
+    -webkit-background-size: 75% 100%;
+    background-position: right;
+    .card-sm-img {
+      z-index: 2;
+    }
+  }
 }
 
 .card-email {
-  text-size: 12px;
   background: white;
   font-size: 80%;
   border: 1px solid rgba(1, 1, 1, 0.1);

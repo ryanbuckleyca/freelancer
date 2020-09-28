@@ -29,9 +29,9 @@ class HowItWorks extends Component {
             </p>
           </div>
         </div>
-        <div className="row px-0 mt-n4 mb-n4 align-items-center" style={{height: 150}}>
-          <div className="col-4 mt-5 mr-n3 col-md-3"><img className="h-100 mb-n5" style={{height: 150}} src={mailchimp} alt="mailchimp" /></div>
-          <div className="col-8 p-0 mt-5 ml-n3 col-md-9">PLUS: We’ll send physical mail bi-weekly or monthly with your original invoice.</div>
+        <div className="row px-0 mb-n4 align-items-center">
+          <div className="col-12 px-5 mb-n5 order-1 col-sm-4 col-lg-3 col-xl-2 p-sm-0 order-sm-0"><img className="w-100 mb-n5" src={mailchimp} alt="mailchimp" /></div>
+          <div className="col-12 p-4 col-sm-8 pl-sm-0 col-lg-9 col-xl-10 ml-xl-n3">PLUS: We’ll send physical mail bi-weekly or monthly with your original invoice.</div>
         </div>
       </div>
     )

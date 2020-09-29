@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Logotype from './logotype';
+import LoginButton from './loginbutton';
+import LogoutButton from './logoutbutton';
 import './navbar.scss';
 
 class Navbar extends Component {
@@ -30,7 +32,8 @@ class Navbar extends Component {
   navVisitor =
     <ul className="navbar-nav mr-auto">
       <li className="nav-item">
-        <a href="/login" className="nav-link">Login | Sign-Up</a>
+        <LoginButton />
+        <LogoutButton />
       </li>
     </ul>;
 

@@ -36,7 +36,7 @@ class Landing extends Component {
   render() {
     return (<div className='container'>
         <div className='container my-3'>
-          <Navbar userIsLoggedIn />
+          <Navbar />
         </div>
         <br />
         <div className='container mt-5 mb-3'>

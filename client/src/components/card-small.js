@@ -6,7 +6,7 @@ class CardSmall extends Component {
     return(
       <div className="col-12 col-md-6 mb-4 px-3 px-sm-4 d-flex">
         <div className="row card-sm">
-          <div className="col-12 px-5 col-sm-5 col-md-12 px-sm-3 col-lg-5 p-lg-0 card-img d-flex align-items-center card-sm-img">
+          <div className="col-12 px-5 col-sm-5 px-sm-3 col-md-12 px-md-5 col-lg-5 p-lg-0 card-img d-flex align-items-center card-sm-img">
             <img className="w-100 mx-auto" src={this.props.img} alt='info' />
           </div>
           <div className="col-12 col-sm-7 col-md-12 col-lg-7 card-sm-text">

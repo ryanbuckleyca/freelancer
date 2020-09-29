@@ -1,44 +1,18 @@
 import React, {Component} from 'react';
-import Navbar from './navbar';
 import Splash from './splash';
 import CardTitle from './card-title';
 import CardSmall from './card-small';
 import HowItWorks from './howitworks';
 import Testimonials from './testimonials';
-import Footer from './footer';
-// CSS
-import './cards.scss';
-// Images
 import money from '../images/bank_note.svg';
 import pr from '../images/pr.svg';
 import finance from '../images/finance_analytics_.svg';
 import currency from '../images/currency.svg';
 
 class Landing extends Component {
-  constructor() {
-    super();
-    this.state = { apiResponse: "" };
-  }
-
-  callAPI() {
-      fetch("http://localhost:9000/")
-          .then(res => res.json())
-          .then(res => this.setState({ apiResponse: res }, ()=>{
-            console.log("state set in client/Landing.callAPI: ", this.state)
-          }));
-  }
-
-  componentWillMount() {
-      this.callAPI();
-  }
-
-
   render() {
-    return (<div className='container'>
-        <div className='container my-3'>
-          <Navbar />
-        </div>
-        <br />
+    return (
+      <div className='container'>
         <div className='container mt-5 mb-3'>
           <Splash />
         </div>
@@ -85,12 +59,8 @@ class Landing extends Component {
         <div className='container my-5'>
           <Testimonials />
         </div>
-        <br />
-        <hr />
-        <div className='container my-5'>
-          <Footer trial />
-        </div>
-    </div>);
+      </div>
+    );
   }
 }
 

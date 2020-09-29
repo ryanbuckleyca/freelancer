@@ -18,10 +18,10 @@ class Landing extends Component {
   render() {
     return (<div className='container'>
         <div className='container my-3'>
-          <Navbar />
+          <Navbar userIsLoggedIn />
         </div>
         <br />
-        <div className='container mt-4 mb-3'>
+        <div className='container mt-5 mb-3'>
           <Splash />
         </div>
         <br />
@@ -34,7 +34,7 @@ class Landing extends Component {
           <span className="my-5">Here are a few of the features we offer to users.</span>
         </div>
         <br />
-        <div className="row p-3 card-grid m-3">
+        <div className="row card-grid my-3 mx-2 mx-sm-0">
           <CardSmall
             img={money}
             cardTitle="Search Bad Clients"

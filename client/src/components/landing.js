@@ -15,6 +15,24 @@ import finance from '../images/finance_analytics_.svg';
 import currency from '../images/currency.svg';
 
 class Landing extends Component {
+  constructor() {
+    super();
+    this.state = { apiResponse: "" };
+  }
+
+  callAPI() {
+      fetch("http://localhost:9000/")
+          .then(res => res.json())
+          .then(res => this.setState({ apiResponse: res }, ()=>{
+            console.log("state set in client/Landing.callAPI: ", this.state)
+          }));
+  }
+
+  componentWillMount() {
+      this.callAPI();
+  }
+
+
   render() {
     return (<div className='container'>
         <div className='container my-3'>

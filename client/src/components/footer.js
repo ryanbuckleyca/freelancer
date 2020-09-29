@@ -4,10 +4,10 @@ import Logotype from './logotype';
 import './footer.scss';
 
 class Footer extends Component {
-  render(props) {
+  render() {
     return(
       <div>
-        { this.props.trial ? <div className="container my-5 p-0"><Trial /></div> : null }
+        { !this.props.showTrial && <div className="container my-5 p-0"><Trial /></div> }
         <div className="row footer">
           <div className="row order-2 col-sm-5 order-sm-0">
             <div className="mx-3 d-flex flex-row flex-sm-column align-items-start w-100 justify-content-between">

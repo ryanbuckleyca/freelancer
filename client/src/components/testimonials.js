@@ -7,7 +7,18 @@ class Testimonials extends Component {
     return(
 
       <div id="demo" className="carousel slide p-5 card-testimonials card-lg" data-ride="carousel">
-        <h2>Testimonials</h2>
+        <span className="d-flex justify-content-between align-items-center mb-5">
+          <h2 className="m-0">Testimonials</h2>
+
+          <div>
+            <a className="carousel-control-prev" href="#demo" data-slide="prev">
+              <span className="carousel-control-prev-icon"></span>
+            </a>
+            <a className="carousel-control-next" href="#demo" data-slide="next">
+              <span className="carousel-control-next-icon"></span>
+            </a>
+          </div>
+        </span>
 
         {/* Indicators */}
         <ul className="carousel-indicators">
@@ -61,13 +72,6 @@ class Testimonials extends Component {
           </div>
         </div>
 
-        {/* Controlls */}
-        <a className="carousel-control-prev" href="#demo" data-slide="prev">
-          <span className="carousel-control-prev-icon"></span>
-        </a>
-        <a className="carousel-control-next" href="#demo" data-slide="next">
-          <span className="carousel-control-next-icon"></span>
-        </a>
 
       </div>
     )

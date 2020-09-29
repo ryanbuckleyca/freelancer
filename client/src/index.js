@@ -4,9 +4,9 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import 'bootstrap/js/src/index';
 import './index.scss';
 import './components/_custom-variables.scss';
-import Landing from './components/landing';
-import * as serviceWorker from './serviceWorker';
 import swapWords from './components/swapwords'
+import App from './components/app';
+import * as serviceWorker from './serviceWorker';
 
 require('dotenv').config()
 
@@ -16,7 +16,7 @@ ReactDOM.render(
     clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
     redirectUri={window.location.origin}>
     <React.StrictMode>
-      <Landing />
+      <App />
     </React.StrictMode>
   </Auth0Provider>,
   document.getElementById('root')
@@ -27,5 +27,5 @@ ReactDOM.render(
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-swapWords();
-
+//TODO: figure out how to load this from Landing
+!window.location.pathname && swapWords()

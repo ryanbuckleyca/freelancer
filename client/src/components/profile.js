@@ -9,7 +9,7 @@ class Profile extends Component {
     return (
       isAuthenticated && (
       <div>
-        Hello {user.name}
+        Hello {user.name} ({user.sub})
         <pre>{'{'}
         {
           Object.keys(user).map(key => <div>{key}: {user[key]}</div>)

@@ -1,0 +1,13 @@
+{
+  "development": {
+    "username": "apinrise",
+    "password": null,
+    "database": "cheque-mate",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "dialect": "postgres",
+    "use_env_variable": "DATABASE_URL"
+  }
+}

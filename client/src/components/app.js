@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   callAPI() {
-    fetch("http://localhost:9000/")
+    fetch("http://localhost:9000/test")
       .then(res => res.json())
       .then(res => this.setState({ apiResponse: res }, ()=>{
         console.log("state set in client/App.callAPI: ", this.state)

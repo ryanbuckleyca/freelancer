@@ -23,6 +23,7 @@ class App extends Component {
   componentWillMount() {
     this.callAPI();
     console.log('window.location.origin: ', window.location.origin);
+    console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
   }
 
 

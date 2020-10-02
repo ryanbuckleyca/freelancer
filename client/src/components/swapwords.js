@@ -1,3 +1,7 @@
+console.log('swapWords.js loading...')
+
+const faker = require('faker')
+
 const words = {
   greeting: ['Hello', 'Dear', 'Hi', 'Greetings'],
   opening: ['On behalf of', 'In the interest of', 'In support of', 'Regarding the account of', 'With respect to', 'With regards to', 'In representing'],
@@ -17,8 +21,9 @@ const swapWords = function() {
   for (var key in words) {
     const rando = Math.floor(Math.random() * words[key].length)
     document.getElementsByName(key)[0].innerText = words[key][rando];
+    document.getElementsByName('fakerName')[0].innerText = faker.name.findName();
   }
-  setTimeout(swapWords, 5000);
+  setTimeout(swapWords, 4000);
 }
 
 export default swapWords;

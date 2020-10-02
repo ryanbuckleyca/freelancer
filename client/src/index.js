@@ -29,4 +29,4 @@ ReactDOM.render(
 serviceWorker.unregister();
 
 //TODO: figure out how to load this from Landing
-!window.location.pathname && swapWords()
+window.location.pathname === '/' && swapWords()

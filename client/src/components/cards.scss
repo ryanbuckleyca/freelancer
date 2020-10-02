@@ -6,24 +6,36 @@
   background-color: $light-gray;
   align-items: center;
 }
-
-  .card-sm {
-    z-index: -1;
-    background-image: url('../images/card-bg2.svg');
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: 100% 75%;
-    -moz-background-size: 100% 75%;
-    -webkit-background-size: 100% 75%;
-    .card-sm-img {
-      z-index: 2;
-      padding: 0 15% 0;
+// xs and md screens (up to 575, then 768 - 991px)
+.card-sm {
+  z-index: -1;
+  background-image: url('../images/card-bg2.svg');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 85%;
+  -moz-background-size: 100% 85%;
+  -webkit-background-size: 100% 85%;
+  .card-sm-img {
+    z-index: 2;
+    padding: 0 15% 0;
+  }
+  .card-sm-img img {
+    width: 80% !important;
+  }
+  @media screen and (max-width: 575px) {
+    .card-sm-img img {
+      width: 60% !important;
+    }
+    .card-sm-text {
+      padding: 1em 3em 2em;
     }
   }
+}
+// sm screens (576-767px)
 @media screen and (min-width: 576px) and (max-width: 767px) {
   .card-sm {
-    font-size: 80%;
-    line-height: 125%;
+    font-size: 100%;
+    line-height: 120%;
     border: 0;
     background-color: transparent;
     background-image: url('../images/card-bg1.svg');
@@ -36,6 +48,7 @@
     }
   }
 }
+// lg+ screens (992+)
 @media screen and (min-width: 992px) {
   .card-sm {
     font-size: 80%;

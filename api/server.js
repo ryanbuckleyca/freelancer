@@ -10,9 +10,9 @@ var dbRouter = require('./routes/db');
 var app = express();
 
 if (process.env.NODE_ENV === 'production') {
-  console.log('Running in production');
+  console.log('Node is running in production');
 } else {
-  console.log('Running in development');
+  console.log('Node is running in development');
 }
 
 // allow CORS

@@ -48,10 +48,12 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
-});
+  res.json({
+    message: err.message,
+    error: err
+  });
 
-const port = process.env.PORT || 5000;
+const port = process.env.API_PORT || 9000;
 app.listen(port);
 
 console.log(`Password generator listening on ${port}`);

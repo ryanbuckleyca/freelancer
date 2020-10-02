@@ -3,8 +3,6 @@
     "concurrently": "^4.1.0"
   },
   "scripts": {
-    "build": "cd client && npm run build",
-    "install": "cd client && npm install",
     "client": "cd client && npm start",
     "api": "cd api && npm start",
     "start": "concurrently \"npm run client\" \"npm run api\"",

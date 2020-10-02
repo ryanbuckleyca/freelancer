@@ -15,7 +15,6 @@ class Footer extends Component {
               <div className="text-right text-sm-left align-self-end align-self-sm-start">
                 <p>
                   info@chequemate.work<br />
-                  1-347-272-0159
                 </p>
                 <div>
                   <small> © 2020 Cheque Mate.<br className="d-block d-lg-none" /> All rights reserved.</small>

@@ -22,10 +22,10 @@ class HowItWorks extends Component {
             <p className="card-email">
               <i name="greeting">Hello</i> _CLIENT_,
               <br /><br />
-              <i name="opening">With regards to</i> <i name="who">our client</i>. I am <i name="action">writing</i> to <i name="inform">inform you</i> it’s been _TIME_ since your <i name="invoice">invoice</i> was <i name="sent">sent</i>. Please <i name="respond">respond</i> to the <i name="contact">contact info</i> in the <i name="attachment">attachment</i> if you <i name="need">need</i> <i name="help">help</i>.
+              <i name="opening">With regards to</i> <i name="who">our client</i>, I am <i name="action">writing</i> to <i name="inform">inform you</i> it’s been _TIME_ since your <i name="invoice">invoice</i> was <i name="sent">sent</i>. Please <i name="respond">respond</i> to the <i name="contact">contact info</i> in the <i name="attachment">attachment</i> if you <i name="need">need</i> <i name="help">help</i>.
               <br /><br />
-              <i name="thanks">Thanks</i>,
-              Fake But Real Looking Name
+              <i name="thanks">Thanks</i>,<br />
+              <i name="fakerName">Ryan Buckley</i>
             </p>
           </div>
         </div>

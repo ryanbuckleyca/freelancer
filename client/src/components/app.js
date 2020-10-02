@@ -7,30 +7,39 @@ import Footer from './footer';
 import { withAuth0 } from '@auth0/auth0-react';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = { auth0: this.props, apiResponse: "" };
-  }
-
   callAPI() {
     fetch("http://localhost:9000/test")
       .then(res => res.json())
-      .then(res => this.setState({ apiResponse: res }, ()=>{
-        console.log("state set in client/App.callAPI: ", this.state)
-      }));
+      .then(res => console.log('callAPI res: ', res));
   }
 
-  componentWillMount() {
-    this.callAPI();
+  async callSecureAPI() {
+    try {
+      const token = await this.props.auth0.getAccessTokenSilently();
+      const response = await fetch("http://localhost:9000/db", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const responseData = await response.json();
+
+      console.log(responseData);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  componentDidMount() {
     console.log('window.location.origin: ', window.location.origin);
     console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
   }
 
 
   render() {
-    console.log('this.props: ', this.props)
-    console.log('this.state: ', this.state)
-    const { isAuthenticated } = this.props.auth0;
+    this.callAPI();
+    this.callSecureAPI();
+
     return (
     <Router>
       <div className='container'>
@@ -55,7 +64,7 @@ class App extends Component {
         <br />
         <hr />
         <div className='container my-5'>
-          <Footer showTrial={isAuthenticated} />
+          <Footer showTrial={this.props.auth0.isAuthenticated} />
         </div>
       </div>
     </Router>

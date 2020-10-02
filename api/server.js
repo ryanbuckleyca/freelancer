@@ -52,6 +52,7 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: err
   });
+});
 
 const port = process.env.API_PORT || 9000;
 app.listen(port);

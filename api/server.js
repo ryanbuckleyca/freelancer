@@ -15,21 +15,24 @@ app.use((req, res, next) => {
   next();
 });
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// RB: not sure we need the following
+// if not using static files in Node
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/test', testRouter);
 app.use('/db', dbRouter);
-// All remaining requests return the React app, so it can handle routing.
-app.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
 // catch 404 and forward to error handler
@@ -48,4 +51,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+const port = process.env.PORT || 5000;
+app.listen(port);
+
+console.log(`Password generator listening on ${port}`);

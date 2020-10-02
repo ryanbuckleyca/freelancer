@@ -9,6 +9,12 @@ var dbRouter = require('./routes/db');
 
 var app = express();
 
+if (process.env.NODE_ENV === 'production') {
+  console.log('Running in production');
+} else {
+  console.log('Running in development');
+}
+
 // allow CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -16,7 +22,9 @@ app.use((req, res, next) => {
 });
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -32,7 +40,7 @@ app.use('/db', dbRouter);
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  res.sendFile(path.join(__dirname, '/../client/build/index.html'));
 });
 
 // catch 404 and forward to error handler
@@ -57,4 +65,4 @@ app.use(function(err, req, res, next) {
 const port = process.env.API_PORT || 9000;
 app.listen(port);
 
-console.log(`Password generator listening on ${port}`);
+console.log(`Cheque Mate client listening on ${port}`);

@@ -22,6 +22,7 @@ class App extends Component {
 
   componentWillMount() {
     this.callAPI();
+    console.log('window.location.origin: ', window.location.origin);
   }
 
 

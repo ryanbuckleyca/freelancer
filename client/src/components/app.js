@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Navbar from './navbar';
 import Landing from './landing';
 import Profile from './profile';
+import PrivacyPolicy from './privacy-policy';
 import Footer from './footer';
 import { withAuth0 } from '@auth0/auth0-react';
 

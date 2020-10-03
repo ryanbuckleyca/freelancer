@@ -4,6 +4,12 @@
   justify-content: flex-start;
   align-items: center;
 }
+.navbar-brand:focus {
+  transform: scale(1) !important;
+  h1 {
+    text-decoration: underline !important;
+  }
+}
 .logotype img {
   object-fit: contain;
   flex-grow: 0;

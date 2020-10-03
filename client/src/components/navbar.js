@@ -14,7 +14,7 @@ class Navbar extends Component {
     }
 
     const navUser = isAuthenticated && (
-      <ul className="navbar-nav mr-auto align-items-center">
+      <ul className="navbar-nav mr-auto align-items-end">
         <li className="nav-item active">
           <Link to='/' className="nav-link">Browse Clients</Link>
         </li>
@@ -43,7 +43,7 @@ class Navbar extends Component {
     const navVisitor =
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <Link to="/" onClick={() => loginWithRedirect()}>Log In / Register</Link>
+          <Link to="/" onClick={() => loginWithRedirect()} className="nav-link">Log In / Register</Link>
         </li>
       </ul>;
 

@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
 import social_media from '../images/social_media.svg';
 import mailchimp from '../images/mailchimp.svg';
+import swapWords from './swapwords';
 import './cards.scss'
 
 class HowItWorks extends Component {
+  componentDidMount() {
+    swapWords();
+  }
+
   render() {
     return (
       <div className="howitworks-card card-lg">

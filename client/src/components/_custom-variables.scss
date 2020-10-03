@@ -1,6 +1,8 @@
 $black: #0B2027;
 $blue: #40798C;
 $green: #70A9A1;
+$dark-green: #548C85;
+$red: #C96480;
 $gray: #CFD7C7;
 $white: #FEFDF7;
 $light-gray: rgba(81, 84, 78, 0.05);
@@ -8,10 +10,16 @@ $light-gray: rgba(81, 84, 78, 0.05);
 $colors: (
   "blue": $blue,
   "green": $green,
+  "red": $red,
   "white": $white,
   "gray": $gray,
   "gray-dark": $black
 ) !default;
+
+*:focus {
+  outline: none !important;
+  transform: scale(1.05) !important;
+}
 
 .carousel-control-prev, .carousel-control-next {
     position: static;
@@ -28,6 +36,12 @@ $colors: (
 .navbar {
   padding: 0;
 }
+.dropdown-menu-right {
+  text-align: right;
+}
+.dropdown-item:active {
+  background-color: $red;
+}
 
 .btn {
   border-radius: 50px;
@@ -41,17 +55,22 @@ $colors: (
   color: $green;
 }
 .btn-outline-success:hover {
-  background: $green;
+  background-color: $green;
   border: 1px solid $green;
   box-shadow: 0 0 1px $green;
 }
 .btn-success {
-  background: $green;
+  background-color: $green;
   border: none;
   color: white;
 }
 .btn-success:hover {
-  background: darken($green, 10%);
+  background-color: darken($green, 10%);
   border: none;
+  color: white;
+}
+.btn-success:active {
+  background-color: darken($green, 20%) !important;
+  border: 4px solid lighten($green, 10%) !important;
   color: white;
 }

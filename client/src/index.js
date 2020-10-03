@@ -4,7 +4,6 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import 'bootstrap/js/src/index';
 import './index.scss';
 import './components/_custom-variables.scss';
-import swapWords from './components/swapwords'
 import App from './components/app';
 import * as serviceWorker from './serviceWorker';
 
@@ -27,6 +26,3 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-
-//TODO: figure out how to load this from Landing
-window.location.pathname === '/' && swapWords()

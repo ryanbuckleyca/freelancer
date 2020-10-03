@@ -6,7 +6,7 @@ const words = {
   greeting: ['Hello', 'Dear', 'Hi', 'Greetings'],
   opening: ['On behalf of', 'In the interest of', 'In support of', 'Regarding the account of', 'With respect to', 'With regards to', 'In representing'],
   who: ['our client', 'the freelancer you hired', 'someone who worked for you recently', ' a former employee of yours', 'a contractor who did work for you'],
-  action: ['writing', 'reaching out', 'conacting you', 'sending you this note'],
+  action: ['writing', 'reaching out', 'contacting you', 'sending you this note'],
   inform: ['inform you', 'let you know', 'alert you to the fact that', 'remind you that'],
   invoice: ['invoice', 'bill', 'statement', 'request for payment'],
   sent: ['delivered', 'sent', 'given to you', 'handed over', 'provided'],

@@ -54,6 +54,9 @@ class App extends Component {
           <Route path="/profile">
             <Profile />
           </Route>
+          <Route path="/policy">
+            <PrivacyPolicy />
+          </Route>
           <Route path="/invoices">
             "coming soon"
           </Route>

@@ -33,16 +33,6 @@ $colors: (
     transition: opacity 0.15s ease;
   }
 
-.navbar {
-  padding: 0;
-}
-.dropdown-menu-right {
-  text-align: right;
-}
-.dropdown-item:active {
-  background-color: $red;
-}
-
 .btn {
   border-radius: 50px;
   font-size: 100%;

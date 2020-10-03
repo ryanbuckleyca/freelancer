@@ -16,10 +16,10 @@ class Navbar extends Component {
     const navUser = isAuthenticated && (
       <ul className="navbar-nav mr-auto align-items-end">
         <li className="nav-item active">
-          <Link to='/' className="nav-link">Browse Clients</Link>
+          <Link to='/clients' className="nav-link">Browse Clients</Link>
         </li>
         <li className="nav-item">
-          <Link to="/" className="nav-link">Add Invoice</Link>
+          <Link to="/invoices" className="nav-link">Add Invoice</Link>
         </li>
         <li className="nav-item dropdown">
           <img
@@ -32,7 +32,7 @@ class Navbar extends Component {
           aria-expanded="false" />
           <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <Link to="/profile" className="dropdown-item">My Profile</Link>
-            <Link to="/" className="dropdown-item">My Invoices</Link>
+            <Link to="/invoices" className="dropdown-item">My Invoices</Link>
             <Link to="/" className="dropdown-item"
                onClick={() => logout({returnTo: window.location.origin })}>
               Logout

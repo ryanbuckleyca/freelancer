@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class PrivacyPolicy extends Component {
   render() {
     return(
-      <div>
+      <div className="container">
         <h1>Privacy Policy of Cheque Mate</h1>
         <p>Cheque Mate operates the www.chequemate.work website, which provides the SERVICE.</p>
         <p>This page is used to inform website visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service, the Cheque Mate website.</p>

@@ -13,7 +13,7 @@ class CardSmall extends Component {
             <div className="pt-4 pb-3 pl-3 py-sm-4 px-sm-2 p-md-0 py-md-3 pl-md-4 pr-md-3 m-md-3 px-lg-0 py-lg-3">
             <strong className="d-block mb-2">{this.props.cardTitle}</strong>
             <p className="flex-grow-1 align-self-stretch">{this.props.text}</p>
-            <a href="/more">Learn more --></a>
+            <a href="/more">Learn more ⟶</a>
             </div>
           </div>
         </div>

@@ -11,6 +11,15 @@ module.exports = {
       auth0_id: {
         type: Sequelize.STRING
       },
+      name: {
+        type: Sequelize.STRING
+      },
+      number: {
+        type: Sequelize.STRING
+      },
+      email: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

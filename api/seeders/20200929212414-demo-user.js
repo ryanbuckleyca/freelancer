@@ -4,6 +4,9 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [{
       auth0_id: 'auth0|5f6ec6f68ee071006fb063b4',
+      name: "Ryan Buckley",
+      number: "+1-438-408-6340",
+      email: "ryanbuckley@gmail.com",
       createdAt: new Date(),
       updatedAt: new Date()
     }]);

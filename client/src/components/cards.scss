@@ -8,7 +8,9 @@
 }
 // xs and md screens (up to 575, then 768 - 991px)
 .card-sm {
-  z-index: -1;
+  a {
+    color: $red;
+  }
   background-image: url('../images/card-bg2.svg');
   background-position: bottom;
   background-repeat: no-repeat;

@@ -14,7 +14,7 @@ ReactDOM.render(
     domain={process.env.REACT_APP_AUTH0_DOMAIN}
     clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
     audience={process.env.REACT_APP_AUDIENCE}
-    redirectUri={window.location.origin}>
+    redirectUri={process.env.REACT_APP_REDIRECT_URI}>
     <React.StrictMode>
       <App />
     </React.StrictMode>

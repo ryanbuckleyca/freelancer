@@ -4,43 +4,12 @@ import Navbar from './navbar';
 import Landing from './landing';
 import Profile from './profile';
 import PrivacyPolicy from './privacy-policy';
+import PrivateRoute from './private-route';
 import Footer from './footer';
 import { withAuth0 } from '@auth0/auth0-react';
 
 class App extends Component {
-  callAPI() {
-    fetch("http://localhost:9000/test")
-      .then(res => res.json())
-      .then(res => console.log('callAPI res: ', res));
-  }
-
-  async callSecureAPI() {
-    try {
-      const token = await this.props.auth0.getAccessTokenSilently();
-      const response = await fetch("http://localhost:9000/db", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const responseData = await response.json();
-
-      console.log(responseData);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  componentDidMount() {
-    console.log('window.location.origin: ', window.location.origin);
-    console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
-  }
-
-
   render() {
-    this.callAPI();
-    this.callSecureAPI();
-
     return (
     <Router>
       <div className='container'>
@@ -52,9 +21,7 @@ class App extends Component {
           <Route exact path="/">
             <Landing />
           </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
+          <PrivateRoute path="/profile" component={Profile} />
           <Route path="/policy">
             <PrivacyPolicy />
           </Route>

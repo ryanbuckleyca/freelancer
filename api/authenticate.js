@@ -2,7 +2,6 @@
 const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
 
-const port = process.env.API_PORT || 9000;
 const appOrigin = process.env.APP_ORIGIN;
 const audience = process.env.AUTH0_AUDIENCE;
 const issuer = process.env.AUTH0_ISSUER;

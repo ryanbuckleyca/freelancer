@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
-const url = process.env.REACT_APP_API_URL || 'http://localhost:9000'
 
 class Profile extends Component {
 
@@ -14,7 +13,7 @@ class Profile extends Component {
   //TODO: create updateAPI method to DRY-up these calls
   async findUser(auth0_id) {
     try {
-      const res = await fetch(`${url}/users/findByAuth0/${auth0_id}`)
+      const res = await fetch(`http://localhost:9000/users/findByAuth0/${auth0_id}`)
       const data = await res.json()
       return data
     } catch(err) {
@@ -25,7 +24,7 @@ class Profile extends Component {
   //TODO: add authentication and validation
   async createUser(user) {
     try {
-      const res = await fetch(`${url}/users/create/`, {
+      const res = await fetch(`http://localhost:9000/users/create/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
@@ -40,7 +39,7 @@ class Profile extends Component {
   //TODO: add authentication and validation
   async updateUser(user) {
     try {
-      const res = await fetch(`${url}/users/update/${user.id}`, {
+      const res = await fetch(`http://localhost:9000/users/update/${user.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)

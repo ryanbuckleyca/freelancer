@@ -1,5 +1,5 @@
 {
-  "homepage": "https://myapp.herokuapp.com/",
+  "homepage": "https://cheque-mate-app.herokuapp.com/",
   "dependencies": {
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",

@@ -31,6 +31,9 @@ app.use((req, res, next) => {
   next();
 });
 
+console.log("path.join(__dirname, '/../client/build/index.html')",
+  path.join(__dirname, '/../client/build/index.html'));
+
 
 const checkJwt = require('./authenticate');
 
@@ -97,8 +100,6 @@ app.get("/api/test", (req, res) => {
 // match the ones above, send back React's index.html file.
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/build/index.html'));
-  console.log("path.join(__dirname, '/../client/build/index.html')",
-    path.join(__dirname, '/../client/build/index.html'));
 });
 
 // Serve static files from the React app

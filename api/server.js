@@ -5,7 +5,7 @@ var app = express();
 
 const db = require('./models');
 
-const port = process.env.API_PORT || 9000;
+const port = process.env.PORT || 9000;
 
 if (process.env.NODE_ENV === 'production') {
   console.log('Node is running in production');
@@ -101,6 +101,7 @@ app.get("/api/test", (req, res) => {
 const root = require('path').join(__dirname, '/../client/build')
 app.use(express.static(root));
 app.get("*", (req, res) => {
+    console.log('server.js: non-predefined route called');
     res.sendFile('index.html', { root });
 })
 // TRY THE ABOVE INSTEAD

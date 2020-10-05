@@ -5,7 +5,7 @@ var app = express();
 
 const db = require('./models');
 
-const port = API_PORT || 9000;
+const port = process.env.API_PORT || 9000;
 
 if (process.env.NODE_ENV === 'production') {
   console.log('Node is running in production');

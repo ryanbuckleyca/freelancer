@@ -1,13 +1,33 @@
 @import '../_custom.scss';
 
+.card-carousel {
+  margin: 0;
+  // below is determined by px of bootstrap width
+  padding-left: calc((100vw - 1140px) / 2) !important;
+  display: flex;
+  overflow: scroll;
+}
+.inactive {
+  opacity: 0.4;
+}
+.card-slider:last-child {
+  padding-right: calc((100vw - 1140px) / 2) !important;
+}
 .card-slider {
+  display: flex;
+  min-width: 75%;
+  margin-right: 3em;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-items: flex-end;
   background-image: url('../images/card-bg-lg.svg');
   background-position: left;
   background-repeat: no-repeat;
   background-size: 85% 100%;
   -moz-background-size: 85% 100%;
   -webkit-background-size: 85% 100%;
-  @media screen and (max-width: 575px) {
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
     background-image: url('../images/card-bg2.svg');
     background-position: bottom;
     background-repeat: no-repeat;
@@ -15,17 +35,46 @@
     -moz-background-size: 100% 85%;
     -webkit-background-size: 100% 85%;
   }
+  .card-slider-form {
+    flex-grow: 1;
+    padding: 3em;
+    width: 100%;
+    @media screen and (max-width: 767px) {
+      padding: 1em 4em 4em;
+    }
+  }
+  .card-slider-img {
+    width: 40%;
+    display: flex;
+    flex-grow: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 0;
+    img {
+      width: 100%;
+    }
+    @media screen and (max-width: 767px) {
+      img {
+        width: 100%;
+      }
+    }
+  }
   label {
     padding-bottom: 0;
     margin-bottom: 0;
-    @media screen and (min-width: 575px) {
+    @media screen and (max-width: 767px) {
       display: block;
     }
+  }
+  input {
+    width: 100%;
   }
   fieldset {
     margin-bottom: 1em;
   }
 }
+
 .card-lg {
   border-radius: 25px;
   padding: 5vw;

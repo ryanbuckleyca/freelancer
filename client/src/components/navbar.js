@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { withAuth0 } from '@auth0/auth0-react';
-import 'bootstrap/js/src/index';
 import './navbar.scss';
 import Logotype from './logotype';
 
@@ -14,7 +13,7 @@ class Navbar extends Component {
     }
 
     const navUser = isAuthenticated && (
-      <ul className="navbar-nav mr-auto align-items-end">
+      <ul className="navbar-nav">
         <li className="nav-item active">
           <Link to='/clients' className="nav-link">Browse Clients</Link>
         </li>
@@ -41,7 +40,7 @@ class Navbar extends Component {
         </li>
       </ul>);
     const navVisitor =
-      <ul className="navbar-nav mr-auto">
+      <ul className="navbar-nav">
         <li className="nav-item">
           <Link to="/" onClick={() => loginWithRedirect()} className="nav-link">Log In / Register</Link>
         </li>

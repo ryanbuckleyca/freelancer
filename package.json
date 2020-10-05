@@ -1,14 +1,6 @@
 {
-  "dependencies": {
-    "concurrently": "^4.1.0",
-    "cors": "^2.8.5",
-    "express-jwt": "^6.0.0",
-    "jwks-rsa": "^1.10.1"
-  },
   "scripts": {
-    "client": "cd client && npm start",
-    "api": "cd api && npm start",
-    "start": "concurrently \"npm run client\" \"npm run api\"",
+    "start": "cd api && npm start",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   }
 }

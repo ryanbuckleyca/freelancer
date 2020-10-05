@@ -14,7 +14,7 @@ class Profile extends Component {
   //TODO: create updateAPI method to DRY-up these calls
   async findUser(auth0_id) {
     try {
-      const res = await fetch(`${url}/users/findByAuth0/${auth0_id}`)
+      const res = await fetch(`${url}/api/users/${auth0_id}`)
       const data = await res.json()
       return data
     } catch(err) {
@@ -25,7 +25,7 @@ class Profile extends Component {
   //TODO: add authentication and validation
   async createUser(user) {
     try {
-      const res = await fetch(`${url}/users/create/`, {
+      const res = await fetch(`${url}/api/users/create/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
@@ -40,7 +40,7 @@ class Profile extends Component {
   //TODO: add authentication and validation
   async updateUser(user) {
     try {
-      const res = await fetch(`${url}/users/update/${user.id}`, {
+      const res = await fetch(`${url}/api/users/update/${user.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)

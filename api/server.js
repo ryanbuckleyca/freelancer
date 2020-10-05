@@ -36,7 +36,7 @@ const checkJwt = require('./authenticate');
 
 // ROUTES (secured ones require checkJwt middleware)
 
-app.get("/db", checkJwt, async (req, res) => {
+app.get("/api/db", checkJwt, async (req, res) => {
   try {
     const ryan = await db.User.findAll(
       { where: { id: 1 } } // should return Ryan Buckley
@@ -49,7 +49,7 @@ app.get("/db", checkJwt, async (req, res) => {
 });
 
 // TODO: should require authentication
-app.get("/users/findByAuth0/:auth0_id", async (req, res) => {
+app.get("/api/users/:auth0_id", async (req, res) => {
   const user = await db.User.findOne(
     { where: { auth0_id: req.params.auth0_id } }
   );
@@ -58,7 +58,7 @@ app.get("/users/findByAuth0/:auth0_id", async (req, res) => {
 });
 
 // TODO: should require authentication
-app.post("/users/create/", async (req, res) => {
+app.post("/api/users/create/", async (req, res) => {
   console.log('create user called with req.body:', req.body);
   const newUser = await db.User.create({
     auth0_id: req.body.auth0_id,
@@ -73,7 +73,7 @@ app.post("/users/create/", async (req, res) => {
 });
 
 // TODO: should require authentication
-app.put("/users/update/:id", async (req, res) => {
+app.put("/api/users/update/:id", async (req, res) => {
   console.log('update user called with req.body:', req.body);
   const id = req.params.id
   const { name, email, number } = req.body
@@ -86,7 +86,7 @@ app.put("/users/update/:id", async (req, res) => {
 });
 
 
-app.get("/test", (req, res) => {
+app.get("/api/test", (req, res) => {
   res.send({
     msg: "Route /test.",
   });
@@ -95,9 +95,11 @@ app.get("/test", (req, res) => {
 
 // The "catchall" handler: for any request that doesn't
 // match the ones above, send back React's index.html file.
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '/../client/build/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../client/build/index.html'));
+  console.log("path.join(__dirname, '/../client/build/index.html')",
+    path.join(__dirname, '/../client/build/index.html'));
+});
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '/../client/build')));

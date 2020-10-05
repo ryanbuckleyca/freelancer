@@ -1,5 +1,4 @@
 {
-  "homepage": "https://cheque-mate-app.herokuapp.com/",
   "dependencies": {
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
@@ -7,9 +6,18 @@
     "jwks-rsa": "^1.10.1"
   },
   "scripts": {
-    "client": "cd client && npm start",
-    "api": "cd api && npm start",
-    "start": "concurrently \"npm run client\" \"npm run api\"",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+    "begin": "npm run build && node server.js",
+    "start": "cd api && node server.js",
+    "start:prod": "cd api && node server.js",
+    "start:dev": "concurrently \"cd api && npm start\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build"
+  },
+  "old_scripts": {
+    "_client": "cd client && npm start",
+    "_api": "cd api && npm start",
+    "_start": "concurrently \"npm run client\" \"npm run api\"",
+    "_heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   }
 }

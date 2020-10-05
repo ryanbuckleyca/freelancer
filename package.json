@@ -1,4 +1,5 @@
 {
+  "homepage": "https://myapp.herokuapp.com/",
   "dependencies": {
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
@@ -9,6 +10,6 @@
     "client": "cd client && npm start",
     "api": "cd api && npm start",
     "start": "concurrently \"npm run client\" \"npm run api\"",
-    "heroku-postbuild": "cd client && export NODE_ENV=production; npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   }
 }

@@ -42,3 +42,4 @@ yarn-debug.log*
 .env*
 /api/.env*
 .DS_Store
+/client/build*

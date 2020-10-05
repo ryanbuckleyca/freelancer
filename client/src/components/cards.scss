@@ -1,5 +1,31 @@
-@import './_custom-variables.scss';
+@import '../_custom.scss';
 
+.card-slider {
+  background-image: url('../images/card-bg-lg.svg');
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: 85% 100%;
+  -moz-background-size: 85% 100%;
+  -webkit-background-size: 85% 100%;
+  @media screen and (max-width: 575px) {
+    background-image: url('../images/card-bg2.svg');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: 100% 85%;
+    -moz-background-size: 100% 85%;
+    -webkit-background-size: 100% 85%;
+  }
+  label {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    @media screen and (min-width: 575px) {
+      display: block;
+    }
+  }
+  fieldset {
+    margin-bottom: 1em;
+  }
+}
 .card-lg {
   border-radius: 25px;
   padding: 5vw;

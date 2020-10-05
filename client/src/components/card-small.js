@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './cards.scss';
 
 class CardSmall extends Component {
-  render(props) {
+  render() {
     return(
       <div className="col-12 col-md-6 mb-4 px-3 px-sm-4 d-flex">
         <div className="row card-sm">

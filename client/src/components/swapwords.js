@@ -1,5 +1,3 @@
-console.log('swapWords.js loading...')
-
 const faker = require('faker')
 
 const words = {

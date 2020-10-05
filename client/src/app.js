@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Navbar from './navbar';
-import Landing from './landing';
-import Profile from './profile';
-import PrivacyPolicy from './privacy-policy';
-import PrivateRoute from './private-route';
-import Footer from './footer';
+import PrivateRoute from './components/private-route';
+import Navbar from './components/navbar';
+import Footer from './components/footer';
+import Landing from './views/landing';
+import Profile from './views/profile';
+import PrivacyPolicy from './views/privacy-policy';
 import { withAuth0 } from '@auth0/auth0-react';
 
 class App extends Component {

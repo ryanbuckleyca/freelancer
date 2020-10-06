@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes) => {
     number: DataTypes.STRING,
     email: DataTypes.STRING
   }, {});
-  // User.associate = function(models) {
-  //   User.belongsTo(
-  //     models.Household,
-  //     { foreignKey: 'householdId' }
-  //   )
-  // };
+  User.associate = function(models) {
+    User.hasMany(
+      models.Address,
+      { foreignKey: 'user_id' }
+    )
+  };
   return User;
 };

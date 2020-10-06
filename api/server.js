@@ -52,12 +52,32 @@ app.get("/api/db", checkJwt, async (req, res) => {
 });
 
 // TODO: should require authentication
+app.get("/api/addresses/user/:user_id", async (req, res) => {
+  try {
+    console.log("req.params.user_id in /api/addresses/user/:user_id = ", req.params.user_id);
+    const address = await db.Address.findOne(
+      { where: { user_id: req.params.user_id } }
+    );
+    console.log("SUCCESS: find address by user_id: req.params.user_id = ", address);
+    res.json(address);
+  }
+  catch(err) {
+    console.log("ERROR: find address by user_id: req.params.user_id = ", err);
+  }
+});
+
+// TODO: should require authentication
 app.get("/api/users/:auth0_id", async (req, res) => {
-  const user = await db.User.findOne(
-    { where: { auth0_id: req.params.auth0_id } }
-  );
-  console.log("find by auth0_id: req.params.auth0_id = ", user)
-  res.send(user);
+  try {
+    const user = await db.User.findOne(
+      { where: { auth0_id: req.params.auth0_id } }
+    );
+    console.log("SUCCESS: find user by auth0_id: req.params.auth0_id = ", user)
+    res.json(user);
+  }
+  catch(err) {
+    console.log("ERROR: find user by auth0_id: req.params.auth0_id = ", err);
+  }
 });
 
 // TODO: should require authentication
@@ -81,6 +101,19 @@ app.put("/api/users/update/:id", async (req, res) => {
   const id = req.params.id
   const { name, email, number } = req.body
   const user = await db.User.findOne({ where: { id } })
+  if (name) user.name = name
+  if (email) user.email = email
+  if (number) user.number = number
+  const save = await user.save()
+  res.send(save);
+});
+
+// TODO: should require authentication
+app.put("/api/addresses/users/update/:user", async (req, res) => {
+  console.log('update userAddress called with req.body:', req.body);
+  const id = req.params.id
+  const { street1, street2, city, state, zip, country } = req.body
+  const address = await db.Addresses.findOne({ where: { id } })
   if (name) user.name = name
   if (email) user.email = email
   if (number) user.number = number

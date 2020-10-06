@@ -160,19 +160,19 @@ class Profile extends Component {
           <CardSlider img={email} inactive>
             <form className="form-wrapper" onSubmit={this.handleUserSubmit}>
               <fieldset>
-                <label className="form-label" htmlFor="name">Enter name:</label>
+                <label className="form-label" htmlFor="name">Full name:</label>
                 <input className="form-input" type="text" id="name" name="name"
                        value={this.state.dbUser.name || ''} onChange={this.changeHandler} />
               </fieldset>
 
               <fieldset>
-                <label className="form-label" htmlFor="email">Enter email:</label>
+                <label className="form-label" htmlFor="email">Email:</label>
                 <input className="form-input" type="text" id="email" name="email"
                        value={this.state.dbUser.email || ''} onChange={this.changeHandler} />
               </fieldset>
 
               <fieldset>
-                <label className="form-label" htmlFor="number">Enter number:</label>
+                <label className="form-label" htmlFor="number">Phone number:</label>
                 <input className="form-input" type="text" id="number" name="number"
                        value={this.state.dbUser.number || ''} onChange={this.changeHandler}  />
               </fieldset>

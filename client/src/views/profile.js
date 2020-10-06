@@ -3,7 +3,7 @@ import { withAuth0 } from '@auth0/auth0-react';
 import CardTitle from '../components/card-title';
 import CardSlider from '../components/card-slider';
 import profile from '../images/profile.svg';
-import email from '../images/sending_emails.svg';
+import address from '../images/house.svg';
 
 const url = process.env.REACT_APP_API_URL || 'http://localhost:9000';
 
@@ -106,10 +106,10 @@ class Profile extends Component {
 
         <div className="container text-center my-5">
           <h2>Your Profile</h2>
-          <span className="my-5"><button onClick={move}>Click here to move to the next frame:</button></span>
+          <span className="my-5">Tell us a bit about yourself.</span>
         </div>
 
-        <CardSlider img={email}>
+        <CardSlider img={address}>
           <form className="form-wrapper" onSubmit={this.handleUserSubmit}>
             <fieldset>
               <label className="form-label" htmlFor="name">Enter name:</label>
@@ -128,32 +128,24 @@ class Profile extends Component {
               <input className="form-input" type="text" id="number" name="number"
                      value={this.state.dbUser.number || ''} onChange={this.changeHandler}  />
             </fieldset>
-          </form>
-
+            <fieldset>
+              <label for="form-address">Address</label>
+              <input className="form-input" type="text" id="form-address" placeholder="Street address" />
+            </fieldset>
+            <fieldset>
+              <label for="form-address2">Address 2</label>
+              <input className="form-input" type="text" id="form-address2" placeholder="Unit/apartment number" />
+            </fieldset>
+            <fieldset>
+              <label for="form-city">City*</label>
+              <input className="form-input" type="text" id="form-city" placeholder="City" />
+            </fieldset>
+            <fieldset>
+              <label for="form-zip">ZIP code*</label>
+              <input className="form-input" type="text" id="form-zip" placeholder="Zip/postal code" />
+            </fieldset>
           <button onClick={this.handleUserSubmit} className="btn btn-success">Update profile</button>
-        </CardSlider>
-        <CardSlider img={email} inactive>
-          <form className="form-wrapper" onSubmit={this.handleUserSubmit}>
-            <fieldset>
-              <label className="form-label" htmlFor="name">Enter name:</label>
-              <input className="form-input" type="text" id="name" name="name"
-                     value={this.state.dbUser.name || ''} onChange={this.changeHandler} />
-            </fieldset>
-
-            <fieldset>
-              <label className="form-label" htmlFor="email">Enter email:</label>
-              <input className="form-input" type="text" id="email" name="email"
-                     value={this.state.dbUser.email || ''} onChange={this.changeHandler} />
-            </fieldset>
-
-            <fieldset>
-              <label className="form-label" htmlFor="number">Enter number:</label>
-              <input className="form-input" type="text" id="number" name="number"
-                     value={this.state.dbUser.number || ''} onChange={this.changeHandler}  />
-            </fieldset>
           </form>
-
-          <button onClick={this.handleUserSubmit} className="btn btn-success">Update profile</button>
         </CardSlider>
 
       </div>

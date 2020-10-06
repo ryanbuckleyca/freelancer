@@ -99,12 +99,12 @@ class Profile extends Component {
         <div className="container">
         <CardTitle
           img={profile}
-          title={<span>Who are you?<br className="d-block d-sm-none d-lg-block" />What's your info?</span>}
+          title={<span>Hello there!</span>}
           text="In order for us to reach out on your behalf, we need to know how to reach you, and how to forward your most up to date information to your clients."
         />
         </div>
 
-        <div className="container text-center my-5">
+        <div className="text-center my-5">
           <h2>Your Profile</h2>
           <span className="my-5">Tell us a bit about yourself.</span>
         </div>
@@ -144,7 +144,7 @@ class Profile extends Component {
               <label for="form-zip">ZIP code*</label>
               <input className="form-input" type="text" id="form-zip" placeholder="Zip/postal code" />
             </fieldset>
-          <button onClick={this.handleUserSubmit} className="btn btn-success">Update profile</button>
+          <button onClick={this.handleUserSubmit} className="btn btn-success d-block mt-4 mx-auto d-md-none">Update profile</button>
           </form>
         </CardSlider>
 

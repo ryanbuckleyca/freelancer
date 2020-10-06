@@ -13,6 +13,7 @@ class Profile extends Component {
     super(props);
     this.state = {
       dbUser: { name: '', email: '', number: '' },
+      dbAddress: { address1: '', address2: '', city: '', zip: '', country: '' },
       scrollCarousel: 0
     };
   }
@@ -112,37 +113,44 @@ class Profile extends Component {
         <CardSlider img={address}>
           <form className="form-wrapper" onSubmit={this.handleUserSubmit}>
             <fieldset>
-              <label className="form-label" htmlFor="name">Enter name:</label>
+              <label className="form-label" htmlFor="name">Full name*</label>
               <input className="form-input" type="text" id="name" name="name"
                      value={this.state.dbUser.name || ''} onChange={this.changeHandler} />
             </fieldset>
-
             <fieldset>
-              <label className="form-label" htmlFor="email">Enter email:</label>
+              <label className="form-label" htmlFor="email">Email*</label>
               <input className="form-input" type="text" id="email" name="email"
                      value={this.state.dbUser.email || ''} onChange={this.changeHandler} />
             </fieldset>
-
             <fieldset>
-              <label className="form-label" htmlFor="number">Enter number:</label>
+              <label className="form-label" htmlFor="number">Phone number*</label>
               <input className="form-input" type="text" id="number" name="number"
                      value={this.state.dbUser.number || ''} onChange={this.changeHandler}  />
             </fieldset>
             <fieldset>
-              <label for="form-address">Address</label>
-              <input className="form-input" type="text" id="form-address" placeholder="Street address" />
+              <label for="form-address1">Address 1*</label>
+              <input className="form-input" type="text" id="form-address1"
+                     placeholder="Street address" />
             </fieldset>
             <fieldset>
               <label for="form-address2">Address 2</label>
-              <input className="form-input" type="text" id="form-address2" placeholder="Unit/apartment number" />
+              <input className="form-input" type="text" id="form-address2"
+                     placeholder="Unit/apartment number" />
             </fieldset>
             <fieldset>
               <label for="form-city">City*</label>
-              <input className="form-input" type="text" id="form-city" placeholder="City" />
+              <input className="form-input" type="text" id="form-city"
+                     placeholder="City" />
             </fieldset>
             <fieldset>
-              <label for="form-zip">ZIP code*</label>
-              <input className="form-input" type="text" id="form-zip" placeholder="Zip/postal code" />
+              <label for="form-zip">Zip/postal code*</label>
+              <input className="form-input" type="text" id="form-zip"
+                     placeholder="Zip/postal code" />
+            </fieldset>
+            <fieldset>
+              <label for="form-country">Country*</label>
+              <input className="form-input" type="text" id="form-country"
+                     placeholder="Country" />
             </fieldset>
           <button onClick={this.handleUserSubmit} className="btn btn-success d-block mt-4 mx-auto d-md-none">Update profile</button>
           </form>

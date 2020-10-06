@@ -12,7 +12,8 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dbUser: { name: '', email: '', number: '' }
+      dbUser: { name: '', email: '', number: '' },
+      scrollCarousel: 0
     };
   }
 
@@ -93,22 +94,6 @@ class Profile extends Component {
   }
 
   render() {
-    const move = () => {
-      // get all child divs in carousel
-      // when clicking next:
-      //    scroll to width of clicked div
-      //    toggle inactive of clicked div
-      //    toggle inactive of FOLLOWING div
-      // when clicking prev:
-      //    scroll to -width of clicked div
-      //    toggle inactive of clicked div
-      //    toggle inactive of PREVIOUS div
-      var elmnt = document.querySelectorAll(".card-carousel")[0];
-      console.log('elmnt.firstChild.offsetWidth:', elmnt.firstChild.offsetWidth);
-      var scrollBy = elmnt.firstChild.offsetWidth;
-      console.log(elmnt.scroll(scrollBy, 0));
-    }
-
     return(
       <div className="profile">
         <div className="container">
@@ -124,54 +109,52 @@ class Profile extends Component {
           <span className="my-5"><button onClick={move}>Click here to move to the next frame:</button></span>
         </div>
 
-        <div className="card-carousel">
-          <CardSlider img={email}>
-            <form className="form-wrapper" onSubmit={this.handleUserSubmit}>
-              <fieldset>
-                <label className="form-label" htmlFor="name">Enter name:</label>
-                <input className="form-input" type="text" id="name" name="name"
-                       value={this.state.dbUser.name || ''} onChange={this.changeHandler} />
-              </fieldset>
+        <CardSlider img={email}>
+          <form className="form-wrapper" onSubmit={this.handleUserSubmit}>
+            <fieldset>
+              <label className="form-label" htmlFor="name">Enter name:</label>
+              <input className="form-input" type="text" id="name" name="name"
+                     value={this.state.dbUser.name || ''} onChange={this.changeHandler} />
+            </fieldset>
 
-              <fieldset>
-                <label className="form-label" htmlFor="email">Enter email:</label>
-                <input className="form-input" type="text" id="email" name="email"
-                       value={this.state.dbUser.email || ''} onChange={this.changeHandler} />
-              </fieldset>
+            <fieldset>
+              <label className="form-label" htmlFor="email">Enter email:</label>
+              <input className="form-input" type="text" id="email" name="email"
+                     value={this.state.dbUser.email || ''} onChange={this.changeHandler} />
+            </fieldset>
 
-              <fieldset>
-                <label className="form-label" htmlFor="number">Enter number:</label>
-                <input className="form-input" type="text" id="number" name="number"
-                       value={this.state.dbUser.number || ''} onChange={this.changeHandler}  />
-              </fieldset>
-            </form>
+            <fieldset>
+              <label className="form-label" htmlFor="number">Enter number:</label>
+              <input className="form-input" type="text" id="number" name="number"
+                     value={this.state.dbUser.number || ''} onChange={this.changeHandler}  />
+            </fieldset>
+          </form>
 
-            <button onClick={this.handleUserSubmit} className="btn btn-success">Update profile</button>
-          </CardSlider>
-          <CardSlider img={email} inactive>
-            <form className="form-wrapper" onSubmit={this.handleUserSubmit}>
-              <fieldset>
-                <label className="form-label" htmlFor="name">Enter name:</label>
-                <input className="form-input" type="text" id="name" name="name"
-                       value={this.state.dbUser.name || ''} onChange={this.changeHandler} />
-              </fieldset>
+          <button onClick={this.handleUserSubmit} className="btn btn-success">Update profile</button>
+        </CardSlider>
+        <CardSlider img={email} inactive>
+          <form className="form-wrapper" onSubmit={this.handleUserSubmit}>
+            <fieldset>
+              <label className="form-label" htmlFor="name">Enter name:</label>
+              <input className="form-input" type="text" id="name" name="name"
+                     value={this.state.dbUser.name || ''} onChange={this.changeHandler} />
+            </fieldset>
 
-              <fieldset>
-                <label className="form-label" htmlFor="email">Enter email:</label>
-                <input className="form-input" type="text" id="email" name="email"
-                       value={this.state.dbUser.email || ''} onChange={this.changeHandler} />
-              </fieldset>
+            <fieldset>
+              <label className="form-label" htmlFor="email">Enter email:</label>
+              <input className="form-input" type="text" id="email" name="email"
+                     value={this.state.dbUser.email || ''} onChange={this.changeHandler} />
+            </fieldset>
 
-              <fieldset>
-                <label className="form-label" htmlFor="number">Enter number:</label>
-                <input className="form-input" type="text" id="number" name="number"
-                       value={this.state.dbUser.number || ''} onChange={this.changeHandler}  />
-              </fieldset>
-            </form>
+            <fieldset>
+              <label className="form-label" htmlFor="number">Enter number:</label>
+              <input className="form-input" type="text" id="number" name="number"
+                     value={this.state.dbUser.number || ''} onChange={this.changeHandler}  />
+            </fieldset>
+          </form>
 
-            <button onClick={this.handleUserSubmit} className="btn btn-success">Update profile</button>
-          </CardSlider>
-        </div>
+          <button onClick={this.handleUserSubmit} className="btn btn-success">Update profile</button>
+        </CardSlider>
 
       </div>
     );

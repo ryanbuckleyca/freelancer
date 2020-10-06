@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import Splash from './splash';
-import CardTitle from './card-title';
-import CardSmall from './card-small';
-import HowItWorks from './howitworks';
-import Testimonials from './testimonials';
+import Splash from '../components/splash';
+import CardTitle from '../components/card-title';
+import CardSmall from '../components/card-small';
+import HowItWorks from '../components/howitworks';
+import Testimonials from '../components/testimonials';
 import money from '../images/bank_note.svg';
 import pr from '../images/pr.svg';
 import finance from '../images/finance_analytics_.svg';
 import currency from '../images/currency.svg';
+import imgCoins from '../images/coins_nobg.svg';
 
 class Landing extends Component {
   render() {
@@ -18,7 +19,11 @@ class Landing extends Component {
         </div>
         <br />
         <div className='container my-4'>
-          <CardTitle />
+          <CardTitle
+            img={imgCoins}
+            title={<span>We do the work. <br className='d-block d-sm-none d-lg-block' />You get paid.</span>}
+            text="Following up with clients for payment is annoying and time-consuming.  Our automated system sends out interval reminders. All you need to do is add your invoice and we take care of the rest!"
+          />
         </div>
         <br />
         <div className="text-center m-3">

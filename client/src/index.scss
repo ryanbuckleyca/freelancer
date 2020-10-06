@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Suez+One&display=swap');
 @import 'bootstrap/scss/bootstrap.scss';
-@import './components/_custom-variables';
+@import '_custom.scss';
 
 .container {
   margin: 0 auto;
@@ -8,6 +8,14 @@
 
 html {
   overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: transparent;
 }
 body {
   overflow-x: hidden;
@@ -64,6 +72,13 @@ h1 {
 i {
   text-decoration: none;
   font-style: normal;
+}
+
+input {
+  border-radius: 10px;
+  border: 1px solid rgba(1, 1, 1, .1);
+  box-shadow: 0 2px 5px rgba(1, 1, 1, 0.1);
+  padding: 10px;
 }
 
 code {

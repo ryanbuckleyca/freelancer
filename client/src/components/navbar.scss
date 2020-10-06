@@ -1,4 +1,4 @@
-@import './_custom-variables.scss';
+@import '../_custom.scss';
 
 .navbar {
   padding: 0;
@@ -31,9 +31,14 @@
 .navbar-chequemate .navbar-collapse {
   flex-grow: 0;
 }
+.navbar-nav {
+  margin-right: auto;
+  align-items: flex-end;
+}
 
 .avatar {
   height: 40px;
+  width: 40px;
   border-radius: 50%;
   float: right;
 }

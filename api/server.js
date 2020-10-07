@@ -28,12 +28,9 @@ app.use(cookieParser());
 app.use(cors())
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
   next();
 });
-
-console.log("path.join(__dirname, '/../client/build/index.html')",
-  path.join(__dirname, '/../client/build/index.html'));
-
 
 const checkJwt = require('./authenticate');
 
@@ -41,7 +38,7 @@ const checkJwt = require('./authenticate');
 
 app.get("/api/db", checkJwt, async (req, res) => {
   try {
-    const ryan = await db.User.findAll(
+    const ryan = await db.User.findOne(
       { where: { id: 1 } } // should return Ryan Buckley
     );
     console.log("db.User.findAll({where:{id:1}}): ", ryan)
@@ -52,12 +49,32 @@ app.get("/api/db", checkJwt, async (req, res) => {
 });
 
 // TODO: should require authentication
+app.get("/api/addresses/user/:user_id", async (req, res) => {
+  try {
+    console.log("req.params.user_id in /api/addresses/user/:user_id = ", req.params.user_id);
+    const address = await db.Address.findOne(
+      { where: { user_id: req.params.user_id } }
+    );
+    console.log("SUCCESS: find address by user_id: req.params.user_id = ", address);
+    address && res.send(address);
+  }
+  catch(err) {
+    console.log("ERROR: find address by user_id: req.params.user_id = ", err);
+  }
+});
+
+// TODO: should require authentication
 app.get("/api/users/:auth0_id", async (req, res) => {
-  const user = await db.User.findOne(
-    { where: { auth0_id: req.params.auth0_id } }
-  );
-  console.log("find by auth0_id: req.params.auth0_id = ", user)
-  res.send(user);
+  try {
+    const user = await db.User.findOne(
+      { where: { auth0_id: req.params.auth0_id } }
+    );
+    console.log("SUCCESS: find user by auth0_id: req.params.auth0_id = ", user)
+    user && res.send(user);
+  }
+  catch(err) {
+    console.log("ERROR: find user by auth0_id: req.params.auth0_id = ", err);
+  }
 });
 
 // TODO: should require authentication
@@ -76,11 +93,11 @@ app.post("/api/users/create/", async (req, res) => {
 });
 
 // TODO: should require authentication
-app.put("/api/users/update/:id", async (req, res) => {
+app.put("/api/users/update/:user_id", async (req, res) => {
   console.log('update user called with req.body:', req.body);
-  const id = req.params.id
+  const user_id = req.body.id
   const { name, email, number } = req.body
-  const user = await db.User.findOne({ where: { id } })
+  const user = await db.User.findOne({ where: { user_id } })
   if (name) user.name = name
   if (email) user.email = email
   if (number) user.number = number
@@ -88,6 +105,55 @@ app.put("/api/users/update/:id", async (req, res) => {
   res.send(save);
 });
 
+// TODO: should require authentication
+app.put("/api/addresses/users/update/:user_id", async (req, res) => {
+  console.log('update userAddress called with req.body:', req.body);
+  const user_id = req.params.user_id
+  const { street1, street2, city, state, zip, country } = req.body
+  const address = await db.Address.findOne({ where: { user_id: user_id } })
+  if(address) {
+    console.log("address exists and will be updated")
+    address.street1 = street1
+    if (street2) address.street2 = street2
+    address.city = city
+    address.state = state
+    address.country = country
+    address.zip = zip
+    const save = await address.save()
+    res.send(save);
+  } else {
+    console.log("address does not exist and will be created")
+    const newAddress = await db.Address.create({
+      user_id: user_id,
+      street1: req.body.street1,
+      street2: req.body.street2,
+      city: req.body.city,
+      state: req.body.state,
+      country: req.body.country,
+      zip: req.body.zip
+    });
+    console.log("created new unsaved address: ", newAddress);
+    const save = await newAddress.save();
+    console.log("inserted into database: ", save);
+    res.send(newAddress);
+  }
+});
+
+app.post("/api/mailinglist/add", async (req, res) => {
+  try {
+    console.log('create new subscriber with req.body:', req.body);
+    const newSub = await db.Subscriber.create({
+      email: req.body.email,
+    });
+    console.log("created new unsaved subscriber: ", newSub);
+    const save = await newSub.save();
+    console.log("inserted subscriber into database: ", save);
+    res.send(newSub);
+  }
+  catch(err) {
+    console.log('add to mailing list error: ', err)
+  }
+});
 
 app.get("/api/test", (req, res) => {
   res.send({

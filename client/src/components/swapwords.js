@@ -16,12 +16,16 @@ const words = {
   thanks: ['Thank you', 'Thanks', 'Best wishes', 'Kindly']
 }
 const swapWords = function() {
-  for (var key in words) {
-    const rando = Math.floor(Math.random() * words[key].length)
-    document.getElementsByName(key)[0].innerText = words[key][rando];
-    document.getElementsByName('fakerName')[0].innerText = faker.name.findName();
+  // TODO: why is swapWords loading on profile page?
+  // for now, check location to only run on landing
+  if (window.location === '/') {
+    for (var key in words) {
+      const rando = Math.floor(Math.random() * words[key].length)
+      document.getElementsByName(key)[0].innerText = words[key][rando];
+      document.getElementsByName('fakerName')[0].innerText = faker.name.findName();
+    }
+    setTimeout(swapWords, 4000);
   }
-  setTimeout(swapWords, 4000);
 }
 
 export default swapWords;

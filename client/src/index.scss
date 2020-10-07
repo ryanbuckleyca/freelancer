@@ -6,6 +6,16 @@
   margin: 0 auto;
 }
 
+.underline {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 80%,
+    #ff789d 20%
+  );
+  margin: 0 -2px 0 -2px;
+  padding: 0 2px 0 2px;
+}
+
 html {
   overflow-x: hidden;
 }
@@ -20,9 +30,9 @@ html {
 body {
   overflow-x: hidden;
   width: 100vw;
+  height: 100vh;
   margin: 0;
   padding: 0;
-  background: rgb(246,250,253);
   background: linear-gradient(180deg, rgba(246,250,253,1) 0%, rgba(255,255,255,1) 100%);
   font-family: Avenir, Helvetica, sans-serif;
   font-size: 16px;
@@ -55,6 +65,7 @@ body {
     font-size: 22px;
   }
 }
+
 h2 {
   line-height: 100%;
   font-family: Montserrat;

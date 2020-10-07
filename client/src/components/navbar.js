@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { withAuth0 } from '@auth0/auth0-react';
 import './navbar.scss';
 import Logotype from './logotype';
+import toggleModal from './toggleModal'
 
 class Navbar extends Component {
+
   render() {
     const { user, isAuthenticated, isLoading, logout, loginWithRedirect } = this.props.auth0;
 
@@ -15,10 +17,12 @@ class Navbar extends Component {
     const navUser = isAuthenticated && (
       <ul className="navbar-nav">
         <li className="nav-item active">
-          <Link to='/clients' className="nav-link">Browse Clients</Link>
+          {/* <Link to='/clients' className="nav-link">Browse Clients</Link> */}
+          <a href="#" onClick={() => toggleModal()} className="nav-link">Browse Clients</a>
         </li>
         <li className="nav-item">
-          <Link to="/invoices" className="nav-link">Add Invoice</Link>
+          {/* <Link to="/invoices" className="nav-link">Add Invoice</Link> */}
+          <a href="#" onClick={() => toggleModal()} className="nav-link">Add Invoice</a>
         </li>
         <li className="nav-item dropdown">
           <img
@@ -31,7 +35,8 @@ class Navbar extends Component {
           aria-expanded="false" />
           <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <Link to="/profile" className="dropdown-item">My Profile</Link>
-            <Link to="/invoices" className="dropdown-item">My Invoices</Link>
+            {/* <Link to="/invoices" className="dropdown-item">My Invoices</Link> */}
+            <a href="#" onClick={() => toggleModal()} className="dropdown-item">My Invoices</a>
             <Link to="/" className="dropdown-item"
                onClick={() => logout({returnTo: window.location.origin })}>
               Logout

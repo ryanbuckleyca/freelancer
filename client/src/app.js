@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PrivateRoute from './components/private-route';
+import Modal from './components/modal';
 import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Landing from './views/landing';
@@ -12,6 +13,7 @@ class App extends Component {
   render() {
     return (
     <Router>
+      <Modal />
       <div className='container'>
         <div className='container my-3'>
           <Navbar />

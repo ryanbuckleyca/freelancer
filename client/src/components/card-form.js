@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import './cards.scss';
 
-class CardSlider extends Component {
+class CardForm extends Component {
   render() {
     return(
       <div className={this.props.inactive ? 'card-slider inactive' : 'card-slider'}>
         <div className="card-slider-img">
           <img src={this.props.img} alt="profile" />
-          <button onClick={this.handleUserSubmit} className="btn btn-success d-none d-md-block">Update profile</button>
+          {this.props.button}
         </div>
         <div className="card-slider-form">
           {this.props.children}
@@ -17,4 +17,4 @@ class CardSlider extends Component {
   }
 }
 
-export default CardSlider;
+export default CardForm;

@@ -2,7 +2,7 @@ $black: #0B2027;
 $blue: #40798C;
 $green: #70A9A1;
 $dark-green: #548C85;
-$red: #C96480;
+$red: #ff789d;
 $gray: #CFD7C7;
 $white: #FEFDF7;
 $light-gray: rgba(81, 84, 78, 0.05);
@@ -22,21 +22,15 @@ $colors: (
 }
 
 .carousel-control-prev, .carousel-control-next {
-    position: static;
-    display: inline;
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* width: 15%; */
-    /* color: #fff; */
-    /* text-align: center; */
-    /* opacity: 0.5; */
-    transition: opacity 0.15s ease;
-  }
+  position: static;
+  display: inline;
+  transition: opacity 0.15s ease;
+}
 
 .btn {
   border-radius: 50px;
   font-size: 100%;
-  padding: 2.5% 6%;
+  padding: 0.5em 1.1em;
 }
 .btn-outline-success {
   background: none;

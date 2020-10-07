@@ -28,12 +28,9 @@ app.use(cookieParser());
 app.use(cors())
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
   next();
 });
-
-console.log("path.join(__dirname, '/../client/build/index.html')",
-  path.join(__dirname, '/../client/build/index.html'));
-
 
 const checkJwt = require('./authenticate');
 
@@ -142,6 +139,21 @@ app.put("/api/addresses/users/update/:user_id", async (req, res) => {
   }
 });
 
+app.post("/api/mailinglist/add", async (req, res) => {
+  try {
+    console.log('create new subscriber with req.body:', req.body);
+    const newSub = await db.Subscriber.create({
+      email: req.body.email,
+    });
+    console.log("created new unsaved subscriber: ", newSub);
+    const save = await newSub.save();
+    console.log("inserted subscriber into database: ", save);
+    res.send(newSub);
+  }
+  catch(err) {
+    console.log('add to mailing list error: ', err)
+  }
+});
 
 app.get("/api/test", (req, res) => {
   res.send({

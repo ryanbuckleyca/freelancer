@@ -1,38 +1,32 @@
-<svg width="240" height="259" xmlns="http://www.w3.org/2000/svg" style="vector-effect: non-scaling-stroke;" stroke="null">
+<svg width="135" height="152" xmlns="http://www.w3.org/2000/svg">
  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
 
- <g stroke="null">
-  <title stroke="null">background</title>
-  <rect stroke="null" fill="#fff" id="canvas_background" height="261" width="242" y="-1" x="-1"/>
-  <g style="vector-effect: non-scaling-stroke;" stroke="null" display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="154" width="137" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
    <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
   </g>
  </g>
- <g stroke="null">
-  <title stroke="null">Layer 1</title>
-  <defs stroke="null">
-   <path stroke="black" style="vector-effect: non-scaling-stroke;" id="svg_15" fill="rosybrown" stroke-width="1px"/>
+ <g>
+  <title>Layer 1</title>
+  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+  <defs stroke="null" transform="translate(-1.6770250797271729,28.50942611694336) translate(0,-53.21577835083008) translate(-59.88545608520508,0) translate(518.2007446289062,286.7712707519531) translate(382.85150146484375,0) translate(0,285.8700256347656) ">
+   <path stroke="black" stroke-width="1px" fill="rosybrown" id="svg_26"/>
   </defs>
-  <defs stroke="null">
-   <polygon style="vector-effect: non-scaling-stroke;" stroke="null" fill="rosybrown" id="svg_14"/>
-   <polygon stroke="black" style="vector-effect: non-scaling-stroke;" stroke-width="1px" id="svg_13" fill-opacity="0.1" fill="#2D9CDB"/>
+  <defs stroke="null" transform="translate(-1.6770250797271729,28.50942611694336) translate(0,-53.21577835083008) translate(-59.88545608520508,0) translate(518.2007446289062,286.7712707519531) translate(382.85150146484375,0) translate(0,285.8700256347656) ">
+   <polygon stroke="null" id="svg_25" fill="rosybrown"/>
+   <polygon stroke="black" fill="#2D9CDB" fill-opacity="0.1" id="svg_24" stroke-width="1px"/>
   </defs>
-  <g stroke="null" id="svg_22">
-   <rect transform="matrix(0.6593946113532722,0,0,0.6593946113532722,-458.315266973252,-233.5555027300963) " fill="none" height="602" width="802" y="412.61326" x="767.97397" id="svg_16"/>
-   <g stroke="null" transform="matrix(0.6593946113532722,0,0,0.6593946113532722,-458.315266973252,-233.5555027300963) " id="svg_18">
-    <title stroke="null" transform="translate(-5262.49072265625,-4119.87060546875) translate(6031.46484375,0) translate(0,4533.48388671875) ">background</title>
-   </g>
-   <g stroke="null" transform="matrix(0.6593946113532722,0,0,0.6593946113532722,-458.315266973252,-233.5555027300963) " id="svg_19">
-    <title stroke="null" transform="translate(-341.2220764160156,-1.5165425539016724) translate(-5262.49072265625,-4119.87060546875) translate(6031.46484375,0) translate(0,4533.48388671875) ">Layer 1</title>
-    <path stroke="null" stroke-width="1px" id="svg_12" d="m740.79321,741.5372c-37.11317,-3.83858 -32.26272,-38.35321 -32.40832,-55.66349l-0.20384,-24.23439l-1.18105,-140.41477c0.127,-82.3877 -0.33056,-83.56627 48.43353,-97.83327l258.50262,-65.68196c20.56227,-1.89022 38.38216,13.5522 38.54814,33.28592l2.64118,314.00846c0.16598,19.73372 -17.39183,35.44981 -37.98322,33.87797l0.00146,0.17309l0.00146,0.1731l-276.35196,2.30934z" fill-opacity="0.1" fill="#2D9CDB"/>
-    <path stroke="null" id="svg_11" d="m728.99957,377.6853l-21.99955,-20.13278l21.99955,20.13278z" fill-opacity="null" stroke-opacity="null" stroke-width="1px" fill="rosybrown"/>
-   </g>
-   <g stroke="null" transform="matrix(0.6593946113532722,0,0,0.6593946113532722,-458.315266973252,-233.5555027300963) " id="svg_20">
-    <title stroke="null" transform="translate(-5262.49072265625,-4119.87060546875) translate(6031.46484375,0) translate(0,4533.48388671875) ">background</title>
-   </g>
-   <g stroke="null" transform="matrix(0.6593946113532722,0,0,0.6593946113532722,-458.315266973252,-233.5555027300963) " id="svg_21">
-    <title stroke="null" transform="translate(-5262.49072265625,-4119.87060546875) translate(6031.46484375,0) translate(0,4533.48388671875) ">background</title>
-   </g>
+  <g stroke="null" id="svg_22" transform="matrix(0.3803909814260871,0,0,0.3847330640643038,-264.4250659328595,-135.90546983752103) ">
+   <title stroke="null" transform="translate(59.14516067504883,34.88047790527344) translate(-2.5432798862457275,43.23575973510742) translate(0,-80.70399475097656) translate(-90.81884002685547,0) translate(785.8734741210938,434.9008483886719) translate(221.41522216796875,204.73324584960938) translate(-0.00006307765579549596,0) translate(401,0) translate(213.83250427246094,144.07154846191406) translate(0,-436.8896789550781) translate(-592.5559692382812,0) translate(580.610595703125,0) translate(0,433.5340576171875) ">background</title>
+  </g>
+  <path stroke="null" fill="#2D9CDB" fill-opacity="0.1" d="m14.19593,150.36641c-14.11752,-1.47683 -12.27245,-14.75574 -12.32783,-21.41558l-0.07754,-9.32377l-0.44926,-54.02221c0.04831,-31.69727 -0.12574,-32.1507 18.42368,-37.63969l98.33206,-25.27003c7.8217,-0.72722 14.60023,5.21399 14.66337,12.8062l1.00468,120.80944c0.06313,7.59221 -6.6157,13.63871 -14.44848,13.03397l0.00056,0.0666l0.00055,0.06659l-105.12179,0.88848z" id="svg_21" stroke-width="1px"/>
+  <g stroke="null" id="svg_18" transform="matrix(0.3803909814260871,0,0,0.3847330640643038,-264.4250659328595,-135.90546983752103) ">
+   <title stroke="null" transform="translate(59.14516067504883,34.88047790527344) translate(-2.5432798862457275,43.23575973510742) translate(0,-80.70399475097656) translate(-90.81884002685547,0) translate(785.8734741210938,434.9008483886719) translate(221.41522216796875,204.73324584960938) translate(-0.00006307765579549596,0) translate(401,0) translate(213.83250427246094,144.07154846191406) translate(0,-436.8896789550781) translate(-592.5559692382812,0) translate(580.610595703125,0) translate(0,433.5340576171875) ">background</title>
+  </g>
+  <g stroke="null" id="svg_17" transform="matrix(0.3803909814260871,0,0,0.3847330640643038,-264.4250659328595,-135.90546983752103) ">
+   <title stroke="null" transform="translate(59.14516067504883,34.88047790527344) translate(-2.5432798862457275,43.23575973510742) translate(0,-80.70399475097656) translate(-90.81884002685547,0) translate(785.8734741210938,434.9008483886719) translate(221.41522216796875,204.73324584960938) translate(-0.00006307765579549596,0) translate(401,0) translate(213.83250427246094,144.07154846191406) translate(0,-436.8896789550781) translate(-592.5559692382812,0) translate(580.610595703125,0) translate(0,433.5340576171875) ">background</title>
   </g>
  </g>
 </svg>

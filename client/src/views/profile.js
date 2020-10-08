@@ -3,26 +3,28 @@ import { withAuth0 } from '@auth0/auth0-react';
 import CardTitle from '../components/card-title';
 import CardForm from '../components/card-form';
 import profile from '../images/profile.svg';
-import address from '../images/house.svg';
 
 const url = process.env.REACT_APP_API_URL || 'http://localhost:9000';
 
 class Profile extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      dbUser: {
-        name: '',
-        email: '',
-        number: '',
-        street1: '',
-        street2: '',
-        city: '',
-        zip: '',
-        country: ''
-      }
-    };
+  state = {
+    id: '',
+    name: '',
+    email: '',
+    number: '',
+    Addresses: [{
+      id: '',
+      street1: '',
+      street2: '',
+      city: '',
+      zip: '',
+      country: ''
+    },
+    {'secondAddress': null},
+    {'third': null},
+    {'fourth': null},
+    ]
   }
 
   //TODO: create updateAPI method to DRY-up these calls
@@ -34,13 +36,6 @@ class Profile extends Component {
     } catch(err) {
       console.log('findUser error: ', err)
     }
-  };
-
-  //TODO: create updateAPI method to DRY-up these calls
-  async getUserAddress(user_id) {
-      const res = await fetch(`${url}/api/addresses/user/${user_id}`)
-      const data = await res.json()
-      return data
   };
 
   //TODO: add authentication and validation
@@ -59,12 +54,12 @@ class Profile extends Component {
   };
 
   //TODO: add authentication and validation
-  async updateUser(user) {
+  async updateUser(dbUser) {
     try {
-      const res = await fetch(`${url}/api/users/update/${user.id}`, {
+      const res = await fetch(`${url}/api/users/update/${dbUser.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
+        body: JSON.stringify(dbUser)
       })
       const data = await res.json()
       return data
@@ -73,42 +68,20 @@ class Profile extends Component {
     }
   };
 
-  //TODO: add authentication and validation
-  async updateUserAddress(user) {
-    try {
-      const res = await fetch(`${url}/api/addresses/users/update/${user.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-      })
-      const data = await res.json()
-      return data
-    } catch(err) {
-      console.log('updateUserAddress error: ', err)
-    }
-  };
-
   async componentDidMount(props) {
     const authUser = await this.props.auth0.user
     const dbUser = await this.findUser(authUser.sub)
+    console.log('found user: ', dbUser)
     try {
       const userState = dbUser || await this.createUser({
         auth0_id: authUser.sub,
         name: authUser.name,
         email: authUser.email
       });
-      this.setState({dbUser: userState})
+      this.setState(userState)
     } catch(err) {
-      this.setState({dbUser: err})
+      this.setState(err)
     }
-
-    if (dbUser) {
-      const userAddress = await this.getUserAddress(dbUser.id);
-      this.setState({
-        dbUser: {...this.state.dbUser, ...userAddress}
-      })
-    }
-
   }
 
   //
@@ -119,12 +92,13 @@ class Profile extends Component {
   // Update user profile
   handleUserSubmit = async (e) => {
     e.preventDefault();
-    console.log('this.state.dbUser value when handleUserSubmit is called: ', this.state.dbUser);
-    const { name, email, number, street1, city, state, zip, country } = this.state.dbUser;
+    console.log('this.state value when handleUserSubmit is called: ', this.state);
+    const { name, email, number } = this.state;
+    // TODO: loop through when there are mutliple addresses
+    const { street1, city, state, zip, country } = this.state.Addresses[0];
     if (name && email && number && street1 && city && state && zip && country) {
       try {
-        await this.updateUser(this.state.dbUser)
-        await this.updateUserAddress(this.state.dbUser)
+        await this.updateUser(this.state)
         console.log('user profile updated')
       }
       catch(err) { console.log(err) }
@@ -134,12 +108,22 @@ class Profile extends Component {
     }
   }
 
-  changeHandler = (e) => {
+  changeUserHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
-      dbUser: {...this.state.dbUser, [name]: value }
+      ...this.state, [name]: value
     })
+  }
+  changeAddressHandler = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    const i = parseInt(name.split('.')[0]);
+    const key = name.split('.')[1]
+
+    const updatedAddress = {...this.state.Addresses[i], [key]:value}
+    const updatedArray = [...this.state.Addresses][i] = updatedAddress
+    this.setState({...this.state, Addresses: [updatedArray]});
   }
 
   render() {
@@ -159,52 +143,58 @@ class Profile extends Component {
         </div>
 
         <form className="form-wrapper">
-          <CardForm img={address} button={<button onClick={this.handleUserSubmit} className="btn btn-success d-none d-md-block">Update profile</button>}>
+          <CardForm button={<button onClick={this.handleUserSubmit} className="btn btn-success d-none d-md-block">Update profile</button>}>
               <fieldset>
                 <label className="form-label" htmlFor="name">Full name*</label>
                 <input className="form-input" type="text" id="name" name="name"
-                       value={this.state.dbUser.name || ''} onChange={this.changeHandler} />
+                       value={this.state.name || ''} onChange={this.changeUserHandler} />
               </fieldset>
-              <fieldset>
-                <label className="form-label" htmlFor="email">Email*</label>
-                <input className="form-input" type="text" id="email" name="email"
-                       value={this.state.dbUser.email || ''} onChange={this.changeHandler} />
-              </fieldset>
-              <fieldset>
-                <label className="form-label" htmlFor="number">Phone number*</label>
-                <input className="form-input" type="text" id="number" name="number"
-                       value={this.state.dbUser.number || ''} onChange={this.changeHandler}  />
-              </fieldset>
+              <span className="d-sm-flex">
+                <fieldset className="mr-sm-3">
+                  <label className="form-label" htmlFor="email">Email*</label>
+                  <input className="form-input" type="text" id="email" name="email"
+                         value={this.state.email || ''} onChange={this.changeUserHandler} />
+                </fieldset>
+                <fieldset>
+                  <label className="form-label" htmlFor="number">Phone number*</label>
+                  <input className="form-input" type="text" id="number" name="number"
+                         value={this.state.number || ''} onChange={this.changeUserHandler}  />
+                </fieldset>
+              </span>
               <fieldset>
                 <label className="form-label" htmlFor="street1">Address 1*</label>
-                <input className="form-input" type="text" id="street1" name="street1"
-                       value={this.state.dbUser.street1 || ''} onChange={this.changeHandler} />
+                <input className="form-input" type="text" id="street1" name="0.street1"
+                       value={this.state.Addresses[0].street1 || ''} onChange={this.changeAddressHandler} />
               </fieldset>
               <fieldset>
                 <label className="form-label" htmlFor="street2">Address 2</label>
-                <input className="form-input" type="text" id="street2" name="street2"
-                       value={this.state.dbUser.street2 || ''} onChange={this.changeHandler} />
+                <input className="form-input" type="text" id="street2" name="0.street2"
+                       value={this.state.Addresses[0].street2 || ''} onChange={this.changeAddressHandler} />
               </fieldset>
-              <fieldset>
-                <label className="form-label" htmlFor="city">City*</label>
-                <input className="form-input" type="text" id="city" name="city"
-                       value={this.state.dbUser.city || ''} onChange={this.changeHandler} />
-              </fieldset>
-              <fieldset>
-                <label className="form-label" htmlFor="state">State*</label>
-                <input className="form-input" type="text" id="state" name="state"
-                       value={this.state.dbUser.state || ''} onChange={this.changeHandler} />
-              </fieldset>
-              <fieldset>
-                <label className="form-label" htmlFor="zip">Zip/postal code*</label>
-                <input className="form-input" type="text" id="zip" name="zip"
-                       value={this.state.dbUser.zip || ''} onChange={this.changeHandler} />
-              </fieldset>
-              <fieldset>
-                <label className="form-label" htmlFor="country">Country*</label>
-                <input className="form-input" type="text" id="country" name="country"
-                       value={this.state.dbUser.country || ''} onChange={this.changeHandler} />
-              </fieldset>
+              <span className="d-sm-flex">
+                <fieldset className="mr-sm-3">
+                  <label className="form-label" htmlFor="city">City/Town*</label>
+                  <input className="form-input" type="text" id="city" name="0.city"
+                         value={this.state.Addresses[0].city || ''} onChange={this.changeAddressHandler} />
+                </fieldset>
+                <fieldset>
+                  <label className="form-label" htmlFor="state">State/Province*</label>
+                  <input className="form-input" type="text" id="state" name="0.state"
+                         value={this.state.Addresses[0].state || ''} onChange={this.changeAddressHandler} />
+                </fieldset>
+              </span>
+              <span className="d-sm-flex">
+                <fieldset className="mr-sm-3">
+                  <label className="form-label" htmlFor="zip">Zip/Postal code*</label>
+                  <input className="form-input" type="text" id="zip" name="0.zip"
+                         value={this.state.Addresses[0].zip || ''} onChange={this.changeAddressHandler} />
+                </fieldset>
+                <fieldset>
+                  <label className="form-label" htmlFor="country">Country*</label>
+                  <input className="form-input" type="text" id="country" name="0.country"
+                         value={this.state.Addresses[0].country || ''} onChange={this.changeAddressHandler} />
+                </fieldset>
+              </span>
             <button onClick={this.handleUserSubmit} className="btn btn-success d-block mt-4 mx-auto d-md-none">Update profile</button>
           </CardForm>
         </form>

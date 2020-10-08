@@ -49,25 +49,10 @@ app.get("/api/db", checkJwt, async (req, res) => {
 });
 
 // TODO: should require authentication
-app.get("/api/addresses/user/:user_id", async (req, res) => {
-  try {
-    console.log("req.params.user_id in /api/addresses/user/:user_id = ", req.params.user_id);
-    const address = await db.Address.findOne(
-      { where: { user_id: req.params.user_id } }
-    );
-    console.log("SUCCESS: find address by user_id: req.params.user_id = ", address);
-    address && res.send(address);
-  }
-  catch(err) {
-    console.log("ERROR: find address by user_id: req.params.user_id = ", err);
-  }
-});
-
-// TODO: should require authentication
 app.get("/api/users/:auth0_id", async (req, res) => {
   try {
     const user = await db.User.findOne(
-      { where: { auth0_id: req.params.auth0_id } }
+      { where: { auth0_id: req.params.auth0_id }, include: db.Address }
     );
     console.log("SUCCESS: find user by auth0_id: req.params.auth0_id = ", user)
     user && res.send(user);
@@ -93,61 +78,37 @@ app.post("/api/users/create/", async (req, res) => {
 });
 
 // TODO: should require authentication
-app.put("/api/users/update/:user_id", async (req, res) => {
+app.put("/api/users/update/:id", async (req, res) => {
   console.log('update user called with req.body:', req.body);
-  const user_id = req.body.id
-  const { name, email, number } = req.body
-  const user = await db.User.findOne({ where: { user_id } })
-  if (name) user.name = name
-  if (email) user.email = email
-  if (number) user.number = number
-  const save = await user.save()
-  res.send(save);
-});
-
-// TODO: should require authentication
-app.put("/api/addresses/users/update/:user_id", async (req, res) => {
-  console.log('update userAddress called with req.body:', req.body);
-  const user_id = req.params.user_id
-  const { street1, street2, city, state, zip, country } = req.body
-  const address = await db.Address.findOne({ where: { user_id: user_id } })
-  if(address) {
-    console.log("address exists and will be updated")
-    address.street1 = street1
-    if (street2) address.street2 = street2
-    address.city = city
-    address.state = state
-    address.country = country
-    address.zip = zip
-    const save = await address.save()
-    res.send(save);
-  } else {
-    console.log("address does not exist and will be created")
-    const newAddress = await db.Address.create({
-      user_id: user_id,
-      street1: req.body.street1,
-      street2: req.body.street2,
-      city: req.body.city,
-      state: req.body.state,
-      country: req.body.country,
-      zip: req.body.zip
+  try {
+    const update = await db.User.update(req.body, {
+      where: { id: req.body.id },
+      include: db.Address
     });
-    console.log("created new unsaved address: ", newAddress);
-    const save = await newAddress.save();
-    console.log("inserted into database: ", save);
-    res.send(newAddress);
+    console.log(`user #${req.body.id} (${req.body.name}) updated!`, res)
+    res.send(update);
   }
+  catch(err) { console.log('update user error: ', err) }
+  // const { name, email, number } = req.body
+  // const user = await db.User.findOne(
+  //   { where: { id }, include: db.Address }
+  // )
+  // console.log('user to update is: ', user)
+  // user.name = req.body.name;
+  // user.email = req.body.email;
+  // user.number = req.body.number;
+  // // TODO: the following isn't updating address records
+  // user.Addresses = req.body.Addresses;
+  // const save = await user.save();
+  // res.send(save);
 });
 
 app.post("/api/mailinglist/add", async (req, res) => {
   try {
-    console.log('create new subscriber with req.body:', req.body);
     const newSub = await db.Subscriber.create({
       email: req.body.email,
     });
-    console.log("created new unsaved subscriber: ", newSub);
     const save = await newSub.save();
-    console.log("inserted subscriber into database: ", save);
     res.send(newSub);
   }
   catch(err) {
@@ -170,13 +131,6 @@ app.get("*", (req, res) => {
     console.log('server.js: non-predefined route called');
     res.sendFile('index.html', { root });
 })
-// TRY THE ABOVE INSTEAD
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '/../client/build/index.html'));
-// });
-
-// // Serve static files from the React app
-// app.use(express.static(path.join(__dirname, '/../client/build')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

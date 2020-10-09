@@ -56,7 +56,8 @@ class Modal extends Component {
       >
         <div style={{
           position: 'relative',
-          margin: 'auto',
+          margin: '2em',
+          maxWidth: '800px',
           background: 'white',
           borderRadius: 25,
           padding: '10%',

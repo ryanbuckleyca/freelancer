@@ -6,7 +6,7 @@ import HowItWorks from '../components/howitworks';
 import Testimonials from '../components/testimonials';
 import money from '../images/bank_note.svg';
 import pr from '../images/pr.svg';
-import finance from '../images/finance_analytics_.svg';
+import emails from '../images/sending_emails.svg';
 import currency from '../images/currency.svg';
 import imgCoins from '../images/coins_nobg.svg';
 
@@ -43,7 +43,7 @@ class Landing extends Component {
             text="Our automated system automatically emails, texts, and calls the client, even sending them your invoice as physical mail weekly, bi-weekly, or monthly."
           />
           <CardSmall
-            img={finance}
+            img={emails}
             cardTitle="In Your Own Voice"
             text="Personalize the message that send to your client. You can choose your range of politeness or sternness. Review and edit each suggested message."
           />

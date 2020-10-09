@@ -32,36 +32,67 @@ app.use((req, res, next) => {
   next();
 });
 
-const checkJwt = require('./authenticate');
+// HELPER FUNCTIONS
+const parseUser = (user) => {
+  let userParsed = user.toJSON()
+  if(userParsed.Addresses === undefined || userParsed.Addresses == 0) {
+    userParsed.Addresses = [{
+      id:'',street1:'',street2:'',city:'',state:'',zip:'',country:''
+    }]
+  }
+  console.log('user.toJSON() after parseUser is: ', userParsed)
+  return userParsed;
+}
+
+const updateUserAddresses = async (user_id, addresses) => {
+    try {
+      const user = await db.User.findOne({
+        where: { id: user_id },
+        include: db.Address,
+      });
+      console.log('addresses is: ', addresses)
+      console.log('updating user.ADDRESSES.update(addresses)...')
+      user.Addresses.forEach((address, i) => {
+        address.update(addresses[i])
+      });
+      return parseUser(user);
+    }
+    catch(err) { console.log('update user err: ', err) }
+
+}
 
 // ROUTES (secured ones require checkJwt middleware)
+const checkJwt = require('./authenticate');
 
+// Auth0 test
 app.get("/api/db", checkJwt, async (req, res) => {
   try {
     const ryan = await db.User.findOne(
       { where: { id: 1 } } // should return Ryan Buckley
     );
-    console.log("db.User.findAll({where:{id:1}}): ", ryan)
     res.send({'res': ryan});
   } catch (error) {
     res.send({'res':`error: ${error}`});
   }
 });
 
+// GET USER
 // TODO: should require authentication
 app.get("/api/users/:auth0_id", async (req, res) => {
   try {
-    const user = await db.User.findOne(
-      { where: { auth0_id: req.params.auth0_id }, include: db.Address }
-    );
-    console.log("SUCCESS: find user by auth0_id: req.params.auth0_id = ", user)
-    user && res.send(user);
+    const user = await db.User.findOne({
+      where: { auth0_id: req.params.auth0_id },
+      include: db.Address
+    })
+    console.log("SUCCESS: found user by auth0_id: req.params.auth0_id = ", user)
+    parseUser(user) && res.send(parseUser(user));
   }
   catch(err) {
     console.log("ERROR: find user by auth0_id: req.params.auth0_id = ", err);
   }
 });
 
+// CREATE NEW USER
 // TODO: should require authentication
 app.post("/api/users/create/", async (req, res) => {
   console.log('create user called with req.body:', req.body);
@@ -77,32 +108,28 @@ app.post("/api/users/create/", async (req, res) => {
   res.send(newUser);
 });
 
+// UPDATE USER AND ADDRESSES
 // TODO: should require authentication
 app.put("/api/users/update/:id", async (req, res) => {
   console.log('update user called with req.body:', req.body);
   try {
-    const update = await db.User.update(req.body, {
+    const updateResult = await db.User.update(req.body, {
       where: { id: req.body.id },
+      returning: true,
       include: db.Address
     });
-    console.log(`user #${req.body.id} (${req.body.name}) updated!`, res)
-    res.send(update);
+    const dbUser = updateResult[1][0];
+    const updatedUser = updateUserAddresses(
+      req.body.id, req.body.Addresses
+    )
+    console.log('updatedUser returns: ', updatedUser)
+    const user = parseUser(dbUser)
+    res.send(user)
   }
   catch(err) { console.log('update user error: ', err) }
-  // const { name, email, number } = req.body
-  // const user = await db.User.findOne(
-  //   { where: { id }, include: db.Address }
-  // )
-  // console.log('user to update is: ', user)
-  // user.name = req.body.name;
-  // user.email = req.body.email;
-  // user.number = req.body.number;
-  // // TODO: the following isn't updating address records
-  // user.Addresses = req.body.Addresses;
-  // const save = await user.save();
-  // res.send(save);
 });
 
+// ADD MAILING LIST SUBSCRIBER
 app.post("/api/mailinglist/add", async (req, res) => {
   try {
     const newSub = await db.Subscriber.create({
@@ -116,6 +143,7 @@ app.post("/api/mailinglist/add", async (req, res) => {
   }
 });
 
+// test
 app.get("/api/test", (req, res) => {
   res.send({
     msg: "Route /test.",

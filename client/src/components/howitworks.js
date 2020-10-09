@@ -21,7 +21,7 @@ class HowItWorks extends Component {
         </div>
         <div className="row align-items-center mt-4">
           <div className="col-12 mb-n5 col-md-5 mb-md-0 order-md-2 col-lg-3">
-            <img className="mw-100" src={social_media} alt="social media" />
+            <img className="mw-100" src={social_media} alt="social media" style={{width: '100%'}} />
           </div>
           <div className="col-12 mt-n5 col-md-7 mt-md-0 order-md-1 col-lg-9">
             <p className="card-email">

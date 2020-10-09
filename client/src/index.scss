@@ -45,11 +45,6 @@ body {
     font-size: 14px;
   }
 }
-@media(max-width: 575px) {
-  body {
-    font-size: 16px;
-  }
-}
 @media(min-width: 768px) {
   body {
     font-size: 18px;
@@ -66,18 +61,20 @@ body {
   }
 }
 
-h2 {
-  line-height: 100%;
-  font-family: Montserrat;
-  font-weight: 700;
-  color: $black;
-}
-
 h1 {
+  font-size: 200%;
   margin: 0;
   font-family: 'Suez One';
   color: $blue;
   font-weight: 400;
+}
+
+h2 {
+  font-size: 160%;
+  line-height: 100%;
+  font-family: Montserrat;
+  font-weight: 700;
+  color: $black;
 }
 
 i {

@@ -5,20 +5,22 @@
   flex-direction: row-reverse;
   align-items: stretch;
   justify-items: flex-end;
-  background-image: url('../images/card-bg-lg.svg');
-  background-position: left;
+  border-radius: 25px;
+  background-image: url('../images/bg-form-lg.svg');
+  background-position: right;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
   @media screen and (max-width: 767px) {
     flex-direction: column;
     align-items: center;
-    background-image: url('../images/card-bg2.svg');
-    background-position: bottom;
+    background-image: url('../images/bg-form-sm.svg');
+    background-size: cover;
+    background-position: top;
     background-repeat: no-repeat;
   }
   .card-slider-form {
     flex-grow: 1;
-    padding: 3em;
+    padding: 3em 3em 2em;
     width: 100%;
     @media screen and (max-width: 767px) {
       padding: 1em 4em 4em;
@@ -35,13 +37,14 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    margin: 0 0 4em 0;
+    margin: 0 0 3em 0;
     @media screen and (max-width: 767px) {
       background-image: url('../images/profile-top.svg');
       height: 12em;
-      margin: 0 0 1em 0;
+      margin: -1em 0 .5em;
     }
   }
+
   label {
     padding-bottom: 0;
     margin-bottom: 0;
@@ -63,12 +66,13 @@
   background-color: $light-gray;
   align-items: center;
   img {
-    width: 90%;
+    width: 65%;
+    margin-bottom: 1em;
   }
   @media screen and (max-width: 575px) {
-  img {
-    width: 65%;
-  }
+    img {
+      width: 55%;
+    }
   }
 
 }

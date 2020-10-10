@@ -21,8 +21,8 @@ class Landing extends Component {
         <div className='my-4'>
           <CardTitle
             img={imgCoins}
-            title={<span>We do the work. <br className='d-block d-sm-none d-lg-block' />You get paid.</span>}
-            text="Following up with clients for payment is annoying and time-consuming.  Our automated system sends out interval reminders. All you need to do is add your invoice and we take care of the rest!"
+            title={<span>We do the work. <br />You get paid.</span>}
+            text="Following up with clients for payment is time-consuming.  Our automated system handles reminders. You just add your invoice and we take care of the rest!"
           />
         </div>
         <br />

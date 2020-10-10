@@ -62,19 +62,33 @@
 
 .card-lg {
   border-radius: 25px;
-  padding: 5vw;
+  padding: 2.5em;
   background-color: $light-gray;
   align-items: center;
+  @media (min-width: 576px) {
+    display: flex;
+  }
+}
+.card-lg-img {
   img {
-    width: 65%;
-    margin-bottom: 1em;
+    width: 100%;
   }
-  @media screen and (max-width: 575px) {
-    img {
-      width: 55%;
-    }
+  text-align: center;
+  width: 100%;
+  @media (min-width: 576px) {
+    width: 100%;
+    margin-right: 2em;
+    text-align: left;
   }
-
+}
+.card-lg-text {
+  p {
+    margin: 2em 0 0 0;
+  }
+  text-align: left;
+  @media (min-width: 576px) {
+    width: 200%;
+  }
 }
 // xs and md screens (up to 575, then 768 - 991px)
 .card-sm {

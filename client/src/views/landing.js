@@ -14,11 +14,11 @@ class Landing extends Component {
   render() {
     return (
       <div className='container'>
-        <div className='container mt-5 mb-3'>
+        <div className='mt-2 mb-3'>
           <Splash />
         </div>
         <br />
-        <div className='container my-4'>
+        <div className='my-4'>
           <CardTitle
             img={imgCoins}
             title={<span>We do the work. <br className='d-block d-sm-none d-lg-block' />You get paid.</span>}

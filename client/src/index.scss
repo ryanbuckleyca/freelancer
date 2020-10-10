@@ -40,11 +40,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-@media(max-width: 319px) {
-  body {
-    font-size: 14px;
-  }
-}
 @media(min-width: 768px) {
   body {
     font-size: 18px;
@@ -52,12 +47,12 @@ body {
 }
 @media(min-width: 992px) {
   body {
-    font-size: 20px;
+    font-size: 22px;
   }
 }
 @media(min-width: 1200px) {
   body {
-    font-size: 22px;
+    font-size: 24px;
   }
 }
 

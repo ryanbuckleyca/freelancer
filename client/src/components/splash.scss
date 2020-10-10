@@ -14,6 +14,7 @@
     width: 100%;
   }
   width: 100%;
+  margin: 0 0 1em 0;
   @media (min-width: 575px) {
     width: 85%;
     justify-content: space-between;
@@ -26,10 +27,20 @@
   }
 }
 .splash-text {
+  p {
+    text-align: left;
+    padding: 1.5em 0;
+    line-height: 125%;
+  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   width: 100%;
   text-align: center;
   @media (min-width: 575px) {
     text-align: left;
+    padding-right: 2em;
     max-width: 70%;
   }
   @media (min-width: 1200px) {

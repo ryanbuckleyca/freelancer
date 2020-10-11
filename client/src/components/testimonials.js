@@ -6,8 +6,8 @@ class Testimonials extends Component {
   render() {
     return(
 
-      <div id="demo" className="carousel slide p-5 card-testimonials card-lg" data-ride="carousel">
-        <span className="d-flex justify-content-between align-items-center mb-5">
+      <div id="demo" className="carousel slide card-testimonials card-lg" data-ride="carousel">
+        <span className="card-testimonials-head">
           <h2 className="m-0">Testimonials</h2>
 
           <div>
@@ -40,7 +40,7 @@ class Testimonials extends Component {
                 <br />
                 Front-End Developer
                 <br /><br />
-                Proin molestie felis leo, vestibulum ullamcorper leo consectetur ac. Donec eros nulla, porttitor quis velit vitae, pulvinar dapibus neque. Quisque malesuada neque a lacus vestibulum aliquam.
+                Proin molestie felis leo, vestibulum ullamcorper leo consectetur ac. Donec eros nulla!
               </p>
             </div>
           </div>

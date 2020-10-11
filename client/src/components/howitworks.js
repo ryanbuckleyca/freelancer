@@ -26,12 +26,12 @@ class HowItWorks extends Component {
           <i name="fakerName">Ryan Buckley</i>
         </p>
         <br />
-        <div className="card-splash">
-          <p className="card-splash-text">
+        <div className="card-bottom">
+          <div className="card-bottom-img">
+            <img src={mailchimp} alt="mailchimp" />
+          </div>
+          <div className="card-bottom-text">
             PLUS: We’ll send physical mail bi-weekly or monthly with your original invoice.
-          </p>
-          <div className="card-splash-img" style={{marginBottom: '-25%'}}>
-            <img style={{width: '50%'}} src={mailchimp} alt="mailchimp" />
           </div>
         </div>
       </div>

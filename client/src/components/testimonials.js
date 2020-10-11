@@ -31,7 +31,7 @@ class Testimonials extends Component {
           <div className="carousel-item active">
             <div className="card-testimony">
               <div className="avatar">
-                <img src="https://kitt.lewagon.com/placeholder/users/ryanbuckleyca"
+                <img src="http://kitt.lewagon.com/placeholder/users/ryanbuckleyca"
                   className="avatar" alt="user avatar" />
               </div>
               <p>
@@ -39,33 +39,33 @@ class Testimonials extends Component {
                 <br />
                 Front-End Developer
                 <br /><br />
-                Proin molestie felis leo, vestibulum ullamcorper leo consectetur ac. Donec eros nulla!
+                Cheque Mate helped me get my hard-earned money while allowing me to focus on new projects. I would highly recommend this effortless service to any freelancer!
               </p>
             </div>
           </div>
           <div className="carousel-item">
             <div className="card-testimony">
               <div className="avatar">
-                <img src="https://kitt.lewagon.com/placeholder/users/nachiket87"
+                <img src="https://randomuser.me/api/portraits/men/15.jpg"
                   className="avatar" alt="user avatar" />
               </div>
               <p>
-                Nachiket<br />
-                Back-End Developer<br /><br />
-                Vivamus commodo mauris id mi commodo, sodales tempus leo elementum.
+                Ray Newman<br />
+                Graphic Designer<br /><br />
+                I signed up to Cheque Mate because I was tired of being ripped off by new clients, so now I check before starting any new project to see if they're listed.
               </p>
             </div>
           </div>
           <div className="carousel-item">
             <div className="card-testimony">
               <div className="avatar">
-                <img src="https://kitt.lewagon.com/placeholder/users/mynameisnirali"
+                <img src="https://randomuser.me/api/portraits/men/39.jpg"
                   className="avatar" alt="user avatar" />
               </div>
               <p>
-                Nirali<br />
-                Full-Stack Developer<br /><br />
-                Donec efficitur sit amet leo vitae iaculis. Donec et ex non ante porta tristique et ac.
+                Hassan Raffi<br />
+                Freelance Editor<br /><br />
+                I love that I don't have to keep checking which of my invoice have been paid, and trying to draft reminders for my clients. With Cheque Mate I just upload and done!
               </p>
             </div>
           </div>

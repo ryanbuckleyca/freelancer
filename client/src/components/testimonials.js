@@ -9,7 +9,6 @@ class Testimonials extends Component {
       <div id="demo" className="carousel slide card-testimonials card-lg" data-ride="carousel">
         <span className="card-testimonials-head">
           <h2 className="m-0">Testimonials</h2>
-
           <div>
             <a className="carousel-control-prev" href="#demo" data-slide="prev">
               <span className="carousel-control-prev-icon"></span>

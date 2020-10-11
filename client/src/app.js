@@ -16,7 +16,6 @@ class App extends Component {
       <Modal />
       <div className='container my-4'>
         <Navbar />
-        <br />
         <Switch>
           <Route exact path="/">
             <Landing />
@@ -32,11 +31,7 @@ class App extends Component {
             "coming soon"
           </Route>
         </Switch>
-        <br />
-        <hr />
-        <div className='container my-5'>
-          <Footer showTrial={this.props.auth0.isAuthenticated} />
-        </div>
+        <Footer showTrial={this.props.auth0.isAuthenticated} />
       </div>
     </Router>
     );

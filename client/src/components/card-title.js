@@ -9,7 +9,7 @@ class CardTitle extends Component {
           <img src={this.props.img} alt="title" />
         </div>
         <div className="card-lg-text">
-          <h2 className="text-center text-sm-left">{this.props.title}</h2>
+          <h2>{this.props.title}</h2>
           <p>{this.props.text}</p>
         </div>
       </div>

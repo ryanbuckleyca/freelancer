@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Splash from '../components/splash';
+import CardSplash from '../components/card-splash';
 import CardTitle from '../components/card-title';
 import CardSmall from '../components/card-small';
 import HowItWorks from '../components/howitworks';
@@ -15,7 +15,7 @@ class Landing extends Component {
     return (
       <div>
         <div className='mt-5 mb-3'>
-          <Splash />
+          <CardSplash />
         </div>
         <br />
         <div className='my-4'>

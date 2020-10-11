@@ -6,7 +6,7 @@ class CardTitle extends Component {
     return (
       <div className="card-lg">
         <div className="card-lg-img ">
-          <img src={this.props.img} alt="person on stack of coins" />
+          <img src={this.props.img} alt="title" />
         </div>
         <div className="card-lg-text">
           <h2 className="text-center text-sm-left">{this.props.title}</h2>

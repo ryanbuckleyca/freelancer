@@ -1,5 +1,55 @@
 @import '../_custom.scss';
 
+.card-splash {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-items: stretch;
+  text-align: center;
+  align-items: stretch;
+  @media (min-width: 575px) {
+    flex-direction: row-reverse;
+  }
+}
+.card-splash-img {
+  img {
+    width: 100%;
+  }
+  width: 100%;
+  margin: 0 0 1em 0;
+  @media (min-width: 575px) {
+    width: 85%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (min-width: 767px) {
+    width: 120%;
+  }
+}
+.card-splash-text {
+  p {
+    text-align: left;
+    padding: 1.5em 0;
+    line-height: 125%;
+  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  text-align: center;
+  @media (min-width: 575px) {
+    text-align: left;
+    padding-right: 2em;
+    max-width: 70%;
+    align-items: flex-start;
+  }
+  @media (min-width: 1200px) {
+  }
+}
+
 .card-slider {
   display: flex;
   flex-direction: row-reverse;
@@ -60,6 +110,13 @@
   }
 }
 
+.card-xl {
+  border-radius: 25px;
+  padding: 2.5em;
+  background-color: $light-gray;
+  align-items: center;
+}
+
 .card-lg {
   border-radius: 25px;
   padding: 2.5em;
@@ -104,6 +161,7 @@
 
 .card-sm {
   a { color: $red; }
+  text-align: center;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -156,6 +214,7 @@
   }
 }
 .card-sm-text {
+  text-align: left;
   padding: 1.5em 3em 3em;
   @media (min-width: 500px) {
     padding: 2em 2.5em 2.5em;

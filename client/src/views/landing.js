@@ -13,8 +13,8 @@ import imgCoins from '../images/coins_nobg.svg';
 class Landing extends Component {
   render() {
     return (
-      <div className='container'>
-        <div className='mt-2 mb-3'>
+      <div>
+        <div className='mt-5 mb-3'>
           <Splash />
         </div>
         <br />
@@ -22,7 +22,7 @@ class Landing extends Component {
           <CardTitle
             img={imgCoins}
             title={<span>We do the work. <br />You get paid.</span>}
-            text="Following up with clients for payment is time-consuming.  Our automated system handles reminders. You just add your invoice and we take care of the rest!"
+            text="Don't waste time chasing clients for payment.  Our automated system handles reminders. You just add your invoice and we take care of the rest!"
           />
         </div>
         <br />
@@ -31,26 +31,26 @@ class Landing extends Component {
           <span className="my-5">Here are a few of the features we offer to users.</span>
         </div>
         <br />
-        <div className="row card-grid my-3 mx-2 mx-sm-0">
+        <div className="card-grid">
           <CardSmall
             img={money}
             cardTitle="Search Bad Clients"
-            text="Know who you’re working with before you begin a project. Our database of 2,302 clients with overdue or unpaid invoices will help inform you before you take on work."
+            text="Know before you begin. Our database of 2,302 clients with overdue or unpaid bills will inform you before you take on work."
           />
           <CardSmall
             img={pr}
             cardTitle="Hands-off Follow-up"
-            text="Our automated system automatically emails, texts, and calls the client, even sending them your invoice as physical mail weekly, bi-weekly, or monthly."
+            text="We automatically email, text, and call the client, even sending them your invoice as physical mail. You focus on what's important"
           />
           <CardSmall
             img={emails}
             cardTitle="In Your Own Voice"
-            text="Personalize the message that send to your client. You can choose your range of politeness or sternness. Review and edit each suggested message."
+            text="Personalize the message that send to your client. You can choose your range of politeness or sternness abd edit suggested messages."
           />
           <CardSmall
             img={currency}
             cardTitle="Save Money!"
-            text="No expensive travel to out-of-area courts, no 35-55% fees from collection agencies. Just a $5/month and the rest of your money is, well, yours!"
+            text="No out-of-area court fees, no 35-55% collection agencies. Just $5/month and the rest of your hard-earned money is yours!"
           />
         </div>
         <br />

@@ -10,7 +10,7 @@
   background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
-  @media screen and (max-width: 767px) {
+  @media (max-width: 767px) {
     flex-direction: column;
     align-items: center;
     background-image: url('../images/bg-form-sm.svg');
@@ -22,7 +22,7 @@
     flex-grow: 1;
     padding: 3em 3em 2em;
     width: 100%;
-    @media screen and (max-width: 767px) {
+    @media (max-width: 767px) {
       padding: 1em 4em 4em;
     }
   }
@@ -38,7 +38,7 @@
     justify-content: flex-end;
     align-items: flex-start;
     margin: 0 0 3em 0;
-    @media screen and (max-width: 767px) {
+    @media (max-width: 767px) {
       background-image: url('../images/profile-top.svg');
       height: 12em;
       margin: -1em 0 .5em;
@@ -48,7 +48,7 @@
   label {
     padding-bottom: 0;
     margin-bottom: 0;
-    @media screen and (max-width: 767px) {
+    @media (max-width: 767px) {
       display: block;
     }
   }
@@ -90,67 +90,81 @@
     width: 200%;
   }
 }
-// xs and md screens (up to 575, then 768 - 991px)
-.card-sm {
-  a {
-    color: $red;
+
+.card-grid {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+  @media (min-width: 576px) {
+    flex-direction: row;
   }
+}
+
+.card-sm {
+  a { color: $red; }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  background-color: transparent;
   background-image: url('../images/card-bg2.svg');
   background-position: bottom;
   background-repeat: no-repeat;
-  background-size: 100% 85%;
-  -moz-background-size: 100% 85%;
-  -webkit-background-size: 100% 85%;
-  .card-sm-img {
-    z-index: 2;
-    padding: 0 15% 0;
-  }
-  .card-sm-img img {
-    width: 80% !important;
-  }
-  @media screen and (max-width: 575px) {
-    .card-sm-img img {
-      width: 60% !important;
-    }
-    .card-sm-text {
-      padding: 1em 3em 2em;
-    }
-  }
-}
-// sm screens (576-767px)
-@media screen and (min-width: 576px) and (max-width: 767px) {
-  .card-sm {
-    font-size: 100%;
-    line-height: 120%;
-    border: 0;
-    background-color: transparent;
+  background-size: 100% 70%;
+  -moz-background-size: 100% 70%;
+  -webkit-background-size: 100% 70%;
+  @media (min-width: 500px) and (max-width: 766px) {
+    margin: 0 0 1em 0;
+    flex-direction: row;
     background-image: url('../images/card-bg1.svg');
-    background-size: 75% 100%;
-    -moz-background-size: 75% 100%;
-    -webkit-background-size: 75% 100%;
+    background-size: 80% 100%;
+    -moz-background-size: 80% 100%;
+    -webkit-background-size: 80% 100%;
     background-position: right;
-    .card-sm-img {
-      z-index: 2;
-    }
+  }
+  @media (min-width: 767px) {
+    margin: .5em 0;
+    width: calc(50% - 2em);
+    background-size: 100% 80%;
+    -moz-background-size: 100% 80%;
+    -webkit-background-size: 100% 80%;
   }
 }
-// lg+ screens (992+)
-@media screen and (min-width: 992px) {
-  .card-sm {
-    font-size: 80%;
-    line-height: 125%;
-    border: 0;
-    background-color: transparent;
-    background-image: url('../images/card-bg1.svg');
-    background-size: 75% 100%;
-    -moz-background-size: 75% 100%;
-    -webkit-background-size: 75% 100%;
-    background-position: right;
-    .card-sm-img {
-      z-index: 2;
-    }
+
+@media (min-width: 767px) {
+  .card-sm:nth-child(even) {
+    margin-left: 1em;
+  }
+  .card-sm:nth-child(odd) {
+    margin-right: 1em;
   }
 }
+
+.card-sm-img {
+  z-index: 2;
+  width: 70%;
+  margin: 0 auto;
+  @media (min-width: 500px) {
+    width: 150%;
+  }
+  @media (min-width: 767px) {
+    width: 50%;
+  }
+}
+.card-sm-text {
+  padding: 1.5em 3em 3em;
+  @media (min-width: 500px) {
+    padding: 2em 2.5em 2.5em;
+  }
+  @media (min-width: 767px) {
+    padding: 2em 2.5em 2.5em;
+  }
+}
+
 
 .card-email {
   background: white;

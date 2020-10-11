@@ -14,10 +14,8 @@ class App extends Component {
     return (
     <Router>
       <Modal />
-      <div className='container'>
-        <div className='container my-3'>
-          <Navbar />
-        </div>
+      <div className='container my-4'>
+        <Navbar />
         <br />
         <Switch>
           <Route exact path="/">

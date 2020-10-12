@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
+import SectionHeader from '../components/section-header';
 import CardTitle from '../components/card-title';
 import CardForm from '../components/card-form';
 import profile from '../images/profile_header.svg';
@@ -124,21 +125,23 @@ class Profile extends Component {
   render() {
     return(
       <div className="profile">
-        <div className="container">
+        <hr className="spacer" />
         <CardTitle
           img={profile}
-          title={<span>Hello there!</span>}
+          title="Hey there!"
+          thisClass="card-md"
           text="In order for us to reach out on your behalf, we need to know how to reach you, and how to forward your most up to date information to your clients."
         />
-        </div>
 
-        <div className="text-center my-5">
-          <h2>Your Profile</h2>
-          <span className="my-5">Tell us a bit about yourself.</span>
-        </div>
+        <hr className="spacer" />
+        <SectionHeader
+          title="Your Profile"
+          text="Tell us a bit about yourself"
+        />
 
+        <hr className="spacer" />
         <form className="form-wrapper">
-          <CardForm button={<button onClick={this.handleUserSubmit} className="btn btn-success d-none d-md-block">Update profile</button>}>
+          <CardForm button={<button onClick={this.handleUserSubmit} className="btn btn-primary d-none d-md-block">Update profile</button>}>
               <fieldset>
                 <label className="form-label" htmlFor="name">Full name*</label>
                 <input className="form-input" type="text" id="name" name="name"
@@ -199,10 +202,11 @@ class Profile extends Component {
                          onChange={this.changeAddressHandler} />
                 </fieldset>
               </span>
-            <button onClick={this.handleUserSubmit} className="btn btn-success d-block mt-4 mx-auto d-md-none">Update profile</button>
+            <button onClick={this.handleUserSubmit} className="btn btn-primary d-block mt-4 mx-auto d-md-none">Update profile</button>
           </CardForm>
         </form>
 
+        <hr className="spacer" />
       </div>
     );
   }

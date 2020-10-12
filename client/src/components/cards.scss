@@ -1,5 +1,258 @@
 @import '../_custom.scss';
 
+.card-splash {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-items: stretch;
+  text-align: center;
+  align-items: stretch;
+  @media (min-width: 575px) {
+    flex-direction: row-reverse;
+  }
+}
+.card-splash-img {
+  img { width: 80% }
+  a { display: none }
+  width: 100%;
+  margin: 0 0 1em 0;
+  @media (min-width: 575px) {
+    img { width: 100% }
+    a {
+      display: inline;
+      margin-top: -.25em;
+    }
+    width: 85%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (min-width: 767px) {
+    width: 120%;
+    a { display: none }
+  }
+}
+.card-splash-text {
+  p {
+    text-align: left;
+    padding: 0 2.5em 0;
+    line-height: 125%;
+  }
+  a { display: inline }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  text-align: center;
+  @media (min-width: 575px) {
+    p { padding: 0 1.5em 0 0 }
+    a { display: none }
+    text-align: left;
+    max-width: 70%;
+    align-items: flex-start;
+  }
+  @media (min-width: 767px) {
+    p { padding: 0 2em 0 0 }
+    a { display: inline }
+  }
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: row;
+  background: none;
+  @media (max-width: 500px) {
+    flex-direction: column-reverse;
+  }
+}
+.card-bottom-img {
+  margin: 0 0 -5em 0;
+  text-align: center;
+  @media (max-width: 500px) {
+    margin: 1em 0 -5em 0;
+  }
+
+}
+
+.card-xl {
+  border-radius: 25px;
+  padding: 2.5em;
+  background-color: $light-gray;
+  align-items: center;
+  margin-bottom: 5em;
+}
+
+.card-lg {
+  border-radius: 25px;
+  padding: 2.5em;
+  background-color: $light-gray;
+  align-items: center;
+  @media (min-width: 576px) {
+    display: flex;
+  }
+}
+.card-lg-img {
+  img {
+    width: 60%;
+    margin-bottom: 2em;
+  }
+  text-align: center;
+  width: 100%;
+  @media (min-width: 576px) {
+    img {
+      width: 100%;
+      margin: 0;
+    }
+    width: 100%;
+    margin-right: 2em;
+    text-align: left;
+  }
+}
+.card-lg-text {
+  h2 { text-align: center }
+  text-align: left;
+  @media (min-width: 576px) {
+    width: 200%;
+    h2 { text-align: left }
+  }
+}
+
+.card-md {
+  border-radius: 25px;
+  padding: 2em;
+  background-color: $light-gray;
+  align-items: center;
+  @media (min-width: 400px) {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+  }
+}
+.card-md-img {
+  img {
+    display: none;
+    margin: -.5em 0 0 0;
+  }
+  text-align: center;
+  width: 100%;
+  @media (min-width: 400px) {
+    img {
+      display: block;
+      width: 100%;
+    }
+    margin: 0 0 0 2em;
+    text-align: left;
+  }
+  @media (min-width: 768px) {
+    width: 50%;
+    margin: -.5em 2em 0 2em;
+  }
+}
+.card-md-text {
+  h2 { text-align: center }
+  text-align: left;
+  @media (min-width: 400px) {
+    width: 200%;
+    h2 { text-align: left }
+  }
+}
+
+
+.card-grid {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+  @media (min-width: 576px) {
+    flex-direction: row;
+  }
+}
+
+.card-sm {
+  a { color: $red }
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  background-color: transparent;
+  background-image: url('../images/card-bg2.svg');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 70%;
+  -moz-background-size: 100% 70%;
+  -webkit-background-size: 100% 70%;
+  @media (min-width: 500px) and (max-width: 766px) {
+    margin: 0 0 1em 0;
+    flex-direction: row;
+    background-image: url('../images/card-bg1.svg');
+    background-size: 80% 100%;
+    -moz-background-size: 80% 100%;
+    -webkit-background-size: 80% 100%;
+    background-position: right;
+  }
+  @media (min-width: 767px) {
+    margin: .2em 0;
+    width: calc(50% - 1.5em);
+    background-size: 100% 80%;
+    -moz-background-size: 100% 80%;
+    -webkit-background-size: 100% 80%;
+  }
+}
+
+@media (min-width: 767px) {
+  .card-sm:nth-child(even) {
+    margin-left: 0.75em;
+  }
+  .card-sm:nth-child(odd) {
+    margin-right: 0.75em;
+  }
+}
+
+.card-sm-img {
+  z-index: 2;
+  width: 70%;
+  margin: 0 auto;
+  @media (min-width: 500px) {
+    width: 150%;
+  }
+  @media (min-width: 767px) {
+    width: 50%;
+  }
+}
+.card-sm-text {
+  text-align: left;
+  padding: 1.5em 2.5em 2.5em;
+  @media (min-width: 500px) {
+    padding: 2em 2.5em 2.5em;
+  }
+}
+
+
+.card-email {
+  background: white;
+  font-size: 80%;
+  border: 1px solid rgba(1, 1, 1, 0.1);
+  border-radius: 5px;
+  transform: rotate(-1deg);
+  padding: 5%;
+  margin-top: 10px;
+  box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.4);
+}
+@media (min-width: 991px) {
+  .card-email {
+    transform: rotate(0deg);
+  }
+}
+
 .card-slider {
   display: flex;
   flex-direction: row-reverse;
@@ -10,7 +263,7 @@
   background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
-  @media screen and (max-width: 767px) {
+  @media (max-width: 767px) {
     flex-direction: column;
     align-items: center;
     background-image: url('../images/bg-form-sm.svg');
@@ -20,10 +273,13 @@
   }
   .card-slider-form {
     flex-grow: 1;
-    padding: 3em 3em 2em;
+    padding: 2em;
     width: 100%;
-    @media screen and (max-width: 767px) {
-      padding: 1em 4em 4em;
+    @media (min-width: 576px) {
+      padding: 1em 3em 3em;
+    }
+    @media (min-width: 767px) {
+      padding: 3em 3em 2em;
     }
   }
   .card-slider-img {
@@ -38,7 +294,7 @@
     justify-content: flex-end;
     align-items: flex-start;
     margin: 0 0 3em 0;
-    @media screen and (max-width: 767px) {
+    @media (max-width: 767px) {
       background-image: url('../images/profile-top.svg');
       height: 12em;
       margin: -1em 0 .5em;
@@ -48,7 +304,7 @@
   label {
     padding-bottom: 0;
     margin-bottom: 0;
-    @media screen and (max-width: 767px) {
+    @media (max-width: 767px) {
       display: block;
     }
   }
@@ -60,96 +316,3 @@
   }
 }
 
-.card-lg {
-  border-radius: 25px;
-  padding: 5vw;
-  background-color: $light-gray;
-  align-items: center;
-  img {
-    width: 65%;
-    margin-bottom: 1em;
-  }
-  @media screen and (max-width: 575px) {
-    img {
-      width: 55%;
-    }
-  }
-
-}
-// xs and md screens (up to 575, then 768 - 991px)
-.card-sm {
-  a {
-    color: $red;
-  }
-  background-image: url('../images/card-bg2.svg');
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: 100% 85%;
-  -moz-background-size: 100% 85%;
-  -webkit-background-size: 100% 85%;
-  .card-sm-img {
-    z-index: 2;
-    padding: 0 15% 0;
-  }
-  .card-sm-img img {
-    width: 80% !important;
-  }
-  @media screen and (max-width: 575px) {
-    .card-sm-img img {
-      width: 60% !important;
-    }
-    .card-sm-text {
-      padding: 1em 3em 2em;
-    }
-  }
-}
-// sm screens (576-767px)
-@media screen and (min-width: 576px) and (max-width: 767px) {
-  .card-sm {
-    font-size: 100%;
-    line-height: 120%;
-    border: 0;
-    background-color: transparent;
-    background-image: url('../images/card-bg1.svg');
-    background-size: 75% 100%;
-    -moz-background-size: 75% 100%;
-    -webkit-background-size: 75% 100%;
-    background-position: right;
-    .card-sm-img {
-      z-index: 2;
-    }
-  }
-}
-// lg+ screens (992+)
-@media screen and (min-width: 992px) {
-  .card-sm {
-    font-size: 80%;
-    line-height: 125%;
-    border: 0;
-    background-color: transparent;
-    background-image: url('../images/card-bg1.svg');
-    background-size: 75% 100%;
-    -moz-background-size: 75% 100%;
-    -webkit-background-size: 75% 100%;
-    background-position: right;
-    .card-sm-img {
-      z-index: 2;
-    }
-  }
-}
-
-.card-email {
-  background: white;
-  font-size: 80%;
-  border: 1px solid rgba(1, 1, 1, 0.1);
-  border-radius: 5px;
-  transform: rotate(-1deg);
-  padding: 5%;
-  margin-top: 10px;
-  box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.4);
-}
-@media only screen and (min-width: 991px) {
-  .card-email {
-    transform: rotate(0deg);
-  }
-}

@@ -1,6 +1,9 @@
 @import '../_custom.scss';
 
 .card-testimonials {
+  display: flex;
+  padding: 3em;
+  flex-direction: column;
   background: $blue;
   white-space: nowrap;
   h2 {
@@ -8,6 +11,14 @@
     margin-bottom: 10%;
     margin-top: 5%;
   }
+}
+
+.card-testimonials-head {
+  width: 100%;
+  margin: 0 0 1em 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card-testimony {
@@ -19,6 +30,11 @@
   border: 1px solid $blue;
   .avatar {
     margin: 0 10px 0 0;
+    float: left;
+  }
+  img {
+    width: 40px;
+    height: 40px;
   }
   p {
     white-space: pre-wrap;

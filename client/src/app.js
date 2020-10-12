@@ -6,6 +6,8 @@ import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Landing from './views/landing';
 import Profile from './views/profile';
+import Contract from './views/contract';
+import Client from './views/client';
 import PrivacyPolicy from './views/privacy-policy';
 import { withAuth0 } from '@auth0/auth0-react';
 
@@ -17,19 +19,11 @@ class App extends Component {
       <div className='wrapper'>
         <Navbar />
         <Switch>
-          <Route exact path="/">
-            <Landing />
-          </Route>
+          <Route exact path="/" component={Landing} />
           <PrivateRoute path="/profile" component={Profile} />
-          <Route path="/policy">
-            <PrivacyPolicy />
-          </Route>
-          <Route path="/invoices">
-            "coming soon"
-          </Route>
-          <Route path="/clients">
-            "coming soon"
-          </Route>
+          <Route path="/policy" component={PrivacyPolicy} />
+          <PrivateRoute path="/invoices" component={Contract} />
+          <PrivateRoute path="/clients/:id" component={Client} />
         </Switch>
         <Footer showTrial={this.props.auth0.isAuthenticated} />
       </div>

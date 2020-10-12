@@ -18,7 +18,7 @@ class Footer extends Component {
               All rights reserved.<br />
             </small>
           </div>
-          <div class="footer-links">
+          <div className="footer-links">
             <div>
               <h4>About</h4>
               Profile<br />

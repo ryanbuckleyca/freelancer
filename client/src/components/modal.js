@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import toggleModal from './toggleModal';
+import toggleModal from '../scripts/toggleModal';
 
 const url = process.env.REACT_APP_API_URL || 'http://localhost:9000';
 

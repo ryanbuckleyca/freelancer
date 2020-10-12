@@ -23,12 +23,12 @@ class Profile extends Component {
 
   async componentDidMount(props) {
     const authUser = await this.props.auth0.user
-    const dbUser = await callAPI(`/api/clients/${authUser.sub}`)
+    const dbUser = await callAPI(`/api/users/${authUser.sub}`)
     console.log('found user: ', dbUser)
     try {
       const userState = dbUser || await callAPI(
         'POST',
-        `/api/clients/${authUser.sub}`, {
+        `/api/users/${authUser.sub}`, {
         auth0_id: authUser.sub,
         name: authUser.name,
         email: authUser.email

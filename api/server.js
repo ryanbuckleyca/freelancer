@@ -5,6 +5,7 @@ var app = express();
 
 const db = require('./models');
 const userRoutes = require('./routes/users');
+const clientRoutes = require('./routes/clients');
 
 const port = process.env.PORT || 9000;
 
@@ -42,25 +43,9 @@ app.get("/api/db", checkJwt, async (req, res) => {
   }
 });
 
-// GET CLIENT
-// TODO: should require authentication
-app.get("/api/clients/:id", async (req, res) => {
-  try {
-    const client = await db.Client.findOne({
-      where: { id: req.params.id },
-      include: db.Address
-    })
-    console.log("SUCCESS: found client by id: req.params.id = ", client)
-    parsePerson(client) && res.send(parsePerson(client));
-  }
-  catch(err) {
-    console.log("ERROR: find client by id: req.params.id = ", err);
-  }
-});
 
 app.use("/api/users", userRoutes);
-
-
+app.use("/api/clients", clientRoutes);
 
 
 // ADD MAILING LIST SUBSCRIBER

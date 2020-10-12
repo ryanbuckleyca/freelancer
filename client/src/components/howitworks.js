@@ -9,7 +9,6 @@ class HowItWorks extends Component {
   }
 
   componentWillUnmount() {
-    console.log('component unmounted');
     stopSwapWords();
   }
 

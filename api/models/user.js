@@ -11,10 +11,14 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    User.hasMany(
-      models.Address,
-      { foreignKey: 'user_id' }
-    )
+    User.hasMany(models.Address, {
+      foreignKey: 'user_id',
+      onDelete: 'CASCADE'
+    });
+    User.hasMany(models.Contract, {
+      foreignKey: 'user_id',
+      onDelete: 'CASCADE'
+    });
   };
   return User;
 };

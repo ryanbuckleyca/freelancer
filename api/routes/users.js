@@ -39,19 +39,7 @@ router
   .route("/")
   .post(async (req, res, next) => {
     console.log('create user called with req.body:', req.body);
-    const newUser = await db.User.create({
-      auth0_id: req.body.auth0_id,
-      name: req.body.name,
-      email: req.body.email,
-      number: req.body.number,
-      street1: req.body.street1
-      street2: req.body.street2
-      city: req.body.city
-      state: req.body.state
-      zip: req.body.zip
-      country: req.body.country
-      // TODO: maybe just spread req.body?
-    });
+    const newUser = await db.User.create({...req.body})
     console.log("created new unsaved user: ", newUser);
     const save = await newUser.save();
     console.log("inserted into database: ", save);

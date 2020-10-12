@@ -33,32 +33,31 @@ app.use((req, res, next) => {
 });
 
 // HELPER FUNCTIONS
-const parseUser = (user) => {
-  let userParsed = user.toJSON()
-  if(userParsed.Addresses === undefined || userParsed.Addresses == 0) {
-    userParsed.Addresses = [{
+const parsePerson = (person) => {
+  let personParsed = person.toJSON()
+  if(personParsed.Addresses === undefined || personParsed.Addresses == 0) {
+    personParsed.Addresses = [{
       id:'',street1:'',street2:'',city:'',state:'',zip:'',country:''
     }]
   }
-  console.log('user.toJSON() after parseUser is: ', userParsed)
-  return userParsed;
+  console.log('person.toJSON() after parsePerson is: ', personParsed)
+  return personParsed;
 }
 
-const updateUserAddresses = async (user_id, addresses) => {
+const updateAddresses = async (fr_table, person_id, addresses) => {
     try {
-      const user = await db.User.findOne({
-        where: { id: user_id },
+      const person = await fr_table.findOne({
+        where: { id: person_id },
         include: db.Address,
       });
       console.log('addresses is: ', addresses)
-      console.log('updating user.ADDRESSES.update(addresses)...')
-      user.Addresses.forEach((address, i) => {
+      console.log('updating person.ADDRESSES.update(addresses)...')
+      person.Addresses.forEach((address, i) => {
         address.update(addresses[i])
       });
-      return parseUser(user);
+      return parsePerson(person);
     }
     catch(err) { console.log('update user err: ', err) }
-
 }
 
 // ROUTES (secured ones require checkJwt middleware)
@@ -76,6 +75,22 @@ app.get("/api/db", checkJwt, async (req, res) => {
   }
 });
 
+// GET CLIENT
+// TODO: should require authentication
+app.get("/api/clients/:id", async (req, res) => {
+  try {
+    const client = await db.Client.findOne({
+      where: { id: req.params.id },
+      include: db.Address
+    })
+    console.log("SUCCESS: found client by id: req.params.id = ", client)
+    parsePerson(client) && res.send(parsePerson(client));
+  }
+  catch(err) {
+    console.log("ERROR: find client by id: req.params.id = ", err);
+  }
+});
+
 // GET USER
 // TODO: should require authentication
 app.get("/api/users/:auth0_id", async (req, res) => {
@@ -85,12 +100,13 @@ app.get("/api/users/:auth0_id", async (req, res) => {
       include: db.Address
     })
     console.log("SUCCESS: found user by auth0_id: req.params.auth0_id = ", user)
-    parseUser(user) && res.send(parseUser(user));
+    parsePerson(user) && res.send(parsePerson(user));
   }
   catch(err) {
     console.log("ERROR: find user by auth0_id: req.params.auth0_id = ", err);
   }
 });
+
 
 // CREATE NEW USER
 // TODO: should require authentication
@@ -119,11 +135,11 @@ app.put("/api/users/update/:id", async (req, res) => {
       include: db.Address
     });
     const dbUser = updateResult[1][0];
-    const updatedUser = updateUserAddresses(
-      req.body.id, req.body.Addresses
+    const updatedUser = updateAddresses(
+      db.User, req.body.id, req.body.Addresses
     )
     console.log('updatedUser returns: ', updatedUser)
-    const user = parseUser(dbUser)
+    const user = parsePerson(dbUser)
     res.send(user)
   }
   catch(err) { console.log('update user error: ', err) }

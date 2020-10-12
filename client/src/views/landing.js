@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import SectionHeader from '../components/section-header';
 import CardSplash from '../components/card-splash';
 import CardTitle from '../components/card-title';
 import CardSmall from '../components/card-small';
@@ -14,23 +15,23 @@ class Landing extends Component {
   render() {
     return (
       <div>
-        <div className='mt-5 mb-3'>
-          <CardSplash />
-        </div>
-        <br />
-        <div className='my-4'>
-          <CardTitle
-            img={imgCoins}
-            title={<span>We do the work. <br />You get paid.</span>}
-            text="Don't waste time chasing clients for payment.  Our automated system handles reminders. You just add your invoice and we take care of the rest!"
-          />
-        </div>
-        <br />
-        <div className="text-center m-3">
-          <h2 className="m-3">Features</h2>
-          <span className="my-5">Here are a few of the features we offer to users.</span>
-        </div>
-        <br />
+        <hr className="spacer" />
+        <CardSplash />
+
+        <hr className="spacer" />
+        <CardTitle
+          img={imgCoins}
+          title={<span>We do the work. <br />You get paid.</span>}
+          text="Don't waste time chasing clients for payment.  Our automated system handles reminders. You just add your invoice and we take care of the rest!"
+        />
+
+        <hr className="spacer" />
+        <SectionHeader
+          title="Features"
+          text="Here are a few of the features we offer to users."
+        />
+
+        <hr className="spacer" />
         <div className="card-grid">
           <CardSmall
             img={money}
@@ -53,17 +54,19 @@ class Landing extends Component {
             text="No out-of-area court fees, no 35-55% collection agencies. Just $5/month and the rest of your hard-earned money is yours!"
           />
         </div>
-        <br />
-        <div className="text-center mb-4">
-          <h2>How It Works</h2>
-        </div>
-        <div className='container my-5'>
-          <HowItWorks />
-        </div>
-        <br />
-        <div className='container my-5'>
-          <Testimonials />
-        </div>
+
+        <hr className="spacer" />
+        <SectionHeader
+          title="How it Works"
+        />
+
+        <hr className="spacer" />
+        <HowItWorks />
+
+        <hr className="spacer" />
+        <Testimonials />
+
+        <hr className="spacer" />
       </div>
     );
   }

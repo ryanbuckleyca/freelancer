@@ -11,6 +11,7 @@ class Footer extends Component {
         <div className="footer">
           <div className="footer-legal">
             <Logotype height='50' />
+            <br />
             <small>info@chequemate.work</small>
             <small>
               © 2020 Cheque Mate. <br />

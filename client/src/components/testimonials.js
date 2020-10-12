@@ -37,9 +37,9 @@ class Testimonials extends Component {
               <p>
                 Ryan Buckley
                 <br />
-                Front-End Developer
+                Web Developer
                 <br /><br />
-                Cheque Mate helped me get my hard-earned money while allowing me to focus on new projects. I would highly recommend this effortless service to any freelancer!
+                Cheque Mate helped me get my hard-earned money while allowing me to focus on new projects. I'd highly recommend this effortless app to any freelancer!
               </p>
             </div>
           </div>
@@ -51,7 +51,7 @@ class Testimonials extends Component {
               </div>
               <p>
                 Ray Newman<br />
-                Graphic Designer<br /><br />
+                Designer<br /><br />
                 I signed up to Cheque Mate because I was tired of being ripped off by new clients, so now I check before starting any new project to see if they're listed.
               </p>
             </div>
@@ -65,7 +65,7 @@ class Testimonials extends Component {
               <p>
                 Hassan Raffi<br />
                 Freelance Editor<br /><br />
-                I love that I don't have to keep checking which of my invoice have been paid, and trying to draft reminders for my clients. With Cheque Mate I just upload and done!
+                I love that I don't have to keep checking which of my invoice have been paid and sending reminders to clients. With Cheque Mate I just upload and done!
               </p>
             </div>
           </div>

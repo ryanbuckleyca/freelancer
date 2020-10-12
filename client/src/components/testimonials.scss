@@ -30,10 +30,11 @@
   border: 1px solid $blue;
   .avatar {
     margin: 0 10px 0 0;
+    float: left;
   }
   img {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
   }
   p {
     white-space: pre-wrap;

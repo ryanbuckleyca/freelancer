@@ -9,7 +9,7 @@ class CardSplash extends Component {
       <div className="card-splash">
         <div className="card-splash-img">
           <img src={imgRevenue} alt="person with money" />
-          <a href="#" onClick={() => toggleModal()} className="btn btn-outline-primary">Learn more <span className="arrow">⟶</span></a>
+          <a href="#" onClick={() => toggleModal()} className="btn btn-sm btn-outline-primary">Learn more <span className="arrow">⟶</span></a>
         </div>
         <div className="card-splash-text">
           <h2>Save your time. <br className="d-block d-sm-none d-md-block" /> Get your money.</h2>

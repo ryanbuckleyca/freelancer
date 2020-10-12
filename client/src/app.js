@@ -14,7 +14,7 @@ class App extends Component {
     return (
     <Router>
       <Modal />
-      <div className='container my-4'>
+      <div className='wrapper'>
         <Navbar />
         <Switch>
           <Route exact path="/">

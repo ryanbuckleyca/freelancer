@@ -18,7 +18,10 @@
   margin: 0 0 1em 0;
   @media (min-width: 575px) {
     img { width: 100% }
-    a { display: inline }
+    a {
+      display: inline;
+      margin-top: -.25em;
+    }
     width: 85%;
     justify-content: space-between;
     display: flex;
@@ -78,6 +81,7 @@
   padding: 2.5em;
   background-color: $light-gray;
   align-items: center;
+  margin-bottom: 5em;
 }
 
 .card-lg {
@@ -114,6 +118,50 @@
     h2 { text-align: left }
   }
 }
+
+.card-md {
+  border-radius: 25px;
+  padding: 2em;
+  background-color: $light-gray;
+  align-items: center;
+  @media (min-width: 400px) {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+  }
+}
+.card-md-img {
+  img {
+    display: none;
+    margin: -.5em 0 0 0;
+  }
+  text-align: center;
+  width: 100%;
+  @media (min-width: 400px) {
+    img {
+      display: block;
+      width: 100%;
+    }
+    margin: 0 0 0 2em;
+    text-align: left;
+  }
+  @media (min-width: 768px) {
+    width: 50%;
+    margin: -.5em 2em 0 2em;
+  }
+}
+.card-md-text {
+  h2 { text-align: center }
+  text-align: left;
+  @media (min-width: 400px) {
+    width: 200%;
+    h2 { text-align: left }
+  }
+}
+
 
 .card-grid {
   position: relative;
@@ -182,11 +230,8 @@
 }
 .card-sm-text {
   text-align: left;
-  padding: 1.5em 3em 3em;
+  padding: 1.5em 2.5em 2.5em;
   @media (min-width: 500px) {
-    padding: 2em 2.5em 2.5em;
-  }
-  @media (min-width: 767px) {
     padding: 2em 2.5em 2.5em;
   }
 }
@@ -202,7 +247,7 @@
   margin-top: 10px;
   box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.4);
 }
-@media only screen and (min-width: 991px) {
+@media (min-width: 991px) {
   .card-email {
     transform: rotate(0deg);
   }
@@ -228,10 +273,13 @@
   }
   .card-slider-form {
     flex-grow: 1;
-    padding: 3em 3em 2em;
+    padding: 2em;
     width: 100%;
-    @media (max-width: 767px) {
-      padding: 1em 4em 4em;
+    @media (min-width: 576px) {
+      padding: 1em 3em 3em;
+    }
+    @media (min-width: 767px) {
+      padding: 3em 3em 2em;
     }
   }
   .card-slider-img {

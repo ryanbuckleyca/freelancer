@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import mailchimp from '../images/mailchimp.svg';
-import swapWords from './swapwords';
 import './cards.scss'
+import {swapWords, stopSwapWords} from './swapWords'
 
 class HowItWorks extends Component {
   componentDidMount() {
     swapWords();
+  }
+
+  componentWillUnmount() {
+    console.log('component unmounted');
+    stopSwapWords();
   }
 
   render() {
@@ -18,9 +23,14 @@ class HowItWorks extends Component {
         </p>
         <br />
         <p className="card-email">
-          <i name="greeting">Hello</i> _CLIENT_,
+          from: <i name="fakerEmail">youremail@emailaccount.com</i><br />
+          to: theclientsemail@yahoo.com<br />
+          date: <i name="date">{ new Date().toISOString().substring(0, 10) }</i><br />
+          subject:  <i name="subject">Checking in</i><br />
+          <br />
+          <i name="greeting">Hello</i> <em>Client Name</em>,
           <br /><br />
-          <i name="opening">With regards to</i> <i name="who">our client</i>, I am <i name="action">writing</i> to <i name="inform">inform you</i> it’s been _TIME_ since the initial <i name="invoice">invoice</i> was <i name="sent">sent</i>. Please <i name="respond">respond</i> to the <i name="contact">contact info</i> in the <i name="attachment">attachment</i> if you <i name="need">need</i> <i name="help">help</i>.
+          <i name="opening">With regards to</i> <i name="who">our client</i>, I am <i name="action">writing</i> to <i name="inform">inform you</i> it’s been <i name="time">a week</i> since the initial <i name="invoice">invoice</i> was <i name="sent">sent</i>. Please <i name="respond">respond</i> to the <i name="contact">contact info</i> in the <i name="attachment">attachment</i> if you <i name="need">need</i> <i name="help">help</i>.
           <br /><br />
           <i name="thanks">Thanks</i>,<br />
           <i name="fakerName">Ryan Buckley</i>

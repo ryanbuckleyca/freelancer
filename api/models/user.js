@@ -8,13 +8,15 @@ module.exports = (sequelize, DataTypes) => {
     auth0_id: DataTypes.STRING,
     name: DataTypes.STRING,
     number: DataTypes.STRING,
-    email: DataTypes.STRING
+    email: DataTypes.STRING,
+    street1: DataTypes.STRING,
+    street2: DataTypes.STRING,
+    city: DataTypes.STRING,
+    state: DataTypes.STRING,
+    post_zip: DataTypes.STRING,
+    country: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    User.hasMany(models.Address, {
-      foreignKey: 'user_id',
-      onDelete: 'CASCADE'
-    });
     User.hasMany(models.Contract, {
       foreignKey: 'user_id',
       onDelete: 'CASCADE'

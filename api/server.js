@@ -4,14 +4,9 @@ var express = require('express');
 var app = express();
 
 const db = require('./models');
+const userRoutes = require('./routes/users');
 
 const port = process.env.PORT || 9000;
-
-if (process.env.NODE_ENV === 'production') {
-  console.log('Node is running in production');
-} else {
-  console.log('Node is running in development');
-}
 
 var createError = require('http-errors');
 var cors = require('cors');
@@ -31,34 +26,6 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', '*');
   next();
 });
-
-// HELPER FUNCTIONS
-const parsePerson = (person) => {
-  let personParsed = person.toJSON()
-  if(personParsed.Addresses === undefined || personParsed.Addresses == 0) {
-    personParsed.Addresses = [{
-      id:'',street1:'',street2:'',city:'',state:'',zip:'',country:''
-    }]
-  }
-  console.log('person.toJSON() after parsePerson is: ', personParsed)
-  return personParsed;
-}
-
-const updateAddresses = async (fr_table, person_id, addresses) => {
-    try {
-      const person = await fr_table.findOne({
-        where: { id: person_id },
-        include: db.Address,
-      });
-      console.log('addresses is: ', addresses)
-      console.log('updating person.ADDRESSES.update(addresses)...')
-      person.Addresses.forEach((address, i) => {
-        address.update(addresses[i])
-      });
-      return parsePerson(person);
-    }
-    catch(err) { console.log('update user err: ', err) }
-}
 
 // ROUTES (secured ones require checkJwt middleware)
 const checkJwt = require('./authenticate');
@@ -91,59 +58,10 @@ app.get("/api/clients/:id", async (req, res) => {
   }
 });
 
-// GET USER
-// TODO: should require authentication
-app.get("/api/users/:auth0_id", async (req, res) => {
-  try {
-    const user = await db.User.findOne({
-      where: { auth0_id: req.params.auth0_id },
-      include: db.Address
-    })
-    console.log("SUCCESS: found user by auth0_id: req.params.auth0_id = ", user)
-    parsePerson(user) && res.send(parsePerson(user));
-  }
-  catch(err) {
-    console.log("ERROR: find user by auth0_id: req.params.auth0_id = ", err);
-  }
-});
+app.use("/api/users", userRoutes);
 
 
-// CREATE NEW USER
-// TODO: should require authentication
-app.post("/api/users/create/", async (req, res) => {
-  console.log('create user called with req.body:', req.body);
-  const newUser = await db.User.create({
-    auth0_id: req.body.auth0_id,
-    name: req.body.name,
-    email: req.body.email,
-    number: req.body.number
-  });
-  console.log("created new unsaved user: ", newUser);
-  const save = await newUser.save();
-  console.log("inserted into database: ", save);
-  res.send(newUser);
-});
 
-// UPDATE USER AND ADDRESSES
-// TODO: should require authentication
-app.put("/api/users/update/:id", async (req, res) => {
-  console.log('update user called with req.body:', req.body);
-  try {
-    const updateResult = await db.User.update(req.body, {
-      where: { id: req.body.id },
-      returning: true,
-      include: db.Address
-    });
-    const dbUser = updateResult[1][0];
-    const updatedUser = updateAddresses(
-      db.User, req.body.id, req.body.Addresses
-    )
-    console.log('updatedUser returns: ', updatedUser)
-    const user = parsePerson(dbUser)
-    res.send(user)
-  }
-  catch(err) { console.log('update user error: ', err) }
-});
 
 // ADD MAILING LIST SUBSCRIBER
 app.post("/api/mailinglist/add", async (req, res) => {
@@ -157,13 +75,6 @@ app.post("/api/mailinglist/add", async (req, res) => {
   catch(err) {
     console.log('add to mailing list error: ', err)
   }
-});
-
-// test
-app.get("/api/test", (req, res) => {
-  res.send({
-    msg: "Route /test.",
-  });
 });
 
 

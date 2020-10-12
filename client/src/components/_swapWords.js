@@ -29,7 +29,6 @@ export const swapWords = function() {
     now.setDate(now.getDate() + i * 7);
 
     const rando = Math.floor(Math.random() * words[key].length)
-
     document.getElementsByName(key)[0].innerText = words[key][rando];
     document.getElementsByName('fakerName')[0].innerText = `${firstName} ${lastName}`;
     document.getElementsByName('fakerEmail')[0].innerText = email;

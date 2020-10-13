@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { withAuth0 } from '@auth0/auth0-react';
 import './navbar.scss';
 import Logotype from './logotype';
-import toggleModal from './toggleModal'
+import toggleModal from '../scripts/toggleModal'
 
 class Navbar extends Component {
 

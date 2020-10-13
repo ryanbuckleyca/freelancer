@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import mailchimp from '../images/mailchimp.svg';
 import './cards.scss'
-import {swapWords, stopSwapWords} from './swapWords'
+import {swapWords, stopSwapWords} from '../scripts/swapWords'
 
 class HowItWorks extends Component {
   componentDidMount() {

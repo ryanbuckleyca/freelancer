@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import toggleModal from './toggleModal';
+import toggleModal from '../scripts/toggleModal';
 import './cards.scss';
 
 class CardSmall extends Component {

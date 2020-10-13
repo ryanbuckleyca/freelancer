@@ -37,9 +37,13 @@ router
 router
   // CREATE client
   .route("/")
+  .get(async (req, res, next) => {
+    const allClients = await db.Client.findAll();
+    res.send(allClients)
+  })
   .post(async (req, res, next) => {
     console.log('create client called with req.body:', req.body);
-    const newclient = await db.client.create({...req.body})
+    const newclient = await db.Client.create({...req.body})
     console.log("created new unsaved client: ", newclient);
     const save = await newclient.save();
     console.log("inserted into database: ", save);

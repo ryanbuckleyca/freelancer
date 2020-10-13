@@ -22,10 +22,7 @@ class Profile extends Component {
   }
 
   async componentDidMount() {
-    const client = await callAPI(
-      'GET',
-      `/api/clients/${this.props.match.params.id}`
-    )
+    const client = await callAPI(`/api/clients/${this.props.match.params.id}`)
     console.log('found client: ', client)
     try {
       this.setState(client)
@@ -43,8 +40,8 @@ class Profile extends Component {
       const { name, email, number, street1, city, state, post_zip, country } = this.state;
       if (name && email && number && street1 && city && state && post_zip && country) {
         await callAPI(
-          'PUT',
           `/api/clients/${this.props.match.params.id}`,
+          'PUT',
           this.state
         )
         console.log('client profile updated')

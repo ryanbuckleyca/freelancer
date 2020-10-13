@@ -27,8 +27,8 @@ class Profile extends Component {
     console.log('found user: ', dbUser)
     try {
       const userState = dbUser || await callAPI(
-        'POST',
-        `/api/users/${authUser.sub}`, {
+        `/api/users/`,
+        'POST', {
         auth0_id: authUser.sub,
         name: authUser.name,
         email: authUser.email
@@ -48,8 +48,8 @@ class Profile extends Component {
       const { name, email, number, street1, city, state, post_zip, country } = this.state;
       if (name && email && number && street1 && city && state && post_zip && country) {
         await callAPI(
-          'PUT',
           `/api/users/${this.state.id}`,
+          'PUT',
           this.state
         )
         console.log('user profile updated')

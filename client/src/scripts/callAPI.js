@@ -1,6 +1,6 @@
 const url = process.env.REACT_APP_API_URL || 'http://localhost:9000';
 
-const callAPI = async (method, address, params = null) => {
+const callAPI = async (address, method = 'GET', params = null) => {
   let attrs = {
     method: method,
     headers: { 'Content-Type': 'application/json' }

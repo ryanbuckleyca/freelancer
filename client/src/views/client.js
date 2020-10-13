@@ -6,7 +6,7 @@ import CardForm from '../components/card-form';
 import profile from '../images/profile_header.svg';
 import callAPI from '../scripts/callAPI';
 
-class Profile extends Component {
+class Client extends Component {
 
   state = {
     id: '',
@@ -22,29 +22,35 @@ class Profile extends Component {
   }
 
   async componentDidMount() {
-    const client = await callAPI(`/api/clients/${this.props.match.params.id}`)
-    console.log('found client: ', client)
-    try {
-      this.setState(client)
-      console.log('compondedDidMount state: ', this.state)
-    } catch(err) {
-      this.setState(err)
+    if(this.props.match.params.id) {
+      try {
+        const client = await callAPI(`/api/clients/${this.props.match.params.id}`)
+        this.setState(client)
+      } catch(err) {
+        this.setState(err)
+      }
+    } else {
+      console.log('create new client record')
     }
   }
 
-  // Update client profile
+  // Update/create client profile
   handleClientSubmit = async (e) => {
     e.preventDefault();
     console.log('this.state value when handleClientSubmit is called: ', this.state);
     try {
       const { name, email, number, street1, city, state, post_zip, country } = this.state;
       if (name && email && number && street1 && city && state && post_zip && country) {
-        await callAPI(
-          `/api/clients/${this.props.match.params.id}`,
-          'PUT',
+        const saved = await callAPI(
+          `/api/clients/${this.props.match.params.id || ''}`,
+          this.props.match.params.id ? 'PUT' : 'POST',
           this.state
         )
-        console.log('client profile updated')
+        if(!this.props.match.params.id) {
+          console.log('!this.props.match.params.id: ', this.props.match.params.id)
+          (window.location.href = `/clients/${saved.id}`)
+        }
+        console.log('client saved')
       }
       else {
         console.log('Fields null or undefined')
@@ -63,23 +69,34 @@ class Profile extends Component {
   }
 
   render() {
+    if (this.props.match.params.id && !this.state.id)
+      return (
+        <div className="profile">
+          <hr className="spacer" />
+          <div style={{textAlign: 'center', height: '50vh', lineHeight: '50vh'}}>
+          no user found
+          </div>
+        </div>
+      )
+
     return(
       <div className="profile">
         <hr className="spacer" />
         <CardTitle
-          img={profile}
-          title="Hey there!"
+          img="TODO: find image"
           thisClass="card-md"
-          text="In order for us to reach out on your behalf, we need to know how to reach you, and how to forward your most up to date information to your clients."
+          title={<span>Stay Informed. <br />Know your clients.</span>}
+          text="Check this ongoing list for clients who may be known for late or unpaid invoices."
         />
 
         <hr className="spacer" />
         <SectionHeader
-          title="Your Profile"
-          text="Tell us a bit about yourself"
+          title="Bad Clients"
+          text="Be informed."
         />
 
         <hr className="spacer" />
+
         <form className="form-wrapper">
           <CardForm button={<button onClick={this.handleClientSubmit} className="btn btn-primary d-none d-md-block">Update profile</button>}>
               <fieldset>
@@ -152,4 +169,4 @@ class Profile extends Component {
   }
 }
 
-export default withAuth0(Profile);
+export default withAuth0(Client);

@@ -24,6 +24,7 @@ class App extends Component {
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/policy" component={PrivacyPolicy} />
           <PrivateRoute path="/invoices" component={Contract} />
+          <PrivateRoute path="/clients/new" component={Client} />
           <PrivateRoute path="/clients/:id" component={Client} />
           <PrivateRoute path="/clients/" component={ClientsAll} />
         </Switch>

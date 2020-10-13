@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import SectionHeader from '../components/section-header';
-import CardSplash from '../components/card-splash';
 import CardTitle from '../components/card-title';
-import CardSmall from '../components/card-small';
+import CardClient from '../components/card-client';
 import callAPI from '../scripts/callAPI';
 
 class ClientsAll extends Component {
@@ -34,15 +33,16 @@ class ClientsAll extends Component {
         />
 
         <hr className="spacer" />
-        <div className="card-grid">
+        <div className="card-client-grid">
           {this.state.clients.map(client => {
-            return <CardSmall
-              img="https://res.cloudinary.com/ryanbuckleyca/image/upload/c_scale,h_60,w_60/v1600109993/user_bgu0at.jpg"
-              cardTitle={client.name}
-              text={client.number}
+            return <CardClient
+              key={client.id}
+              avatar="https://res.cloudinary.com/ryanbuckleyca/image/upload/c_scale,h_60,w_60/v1600109993/user_bgu0at.jpg"
+              name={client.name}
+              city={client.city}
+              state={client.state}
             />
           })}
-
         </div>
 
         <hr className="spacer" />

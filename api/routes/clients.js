@@ -43,11 +43,11 @@ router
   })
   .post(async (req, res, next) => {
     console.log('create client called with req.body:', req.body);
-    const newclient = await db.Client.create({...req.body})
-    console.log("created new unsaved client: ", newclient);
+    const newclient = await db.Client.build({...req.body})
+    console.log("built new unsaved client: ", newclient);
     const save = await newclient.save();
-    console.log("inserted into database: ", save);
-    res.send(newclient);
+    console.log("inserted built client into database with save(): ", save);
+    res.send(save);
   });
 
 

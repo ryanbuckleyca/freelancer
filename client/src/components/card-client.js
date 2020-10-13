@@ -19,7 +19,7 @@ class CardClient extends Component {
         </div>
         <div className="card-client-description">
         <p>
-          This client currently has <strong>2</strong> outstanding invoices with an average of <strong>48 weeks</strong> overdue. They have a total of <strong>10</strong> late or unpaid invoices in total.
+          This client currently has <strong>2</strong> outstanding invoices of <strong>10</strong> records in total with an average of <strong>48 weeks</strong> overdue.
         </p>
         </div>
         <div className="card-client-footer">

@@ -10,12 +10,11 @@ class ClientsAll extends Component {
 
   async componentDidMount() {
     const clients = await callAPI('/api/clients/')
-    console.log('result is: ', clients)
     this.setState({clients: clients});
   }
 
   render() {
-    console.log('clients api call is: ', this.state)
+    let clients = this.state.clients
     return (
       <div>
 
@@ -29,14 +28,8 @@ class ClientsAll extends Component {
 
         <hr className="spacer" />
         <div className="card-client-grid">
-          {this.state.clients.map(client => {
-            return <CardClient
-              key={client.id}
-              avatar="https://res.cloudinary.com/ryanbuckleyca/image/upload/c_scale,h_60,w_60/v1600109993/user_bgu0at.jpg"
-              name={client.name}
-              city={client.city}
-              state={client.state}
-            />
+          {clients.map(client => {
+            return <CardClient key={client.id} client={client} />
           })}
         </div>
 

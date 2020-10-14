@@ -7,11 +7,11 @@ class CardClient extends Component {
     return(
       <div className="card-client">
         <div className="card-client-avatar">
-          <img src={this.props.avatar} alt="client avatar" />
+          <img src={this.props.client.picture} alt="client avatar" />
         </div>
         <div className="card-client-info">
-            <strong>{this.props.name}</strong><br />
-            <small>{this.props.city}, {this.props.state}</small>
+            <strong>{this.props.client.name}</strong><br />
+            <small>{this.props.client.city}, {this.props.client.state}</small>
         </div>
         <div className="card-client-tags">
           <div><img src={robber} alt="robber" /><small>2/10 late</small></div>
@@ -23,7 +23,7 @@ class CardClient extends Component {
         </p>
         </div>
         <div className="card-client-footer">
-          <p>details --></p>
+          <p><a href={'/clients/' + this.props.client.id}>details ⟶</a></p>
         </div>
       </div>
     )

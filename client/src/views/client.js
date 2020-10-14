@@ -17,7 +17,8 @@ class Client extends Component {
     city: '',
     state: '',
     post_zip: '',
-    country: ''
+    country: '',
+    picture: ''
   }
 
   async componentDidMount() {
@@ -25,6 +26,7 @@ class Client extends Component {
       try {
         const client = await callAPI(`/api/clients/${this.props.match.params.id}`)
         this.setState(client)
+        console.log('set state by client id: ', this.state)
       } catch(err) {
         this.setState(err)
       }
@@ -91,7 +93,11 @@ class Client extends Component {
         <hr className="spacer" />
 
         <form className="form-wrapper">
-          <CardForm button={<button onClick={this.handleClientSubmit} className="btn btn-primary d-none d-md-block">Update profile</button>}>
+          <CardForm picture={this.state.picture} button={
+              <button onClick={this.handleClientSubmit} className="btn btn-primary d-none d-md-block">
+              Update profile
+              </button>
+            }>
               <fieldset>
                 <label className="form-label" htmlFor="name">Full name*</label>
                 <input className="form-input" type="text" id="name" name="name"

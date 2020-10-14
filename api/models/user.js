@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     post_zip: DataTypes.STRING,
-    country: DataTypes.STRING
+    country: DataTypes.STRING,
+    picture: DataTypes.STRING
   }, {});
   User.associate = function(models) {
     User.hasMany(models.Contract, {

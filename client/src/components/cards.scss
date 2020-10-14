@@ -3,6 +3,7 @@
 .card-client-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 3%;
   @media (min-width: 576px) {
     grid-template-columns: 1fr;
   }
@@ -251,7 +252,7 @@
   }
   @media (min-width: 768px) {
     width: 50%;
-    margin: -.5em 2em 0 2em;
+    margin: -.5em 2em 0 1em;
   }
 }
 .card-md-text {
@@ -385,20 +386,36 @@
   }
   .card-slider-img {
     background-image: url('../images/profile-side.svg');
-    background-position: top;
+    background-position: left 40px;
     background-repeat: no-repeat;
     background-size: 100%;
-    width: 17em;
+    width: 15em;
     display: flex;
     flex-grow: 0;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    margin: 0 0 3em 0;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3em 3em 3em 0;
     @media (max-width: 767px) {
       background-image: url('../images/profile-top.svg');
+      background-position: 0 top;
+      background-size: 100% 100%;
+      padding: 3em 0 0 0;
       height: 12em;
-      margin: -1em 0 .5em;
+      margin: 0;
+      width: 65%;
+      align-items: flex-end;
+    }
+  }
+  .card-slider-avatar {
+    text-align: center;
+    img {
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto -1.5em;
+    }
+    @media (min-width: 991px) {
+      img { width: 150px }
     }
   }
 

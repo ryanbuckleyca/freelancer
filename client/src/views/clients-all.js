@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import SectionHeader from '../components/section-header';
 import CardTitle from '../components/card-title';
 import CardClient from '../components/card-client';
+import social_media from '../images/social_media.svg';
 import callAPI from '../scripts/callAPI';
 
 class ClientsAll extends Component {
@@ -20,16 +21,10 @@ class ClientsAll extends Component {
 
         <hr className="spacer" />
         <CardTitle
-          img="TODO: find image"
+          img={social_media}
           thisClass="card-md"
           title={<span>Stay Informed. <br />Know your clients.</span>}
           text="Check this ongoing list for clients who may be known for late or unpaid invoices."
-        />
-
-        <hr className="spacer" />
-        <SectionHeader
-          title="Bad Clients"
-          text="Be informed."
         />
 
         <hr className="spacer" />

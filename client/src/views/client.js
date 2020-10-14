@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
-import SectionHeader from '../components/section-header';
 import CardTitle from '../components/card-title';
 import CardForm from '../components/card-form';
-import profile from '../images/profile_header.svg';
+import social_media from '../images/social_media.svg';
 import callAPI from '../scripts/callAPI';
 
 class Client extends Component {
@@ -83,16 +82,10 @@ class Client extends Component {
       <div className="profile">
         <hr className="spacer" />
         <CardTitle
-          img="TODO: find image"
+          img={social_media}
           thisClass="card-md"
           title={<span>Stay Informed. <br />Know your clients.</span>}
           text="Check this ongoing list for clients who may be known for late or unpaid invoices."
-        />
-
-        <hr className="spacer" />
-        <SectionHeader
-          title="Bad Clients"
-          text="Be informed."
         />
 
         <hr className="spacer" />

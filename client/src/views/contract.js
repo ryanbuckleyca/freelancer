@@ -112,14 +112,8 @@ class Contract extends Component {
         />
 
         <hr className="spacer" />
-        <SectionHeader
-          title="New Contract"
-          text="Let's get the details first and we'll go from there."
-        />
 
-        <hr className="spacer" />
         <form className="form-wrapper">
-          <CardForm button={<button onClick={this.handleUserSubmit} className="btn btn-primary d-none d-md-block">Submit contract</button>}>
             <fieldset>
               <label className="form-label" htmlFor="client">Client*</label>
               <input className="form-input" type="select" id="client" name="client"
@@ -139,7 +133,6 @@ class Contract extends Component {
                      onChange={this.changeUserHandler}  />
             </fieldset>
             <button onClick={this.handleUserSubmit} className="btn btn-primary d-block mt-4 mx-auto d-md-none">Submit contract</button>
-          </CardForm>
         </form>
 
         <hr className="spacer" />

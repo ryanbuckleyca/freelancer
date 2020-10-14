@@ -35,12 +35,13 @@ router
   });
 
 router
-  // CREATE client
+  // GET ALL clients
   .route("/")
   .get(async (req, res, next) => {
     const allClients = await db.Client.findAll();
     res.send(allClients)
   })
+  // CREATE client
   .post(async (req, res, next) => {
     console.log('create client called with req.body:', req.body);
     const newclient = await db.Client.build({...req.body})

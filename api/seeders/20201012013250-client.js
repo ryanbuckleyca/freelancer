@@ -5,7 +5,7 @@ module.exports = {
     await queryInterface.bulkInsert('Clients', [{
       id: 1,
       name: "Julie Hecht",
-      number: "+1-631-697-0961",
+      number: "631-697-0961",
       email: "jzh195@gmail.com",
       street1: "12 Georgica Rd",
       street2: null,

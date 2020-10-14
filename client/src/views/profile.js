@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
-import SectionHeader from '../components/section-header';
 import CardTitle from '../components/card-title';
 import CardForm from '../components/card-form';
 import profile from '../images/profile_header.svg';
@@ -71,6 +70,7 @@ class Profile extends Component {
   }
 
   render() {
+    console.log('this.props.auth0: ', this.props.auth0)
     return(
       <div className="profile">
         <hr className="spacer" />
@@ -82,14 +82,12 @@ class Profile extends Component {
         />
 
         <hr className="spacer" />
-        <SectionHeader
-          title="Your Profile"
-          text="Tell us a bit about yourself"
-        />
-
-        <hr className="spacer" />
         <form className="form-wrapper">
-          <CardForm button={<button onClick={this.handleUserSubmit} className="btn btn-primary d-none d-md-block">Update profile</button>}>
+          <CardForm picture={this.props.auth0.user.picture} button={
+            <button onClick={this.handleUserSubmit} className="btn btn-primary d-none d-md-block">
+              Update profile
+            </button>
+          }>
               <fieldset>
                 <label className="form-label" htmlFor="name">Full name*</label>
                 <input className="form-input" type="text" id="name" name="name"

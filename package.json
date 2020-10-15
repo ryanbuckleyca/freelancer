@@ -6,7 +6,7 @@
     "start": "node server.js",
     "build": "react-scripts build",
     "heroku-postbuild": "npm run build",
-    "react": "react-scripts start"
+    "react": "react-scripts start",
     "api": "nodemon server.js"
   },
   "engines": {

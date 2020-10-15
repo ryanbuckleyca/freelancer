@@ -7,11 +7,10 @@ const db = require('./models');
 const userRoutes = require('./routes/users');
 const clientRoutes = require('./routes/clients');
 
-const port = process.env.PORT || 9000;
+const port = process.env.API_PORT || 9000;
 
 var createError = require('http-errors');
 var cors = require('cors');
-var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
@@ -29,7 +28,7 @@ app.use((req, res, next) => {
 });
 
 // ROUTES (secured ones require checkJwt middleware)
-const checkJwt = require('./authenticate');
+const checkJwt = require('./routes/authenticate');
 
 // Auth0 test
 app.get("/api/db", checkJwt, async (req, res) => {
@@ -55,7 +54,7 @@ app.post("/api/mailinglist/add", async (req, res) => {
       email: req.body.email,
     });
     const save = await newSub.save();
-    res.send(newSub);
+    res.send(save);
   }
   catch(err) {
     console.log('add to mailing list error: ', err)

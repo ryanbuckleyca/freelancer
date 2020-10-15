@@ -64,7 +64,7 @@ app.post("/api/mailinglist/add", async (req, res) => {
 
 // The "catchall" handler: for any request that doesn't
 // match the ones above, send back React's index.html file.
-const root = require('path').join(__dirname, '/../client/build')
+const root = require('path').join(__dirname, '/build')
 app.use(express.static(root));
 app.get("*", (req, res) => {
     console.log('server.js: non-predefined route called');

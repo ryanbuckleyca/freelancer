@@ -7,7 +7,7 @@ const db = require('./models');
 const userRoutes = require('./routes/users');
 const clientRoutes = require('./routes/clients');
 
-const port = process.env.API_PORT || 9000;
+const port = process.env.PORT || 9000;
 
 var createError = require('http-errors');
 var cors = require('cors');

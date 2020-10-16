@@ -17,7 +17,27 @@ class Profile extends Component {
     city: '',
     state: '',
     post_zip: '',
-    country: ''
+    country: '',
+    picture: ''
+  }
+
+  widget = window.cloudinary.createUploadWidget({
+     cloudName: 'ryanbuckleyca',
+     cropping: true,
+     showSkipCropButton: false,
+     croppingAspectRatio: 1,
+     uploadPreset: 'cheque-mate'
+   }, (error, result) => {
+     if (!error && result && result.event === "success") {
+       console.log('will update state with: ', {picture: result.info.url})
+       this.setState({picture: result.info.url});
+       console.log('state is now: ', this.state)
+     }
+  })
+
+  showWidget = (e) => {
+    e.preventDefault();
+    this.widget.open();
   }
 
   async componentDidMount(props) {
@@ -83,7 +103,7 @@ class Profile extends Component {
 
         <hr className="spacer" />
         <form className="form-wrapper">
-          <CardForm picture={this.props.auth0.user.picture} button={
+          <CardForm picture={this.state.picture} cloudinary={this.showWidget} button={
             <button onClick={this.handleUserSubmit} className="btn btn-primary d-none d-md-block">
               Update profile
             </button>

@@ -10,7 +10,7 @@ class CardForm extends Component {
         <div className="card-slider-img">
           <div className="card-slider-avatar">
             <img src={this.props.picture} alt="avatar" />
-            <button className="btn btn-dark btn-sm">edit</button>
+            <button className="btn btn-dark btn-sm" onClick={this.props.cloudinary}>edit</button>
           </div>
           {this.props.button}
         </div>

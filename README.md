@@ -1,4 +1,4 @@
-#♘ 
+# ♘ 
 Cheque Mate can be found live at [chequemate.work](http://cheque-mate-app.herokuapp.com/)
 
 ## Available Scripts

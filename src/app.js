@@ -8,6 +8,7 @@ import Landing from './views/landing';
 import Profile from './views/profile';
 import Contract from './views/contract';
 import Client from './views/client';
+import Person from './views/person';
 import ClientsAll from './views/clients-all';
 import PrivacyPolicy from './views/privacy-policy';
 import { withAuth0 } from '@auth0/auth0-react';
@@ -24,8 +25,8 @@ class App extends Component {
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/policy" component={PrivacyPolicy} />
           <PrivateRoute path="/invoices" component={Contract} />
-          <PrivateRoute path="/clients/new" component={Client} />
-          <PrivateRoute path="/clients/:id" component={Client} />
+          <PrivateRoute path="/clients/new" component={Person} />
+          <PrivateRoute path="/clients/:id" component={Person} />
           <PrivateRoute path="/clients/" component={ClientsAll} />
         </Switch>
         <Footer showTrial={this.props.auth0.isAuthenticated} />

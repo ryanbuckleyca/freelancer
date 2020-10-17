@@ -5,7 +5,12 @@ import CardForm from '../components/card-form';
 import social_media from '../images/social_media.svg';
 import callAPI from '../scripts/callAPI';
 
-class Client extends Component {
+// the following routes land here:
+//  api/clients/:id
+//  api/clients/new
+//  api/profile
+
+class Person extends Component {
 
   state = {
     id: '',
@@ -40,24 +45,28 @@ class Client extends Component {
     this.widget.open();
   }
 
-
   async componentDidMount() {
+    const browserUrl = this.props.match.url
+    console.log("browserUrl is: ", browserUrl)
+    const apiURL = '/api' + browserUrl
+    try {
+      const person = await callAPI(apiURL)
+      this.setState(person)
+    } catch(err) {
+      this.setState(err)
+    }
+
+    console.log('component did mount with props.match = ', this.props.match)
     if(this.props.match.params.id) {
-      // VIEW/EDIT existing profile
-      try {
-        const client = await callAPI(`/api/clients/${this.props.match.params.id}`)
-        this.setState(client)
-        console.log('set state by client id: ', this.state)
-      } catch(err) {
-        this.setState(err)
-      }
+      // VIEW/EDIT existing person
+
     } else {
-      // CREATE NEW profile
-      console.log('create new client record')
+      // CREATE NEW person
+      console.log('create new record')
     }
   }
 
-  // Update/create client profile
+  // Update/create person profile
   handleSubmit = async (e) => {
     e.preventDefault();
     console.log('this.state value when handleSubmit is called: ', this.state);
@@ -190,4 +199,4 @@ class Client extends Component {
   }
 }
 
-export default withAuth0(Client);
+export default withAuth0(Person);

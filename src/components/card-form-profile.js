@@ -10,7 +10,7 @@ class CardFormProfile extends Component {
     uploadPreset: 'cheque-mate'
    }, (err, res) => {
     if (!err && res && res.event === "success") {
-      this.props.handler({target:
+      this.props.changeHandler({target:
         { name: 'picture', value: res.info.url }
       })
     }

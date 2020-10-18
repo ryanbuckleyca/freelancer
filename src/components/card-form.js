@@ -1,28 +1,17 @@
 import React, {Component} from 'react';
+import { withAuth0 } from '@auth0/auth0-react';
 import callAPI from '../scripts/callAPI';
 import './cards.scss';
 
 class CardForm extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = props.fields
-  }
-
-  async componentDidMount() {
-    console.log('card-form.js did mount with props: ', this.props)
-
-    if(this.props.id) {
-      try {
-        const result = await callAPI(`/api/${this.props.table}/${this.props.id}`)
+  setFormDataState(props) {
+    console.log(`setFormDataState() will call /api/${props.table}/${props.id}`)
+    callAPI(`/api/${props.table}/${props.id}`)
+      .then(result => {
+        console.log('card-form results of api: ', result)
         this.setState(result)
-        console.log('set state by id: ', this.state)
-      } catch(err) {
-        this.setState(err)
-      }
-    } else {
-      console.log('create new record')
-    }
+      })
   }
 
   // Update/create client profile
@@ -33,11 +22,12 @@ class CardForm extends Component {
     try {
       if (reqFields.every(Boolean)) {
         const saved = await callAPI(
-          `/api/${this.props.table}/${this.state.id || ''}`,
-          this.state.id ? 'PUT' : 'POST',
+          `/api/${this.props.table}/${this.props.id || ''}`,
+          this.props.id ? 'PUT' : 'POST',
           this.state
         )
         if(!this.state.id) {
+          // redirect to newly created record
           (window.location.href = `/${this.props.table}/${saved.id}`)
         }
         console.log(`${this.props.table} saved`)
@@ -57,9 +47,10 @@ class CardForm extends Component {
   }
 
   render() {
-    console.log('this.props from cardform: ', this.props)
+    console.log('card-form rendered with props: ', this.props)
+    !this.state && this.props.id && this.setFormDataState(this.props);
 
-    if (this.props.table && !this.state.id)
+    if (this.props.table && !this.props.id)
       return (
         <div className="profile">
           <hr className="spacer" />
@@ -75,6 +66,7 @@ class CardForm extends Component {
           {/* CardFormTopSide */}
           {React.cloneElement(this.props.children[0], {
             changeHandler: this.changeHandler,
+            handleSubmit: this.handleSubmit,
             ...this.state
           })}
 
@@ -90,4 +82,4 @@ class CardForm extends Component {
   }
 }
 
-export default CardForm;
+export default withAuth0(CardForm);

@@ -14,7 +14,8 @@ router
         where: { auth0_id: req.params.auth0_id }
       })
       console.log("SUCCESS: found user by auth0_id: req.params.auth0_id = ", user)
-      user && res.send(user);
+      // will return null if no users are found
+      res.send(user)
     }
     catch(err) {
       console.log("ERROR: find user by auth0_id: req.params.auth0_id = ", err);

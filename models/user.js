@@ -5,7 +5,11 @@ const db = require('./index')
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    auth0_id: DataTypes.STRING,
+    auth0_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
     name: DataTypes.STRING,
     number: DataTypes.STRING,
     email: DataTypes.STRING,

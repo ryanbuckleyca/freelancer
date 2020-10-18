@@ -4,6 +4,7 @@ import CardTitle from '../components/card-title';
 import CardForm from '../components/card-form';
 import social_media from '../images/social_media.svg';
 import callAPI from '../scripts/callAPI';
+import cloudinaryWidget from '../scripts/cloudinaryUpload';
 
 class Client extends Component {
 
@@ -21,25 +22,11 @@ class Client extends Component {
     picture: ''
   }
 
-  widget = window.cloudinary.createUploadWidget({
-     cloudName: 'ryanbuckleyca',
-     cropping: true,
-     showSkipCropButton: false,
-     croppingAspectRatio: 1,
-     uploadPreset: 'cheque-mate'
-   }, (error, result) => {
-     if (!error && result && result.event === "success") {
-       console.log('will update state with: ', {picture: result.info.url})
-       this.setState({picture: result.info.url});
-       console.log('state is now: ', this.state)
-     }
-  })
-
-  showWidget = (e) => {
-    e.preventDefault();
-    this.widget.open();
+  setUploadImage() {
+    const uploadResult = cloudinaryWidget();
+    console.log('result of uploadResult is: ', uploadResult)
+    this.setState({picture: uploadResult.info.url})
   }
-
 
   async componentDidMount() {
     if(this.props.match.params.id) {
@@ -113,7 +100,7 @@ class Client extends Component {
         <hr className="spacer" />
 
         <form className="form-wrapper">
-          <CardForm picture={this.state.picture} cloudinary={this.showWidget} button={
+          <CardForm picture={this.state.picture} cloudinary={this.setUploadImage} button={
               <button onClick={this.handleClientSubmit} className="btn btn-primary d-none d-md-block">
               Update profile
               </button>

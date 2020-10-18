@@ -11,7 +11,7 @@
      }
   })
 
-  const cloudinaryWidget = (e) => {
+  const cloudinaryWidget = () => {
     cloudinaryUpload.open();
   }
 

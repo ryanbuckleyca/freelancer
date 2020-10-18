@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withAuth0 } from '@auth0/auth0-react';
 import CardTitle from '../components/card-title';
 import CardForm from '../components/card-form';
 import CardFormProfile from '../components/card-form-profile';
@@ -9,9 +8,6 @@ import social_media from '../images/social_media.svg';
 class Client extends Component {
 
   render() {
-    const fields = {
-      id:'', name:'',email:'',number:'',street1:'',street2:'',city:'',props:'',post_zip:'',country:''
-    }
     return(
       <div className="profile">
         <hr className="spacer" />
@@ -24,7 +20,7 @@ class Client extends Component {
 
         <hr className="spacer" />
 
-        <CardForm table='clients' id={this.props.match.params.id} fields={fields}>
+        <CardForm table='clients' id={this.props.match.params.id}>
           <CardFormProfile />
           <CardFormPersonFields />
         </CardForm>
@@ -35,4 +31,4 @@ class Client extends Component {
   }
 }
 
-export default withAuth0(Client);
+export default Client;

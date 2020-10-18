@@ -3,7 +3,7 @@ import './cards.scss';
 
 class CardFormPersonFields extends Component {
   render() {
-    console.log('this.props from cardformPersonFields: ', this.props)
+    console.log('cardformPersonFields props: ', this.props)
 
     return(
       <div className="card-slider-form">

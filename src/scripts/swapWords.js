@@ -21,6 +21,7 @@ let loop;
 let i = 1
 
 export const swapWords = function() {
+  let id = 1;
   for (var key in words) {
     let firstName = faker.name.firstName()
     let lastName = faker.name.lastName()
@@ -34,8 +35,10 @@ export const swapWords = function() {
     document.getElementsByName('fakerEmail')[0].innerText = email;
     document.getElementsByName('date')[0].innerText = now.toISOString().substring(0, 10);
     document.getElementsByName('time')[0].innerText = (i + 1) + ' weeks';
+    id *= (rando+1);
   }
   i++;
+  document.getElementsByName('msgID')[0].innerText = id;
   loop = setTimeout(swapWords, 4000);
 }
 

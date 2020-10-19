@@ -22,8 +22,9 @@ class HowItWorks extends Component {
         </p>
         <br />
         <p className="card-email">
+          <p style={{position: 'absolute', top: 5, right: 5}}>unique message no. <i name="msgID">1</i></p>
           from: <i name="fakerEmail">youremail@emailaccount.com</i><br />
-          to: theclientsemail@yahoo.com<br />
+          to: yourclientsemail@yahoo.com<br />
           date: <i name="date">{ new Date().toISOString().substring(0, 10) }</i><br />
           subject:  <i name="subject">Checking in</i><br />
           <br />

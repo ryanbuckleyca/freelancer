@@ -48,7 +48,7 @@ app.use("/api/clients", clientRoutes);
 
 
 // ADD MAILING LIST SUBSCRIBER
-app.post("/api/mailinglist/add", async (req, res) => {
+app.post("/api/mailinglist", async (req, res) => {
   try {
     const newSub = await db.Subscriber.create({
       email: req.body.email,

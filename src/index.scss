@@ -125,6 +125,9 @@ form .form-wrapper {
 form .invalid {
   border: 1px $red solid;
 }
+form .valid {
+  border: 1px $green solid;
+}
 
 input {
   border-radius: 10px;

@@ -17,4 +17,4 @@ const requiredFieldsValid = () => {
   return allValid.every(Boolean)
 }
 
-module.exports = requiredFieldsValid;
+export default requiredFieldsValid;

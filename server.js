@@ -21,11 +21,6 @@ app.use(cookieParser());
 
 // allow CORS
 app.use(cors())
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', '*');
-  next();
-});
 
 // ROUTES (secured ones require checkJwt middleware)
 const checkJwt = require('./routes/authenticate');
@@ -48,7 +43,7 @@ app.use("/api/clients", clientRoutes);
 
 
 // ADD MAILING LIST SUBSCRIBER
-app.post("/api/mailinglist/add", async (req, res) => {
+app.post("/api/mailinglist", async (req, res) => {
   try {
     const newSub = await db.Subscriber.create({
       email: req.body.email,

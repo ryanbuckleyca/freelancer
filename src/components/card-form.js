@@ -11,6 +11,36 @@ class CardForm extends Component {
       .then(result => this.setState(result))
   }
 
+  getTokenAndUpdateUser(user) {
+    var options = {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: `{"client_id": "${process.env.REACT_APP_AUTH0_MGMT_API_CLIENT_ID}", "client_secret": "${process.env.REACT_APP_AUTH0_MGMT_API_SECRET}", "audience": "${process.env.REACT_APP_AUTH0_MGMT_API_AUDIENCE}", "grant_type": "client_credentials"}`
+    };
+    fetch('https://chequemate.us.auth0.com/oauth/token', options)
+    .then(res => res.json())
+    .then(data => {
+      const token = data.access_token
+      this.updateUserInAuth0(user, token)
+    })
+  }
+  updateUserInAuth0(user, token) {
+    var options = {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${token}`,
+        'cache-control': 'no-cache'
+      },
+      body: { "name": user.name, "picture": user.picture }
+    };
+    fetch(`https://chequemate.us.auth0.com/api/v2/users/${user.auth0_id}`, options)
+    .then(res => {
+      return res
+    })
+  }
+
+
   async saveFormToDB() {
     try {
       const res = await callAPI(
@@ -18,6 +48,9 @@ class CardForm extends Component {
         this.props.id ? 'PUT' : 'POST',
         this.state
       )
+      if(this.props.table === 'users') {
+        this.getTokenAndUpdateUser(this.state);
+      }
       console.log(`${this.props.table} saved`)
       return res
     }

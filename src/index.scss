@@ -122,6 +122,10 @@ form .form-wrapper {
   padding: 0 30px;
 }
 
+form .invalid {
+  border: 1px $red solid;
+}
+
 input {
   border-radius: 10px;
   border: 1px solid rgba(1, 1, 1, .1);

@@ -7,6 +7,28 @@ import toggleModal from '../scripts/toggleModal'
 
 class Navbar extends Component {
 
+  state = {
+    navClass: '',
+    toggle: "Open navigation menu"
+  }
+
+  openMobileNavbar() {
+    this.setState({navClass: 'opened'})
+    this.setState({toggle: 'Close navigation menu.'})
+  }
+
+  closeMobileNavbar() {
+    this.setState({navClass: ''})
+    this.setState({toggle: 'Open navigation menu.'})
+  }
+
+  toggleMenu() {
+    if (this.state.navClass === 'opened')
+      this.closeMobileNavbar();
+    else
+      this.openMobileNavbar();
+  }
+
   render() {
     const { user, isAuthenticated, isLoading, logout, loginWithRedirect } = this.props.auth0;
 
@@ -14,64 +36,46 @@ class Navbar extends Component {
       return <div>Loading ...</div>;
     }
 
-    const navUser = isAuthenticated && (
-      <ul className="navbar-nav">
-        <li className="nav-item active">
-          {/* <Link to='/clients' className="nav-link">Browse Clients</Link> */}
-          <a href="#" onClick={() => toggleModal()} className="nav-link">Browse Clients</a>
+    const navUser =
+      <ul class="navbar-links" onClick={(e) => e.stopPropagation()}>
+        <li class="navbar-item">
+          <a onClick={() => toggleModal()} className="navbar-link">Browse Clients</a>
         </li>
-        <li className="nav-item">
-          {/* <Link to="/invoices" className="nav-link">Add Invoice</Link> */}
-          <a href="#" onClick={() => toggleModal()} className="nav-link">Add Invoice</a>
+        <li class="navbar-item">
+          <a onClick={() => toggleModal()} className="navbar-link">Invoices</a>
         </li>
-        <li className="nav-item dropdown">
-          <img
-          src={user.picture}
-          className="avatar dropdown-toggle"
-          id="navbarDropdown"
-          data-toggle="dropdown"
-          alt={user.name}
-          aria-haspopup="true"
-          aria-expanded="false" />
-          <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <Link to="/profile" className="dropdown-item">My Profile</Link>
-            {/* <Link to="/invoices" className="dropdown-item">My Invoices</Link> */}
-            <a href="#" onClick={() => toggleModal()} className="dropdown-item">My Invoices</a>
-            <Link to="/" className="dropdown-item"
-               onClick={() => logout({returnTo: window.location.origin })}>
-              Logout
-            </Link>
-          </div>
+        <li class="navbar-item">
+          <Link to="/profile" onClick={() => this.closeMobileNavbar()}>
+            <img src={user.picture} className="avatar" alt={user.name} />
+          </Link>
         </li>
-      </ul>);
-    const navVisitor =
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to="/" onClick={() => loginWithRedirect()} className="nav-link">Log In / Register</Link>
+      </ul>
+
+    const navGuest =
+      <ul class="navbar-links" onClick={(e) => e.stopPropagation()}>
+        <li class="navbar-item">
+          <Link to="/" onClick={() => loginWithRedirect()} className="navbar-link">
+            Log In / Register
+          </Link>
         </li>
-      </ul>;
+      </ul>
 
     return (
-      <div className={`navbar navbar-expand-sm navbar-light navbar-chequemate${ ' '+(this.props.bg || '')}`}>
-        <Link to="/" className="navbar-brand">
-          <Logotype height="60" />
-        </Link>
-
-        <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            {this.props.auth0.isAuthenticated ? navUser : navVisitor}
-        </div>
-      </div>
+      <header id="navbar" className={this.state.navClass}>
+          <nav class="navbar-container">
+            <Link to="/" className="navbar-brand">
+              <Logotype height="60" />
+            </Link>
+            <button type="button" class="navbar-toggle" aria-label={this.state.toggle} onClick={() => this.toggleMenu()}>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-menu" onClick={() => this.closeMobileNavbar()}>
+              { isAuthenticated ? navUser : navGuest }
+            </div>
+          </nav>
+      </header>
     );
   };
 };

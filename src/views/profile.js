@@ -11,7 +11,6 @@ class Profile extends Component {
   state = { id: null }
 
   createUser(authUser) {
-    console.log('createUser called')
     callAPI('/api/users/', 'POST', {
       auth0_id: authUser.sub,
       name: authUser.name,
@@ -30,7 +29,6 @@ class Profile extends Component {
   }
 
   render() {
-    console.log('profile.js this.state is: ', this.state)
     return(
       <div className='profile'>
         <hr className='spacer' />
@@ -40,14 +38,11 @@ class Profile extends Component {
           thisClass='card-md'
           text='In order for us to reach out on your behalf, we need to know how to reach you, and how to forward your most up to date information to your clients.'
         />
-
         <hr className='spacer' />
-
         <CardForm table='users' id={this.state.auth0_id}>
           <CardFormProfile />
           <CardFormPersonFields />
         </CardForm>
-
         <hr className='spacer' />
       </div>
     );

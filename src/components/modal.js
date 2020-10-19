@@ -5,8 +5,7 @@ const url = process.env.REACT_APP_API_URL || 'http://localhost:9000';
 
 class Modal extends Component {
 
-  // TODO: extract into separate file for re-use
-
+  // TODO: extract into requiredFieldsValid for re-use
   validateEmail(email) {
     const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     return regex.test(email)
@@ -17,12 +16,12 @@ class Modal extends Component {
     e.currentTarget.style = `border: 1px solid ${color}`;
   }
 
-  async registerEmail(event) {
-    event.preventDefault();
+  async registerEmail(e) {
+    e.preventDefault();
     const email = document.getElementById('email');
     if (this.validateEmail(email.value)) {
       try {
-        const res = await fetch(`${url}/api/mailinglist/add`, {
+        const res = await fetch(`${url}/api/mailinglist`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(email.value)
@@ -76,12 +75,12 @@ class Modal extends Component {
             X
           </button>
           <h3>Stay informed. We'll let you know when we're live!</h3><br />
-          <form onSubmit={(event) => this.registerEmail(event)}>
+          <form onSubmit={(e) => this.registerEmail(e)}>
             <label htmlFor="email" id="emailLabel" style={{display: 'none'}}></label>
             <div className="d-flex justify-content-stretch align-items-center flex-column flex-sm-row">
               <input className="flex-grow-1 mb-3 mr-sm-3 my-auto" type="text"
                      name="email" id="email" placeholder="Enter your email"
-                     onChange={(event) => this.renderFieldValidity(event)} />
+                     onChange={(e) => this.renderFieldValidity(e)} />
               <button className="btn btn-success my-auto" type="submit" name="submit">
                 send me updates!
               </button>

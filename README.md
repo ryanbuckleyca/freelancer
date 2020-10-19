@@ -12,4 +12,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `npm run api`
 
-Launches the api server to feed the react app.
+Launches the api server to feed the react app. The server runs on Node.js with Express.

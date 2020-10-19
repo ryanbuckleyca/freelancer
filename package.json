@@ -35,13 +35,12 @@
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
     "popper.js": "^1.16.1",
-    "pug": "^3.0.0",
-    "sequelize": "^6.3.5",
-    "sequelize-cli": "^6.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -59,4 +58,3 @@
     ]
   }
 }
-

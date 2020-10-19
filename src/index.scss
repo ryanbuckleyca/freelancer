@@ -118,6 +118,14 @@ i {
   font-style: normal;
 }
 
+a {
+  color: $green;
+}
+a:visited {
+  color: $green;
+  opacity: 0.7;
+}
+
 form .form-wrapper {
   padding: 0 30px;
 }

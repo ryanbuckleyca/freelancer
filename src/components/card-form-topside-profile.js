@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './cards.scss';
 
-class CardFormProfile extends Component {
+class CardFormTopsideProfile extends Component {
   cloudinaryUpload = window.cloudinary.createUploadWidget({
     cloudName: 'ryanbuckleyca',
     cropping: true,
@@ -36,5 +36,5 @@ class CardFormProfile extends Component {
   }
 }
 
-export default CardFormProfile;
+export default CardFormTopsideProfile;
 

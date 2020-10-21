@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
 import CardTitle from '../components/card-title';
 import CardForm from '../components/card-form';
-import CardFormProfile from '../components/card-form-profile';
-import CardFormPersonFields from '../components/card-form-person-fields';
+import CardFormTopSideProfile from '../components/card-form-topside-profile';
+import CardFormFieldsPerson from '../components/card-form-fields-person';
 import profile from '../images/profile_header.svg';
 import callAPI from '../scripts/callAPI';
 
@@ -41,8 +41,8 @@ class Profile extends Component {
         />
         <hr className='spacer' />
         <CardForm table='users' id={this.state.auth0_id}>
-          <CardFormProfile />
-          <CardFormPersonFields />
+          <CardFormTopSideProfile />
+          <CardFormFieldsPerson />
         </CardForm>
         <hr className='spacer' />
       </div>

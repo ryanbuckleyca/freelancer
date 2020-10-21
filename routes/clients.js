@@ -5,6 +5,36 @@ const db = require('../models');
 // TODO: should require authentication
 
 router
+  .route("/user/:id")
+  // GET user's clients - api/clients/user/:id
+  .get(async (req, res, next) => {
+    console.log('GET clients from user/:id: ', req.params.id)
+    try {
+      const clients = await db.Client.findAll({
+        where: { user_id: req.params.id }
+      })
+      console.log("SUCCESS: found clients by user/:id where req.params.id = ", clients)
+      clients && res.send(clients);
+    }
+    catch(err) {
+      console.log("ERROR: find clients by user/:id where req.params.id = ", err);
+    }
+  })
+  // UPDATE client
+  .put(async (req, res) => {
+    console.log('update client called with req.body:', req.body);
+    try {
+      const updateResult = await db.Client.update(req.body, {
+        where: { id: req.body.id },
+        returning: true
+      });
+      const dbclient = updateResult[1][0];
+      res.send(dbclient)
+    }
+    catch(err) { console.log('update client error: ', err) }
+  });
+
+router
   .route("/:id")
   // GET client - api/clients/:id
   .get(async (req, res, next) => {

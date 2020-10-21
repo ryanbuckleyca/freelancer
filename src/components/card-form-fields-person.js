@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import './cards.scss';
 
-class CardFormPersonFields extends Component {
+class CardFormFieldsPerson extends Component {
   render() {
-    console.log('cardformPersonFields props: ', this.props)
+    console.log('cardformFieldsPerson props: ', this.props)
 
     return(
       <div className="card-slider-form">
@@ -82,4 +82,4 @@ class CardFormPersonFields extends Component {
   }
 }
 
-export default CardFormPersonFields;
+export default CardFormFieldsPerson;

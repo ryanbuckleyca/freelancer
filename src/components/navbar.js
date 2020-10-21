@@ -36,7 +36,17 @@ class Navbar extends Component {
       return <div>Loading ...</div>;
     }
 
-    const navUser =
+    let navBar =
+      <ul class="navbar-links" onClick={(e) => e.stopPropagation()}>
+        <li class="navbar-item">
+          <Link to="/" onClick={() => loginWithRedirect()} className="navbar-link">
+            Log In / Register
+          </Link>
+        </li>
+      </ul>
+
+    if(user && isAuthenticated) {
+    navBar =
       <ul class="navbar-links" onClick={(e) => e.stopPropagation()}>
         <li class="navbar-item">
           <a onClick={() => toggleModal()} className="navbar-link">Browse Clients</a>
@@ -50,15 +60,7 @@ class Navbar extends Component {
           </Link>
         </li>
       </ul>
-
-    const navGuest =
-      <ul class="navbar-links" onClick={(e) => e.stopPropagation()}>
-        <li class="navbar-item">
-          <Link to="/" onClick={() => loginWithRedirect()} className="navbar-link">
-            Log In / Register
-          </Link>
-        </li>
-      </ul>
+    }
 
     return (
       <header id="navbar" className={this.state.navClass}>
@@ -72,7 +74,7 @@ class Navbar extends Component {
                 <span class="icon-bar"></span>
             </button>
             <div class="navbar-menu" onClick={() => this.closeMobileNavbar()}>
-              { isAuthenticated ? navUser : navGuest }
+              { navBar }
             </div>
           </nav>
       </header>

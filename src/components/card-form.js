@@ -18,9 +18,6 @@ class CardForm extends Component {
         this.props.id ? 'PUT' : 'POST',
         this.state
       )
-      if(this.props.table === 'users') {
-        updateAuthUser(this.state);
-      }
       console.log(`${this.props.table} saved`)
       return res
     }

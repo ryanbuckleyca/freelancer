@@ -2,6 +2,7 @@
 
 #navbar {
   z-index: 99;
+  position: relative;
 }
 .navbar-container {
     display: flex;
@@ -119,7 +120,7 @@
     background: white;
     list-style-type: none;
     max-height: 0;
-    overflow: hidden;
+    overflow: visible;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -136,7 +137,41 @@
     max-height: none;
 }
 
+.profileMenu a {
+  display: block;
+  text-align: center;
+  padding: 0.5em 1em;
+}
+.profileMenu.opened {
+    display: block;
+}
+
+.profileMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  font-size: 90%;
+  z-index: 1000;
+  display: none;
+  min-width: 10rem;
+  padding: 0;
+  margin: 0.125rem;
+  color: #8D8C8A;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(54,53,56,0.15);
+  border-radius: 2px;
+}
+
+
 @media screen and (min-width: 520px) {
+    .profileMenu {
+      left: auto;
+    }
+    .profileMenu a {
+      text-align: right;
+    }
     .navbar-toggle {
         display: none;
     }

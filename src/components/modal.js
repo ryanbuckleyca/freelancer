@@ -42,7 +42,7 @@ class Modal extends Component {
     return(
       <div id="modal" style={{
         display: 'none',
-        zIndex: 9,
+        zIndex: 999,
         position: 'absolute',
         justifyContent: 'center',
         alignItems: 'center',

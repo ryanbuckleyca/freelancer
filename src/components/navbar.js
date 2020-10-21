@@ -9,7 +9,9 @@ class Navbar extends Component {
 
   state = {
     navClass: '',
-    toggle: "Open navigation menu"
+    toggle: "Open navigation menu",
+    profileClass: '',
+    profileToggle: "Open navigation menu"
   }
 
   openMobileNavbar() {
@@ -29,6 +31,27 @@ class Navbar extends Component {
       this.openMobileNavbar();
   }
 
+  openProfileMenu() {
+    this.setState({profileClass: 'opened'})
+    this.setState({profileToggle: 'Close profile menu.'})
+  }
+
+  closeProfileMenu() {
+    this.setState({profileClass: ''})
+    this.setState({profileToggle: 'Open profile menu.'})
+  }
+
+  toggleProfileMenu() {
+    console.log('toggleProfileMenu called')
+    console.log('this.state is: ', this.state)
+    if (this.state.profileClass === 'opened')
+      this.closeProfileMenu();
+    else
+      this.openProfileMenu();
+    console.log('this.state is: ', this.state)
+  }
+
+
   render() {
     const { user, isAuthenticated, isLoading, logout, loginWithRedirect } = this.props.auth0;
 
@@ -47,19 +70,24 @@ class Navbar extends Component {
 
     if(user && isAuthenticated) {
     navBar =
-      <ul className="navbar-links" onClick={(e) => e.stopPropagation()}>
-        <li className="navbar-item">
-          <a onClick={() => toggleModal()} className="navbar-link">Browse Clients</a>
-        </li>
-        <li className="navbar-item">
-          <a onClick={() => toggleModal()} className="navbar-link">Invoices</a>
-        </li>
-        <li className="navbar-item">
-          <Link to="/profile" onClick={() => this.closeMobileNavbar()}>
-            <img src={this.props.auth0.user.picture} className="avatar" alt={user.name} />
-          </Link>
-        </li>
-      </ul>
+        <ul className="navbar-links" onClick={(e) => e.stopPropagation()}>
+          <li className="navbar-item">
+            <a onClick={() => toggleModal()} className="navbar-link">Browse Clients</a>
+          </li>
+          <li className="navbar-item">
+            <a onClick={() => toggleModal()} className="navbar-link">Invoices</a>
+          </li>
+          <li className="navbar-item">
+            <Link to="/profile" onClick={() => this.toggleProfileMenu()}>
+              <img src={this.props.auth0.user.picture} className="avatar" alt={user.name} />
+            </Link>
+            <div className={'profileMenu ' + this.state.profileClass} aria-label={this.state.profileToggle}>
+              <a href="#" onClick={() => toggleModal()} className="dropdown-item">My Invoices</a>
+              <Link to="/profile" className="dropdown-item">My Profile</Link>
+              <a href="#" onClick={() => logout({returnTo: window.location.origin })}>LOGOUT</a>
+            </div>
+          </li>
+        </ul>
     }
 
     return (

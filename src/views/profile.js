@@ -23,6 +23,7 @@ class Profile extends Component {
 
   componentDidMount() {
     const authUser = this.props.auth0.user
+    this.setState({id: authUser.sub})
     console.log('authUser is: ', authUser)
     callAPI(`/api/users/${authUser.sub}`)
       .then(res => res ? this.setState(res) : this.createUser(authUser))

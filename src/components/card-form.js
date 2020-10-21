@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
 import callAPI from '../scripts/callAPI';
 import requiredFieldsValid from '../scripts/requiredFieldsValid';
-import updateAuthUser from '../scripts/updateAuthUser';
 import './cards.scss';
 
 class CardForm extends Component {
@@ -19,9 +18,6 @@ class CardForm extends Component {
         this.props.id ? 'PUT' : 'POST',
         this.state
       )
-      if(this.props.table === 'users') {
-        updateAuthUser(this.state);
-      }
       console.log(`${this.props.table} saved`)
       return res
     }

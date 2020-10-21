@@ -36,43 +36,45 @@ class Navbar extends Component {
       return <div>Loading ...</div>;
     }
 
-    const navUser =
-      <ul class="navbar-links" onClick={(e) => e.stopPropagation()}>
-        <li class="navbar-item">
-          <a onClick={() => toggleModal()} className="navbar-link">Browse Clients</a>
-        </li>
-        <li class="navbar-item">
-          <a onClick={() => toggleModal()} className="navbar-link">Invoices</a>
-        </li>
-        <li class="navbar-item">
-          <Link to="/profile" onClick={() => this.closeMobileNavbar()}>
-            <img src={user.picture} className="avatar" alt={user.name} />
-          </Link>
-        </li>
-      </ul>
-
-    const navGuest =
-      <ul class="navbar-links" onClick={(e) => e.stopPropagation()}>
-        <li class="navbar-item">
+    let navBar =
+      <ul className="navbar-links" onClick={(e) => e.stopPropagation()}>
+        <li className="navbar-item">
           <Link to="/" onClick={() => loginWithRedirect()} className="navbar-link">
             Log In / Register
           </Link>
         </li>
       </ul>
 
+    if(user && isAuthenticated) {
+    navBar =
+      <ul className="navbar-links" onClick={(e) => e.stopPropagation()}>
+        <li className="navbar-item">
+          <a onClick={() => toggleModal()} className="navbar-link">Browse Clients</a>
+        </li>
+        <li className="navbar-item">
+          <a onClick={() => toggleModal()} className="navbar-link">Invoices</a>
+        </li>
+        <li className="navbar-item">
+          <Link to="/profile" onClick={() => this.closeMobileNavbar()}>
+            <img src={this.props.auth0.user.picture} className="avatar" alt={user.name} />
+          </Link>
+        </li>
+      </ul>
+    }
+
     return (
       <header id="navbar" className={this.state.navClass}>
-          <nav class="navbar-container">
+          <nav className="navbar-container">
             <Link to="/" className="navbar-brand">
               <Logotype height="60" />
             </Link>
-            <button type="button" class="navbar-toggle" aria-label={this.state.toggle} onClick={() => this.toggleMenu()}>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+            <button type="button" className="navbar-toggle" aria-label={this.state.toggle} onClick={() => this.toggleMenu()}>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
             </button>
-            <div class="navbar-menu" onClick={() => this.closeMobileNavbar()}>
-              { isAuthenticated ? navUser : navGuest }
+            <div className="navbar-menu" onClick={() => this.closeMobileNavbar()}>
+              { navBar }
             </div>
           </nav>
       </header>

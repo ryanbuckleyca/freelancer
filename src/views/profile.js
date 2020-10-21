@@ -5,28 +5,28 @@ import CardForm from '../components/card-form';
 import CardFormProfile from '../components/card-form-profile';
 import CardFormPersonFields from '../components/card-form-person-fields';
 import profile from '../images/profile_header.svg';
-// import callAPI from '../scripts/callAPI';
+import callAPI from '../scripts/callAPI';
 
 class Profile extends Component {
   state = { id: null }
 
-  // createUser(authUser) {
-  //   callAPI('/api/users/', 'POST', {
-  //     auth0_id: authUser.sub,
-  //     name: authUser.name,
-  //     email: authUser.email,
-  //     picture: authUser.picture
-  //   })
-  //   .then(res => this.setState(res))
-  //   .catch(err => console.log('problem creating user in profile.js: ', err))
-  // }
+  createUser(authUser) {
+    callAPI('/api/users/', 'POST', {
+      auth0_id: authUser.sub,
+      name: authUser.name,
+      email: authUser.email,
+      picture: authUser.picture
+    })
+    .then(res => this.setState(res))
+    .catch(err => console.log('problem creating user in profile.js: ', err))
+  }
 
   componentDidMount() {
     const authUser = this.props.auth0.user
     this.setState({id: authUser.sub})
     console.log('authUser is: ', authUser)
-    // callAPI(`/api/users/${authUser.sub}`)
-    //   .then(res => res ? this.setState(res) : this.createUser(authUser))
+    callAPI(`/api/users/${authUser.sub}`)
+      .then(res => res ? this.setState(res) : this.createUser(authUser))
   }
 
   render() {

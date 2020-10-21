@@ -1,6 +1,7 @@
 const express = require('express');
 let router = express.Router();
 const db = require('../models');
+const updateAuthUser = require('./updateAuthUser')
 
 // TODO: should require authentication
 
@@ -31,6 +32,8 @@ router
       });
       const dbUser = updateResult[1][0];
       res.send(dbUser)
+      const updateAuthRes = await updateAuthUser(dbUser);
+      console.log('result of updateAuthUser(): ', updateAuthRes)
     }
     catch(err) { console.log('update user error: ', err) }
   });

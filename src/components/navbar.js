@@ -56,7 +56,7 @@ class Navbar extends Component {
         </li>
         <li className="navbar-item">
           <Link to="/profile" onClick={() => this.closeMobileNavbar()}>
-            <img src={user.picture} className="avatar" alt={user.name} />
+            <img src={this.props.auth0.user.picture} className="avatar" alt={user.name} />
           </Link>
         </li>
       </ul>

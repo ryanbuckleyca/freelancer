@@ -1,8 +1,7 @@
 const updateAuthUser = (user) => {
-
-  console.log('updateAuthUser called with param user: ', user)
   // get token -- this way doesn't work
-  // getting authentication error
+  // getting incorrect authentication error
+  // hard coding temporary token in .env for now
   var axios = require("axios").default;
 
   var options = {
@@ -18,11 +17,8 @@ const updateAuthUser = (user) => {
   };
 
   axios.request(options).then(function (response) {
-    console.log(response.data);
-
-    // get token
-
-    const token = response.data.access_token || process.env.AUTH0_MGMT_API_TOKEN;
+    console.log('token retrieved: ', response.data.access_token);
+    const token = response.data.access_token;
 
     options = {
       method: 'PATCH',
@@ -35,7 +31,7 @@ const updateAuthUser = (user) => {
     };
 
     axios.request(options).then(function (response) {
-    console.log(response.data);
+    return(response.data)
     }).catch(function (error) {
       console.error(error);
     });

@@ -1,7 +1,4 @@
 const updateAuthUser = (user) => {
-  // get token -- this way doesn't work
-  // getting incorrect authentication error
-  // hard coding temporary token in .env for now
   var axios = require("axios").default;
 
   var options = {
@@ -31,11 +28,14 @@ const updateAuthUser = (user) => {
     };
 
     axios.request(options).then(function (response) {
+
     return(response.data)
     }).catch(function (error) {
+      // updating user has failed
       console.error(error);
     });
   }).catch(function (error) {
+    // getting token has failed
     console.error(error);
   });
 }

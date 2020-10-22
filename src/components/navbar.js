@@ -7,11 +7,15 @@ import toggleModal from '../scripts/toggleModal'
 
 class Navbar extends Component {
 
-  state = {
-    navClass: '',
-    toggle: "Open navigation menu",
-    profileClass: '',
-    profileToggle: "Open navigation menu"
+  constructor(props) {
+    super(props);
+    this.state = {
+      navClass: '',
+      toggle: "Open navigation menu",
+      profileClass: '',
+      profileToggle: "Open navigation menu"
+    }
+    this.toggleProfileMenu = this.toggleProfileMenu.bind(this)
   }
 
   openMobileNavbar() {
@@ -42,13 +46,24 @@ class Navbar extends Component {
   }
 
   toggleProfileMenu() {
-    console.log('toggleProfileMenu called')
-    console.log('this.state is: ', this.state)
     if (this.state.profileClass === 'opened')
       this.closeProfileMenu();
     else
       this.openProfileMenu();
-    console.log('this.state is: ', this.state)
+  }
+
+  handleClick = (e) => {
+    const profileMenu = document.querySelector('.profileMenu');
+    if (!profileMenu.contains(e.target)) {
+      this.closeProfileMenu()
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('click', this.handleClick)
+  }
+  componentWillUnmount() {
+    window.removeEventListener('click', this.handleClick)
   }
 
 

@@ -7,27 +7,19 @@ import toggleModal from '../scripts/toggleModal'
 
 class Navbar extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      navClass: '',
-      toggle: "Open navigation menu",
-      profileClass: '',
-      profileToggle: "Open navigation menu"
-    }
-    this.toggleProfileMenu = this.toggleProfileMenu.bind(this)
+  state = {
+    navClass: '',
+    toggle: "Open navigation menu",
+    profileClass: '',
+    profileToggle: "Open navigation menu"
   }
 
   openMobileNavbar() {
-    this.setState({navClass: 'opened'})
-    this.setState({toggle: 'Close navigation menu.'})
+    this.setState({navClass: 'opened', toggle: 'Close navigation menu.'})
   }
-
   closeMobileNavbar() {
-    this.setState({navClass: ''})
-    this.setState({toggle: 'Open navigation menu.'})
+    this.setState({navClass: '', toggle: 'Open navigation menu.'})
   }
-
   toggleMenu() {
     if (this.state.navClass === 'opened')
       this.closeMobileNavbar();
@@ -36,15 +28,11 @@ class Navbar extends Component {
   }
 
   openProfileMenu() {
-    this.setState({profileClass: 'opened'})
-    this.setState({profileToggle: 'Close profile menu.'})
+    this.setState({profileClass: 'opened', profileToggle: 'Close profile menu.'})
   }
-
   closeProfileMenu() {
-    this.setState({profileClass: ''})
-    this.setState({profileToggle: 'Open profile menu.'})
+    this.setState({profileClass: '', profileToggle: 'Open profile menu.'})
   }
-
   toggleProfileMenu() {
     if (this.state.profileClass === 'opened')
       this.closeProfileMenu();
@@ -54,9 +42,7 @@ class Navbar extends Component {
 
   handleClick = (e) => {
     const profileMenu = document.querySelector('.profileMenu');
-    if (!profileMenu.contains(e.target)) {
-      this.closeProfileMenu()
-    }
+    !profileMenu.contains(e.target) && this.closeProfileMenu();
   }
 
   componentDidMount() {
@@ -65,7 +51,6 @@ class Navbar extends Component {
   componentWillUnmount() {
     window.removeEventListener('click', this.handleClick)
   }
-
 
   render() {
     const { user, isAuthenticated, isLoading, logout, loginWithRedirect } = this.props.auth0;
@@ -93,13 +78,13 @@ class Navbar extends Component {
             <a onClick={() => toggleModal()} className="navbar-link">Invoices</a>
           </li>
           <li className="navbar-item">
-            <Link to="/profile" onClick={() => this.toggleProfileMenu()}>
+            <a onClick={() => this.toggleProfileMenu()}>
               <img src={this.props.auth0.user.picture} className="avatar" alt={user.name} />
-            </Link>
+            </a>
             <div className={'profileMenu ' + this.state.profileClass} aria-label={this.state.profileToggle}>
-              <a href="#" onClick={() => toggleModal()} className="dropdown-item">My Invoices</a>
-              <Link to="/profile" className="dropdown-item">My Profile</Link>
-              <a href="#" onClick={() => logout({returnTo: window.location.origin })}>LOGOUT</a>
+              <a onClick={() => toggleModal()} className="dropdown-item">My Invoices</a>
+              <Link to="/profile" onClick={() => this.closeProfileMenu()} className="dropdown-item">My Profile</Link>
+              <a onClick={() => logout({returnTo: window.location.origin })}>LOGOUT</a>
             </div>
           </li>
         </ul>

@@ -6,7 +6,7 @@ class CardFormFieldsPerson extends Component {
     console.log('cardformFieldsPerson props: ', this.props)
 
     return(
-      <div className="card-slider-form">
+      <div className="card-form-form">
         <input className="form-input" type="hidden" id="id" name="id" />
         <fieldset>
           <label className="form-label" htmlFor="name">Full name*</label>
@@ -76,7 +76,7 @@ class CardFormFieldsPerson extends Component {
                    required />
           </fieldset>
         </span>
-        <button onClick={this.props.handleSubmit} className="btn btn-primary d-block mt-4 mx-auto d-md-none">Update profile</button>
+        <button id="card-form-btn-bottom" onClick={this.props.handleSubmit} className="btn btn-primary d-block mt-4 mx-auto d-md-none">Update profile</button>
       </div>
     );
   }

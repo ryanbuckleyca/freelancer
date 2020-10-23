@@ -44,10 +44,10 @@ class Testimonials extends Component {
           <h2 className="m-0">Testimonials</h2>
           <div>
             <a className="carousel-control-prev" href="#demo">
-              <span className="carousel-control-prev-icon"></span>
+              &lt;
             </a>
             <a className="carousel-control-next" href="#demo">
-              <span className="carousel-control-next-icon"></span>
+              &gt;
             </a>
           </div>
         </span>

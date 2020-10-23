@@ -1,5 +1,18 @@
 @import '../_custom.scss';
 
+.card-testimonials .block {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.card-testimonials .block.active {
+    opacity: 1;
+}
+
 .card-testimonials {
   display: flex;
   padding: 3em;

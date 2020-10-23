@@ -30,7 +30,7 @@ class Testimonials extends Component {
         slide[i].classList.add("active");
     };
 
-    window.setInterval(slider_callback, 3000);
+    window.setInterval(slider_callback, 5000);
   }
 
   componentWillUnmount() {
@@ -39,21 +39,21 @@ class Testimonials extends Component {
 
   render() {
     return(
-      <div class="carousel slide card-testimonials card-lg">
+      <div class="carousel card-testimonials card-lg">
         <span className="card-testimonials-head">
           <h2 className="m-0">Testimonials</h2>
           <div>
-            <a className="carousel-control-prev prev" href="#demo" data-slide="prev">
+            <a className="carousel-control-prev" href="#demo">
               <span className="carousel-control-prev-icon"></span>
             </a>
-            <a className="carousel-control-next next" href="#demo" data-slide="next">
+            <a className="carousel-control-next" href="#demo">
               <span className="carousel-control-next-icon"></span>
             </a>
           </div>
         </span>
 
-        <div class="photos">
-          <div className="slide block active card-testimony">
+        <div class="testimonials">
+          <div className="card-testimony active">
             <div className="avatar">
               <img src="http://kitt.lewagon.com/placeholder/users/ryanbuckleyca"
                 className="avatar" alt="user avatar" />
@@ -67,7 +67,7 @@ class Testimonials extends Component {
             </p>
           </div>
 
-          <div className="slide block card-testimony">
+          <div className="card-testimony">
             <div className="avatar">
               <img src="https://randomuser.me/api/portraits/men/15.jpg"
                 className="avatar" alt="user avatar" />
@@ -79,7 +79,7 @@ class Testimonials extends Component {
             </p>
           </div>
 
-          <div className="slide block card-testimony">
+          <div className="card-testimony">
             <div className="avatar">
               <img src="https://randomuser.me/api/portraits/men/39.jpg"
                 className="avatar" alt="user avatar" />

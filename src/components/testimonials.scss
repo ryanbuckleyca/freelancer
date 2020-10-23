@@ -1,19 +1,9 @@
 @import '../_custom.scss';
 
-.card-testimonials .block {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    opacity: 0;
-    transition: opacity 1s;
-}
 
-.card-testimonials .block.active {
-    opacity: 1;
-}
 
 .card-testimonials {
+  height: 450px;
   display: flex;
   padding: 3em;
   flex-direction: column;
@@ -25,7 +15,6 @@
     margin-top: 5%;
   }
 }
-
 .card-testimonials-head {
   width: 100%;
   margin: 0 0 1em 0;
@@ -34,11 +23,19 @@
   align-items: center;
 }
 
+.card-testimony.active {
+    opacity: 1;
+}
 .card-testimony {
+  width: calc(100% - 6em);
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s;
   background: white;
   border-radius: 10px;
-  padding: 8%;
-  margin-right: 2%;
+  padding: 3em;
+  margin: 1em 3em;
   box-shadow: 0 10px 0 rgba(1, 1, 1, 0.2);
   border: 1px solid $blue;
   .avatar {

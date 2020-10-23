@@ -1,8 +1,7 @@
 @import '../_custom.scss';
 
-
-
 .card-testimonials {
+  position: relative;
   height: 450px;
   display: flex;
   padding: 3em;
@@ -26,6 +25,12 @@
 .card-testimony.active {
     opacity: 1;
 }
+.testimonials {
+    position: relative;
+    width: 100%;
+    margin:  0;
+    padding: 0;
+}
 .card-testimony {
   width: calc(100% - 6em);
   position: absolute;
@@ -35,9 +40,8 @@
   background: white;
   border-radius: 10px;
   padding: 3em;
-  margin: 1em 3em;
   box-shadow: 0 10px 0 rgba(1, 1, 1, 0.2);
-  border: 1px solid $blue;
+  border: 1px solid #40798C;
   .avatar {
     margin: 0 10px 0 0;
     float: left;
@@ -51,6 +55,15 @@
     width: 100%;
     color: rgba(1, 1, 1, 0.9);
   }
+}
+
+.carousel-control-prev, .carousel-control-next {
+  position: static;
+  font-size: 200%;
+  text-decoration: none;
+  font-weight: 900;
+  display: inline;
+  transition: opacity 0.15s ease;
 }
 
 .bottom-scroll {

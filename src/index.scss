@@ -1,36 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Suez+One&display=swap');
-@import 'bootstrap/scss/bootstrap.scss';
 @import '_custom.scss';
 
-.container {
-  margin: 0 auto;
-}
-
-.underline {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 80%,
-    #ff789d 20%
-  );
-  margin: 0 -2px 0 -2px;
-  padding: 0 2px 0 2px;
-}
-
-html {
-  overflow-x: hidden;
-}
-::-webkit-scrollbar {
-    width: 0px;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
-}
-/* Optional: show position indicator in red */
-::-webkit-scrollbar-thumb {
-    background: transparent;
+*:focus {
+  outline: none !important;
+  transform: scale(1.02) !important;
 }
 body {
-  overflow-x: hidden;
-  width: 100vw;
-  height: 100vh;
   margin: 0;
   padding: 0;
   background: linear-gradient(180deg, rgba(246,250,253,1) 0%, rgba(255,255,255,1) 100%);
@@ -45,6 +20,20 @@ body {
   width: 90vw;
   margin: 0 auto;
   padding: 1em 0 3em;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.underline {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 80%,
+    #ff789d 20%
+  );
+  margin: 0 -2px 0 -2px;
+  padding: 0 2px 0 2px;
 }
 
 @media(min-width: 360px) {
@@ -147,4 +136,32 @@ input {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.btn {
+  border-radius: 50px;
+  font-size: 100%;
+  padding: 0.5rem 1.5rem;
+}
+.btn-sm {
+  border-radius: 50px;
+  font-size: 80%;
+  padding: 0.3rem 1rem;
+}
+.btn-outline-primary {
+  border-color: rgba(1, 1, 1, 0.06);
+  text-decoration: none;
+  color: $blue;
+  box-shadow: 0px 3px 10px rgba(1, 1, 1, 0.05);
+  .arrow {
+    color: $red;
+  }
+}
+.btn-outline-primary:hover {
+  border-color: $blue;
+  background-color: $blue;
+  color: white;
+  .arrow {
+    color: $white;
+  }
 }

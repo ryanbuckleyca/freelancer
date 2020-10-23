@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Auth0Provider } from "@auth0/auth0-react";
-import 'bootstrap/js/src/index';
-import './index.scss';
-import './_custom.scss';
 import App from './app';
 import * as serviceWorker from './serviceWorker';
+import { Auth0Provider } from "@auth0/auth0-react";
+import './index.scss';
 
 require('dotenv').config()
 

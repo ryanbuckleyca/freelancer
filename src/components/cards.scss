@@ -334,7 +334,7 @@
 }
 
 .card-sm {
-  a { color: $red }
+  a { color: $red !important }
   text-align: center;
   position: relative;
   display: flex;

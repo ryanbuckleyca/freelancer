@@ -58,7 +58,7 @@ class CardForm extends Component {
 
     return(
       <form className="form-wrapper">
-        <div className='card-slider'>
+        <div className='card-form'>
           {/* CardFormTopSide */}
           {React.cloneElement(this.props.children[0], {
             changeHandler: this.changeHandler,

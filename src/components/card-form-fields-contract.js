@@ -6,7 +6,7 @@ class CardFormFieldsContract extends Component {
     console.log('cardformFieldsContract props: ', this.props)
 
     return(
-      <div className="card-slider-form">
+      <div className="card-form-form">
         <input className="form-input" type="hidden" id="id" name="id" />
         <fieldset>
           <label className="form-label" htmlFor="client">Client*</label>

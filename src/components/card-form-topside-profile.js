@@ -23,12 +23,12 @@ class CardFormTopsideProfile extends Component {
 
   render() {
     return(
-      <div className="card-slider-img">
-        <div className="card-slider-avatar">
+      <div className="card-form-img">
+        <div className="card-form-avatar">
           <img src={this.props.picture} alt="avatar" />
           <a href="#" className="btn btn-dark btn-sm" onClick={this.cloudinaryWidget}>edit</a>
         </div>
-        <button onClick={this.props.handleSubmit} className="btn btn-primary d-none d-md-block">
+        <button id="card-form-btn-side" className="btn btn-primary" onClick={this.props.handleSubmit}>
           Update profile
         </button>
       </div>

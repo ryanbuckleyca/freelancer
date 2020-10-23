@@ -59,11 +59,11 @@ class Modal extends Component {
           maxWidth: '800px',
           background: 'white',
           borderRadius: 25,
-          padding: '10%',
+          padding: '3.5em',
           zIndex: 99999,
           boxShadow: 'rgba(1, 1, 1, 0.2) 0px 1px 75px'
         }}>
-          <button className="btn btn-outline-danger p-1"
+          <button className="btn btn-danger p-1"
             onClick={() => toggleModal()}
             style={{
               position: 'absolute',
@@ -78,10 +78,10 @@ class Modal extends Component {
           <form onSubmit={(e) => this.registerEmail(e)}>
             <label htmlFor="email" id="emailLabel" style={{display: 'none'}}></label>
             <div className="d-flex justify-content-stretch align-items-center flex-column flex-sm-row">
-              <input className="flex-grow-1 mb-3 mr-sm-3 my-auto" type="text"
+              <input className="flex-grow-1 mb-3 mr-sm-3 my-sm-auto w-100" type="text"
                      name="email" id="email" placeholder="Enter your email"
                      onChange={(e) => this.renderFieldValidity(e)} />
-              <button className="btn btn-success my-auto" type="submit" name="submit">
+              <button className="btn btn-success my-auto w-100" type="submit" name="submit">
                 send me updates!
               </button>
             </div>

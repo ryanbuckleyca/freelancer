@@ -14,14 +14,14 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       due_date: {
         type: Sequelize.DATE
       },
       paid: {
         type: Sequelize.BOOLEAN
+      },
+      invoice: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

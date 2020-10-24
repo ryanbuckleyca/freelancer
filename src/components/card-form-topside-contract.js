@@ -3,7 +3,6 @@ import './cards.scss';
 import late from '../images/late.svg'
 import robber from '../images/robber.svg'
 
-
 class CardFormTopsideContract extends Component {
   cloudinaryUpload = window.cloudinary.createUploadWidget({
     cloudName: 'ryanbuckleyca',
@@ -14,7 +13,7 @@ class CardFormTopsideContract extends Component {
     if (!err && res && res.event === "success") {
       console.log('res from cloudinary upload: ', res)
       this.props.changeHandler({target:
-        { name: 'picture', value: res.info.url }
+        { name: 'invoice', value: res.info.url }
       })
     } else {
       console.log('cloudinary error: ', err)
@@ -30,7 +29,7 @@ class CardFormTopsideContract extends Component {
     return(
       <div className="card-form-img">
         <div className="card-form-avatar">
-          <img className="invoice" src={this.props.picture} alt="invoice" />
+        <embed src={this.props.invoice} width="600" height="500" alt="invoice" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html" />
           <div className="profile-buttons">
           <a className="btn btn-secondary" onClick={this.cloudinaryWidget}>upload invoice</a>
           <a className="btn btn-danger">delete contract</a>
@@ -38,7 +37,7 @@ class CardFormTopsideContract extends Component {
           </div>
         </div>
         <button id="card-form-btn-side" className="btn btn-primary" onClick={this.props.handleSubmit}>
-          Update profile
+          Update contract
         </button>
       </div>
     );

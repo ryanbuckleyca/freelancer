@@ -38,6 +38,10 @@ module.exports = {
       country: {
         type: Sequelize.STRING
       },
+      picture: {
+        type: Sequelize.STRING,
+        defaultValue: "https://res.cloudinary.com/ryanbuckleyca/image/upload/c_scale,h_150,w_150/v1600109993/user_bgu0at.jpg"
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

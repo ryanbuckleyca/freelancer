@@ -23,10 +23,12 @@ class App extends Component {
           <Route exact path="/" component={Landing} />
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/policy" component={PrivacyPolicy} />
-          <PrivateRoute path="/invoices" component={Contract} hi="ello" />
+          <PrivateRoute path="/contracts/new" component={Contract} />
+          <PrivateRoute path="/contracts/:id" component={Contract} />
+          <PrivateRoute path="/contracts" component={Contract} />
           <PrivateRoute path="/clients/new" component={Client} />
           <PrivateRoute path="/clients/:id" component={Client} />
-          <PrivateRoute path="/clients/" component={ClientsAll} />
+          <PrivateRoute path="/clients" component={ClientsAll} />
         </Switch>
         <Footer showTrial={this.props.auth0.isAuthenticated} />
       </div>

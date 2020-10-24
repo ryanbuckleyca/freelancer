@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Contract.belongsTo(models.User, {
-        foreignKey: 'client_id'
+        foreignKey: 'user_id'
       });
       Contract.belongsTo(models.Client, {
         foreignKey: 'client_id'
@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     client_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
     due_date: DataTypes.DATE,
+    invoice: DataTypes.STRING,
     paid: DataTypes.BOOLEAN
   }, {
     sequelize,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CardTitle from '../components/card-title';
 import CardForm from '../components/card-form';
-import CardFormTopsideProfile from '../components/card-form-topside-profile';
+import CardFormTopsideClient from '../components/card-form-topside-client';
 import CardFormFieldsPerson from '../components/card-form-fields-person';
 import social_media from '../images/social_media.svg';
 
@@ -21,7 +21,7 @@ class Client extends Component {
         <hr className="spacer" />
 
         <CardForm table='clients' id={this.props.match.params.id}>
-          <CardFormTopsideProfile />
+          <CardFormTopsideClient />
           <CardFormFieldsPerson />
         </CardForm>
 

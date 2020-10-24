@@ -476,14 +476,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    img {
-      border: 3px solid #666;
-      border-radius: 50%;
-      display: block;
-      margin: 0 auto 5px;
-      width: 160px;
-      height: 160px;
-    }
     @media (max-width: 767px) {
       flex-direction: row-reverse;
     }
@@ -510,5 +502,14 @@
     margin-bottom: 1em;
     width: 100%;
   }
+}
+
+.avatar-lg {
+  border: 3px solid #666;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 5px;
+  width: 160px;
+  height: 160px;
 }
 

@@ -6,6 +6,7 @@ var app = express();
 const db = require('./models');
 const userRoutes = require('./routes/users');
 const clientRoutes = require('./routes/clients');
+const contractRoutes = require('./routes/contracts');
 
 const port = process.env.PORT || 9000;
 
@@ -40,27 +41,7 @@ app.get("/api/db", checkJwt, async (req, res) => {
 
 app.use("/api/users", userRoutes);
 app.use("/api/clients", clientRoutes);
-
-// ADD CONTRACT
-app.post("/api/contracts", async (req, res) => {
-  try {
-    console.log('will add req.body to db.Contract')
-    console.log('|== req.body: ', req.body)
-    console.log('|== db.Contract: ', db.Contract)
-    console.log('un-comment in server.js to save')
-    // const newContract = await db.Contract.create({
-    //   client_id: req.body.client,
-    //   user_id: req.body.user,
-    //   due_date: req.body.date,
-    //   paid: req.body.paid
-    // });
-    // const save = await newContract.save();
-    // res.send(save);
-  }
-  catch(err) {
-    console.log('add new contract error: ', err)
-  }
-});
+app.use("/api/contracts", contractRoutes);
 
 // ADD MAILING LIST SUBSCRIBER
 app.post("/api/mailinglist", async (req, res) => {

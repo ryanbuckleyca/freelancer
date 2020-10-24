@@ -4,20 +4,24 @@ import callAPI from '../scripts/callAPI';
 
 class CardFormFieldsContract extends Component {
 
-  constructor(props) {
-    super(props);
-    callAPI(`/api/users/${this.props.auth0_id}`)
-    .then(res => this.props.changeHandler({ target:
-      { name: 'user_id', value: res.id }
-    }))
-    .catch(err => console.log("problem finding user id: ", err))
-  }
-
   componentDidMount() {
+    console.log('component did mount, looking for user:')
+    callAPI(`/api/users/${this.props.auth0_id}`)
+    .then(res =>  {
+      console.log('found user id for ', this.props.auth0_id, ': ', res.id)
+      this.props.changeHandler({ target:
+        { name: 'user_id', value: res.id }
+      })
+    })
+    .catch(err => console.log("problem finding user id: ", err))
+
     this.props.user_id && callAPI(`/api/contracts/user/${this.props.user_id}`)
-    .then(res => this.props.changeHandler({ target:
-      { name: 'user_clients', value: res}
-    }))
+    .then(res => {
+      console.log('found contract from user ', this.props.user_id)
+      this.props.changeHandler({ target:
+        { name: 'user_clients', value: res}
+      })
+  })
     .catch(err => console.log("problem finding user's clients: ", err))
     console.log('card-form-fields-contract mounted with props: ', this.props)
   }

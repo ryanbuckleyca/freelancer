@@ -13,7 +13,8 @@ router.route("/")
         client_id: req.body.client_id,
         user_id: req.body.user_id,
         due_date: req.body.due_date,
-        paid: req.body.paid
+        paid: req.body.paid,
+        invoice: req.body.invoice
       });
       const save = await newContract.save();
       res.send(save);

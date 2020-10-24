@@ -12,6 +12,7 @@ module.exports = {
       state: "New York",
       post_zip: "11937",
       country: "USA",
+      picture: 'https://res.cloudinary.com/ryanbuckleyca/image/upload/v1603580385/cheque-mate/avatars/vqfixfjxtbxfnuchmrui.jpg',
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

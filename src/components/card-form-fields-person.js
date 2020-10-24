@@ -76,7 +76,7 @@ class CardFormFieldsPerson extends Component {
                    required />
           </fieldset>
         </span>
-        <button id="card-form-btn-bottom" onClick={this.props.handleSubmit} className="btn btn-primary d-block mt-4 mx-auto d-md-none">Update profile</button>
+        <button id="card-form-btn-bottom" onClick={this.props.handleSubmit} className="btn btn-primary">Update profile</button>
       </div>
     );
   }

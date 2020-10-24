@@ -394,7 +394,11 @@
     padding: 2em 2.5em 2.5em;
   }
 }
-
+.d-sm-flex {
+  display: flex;
+  justify-content: space-between;
+  fieldset { width: calc(50% - 10px) !important }
+}
 
 .card-email {
   background: white;
@@ -423,7 +427,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   #card-form-btn-side { display: block; }
-  #card-form-btn-bottom { display: none; }
+  #card-form-btn-bottom { display: none; margin: 0 auto; }
   @media (max-width: 767px) {
     flex-direction: column;
     align-items: center;
@@ -432,7 +436,7 @@
     background-position: top;
     background-repeat: no-repeat;
     #card-form-btn-side { display: none; }
-    #card-form-btn-bottom { display: block; }
+    #card-form-btn-bottom { display: block; margin: 15px auto 0; }
   }
   .card-form-form {
     flex-grow: 1;
@@ -446,7 +450,6 @@
     }
   }
   .card-form-img {
-    background-image: url('../images/profile-side.svg');
     background-position: left 40px;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -458,7 +461,6 @@
     align-items: center;
     margin: 3em 3em 3em 0;
     @media (max-width: 767px) {
-      background-image: url('../images/profile-top.svg');
       background-position: 0 top;
       background-size: 100% 100%;
       padding: 3em 0 0 0;
@@ -470,17 +472,28 @@
   }
   .card-form-avatar {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     img {
-      border: 3px solid $blue;
+      border: 3px solid #666;
       border-radius: 50%;
       display: block;
-      margin: 0 auto -1.5em;
-      width: 150px;
-      height: 150px;
+      margin: 0 auto 5px;
+      width: 200px;
+      height: 200px;
     }
-    @media (min-width: 991px) {
-      img { width: 150px }
+    @media (max-width: 767px) {
+      img { width: 160px; height: 160px }
+      flex-direction: row-reverse;
     }
+  }
+  .profile-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    a { margin-bottom: 5px;}
   }
 
   label {
@@ -491,10 +504,12 @@
     }
   }
   input {
-    width: 100%;
+    /* 20px width from padding */
+    width: calc(100% - 20px);
   }
   fieldset {
     margin-bottom: 1em;
+    width: 100%;
   }
 }
 

@@ -5,8 +5,9 @@
   outline: none !important;
   transform: scale(1.02) !important;
 }
+
 body {
-  margin: 0;
+  margin: 0.5em 0;
   padding: 0;
   background: linear-gradient(180deg, rgba(246,250,253,1) 0%, rgba(255,255,255,1) 100%);
   font-family: Avenir, Helvetica, sans-serif;
@@ -22,55 +23,22 @@ body {
   padding: 1em 0 3em;
 }
 
-.container {
-  margin: 0 auto;
-}
-
-.underline {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 80%,
-    #ff789d 20%
-  );
-  margin: 0 -2px 0 -2px;
-  padding: 0 2px 0 2px;
-}
-
 @media(min-width: 360px) {
-  body {
-    font-size: 16px;
-  }
+  body { font-size: 16px }
 }
-
 @media(min-width: 576px) {
-  .wrapper {
-    width: 500px;
-    margin: 0 auto;
-  }
+  .wrapper { width: 500px }
 }
 @media(min-width: 768px) {
-  .wrapper {
-    width: 700px;
-    margin: 0 auto;
-  }
+  .wrapper { width: 700px }
 }
 @media(min-width: 992px) {
-  body {
-    font-size: 20px;
-  }
-  .wrapper {
-    width: 900px;
-    margin: 0 auto;
-  }
+  body { font-size: 20px }
+  .wrapper { width: 900px }
 }
 @media(min-width: 1200px) {
-  body {
-    font-size: 22px;
-  }
-  .wrapper {
-    width: 1000px;
-    margin: 0 auto;
-  }
+  body { font-size: 22px }
+  .wrapper { width: 1000px }
 }
 
 h1 {
@@ -98,7 +66,7 @@ h3 {
 }
 
 hr.spacer {
-  margin: 3em 0;
+  margin: 2em 0;
   border: none;
 }
 
@@ -144,6 +112,18 @@ fieldset {
   border: 0;
 }
 
+.underline {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 80%,
+    #ff789d 20%
+  );
+  margin: 0 -2px 0 -2px;
+  padding: 0 2px 0 2px;
+}
+
+/* BUTTONS */
+
 .btn {
   border-color: rgba(1, 1, 1, 0.06);
   text-decoration: none;
@@ -152,18 +132,19 @@ fieldset {
   padding: 0.5rem 1.5rem;
   cursor: pointer;
   box-shadow: 0px 3px 10px rgba(1, 1, 1, 0.05);
+  color: $white;
 }
 .btn:hover {
   color: white;
-  .arrow {
-    color: $white;
-  }
+  .arrow { color: $white }
 }
+
 .btn-sm {
   border-radius: 50px;
   font-size: 80%;
   padding: 0.3rem 1rem;
 }
+
 .btn-outline-primary {
   text-decoration: none;
   color: $blue;
@@ -173,30 +154,30 @@ fieldset {
   border-color: $blue;
   background-color: $blue;
 }
+
 .btn-success {
   background-color: $green;
-  color: $white;
 }
 .btn-success:hover {
   background-color: lighten($green, 10%);
 }
+
 .btn-primary {
   background-color: $blue;
-  color: $white;
 }
 .btn-primary:hover {
   background-color: lighten($blue, 10%);
 }
+
 .btn-secondary {
   background-color: #999;
-  color: $white;
 }
 .btn-secondary:hover {
   background-color: lighten(#666, 10%);
 }
+
 .btn-danger {
   background-color: $red;
-  color: $white;
 }
 .btn-danger:hover {
   background-color: lighten($red, 10%);

@@ -481,11 +481,10 @@
       border-radius: 50%;
       display: block;
       margin: 0 auto 5px;
-      width: 200px;
-      height: 200px;
+      width: 160px;
+      height: 160px;
     }
     @media (max-width: 767px) {
-      img { width: 160px; height: 160px }
       flex-direction: row-reverse;
     }
   }

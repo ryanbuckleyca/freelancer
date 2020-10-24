@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
 import CardTitle from '../components/card-title';
 import CardForm from '../components/card-form';
-import CardFormTopSideProfile from '../components/card-form-topside-profile';
-import CardFormFieldsPerson from '../components/card-form-fields-contract';
+import CardFormTopSideContract from '../components/card-form-topside-contract';
+import CardFormFieldsContract from '../components/card-form-fields-contract';
 import contracts from '../images/finance_analytics_.svg';
 import callAPI from '../scripts/callAPI';
 
@@ -24,7 +24,7 @@ class Contract extends Component {
       paid: this.state.paid
     })
     .then(res => this.setState(res))
-    .catch(err => console.log('problem creating user in profile.js: ', err))
+    .catch(err => console.log('problem creating contract in contract.js: ', err))
   }
 
   componentDidMount() {
@@ -47,9 +47,9 @@ class Contract extends Component {
           text='You can upload invoices here to automatically generate new contracts, or manually enter the information below.'
         />
         <hr className='spacer' />
-        <CardForm table='users' id={this.state.auth0_id}>
-          <CardFormTopSideProfile />
-          <CardFormFieldsPerson />
+        <CardForm table='contracts' id={this.state.auth0_id}>
+          <CardFormTopSideContract />
+          <CardFormFieldsContract />
         </CardForm>
         <hr className='spacer' />
       </div>

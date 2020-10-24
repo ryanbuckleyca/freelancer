@@ -46,16 +46,6 @@ class CardForm extends Component {
   render() {
     !this.state && this.props.id && this.setFormDataState(this.props);
 
-    if (this.props.table && !this.props.id)
-      return (
-        <div className="profile">
-          <hr className="spacer" />
-          <div style={{textAlign: 'center', height: '50vh', lineHeight: '50vh'}}>
-          no user found
-          </div>
-        </div>
-      )
-
     return(
       <form className="form-wrapper">
         <div className='card-form'>

@@ -1,18 +1,23 @@
 import React, {Component} from 'react';
 import './cards.scss';
+import late from '../images/late.svg'
+import robber from '../images/robber.svg'
 
-class CardFormTopsideProfile extends Component {
+
+class CardFormTopsideContract extends Component {
   cloudinaryUpload = window.cloudinary.createUploadWidget({
     cloudName: 'ryanbuckleyca',
-    cropping: true,
-    showSkipCropButton: false,
-    croppingAspectRatio: 1,
-    uploadPreset: 'cheque-mate-avatars'
+    uploadPreset: 'cheque-mate-invoices',
+    resource_type: 'raw',
+    ocr: 'adv_ocr'
    }, (err, res) => {
     if (!err && res && res.event === "success") {
+      console.log('res from cloudinary upload: ', res)
       this.props.changeHandler({target:
         { name: 'picture', value: res.info.url }
       })
+    } else {
+      console.log('cloudinary error: ', err)
     }
   })
 
@@ -25,12 +30,11 @@ class CardFormTopsideProfile extends Component {
     return(
       <div className="card-form-img">
         <div className="card-form-avatar">
-          <img className="avatar-lg" src={this.props.picture} alt="avatar" />
+          <img className="invoice" src={this.props.picture} alt="invoice" />
           <div className="profile-buttons">
-          <a className="btn btn-secondary" onClick={this.cloudinaryWidget}>edit image</a>
-          <a className="btn btn-secondary">payment info</a>
-          <a className="btn btn-secondary">my clients</a>
-          <a className="btn btn-danger">delete account</a>
+          <a className="btn btn-secondary" onClick={this.cloudinaryWidget}>upload invoice</a>
+          <a className="btn btn-danger">delete contract</a>
+          <br />
           </div>
         </div>
         <button id="card-form-btn-side" className="btn btn-primary" onClick={this.props.handleSubmit}>
@@ -41,5 +45,5 @@ class CardFormTopsideProfile extends Component {
   }
 }
 
-export default CardFormTopsideProfile;
+export default CardFormTopsideContract;
 

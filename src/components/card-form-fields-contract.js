@@ -6,36 +6,54 @@ class CardFormFieldsContract extends Component {
 
   // TODO: this should be inherited from a more global state
   // to avoid having to make another unnecessary api call
-  userID() {
-    console.log('getting user id...')
-    callAPI(`/api/users/${this.props.auth0_id}`)
-    .then(res => this.usersClients(res.id))
+  userIDandClients(auth0_id) {
+    callAPI(`/api/users/${auth0_id}`)
+    .then(res => this._usersClients(res.id))
     .catch(err => console.log("problem finding user id: ", err))
   }
-
-  contractRecord(contract_id) {
-    console.log('getting contract record from db...')
-    callAPI(`/api/contracts/${contract_id}`)
-    .then(res => this.setState(res))
-    .catch(err => console.log("problem finding user's clients: ", err))
-  }
-
-  usersClients(user_id) {
-    console.log('get client list of user...')
+  _usersClients(user_id) {
     callAPI(`/api/clients/user/${user_id}`)
     .then(res => {
       console.log("user's clients are: ", res)
-      this.props.changeHandler({ target: { name: 'user_clients', value: res }})
+      this.props.passProps({ user_clients: res })
     })
+    .catch(err => console.log("problem finding user's clients: ", err))
+  }
+
+  // called from componentDidMount
+  contractRecord(contract_id) {
+    callAPI(`/api/contracts/${contract_id}`)
+    .then(res => this.props.passProps(res))
+    .catch(err => console.log("problem finding contract record: ", err))
   }
 
   componentDidMount() {
-    console.log('card-form-fields-contract mounted with props: ', this.props)
-    this.userID()
+    // get records once props are received
     this.props.id && this.contractRecord(this.props.id)
   }
 
+  clientList(clients) {
+    const options = clients.map(client =>
+        <option key={client.id} value={client.id}>
+        {
+          client.name + ' | ' +
+          client.street1 + ', ' + (client.street2 ? client.street2 + ', ' : '') +
+          client.city + ', ' + client.state + ' ' +
+          client.post_zip + ' ' + client.country
+        }
+        </option>)
+    return (
+      <select className="form-input" name="client" id="client" value={this.props.client_id} onChange={this.props.changeHandler} required>
+        {options}
+      </select>
+    )
+  }
+
   render() {
+    console.log('card-form-fields props in render: ', this.props)
+    !this.props.id && this.userIDandClients(this.props.auth0_id)
+
+    // wait for parent components to pass props
     if(!this.props.id)
       return "Loading..."
 
@@ -43,10 +61,7 @@ class CardFormFieldsContract extends Component {
       <div className="card-form-form">
         <fieldset>
           <label className="form-label" htmlFor="client">Client*</label>
-          <input className="form-input" type="text" id="client_id" name="client_id"
-                 value={this.props.client_id || ''}
-                 onChange={this.props.changeHandler}
-                 required />
+          {this.props.user_clients && this.clientList(this.props.user_clients)}
         </fieldset>
         <fieldset>
           <label className="form-label" htmlFor="idenfitier">Invoice ID or unique description:*</label>

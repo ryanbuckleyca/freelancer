@@ -34,10 +34,9 @@ class CardFormTopsideContract extends Component {
    }, (err, res) => {
     if (!err && res && res.event === "success") {
       console.log('res from cloudinary upload: ', res)
-      this.props.changeHandler({target: {
-        name: 'invoice',
-        value: 'https://res.cloudinary.com/ryanbuckleyca/files/' + res.info.public_id
-      }})
+      this.props.passProps({
+        invoice: 'https://res.cloudinary.com/ryanbuckleyca/files/' + res.info.public_id
+      })
     } else if (err) { console.log('cloudinary error: ', err) }
   })
 

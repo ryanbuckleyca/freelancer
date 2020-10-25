@@ -11,7 +11,6 @@ class CardFormTopsideContract extends Component {
     resource_type: 'raw',
     clientAllowedFormats: ['png','gif','jpeg','pdf','docx','doc','odt','jpg'],
     maxFileSize: 5000000,
-    theme: 'minimal',
     styles: {
       palette: {
         window: '#FEFDF7',
@@ -39,9 +38,7 @@ class CardFormTopsideContract extends Component {
         name: 'invoice',
         value: 'https://res.cloudinary.com/ryanbuckleyca/files/' + res.info.public_id
       }})
-    } else {
-      console.log('cloudinary error: ', err)
-    }
+    } else if (err) { console.log('cloudinary error: ', err) }
   })
 
   cloudinaryWidget = (e) => {
@@ -50,10 +47,21 @@ class CardFormTopsideContract extends Component {
   }
 
   render() {
+    const invoice =
+      this.props.invoice
+      ?
+      <embed src={this.props.invoice} width="200" height="200" alt="invoice"
+        pluginspage="http://www.adobe.com/products/acrobat/readstep2.html" />
+      :
+      <div style={{width: 200, height: 200, textAlign: 'center', lineHeight: '200px',
+        verticalAlign: 'middle', background: '#ececec', borderRadius: '15px'}}>
+        upload an invoice
+      </div>
+
     return(
       <div className="card-form-img">
         <div className="card-form-avatar">
-        <embed src={this.props.invoice} width="200" height="200" alt="invoice" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html" />
+          {invoice} <br />
           <div className="profile-buttons">
           <a className="btn btn-secondary" onClick={this.cloudinaryWidget}>upload invoice</a>
           <a className="btn btn-danger">delete contract</a>

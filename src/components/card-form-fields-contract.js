@@ -4,26 +4,26 @@ import callAPI from '../scripts/callAPI';
 
 class CardFormFieldsContract extends Component {
 
-  componentDidMount() {
-    console.log('component did mount, looking for user:')
+  // TODO: this should be inherited from a more global state
+  // to avoid having to make another unnecessary api call
+  userID() {
+    console.log('getting user id...')
     callAPI(`/api/users/${this.props.auth0_id}`)
-    .then(res =>  {
-      console.log('found user id for ', this.props.auth0_id, ': ', res.id)
-      this.props.changeHandler({ target:
-        { name: 'user_id', value: res.id }
-      })
-    })
+    .then(res => this.contractRecord(res.id))
     .catch(err => console.log("problem finding user id: ", err))
+  }
 
-    this.props.user_id && callAPI(`/api/contracts/user/${this.props.user_id}`)
-    .then(res => {
-      console.log('found contract from user ', this.props.user_id)
-      this.props.changeHandler({ target:
-        { name: 'user_clients', value: res}
-      })
-  })
+  contractRecord(user_id) {
+    callAPI(`/api/contracts/user/${user_id}`)
+    .then(res => this.props.changeHandler({ target:
+      { name: 'user_clients', value: res }
+    }))
     .catch(err => console.log("problem finding user's clients: ", err))
+  }
+
+  componentDidMount() {
     console.log('card-form-fields-contract mounted with props: ', this.props)
+    this.userID()
   }
 
   render() {
@@ -34,6 +34,13 @@ class CardFormFieldsContract extends Component {
           <label className="form-label" htmlFor="client">Client*</label>
           <input className="form-input" type="text" id="client_id" name="client_id"
                  value={this.props.client_id || ''}
+                 onChange={this.props.changeHandler}
+                 required />
+        </fieldset>
+        <fieldset>
+          <label className="form-label" htmlFor="idenfitier">Invoice ID or unique description:*</label>
+          <input className="form-input" type="text" id="idenfitier" name="identifier"
+                 value={this.props.identifier || ''}
                  onChange={this.props.changeHandler}
                  required />
         </fieldset>

@@ -7,7 +7,31 @@ class CardFormTopsideProfile extends Component {
     cropping: true,
     showSkipCropButton: false,
     croppingAspectRatio: 1,
-    uploadPreset: 'cheque-mate-avatars'
+    uploadPreset: 'cheque-mate-avatars',
+    resource_type: 'image',
+    clientAllowedFormats: ['png','gif','jpeg','pdf','docx','doc','odt','jpg'],
+    maxFileSize: 5000000,
+    detection: 'adv_face',
+    styles: {
+      palette: {
+        window: '#FEFDF7',
+        windowBorder: "#90A0B3",
+        tabIcon: "#0E2F5A",
+        menuIcons: '#0B2027',
+        textDark: '#0B2027',
+        textLight: "#FFFFFF",
+        link:  '#40798C',
+        action:  '#70A9A1',
+        inactiveTabIcon: "#0E2F5A",
+        error: '#ff789d',
+        inProgress: '#40798C',
+        complete: '#70A9A1',
+        sourceBg: "#E4EBF1"
+      },
+      fonts: {
+          "Montserrat": "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700",
+      }
+    }
    }, (err, res) => {
     if (!err && res && res.event === "success") {
       this.props.changeHandler({target:

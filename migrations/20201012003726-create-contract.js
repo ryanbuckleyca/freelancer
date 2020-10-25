@@ -23,6 +23,9 @@ module.exports = {
       invoice: {
         type: Sequelize.STRING
       },
+      identifier: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

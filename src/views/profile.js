@@ -8,7 +8,6 @@ import profile from '../images/profile_header.svg';
 import callAPI from '../scripts/callAPI';
 
 class Profile extends Component {
-  state = { auth0_id: null }
 
   createUser(authUser) {
     console.log('creating new user account from auth0')
@@ -18,15 +17,13 @@ class Profile extends Component {
       email: authUser.email,
       picture: authUser.picture
     })
-    .then(res => this.setState(res))
+    .then(res => console.log('new user created: ', res))
     .catch(err => console.log('problem creating user in profile.js: ', err))
   }
 
   componentDidMount() {
-    const authUser = this.props.auth0.user
-    this.setState({auth0_id: authUser.sub})
-    callAPI(`/api/users/${authUser.sub}`)
-      .then(res => res ? this.setState(res) : this.createUser(authUser))
+    this.props.auth0 && callAPI(`/api/users/${this.props.auth0.user.sub}`)
+      .then(res => res && this.createUser(this.props.auth0.user))
   }
 
   render() {
@@ -40,7 +37,7 @@ class Profile extends Component {
           text='In order for us to reach out on your behalf, we need to know how to reach you, and how to forward your most up to date information to your clients.'
         />
         <hr className='spacer' />
-        <CardForm table='users' id={this.state.auth0_id}>
+        <CardForm table='users' id={this.props.auth0.user.sub}>
           <CardFormTopSideProfile />
           <CardFormFieldsPerson />
         </CardForm>

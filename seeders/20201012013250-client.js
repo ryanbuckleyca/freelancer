@@ -3,6 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('Clients', [{
+      user_id: 1,
       name: "Julie Hecht",
       number: "631-697-0961",
       email: "jzh195@gmail.com",
@@ -12,6 +13,7 @@ module.exports = {
       state: "New York",
       post_zip: "11937",
       country: "USA",
+      picture: 'https://res.cloudinary.com/ryanbuckleyca/image/upload/v1603580385/cheque-mate/avatars/vqfixfjxtbxfnuchmrui.jpg',
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

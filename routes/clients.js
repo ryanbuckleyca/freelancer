@@ -5,15 +5,15 @@ const db = require('../models');
 // TODO: should require authentication
 
 router
-  .route("/user/:id")
+  .route("/user/:user_id")
   // GET user's clients - api/clients/user/:id
   .get(async (req, res, next) => {
-    console.log('GET clients from user/:id: ', req.params.id)
+    console.log('GET clients from user/:user_id: ', req.params.user_id)
     try {
       const clients = await db.Client.findAll({
-        where: { user_id: req.params.id }
+        where: { user_id: req.params.user_id }
       })
-      console.log("SUCCESS: found clients by user/:id where req.params.id = ", clients)
+      console.log("SUCCESS: found clients by user/:user_id where req.params.user_id = ", clients)
       clients && res.send(clients);
     }
     catch(err) {

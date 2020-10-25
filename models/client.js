@@ -14,9 +14,13 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'client_id',
         onDelete: 'CASCADE'
       });
+      Client.belongsTo(models.User, {
+        foreignKey: 'user_id',
+      });
     }
   };
   Client.init({
+    user_id: DataTypes.INTEGER,
     name: DataTypes.STRING,
     number: DataTypes.STRING,
     email: DataTypes.STRING,

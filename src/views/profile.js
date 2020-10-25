@@ -8,9 +8,10 @@ import profile from '../images/profile_header.svg';
 import callAPI from '../scripts/callAPI';
 
 class Profile extends Component {
-  state = { id: null }
+  state = { auth0_id: null }
 
   createUser(authUser) {
+    console.log('creating new user account from auth0')
     callAPI('/api/users/', 'POST', {
       auth0_id: authUser.sub,
       name: authUser.name,
@@ -23,8 +24,7 @@ class Profile extends Component {
 
   componentDidMount() {
     const authUser = this.props.auth0.user
-    this.setState({id: authUser.sub})
-    console.log('authUser is: ', authUser)
+    this.setState({auth0_id: authUser.sub})
     callAPI(`/api/users/${authUser.sub}`)
       .then(res => res ? this.setState(res) : this.createUser(authUser))
   }

@@ -5,38 +5,35 @@ import requiredFieldsValid from '../scripts/requiredFieldsValid';
 import './cards.scss';
 
 class CardForm extends Component {
+  state = {}
   // renders form based on url where /table/id
   // gets called from views: Profile, Client, and Contract
   // takes two children components: (1) a form and (2) a top/side
-  // state gets updated by children using this.props.changeHandler
+  // state gets updated by children using changeHandler and passProps
   // this state gets sent to DB for new/update records
   // this state gets passed to children as props
 
-  state = {auth0_id: this.props.auth0.user.sub}
-
-  setFormDataState(props) {
-    console.log('trying to load record based on url...')
+  loadRecordState(props) {
+    // called when props are received from parent
     callAPI(`/api/${props.table}/${props.id}`)
-      .then(result => {
-        let date = new Date(result.due_date)
-        result.due_date = (date.getFullYear() + '-'
-                        + (date.getMonth() + 1) + '-'
-                        + date.getDate());
-        this.setState(result)
-      })
+    .then(result => {
+      let date = new Date(result.due_date)
+      result.due_date = (date.getFullYear() + '-'
+                      + (date.getMonth() + 1) + '-'
+                      + date.getDate());
+      this.setState(result)
+    })
   }
 
-  async saveFormToDB() {
-    try {
-      const res = await callAPI(
-        `/api/${this.props.table}/${this.props.id || ''}`,
-        this.props.id ? 'PUT' : 'POST',
-        this.state
-      )
+  saveFormToDB() {
+    callAPI(
+      `/api/${this.props.table}/${this.props.id || ''}`,
+      this.props.id ? 'PUT' : 'POST',
+      this.state
+    ).then(res => {
       console.log(`${this.props.table} saved`)
       return res
-    }
-    catch(err) { console.log('card-form saveFormToDB err: ', err) }
+    }).catch(err => console.log('card-form saveFormToDB err: ', err))
   }
 
   handleSubmit = async (e) => {
@@ -56,15 +53,22 @@ class CardForm extends Component {
   changeHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log('state before event handler: ', this.state)
-    console.log('try setting state to: ', { [name]: value })
-    this.setState({ [name]: value }, function(){ console.log("new state", this.state) })
+    this.setState({ [name]: value })
+  }
+
+  passProps = (props) => {
+    this.setState({ ...props })
+  }
+
+  componentDidMount() {
+    // if record id prop has loaded from parent
+    // then get that record
+    this.props.id && this.loadRecordState(this.props);
   }
 
   render() {
-    console.log('this.state is: ', this.state)
-    console.log('this.props is: ', this.props)
-    !this.state.id && this.props.id && this.setFormDataState(this.props);
+    if(!this.props.id)
+      return "Loading..."
 
     return(
       <form className="form-wrapper">
@@ -73,6 +77,8 @@ class CardForm extends Component {
           {React.cloneElement(this.props.children[0], {
             changeHandler: this.changeHandler,
             handleSubmit: this.handleSubmit,
+            passProps: this.passProps,
+            auth0_id: this.props.auth0.user.sub,
             ...this.state
           })}
 
@@ -80,6 +86,8 @@ class CardForm extends Component {
           {React.cloneElement(this.props.children[1], {
             changeHandler: this.changeHandler,
             handleSubmit: this.handleSubmit,
+            passProps: this.passProps,
+            auth0_id: this.props.auth0.user.sub,
             ...this.state
           })}
         </div>

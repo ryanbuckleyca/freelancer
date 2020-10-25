@@ -9,27 +9,38 @@ class CardFormFieldsContract extends Component {
   userID() {
     console.log('getting user id...')
     callAPI(`/api/users/${this.props.auth0_id}`)
-    .then(res => this.contractRecord(res.id))
+    .then(res => this.usersClients(res.id))
     .catch(err => console.log("problem finding user id: ", err))
   }
 
-  contractRecord(user_id) {
-    callAPI(`/api/contracts/user/${user_id}`)
-    .then(res => this.props.changeHandler({ target:
-      { name: 'user_clients', value: res }
-    }))
+  contractRecord(contract_id) {
+    console.log('getting contract record from db...')
+    callAPI(`/api/contracts/${contract_id}`)
+    .then(res => this.setState(res))
     .catch(err => console.log("problem finding user's clients: ", err))
+  }
+
+  usersClients(user_id) {
+    console.log('get client list of user...')
+    callAPI(`/api/clients/user/${user_id}`)
+    .then(res => {
+      console.log("user's clients are: ", res)
+      this.props.changeHandler({ target: { name: 'user_clients', value: res }})
+    })
   }
 
   componentDidMount() {
     console.log('card-form-fields-contract mounted with props: ', this.props)
     this.userID()
+    this.props.id && this.contractRecord(this.props.id)
   }
 
   render() {
+    if(!this.props.id)
+      return "Loading..."
+
     return(
       <div className="card-form-form">
-        <input className="form-input" type="hidden" id="id" name="id" />
         <fieldset>
           <label className="form-label" htmlFor="client">Client*</label>
           <input className="form-input" type="text" id="client_id" name="client_id"

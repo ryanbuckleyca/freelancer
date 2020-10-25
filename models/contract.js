@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Contract.belongsTo(models.User, {
-        foreignKey: 'user_id'
+        foreignKey: 'user_id',
       });
       Contract.belongsTo(models.Client, {
-        foreignKey: 'client_id'
+        foreignKey: 'client_id',
       });
     }
   };

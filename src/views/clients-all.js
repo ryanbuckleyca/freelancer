@@ -16,7 +16,6 @@ class ClientsAll extends Component {
     let clients = this.state.clients
     return (
       <div>
-
         <hr className="spacer" />
         <CardTitle
           img={social_media}
@@ -24,7 +23,6 @@ class ClientsAll extends Component {
           title={<span>Clients</span>}
           text="Check this ongoing list for clients who may be known for late or unpaid invoices."
         />
-
         <hr className="spacer" />
         <div className="card-client-grid">
           {clients.map(client => {

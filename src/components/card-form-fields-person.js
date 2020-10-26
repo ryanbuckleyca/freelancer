@@ -1,82 +1,105 @@
 import React, {Component} from 'react';
 import './cards.scss';
 
+class CardFormInput extends Component {
+  render() {
+    return(
+      <fieldset>
+        <label className="form-label" htmlFor={this.props.name}>
+          {this.props.title}
+        </label>
+        <input 
+          className="form-input" 
+          type="text" 
+          id={this.props.name} 
+          name={this.props.name}
+          value={this.props.value || ''}
+          onChange={this.props.changeHandler}
+          required
+        />
+      </fieldset>
+    )  
+  }
+}
+
 class CardFormFieldsPerson extends Component {
   render() {
-    console.log('cardformFieldsPerson props: ', this.props)
-
     return(
       <div className="card-form-form">
-        <input className="form-input" type="hidden" id="id" name="id" />
-        <fieldset>
-          <label className="form-label" htmlFor="name">Full name*</label>
-          <input className="form-input" type="text" id="name" name="name"
-                 value={this.props.name || ''}
-                 onChange={this.props.changeHandler}
-                 required />
-        </fieldset>
+        <CardFormInput 
+          name="name" 
+          title="Full name *" 
+          value={this.props.name}
+          changeHandler={this.props.changeHandler} 
+          required 
+        />
         <span className="d-sm-flex">
-          <fieldset className="mr-sm-3">
-            <label className="form-label" htmlFor="email">Email Address*</label>
-            <input className="form-input" type="text" id="email" name="email"
-                   value={this.props.email || ''}
-                   onChange={this.props.changeHandler}
-                   required />
-          </fieldset>
-          <fieldset>
-            <label className="form-label" htmlFor="number">Phone*</label>
-            <input className="form-input" type="text" id="number" name="number"
-                   value={this.props.number || ''}
-                   onChange={this.props.changeHandler}
-                   required />
-          </fieldset>
+          <CardFormInput 
+            name="email" 
+            title="Email Address *" 
+            value={this.props.email}
+            changeHandler={this.props.changeHandler} 
+            required 
+          />
+          <CardFormInput 
+            name="number"
+            title="Phone *" 
+            value={this.props.number}
+            changeHandler={this.props.changeHandler} 
+            required 
+          />
         </span>
-        <fieldset>
-          <label className="form-label" htmlFor="street1">Address 1*</label>
-          <input className="form-input" type="text" id="street1" name="street1"
-                 value={this.props.street1 || ''}
-                 onChange={this.props.changeHandler}
-                 required />
-        </fieldset>
-        <fieldset>
-          <label className="form-label" htmlFor="street2">Address 2</label>
-          <input className="form-input" type="text" id="street2" name="street2"
-                 value={this.props.street2 || ''}
-                 onChange={this.props.changeHandler} />
-        </fieldset>
+        <CardFormInput 
+            name="street1"
+            title="Address 1 *" 
+            value={this.props.street1}
+            changeHandler={this.props.changeHandler} 
+            required 
+        />
+        <CardFormInput 
+            name="street2"
+            title="Address 2" 
+            value={this.props.street2}
+            changeHandler={this.props.changeHandler} 
+        />
         <span className="d-sm-flex">
-          <fieldset className="mr-sm-3">
-            <label className="form-label" htmlFor="city">City/Town*</label>
-            <input className="form-input" type="text" id="city" name="city"
-                   value={this.props.city || ''}
-                   onChange={this.props.changeHandler}
-                   required />
-          </fieldset>
-          <fieldset>
-            <label className="form-label" htmlFor="state">State/Province*</label>
-            <input className="form-input" type="text" id="state" name="state"
-                   value={this.props.state || ''}
-                   onChange={this.props.changeHandler}
-                   required />
-          </fieldset>
+          <CardFormInput 
+              name="city"
+              title="City/Town *" 
+              value={this.props.city}
+              changeHandler={this.props.changeHandler} 
+              required 
+          />
+          <CardFormInput 
+              name="state"
+              title="State/Province *" 
+              value={this.props.state}
+              changeHandler={this.props.changeHandler} 
+              required 
+          />
         </span>
         <span className="d-sm-flex">
-          <fieldset className="mr-sm-3">
-            <label className="form-label" htmlFor="post_zip">Zip/Postal code*</label>
-            <input className="form-input" type="text" id="post_zip" name="post_zip"
-                   value={this.props.post_zip || ''}
-                   onChange={this.props.changeHandler}
-                   required />
-          </fieldset>
-          <fieldset>
-            <label className="form-label" htmlFor="country">Country*</label>
-            <input className="form-input" type="text" id="country" name="country"
-                   value={this.props.country || ''}
-                   onChange={this.props.changeHandler}
-                   required />
-          </fieldset>
+          <CardFormInput 
+              name="post_zip"
+              title="Zip/Postal code *" 
+              value={this.props.post_zip}
+              changeHandler={this.props.changeHandler} 
+              required 
+          />
+          <CardFormInput 
+              name="country"
+              title="Country *" 
+              value={this.props.country}
+              changeHandler={this.props.changeHandler} 
+              required 
+          />
         </span>
-        <button id="card-form-btn-bottom" onClick={this.props.handleSubmit} className="btn btn-primary">Update profile</button>
+        <button 
+          id="card-form-btn-bottom" 
+          onClick={this.props.handleSubmit} 
+          className="btn btn-primary">
+          Update profile
+        </button>
       </div>
     );
   }

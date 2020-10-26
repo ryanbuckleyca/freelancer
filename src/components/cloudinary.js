@@ -31,8 +31,8 @@ class Cloudinary extends Component {
     uploadPreset: 'cheque-mate-avatars',
     clientAllowedFormats: ['png','gif','jpeg','jpg'],
     resource_type: 'image',
-    cropping: true,
     showSkipCropButton: false,
+    cropping: true,
     croppingAspectRatio: 1,
     detection: 'adv_face'
   }

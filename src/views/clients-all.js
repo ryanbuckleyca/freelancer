@@ -21,7 +21,7 @@ class ClientsAll extends Component {
         <CardTitle
           img={social_media}
           thisClass="card-md"
-          title={<span>Stay Informed. <br />Know your clients.</span>}
+          title={<span>Clients</span>}
           text="Check this ongoing list for clients who may be known for late or unpaid invoices."
         />
 

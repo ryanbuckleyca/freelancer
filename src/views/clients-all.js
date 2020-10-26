@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import SectionHeader from '../components/section-header';
 import CardTitle from '../components/card-title';
 import CardClient from '../components/card-client';
 import social_media from '../images/social_media.svg';

@@ -14,13 +14,13 @@ class CardForm extends Component {
   // this state gets passed to children as props
 
   loadRecordState(props) {
-    // called when props are received from parent
+    // called when props are received from parent view (i.e. Profile, Client...)
     callAPI(`/api/${props.table}/${props.id}`)
     .then(result => {
-      let date = new Date(result.due_date)
-      result.due_date = (date.getFullYear() + '-'
-                      + (date.getMonth() + 1) + '-'
-                      + date.getDate());
+      if (result.due_date) {
+        let date = new Date(result.due_date)
+        result.due_date = (date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
+      }
       this.setState(result)
     })
   }
@@ -51,12 +51,15 @@ class CardForm extends Component {
   }
 
   changeHandler = (e) => {
+    console.log('change handler called with event: ', e)
     const name = e.target.name;
     const value = e.target.value;
-    this.setState({ [name]: value })
+    this.setState({ [name]: value }, console.log('new state is: ', this.state))
+    
   }
 
   passProps = (props) => {
+    console.log('passProps called in card-form.js')
     this.setState({ ...props })
   }
 

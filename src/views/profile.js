@@ -21,7 +21,7 @@ class Profile extends Component {
 
   componentDidMount() {
     this.props.auth0 && callAPI(`/api/users/${this.props.auth0.user.sub}`)
-      .then(res => res && this.createUser(this.props.auth0.user))
+      .then(res => !res && this.createUser(this.props.auth0.user))
   }
 
   render() {

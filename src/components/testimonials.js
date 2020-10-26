@@ -51,42 +51,42 @@ class Testimonials extends Component {
             </a>
           </div>
         </span>
-
+        
         <div class="testimonials">
           <div className="card-testimony active">
-            <div className="avatar">
+            <div className="card-testimony-user">
               <img src="http://kitt.lewagon.com/placeholder/users/ryanbuckleyca"
                 className="avatar" alt="user avatar" />
+              <span>
+                Ryan Buckley<br />Web Developer
+              </span>
             </div>
             <p>
-              Ryan Buckley
-              <br />
-              Web Developer
-              <br /><br />
               Cheque Mate helped me get my hard-earned money while allowing me to focus on new projects. I'd highly recommend this effortless app to any freelancer!
             </p>
           </div>
-
           <div className="card-testimony">
-            <div className="avatar">
-              <img src="https://randomuser.me/api/portraits/men/15.jpg"
-                className="avatar" alt="user avatar" />
+            <div className="card-testimony-user">
+                <img src="https://randomuser.me/api/portraits/men/15.jpg"
+                  className="avatar" alt="user avatar" />
+              <span>
+                Ray Newman<br />Designer
+              </span>
             </div>
             <p>
-              Ray Newman<br />
-              Designer<br /><br />
               I signed up to Cheque Mate because I was tired of being ripped off by new clients, so now I check before starting any new project to see if they're listed.
             </p>
           </div>
 
           <div className="card-testimony">
-            <div className="avatar">
+            <div className="card-testimony-user">
               <img src="https://randomuser.me/api/portraits/men/39.jpg"
                 className="avatar" alt="user avatar" />
+              <span>
+                Hassan Raffi<br />Freelance Editor
+              </span>
             </div>
             <p>
-              Hassan Raffi<br />
-              Freelance Editor<br /><br />
               I love that I don't have to keep checking which of my invoice have been paid and sending reminders to clients. With Cheque Mate I just upload and done!
             </p>
           </div>

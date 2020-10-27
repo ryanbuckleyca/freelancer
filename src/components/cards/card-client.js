@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import late from '../images/late.svg'
-import robber from '../images/robber.svg'
+import late from '../../images/late.svg'
+import robber from '../../images/robber.svg'
 
 class CardClient extends Component {
   render() {

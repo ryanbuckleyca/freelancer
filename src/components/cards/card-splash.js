@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import imgRevenue from '../images/revenue_2.svg';
-import toggleModal from '../scripts/toggleModal';
+import imgRevenue from '../../images/revenue_2.svg';
+import toggleModal from '../../scripts/toggleModal';
 import './cards.scss';
 
 class CardSplash extends Component {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './cards.scss';
+import '../cards.scss';
 
 class CardFormInput extends Component {
   render() {
@@ -94,12 +94,13 @@ class CardFormFieldsPerson extends Component {
               required 
           />
         </span>
-        <button 
-          id="card-form-btn-bottom" 
-          onClick={this.props.handleSubmit} 
-          className="btn btn-primary">
+        <div id="card-form-btn-bottom">
+          <a className="btn btn-primary" onClick={this.props.handleSubmit}>
           Update profile
-        </button>
+          </a>
+          <br />
+          <a className="btn btn-danger">delete account</a>
+        </div>
       </div>
     );
   }

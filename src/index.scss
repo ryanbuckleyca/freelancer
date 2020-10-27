@@ -169,15 +169,18 @@ fieldset {
 }
 
 .btn-secondary {
-  background-color: #999;
+  background-color: #F6F8F7;
+  color: $blue;
 }
 .btn-secondary:hover {
-  background-color: lighten(#666, 10%);
+  background-color: lighten(#F6F8F7, 10%);
 }
 
 .btn-danger {
-  background-color: $red;
+  background-color: #F6F8F7;
+  color: $red;
 }
 .btn-danger:hover {
-  background-color: lighten($red, 10%);
+  background-color: $red;
+  color: #F6F8F7;
 }

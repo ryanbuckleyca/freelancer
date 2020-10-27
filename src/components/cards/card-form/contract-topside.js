@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import './cards.scss';
-import Cloudinary from './cloudinary';
+import '../cards.scss';
+import Cloudinary from '../../cloudinary';
 
 class CardFormTopsideContract extends Component {
   render() {

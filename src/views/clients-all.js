@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import CardTitle from '../components/card-title';
-import CardClient from '../components/card-client';
+import CardTitle from '../components/cards/card-title';
+import CardClient from '../components/cards/card-client';
 import social_media from '../images/social_media.svg';
 import callAPI from '../scripts/callAPI';
 

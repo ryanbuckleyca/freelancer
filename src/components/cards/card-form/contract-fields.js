@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import './cards.scss';
-import callAPI from '../scripts/callAPI';
+import '../cards.scss';
+import callAPI from '../../../scripts/callAPI';
 
 class CardFormFieldsContract extends Component {
 

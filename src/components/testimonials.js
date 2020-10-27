@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './testimonials.scss';
-import './cards.scss';
+import './cards/cards.scss';
 
 class Testimonials extends Component {
   componentDidMount() {

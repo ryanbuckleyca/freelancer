@@ -38,7 +38,6 @@ app.get("/api/db", checkJwt, async (req, res) => {
   }
 });
 
-
 app.use("/api/users", userRoutes);
 app.use("/api/clients", clientRoutes);
 app.use("/api/contracts", contractRoutes);
@@ -56,7 +55,6 @@ app.post("/api/mailinglist", async (req, res) => {
     console.log('add to mailing list error: ', err)
   }
 });
-
 
 // The "catchall" handler: for any request that doesn't
 // match the ones above, send back React's index.html file.

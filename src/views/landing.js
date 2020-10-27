@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import SectionHeader from '../components/section-header';
-import CardSplash from '../components/card-splash';
-import CardTitle from '../components/card-title';
-import CardSmall from '../components/card-small';
+import CardSplash from '../components/cards/card-splash';
+import CardTitle from '../components/cards/card-title';
+import CardSmall from '../components/cards/card-small';
 import HowItWorks from '../components/howitworks';
 import Testimonials from '../components/testimonials';
 import money from '../images/bank_note.svg';

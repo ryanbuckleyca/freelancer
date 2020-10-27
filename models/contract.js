@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       Contract.belongsTo(models.Client, {
         foreignKey: 'client_id',
       });
-    }
+      Contract.hasMany(models.Reminder, {
+        foreignKey: 'reminder_id',
+      });    }
   };
   Contract.init({
     client_id: DataTypes.INTEGER,

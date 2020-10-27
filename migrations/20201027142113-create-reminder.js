@@ -1,33 +1,24 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Contracts', {
+    await queryInterface.createTable('Reminders', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      client_id: {
-        type: Sequelize.INTEGER
-      },
-      user_id: {
-        type: Sequelize.INTEGER
-      },
-      reminder_id: {
-        type: Sequelize.INTEGER
-      },
-      due_date: {
-        type: Sequelize.DATE
-      },
-      paid: {
-        type: Sequelize.BOOLEAN
-      },
-      invoice: {
+      type: {
         type: Sequelize.STRING
       },
-      identifier: {
+      frequency: {
+        type: Sequelize.INTEGER
+      },
+      tone: {
         type: Sequelize.STRING
+      },
+      text: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -40,6 +31,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Contracts');
+    await queryInterface.dropTable('Reminders');
   }
 };

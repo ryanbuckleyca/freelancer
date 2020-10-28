@@ -41,6 +41,18 @@ app.get("/api/db", checkJwt, async (req, res) => {
 app.use("/api/users", userRoutes);
 app.use("/api/clients", clientRoutes);
 app.use("/api/contracts", contractRoutes);
+// GET CONTRACT REMINDERS
+app.get("/api/contracts/:id/reminders", async (req, res) => {
+  try {
+    const reminders = await db.Reminder.findAll({
+      contract_id: req.params.id,
+    });
+    res.send(reminders);
+  }
+  catch(err) {
+    console.log('api find reminders error: ', err)
+  }
+});
 
 // ADD MAILING LIST SUBSCRIBER
 app.post("/api/mailinglist", async (req, res) => {

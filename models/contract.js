@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   Contract.init({
     client_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
+    contract_id: DataTypes.INTEGER,
     due_date: DataTypes.DATE,
     invoice: DataTypes.STRING,
     identifier: DataTypes.STRING,

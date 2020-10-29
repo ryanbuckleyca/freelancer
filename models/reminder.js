@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Reminder.belongsTo(models.Contract, {
+      Reminder.hasMany(models.Contract, {
         foreignKey: 'reminder_id',
       });
     };

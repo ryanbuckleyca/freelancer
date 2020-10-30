@@ -5,23 +5,29 @@ import requiredFieldsValid from '../../../scripts/requiredFieldsValid';
 import '../cards.scss';
 
 class CardForm extends Component {
-  state = {}
-  // renders form based on url where /table/id
-  // gets called from views: Profile, Client, and Contract
-  // takes two children components: (1) a form and (2) a top/side
-  // state gets updated by children using changeHandler and passProps
+  state = {recordLoaded: false}
+  // renders form based on url where /table/id.
+  // gets called from views: Profile, Client, and Contract.
+  // takes two children components: (1) a form and (2) a top/side.
+  // state gets updated by children using changeHandler and/or passProps.
   // this state gets sent to DB for new/update records
   // this state gets passed to children as props
+  // TODO: currently runs in endless loop getting record
 
-  loadRecordState(props) {
+  loadRecordState(table, id) {
     // called when props are received from parent view (i.e. Profile, Client...)
-    callAPI(`/api/${props.table}/${props.id}`)
+    console.log('callAPI form card-form loadRecordState :table, :id = ', table, id)
+    callAPI(`/api/${table}/${id}`)
     .then(result => {
+      console.log("RESULT IS: ", result)
       if (result.due_date) {
         let date = new Date(result.due_date)
         result.due_date = (date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
       }
-      this.setState(result)
+      this.setState(
+        {...result, recordLoaded: true },
+        console.log("RESULT IS NOW: ", result.due_date)
+      )
     })
   }
 
@@ -60,16 +66,23 @@ class CardForm extends Component {
 
   passProps = (props) => {
     console.log('passProps called in card-form.js')
-    this.setState({ ...props })
+    this.setState({ ...props }, console.log('state in card-form is now: ', this.state))
   }
 
   componentDidMount() {
     // if record id prop has loaded from parent
     // then get that record
-    this.props.id && this.loadRecordState(this.props);
+    console.log('||||| card-form mounted with props: ', this.props)
+    console.log('||||| card-form mounted with state: ', this.state)
+    const { table, id } = this.props
+    if (id && !this.state.recordLoaded)
+      this.loadRecordState(table, id);
   }
 
   render() {
+    console.log('||||| card-form rendered with props: ', this.props)
+    console.log('||||| card-form rendered with state: ', this.state)
+
     if(!this.props.id)
       return "Loading..."
 

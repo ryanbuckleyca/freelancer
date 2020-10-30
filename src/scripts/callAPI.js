@@ -14,6 +14,8 @@ const callAPI = async (address, method = 'GET', params = null) => {
     const data = await res.json()
     return data
   } catch(err) {
+    // TODO: handle errors
+    // returning null leads to unexpected results
     console.log(`callAPI(${method},${address},${params}) error: `, err)
     return null
   }

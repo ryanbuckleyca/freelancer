@@ -25,7 +25,6 @@ app.use(cors())
 
 // ROUTES (secured ones require checkJwt middleware)
 const checkJwt = require('./routes/authenticate');
-
 // Auth0 test
 app.get("/api/db", checkJwt, async (req, res) => {
   try {
@@ -37,22 +36,23 @@ app.get("/api/db", checkJwt, async (req, res) => {
     res.send({'res':`error: ${error}`});
   }
 });
-
+// routes/
 app.use("/api/users", userRoutes);
 app.use("/api/clients", clientRoutes);
 app.use("/api/contracts", contractRoutes);
 // GET CONTRACT REMINDERS
-app.get("/api/contracts/:id/reminders", async (req, res) => {
-  try {
-    const reminders = await db.Reminder.findAll({
-      contract_id: req.params.id,
-    });
-    res.send(reminders);
-  }
-  catch(err) {
-    console.log('api find reminders error: ', err)
-  }
-});
+// app.get("/api/contracts/:id/reminders", async (req, res) => {
+//   try {
+//     const reminders = await db.Contract.findAll({
+//       where: { id: 1 }, 
+//       include: [{ model: db.Reminder, as: 'Reminder'}]
+//     });
+//     res.send(reminders);
+//   }
+//   catch(err) {
+//     console.log('api find reminders error: ', err)
+//   }
+// });
 
 // ADD MAILING LIST SUBSCRIBER
 app.post("/api/mailinglist", async (req, res) => {

@@ -3,7 +3,6 @@ import '../cards.scss';
 import callAPI from '../../../scripts/callAPI';
 
 class CardFormFieldsContract extends Component {
-
   // TODO: this should be inherited from a more global state
   // to avoid having to make another unnecessary api call
   userIDandClients(auth0_id) {
@@ -23,13 +22,16 @@ class CardFormFieldsContract extends Component {
   // called from componentDidMount
   contractRecord(contract_id) {
     callAPI(`/api/contracts/${contract_id}`)
-    .then(res => this.props.passProps(res))
+    .then(res => this.props.passProps(...res))
     .catch(err => console.log("problem finding contract record: ", err))
   }
 
   componentDidMount() {
+    console.log('||||| card-form-fields-contract mounted with props: ', this.props)
     // get records once props are received
-    this.props.id && this.contractRecord(this.props.id)
+    // unless record has already been loaded
+    console.log('contract-fields mounted with recordLoaded value of ', this.props.recordLoaded)
+    !this.props.recordLoaded && this.contractRecord(this.props.id)
   }
 
   clientList(clients) {
@@ -50,7 +52,8 @@ class CardFormFieldsContract extends Component {
   }
 
   render() {
-    console.log('card-form-fields props in render: ', this.props)
+    console.log('||||| card-form-fields-contract rendered with props: ', this.props)
+
     !this.props.id && this.userIDandClients(this.props.auth0_id)
 
     // wait for parent components to pass props
@@ -66,23 +69,23 @@ class CardFormFieldsContract extends Component {
         <fieldset>
           <label className="form-label" htmlFor="idenfitier">Invoice ID or unique description:*</label>
           <input className="form-input" type="text" id="idenfitier" name="identifier"
-                 value={this.props.identifier || ''}
-                 onChange={this.props.changeHandler}
-                 required />
+            value={this.props.identifier || ''}
+            onChange={this.props.changeHandler}
+            required />
         </fieldset>
         <span className="d-sm-flex">
           <fieldset className="mr-sm-3">
             <label className="form-label" htmlFor="due_date">Due Date*</label>
             <input className="form-input" type="date" id="due_date" name="due_date"
-                   value={this.props.due_date || ''}
-                   onChange={this.props.changeHandler}
-                   required />
+              value={this.props.due_date || ''}
+              onChange={this.props.changeHandler}
+              required />
           </fieldset>
           <fieldset>
             <label className="form-label" htmlFor="paid">Paid?*</label>
             <input className="form-input" type="checkbox" id="paid" name="paid"
-                   value={this.props.paid || ''}
-                   onChange={this.props.changeHandler} />
+              value={this.props.paid || ''}
+              onChange={this.props.changeHandler} />
           </fieldset>
         </span>
         <button id="card-form-btn-bottom" onClick={this.props.handleSubmit} className="btn btn-primary">

@@ -5,7 +5,11 @@ import CardFormTopSideContract from '../components/cards/card-form/contract-tops
 import CardFormFieldsContract from '../components/cards/card-form/contract-fields';
 
 class Contract extends Component {
+  componentDidMount() {
+    console.log("||||| contract view mounted with props: ", this.props)
+  }
   render() {
+    console.log("||||| contract view rendered with props: ", this.props)
     return(
       <div className='profile'>
         <hr className='spacer' />

@@ -16,18 +16,13 @@ class CardForm extends Component {
 
   loadRecordState(table, id) {
     // called when props are received from parent view (i.e. Profile, Client...)
-    console.log('callAPI form card-form loadRecordState :table, :id = ', table, id)
     callAPI(`/api/${table}/${id}`)
     .then(result => {
-      console.log("RESULT IS: ", result)
       if (result.due_date) {
         let date = new Date(result.due_date)
         result.due_date = (date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
       }
-      this.setState(
-        {...result, recordLoaded: true },
-        console.log("RESULT IS NOW: ", result.due_date)
-      )
+      this.setState({...result, recordLoaded: true })
     })
   }
 
@@ -57,7 +52,7 @@ class CardForm extends Component {
   }
 
   changeHandler = (e) => {
-    console.log('change handler called with event: ', e)
+    console.log('change handler called in card-form with event: ', e)
     const name = e.target.name;
     const value = e.target.value;
     this.setState({ [name]: value }, console.log('new state is: ', this.state))
@@ -65,8 +60,10 @@ class CardForm extends Component {
   }
 
   passProps = (props) => {
-    console.log('passProps called in card-form.js')
-    this.setState({ ...props }, console.log('state in card-form is now: ', this.state))
+    this.setState(
+      { ...props }, 
+      console.log('props passed, state in card-form is now: ', this.state)
+    )
   }
 
   componentDidMount() {

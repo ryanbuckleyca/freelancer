@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../cards.scss';
 import callAPI from '../../../scripts/callAPI';
+import Select from 'react-select';
 
 class CardFormFieldsContract extends Component {
   // TODO: this should be inherited from a more global state
@@ -19,40 +20,61 @@ class CardFormFieldsContract extends Component {
     .catch(err => console.log("problem finding user's clients: ", err))
   }
 
-  // called from componentDidMount
-  contractRecord(contract_id) {
-    callAPI(`/api/contracts/${contract_id}`)
-    .then(res => this.props.passProps(...res))
-    .catch(err => console.log("problem finding contract record: ", err))
+  clientInfo(client) {
+    return  client.name + ' | ' +
+    client.street1 + ', ' + (client.street2 ? client.street2 + ', ' : '') +
+    client.city + ', ' + client.state + ' ' +
+    client.post_zip + ' ' + client.country
   }
 
-  componentDidMount() {
-    console.log('||||| card-form-fields-contract mounted with props: ', this.props)
-    // get records once props are received
-    // unless record has already been loaded
-    console.log('contract-fields mounted with recordLoaded value of ', this.props.recordLoaded)
-    !this.props.recordLoaded && this.contractRecord(this.props.id)
+  contractClient(client_id, user_clients) {
+    const client = user_clients.find(client => client.id === client_id)
+    return this.clientInfo(client)
+  }
+
+  changeSelect = e => {
+    console.log('event in changeSelect() is: ', e)
+    this.props.passProps({ 
+      selectedClient: e,
+      client_id: e.value
+    })
   }
 
   clientList(clients) {
-    const options = clients.map(client =>
-        <option key={client.id} value={client.id}>
-        {
-          client.name + ' | ' +
-          client.street1 + ', ' + (client.street2 ? client.street2 + ', ' : '') +
-          client.city + ', ' + client.state + ' ' +
-          client.post_zip + ' ' + client.country
-        }
-        </option>)
+    const options = clients.map(client => {
+      return {
+        value: client.id,
+        label: this.clientInfo(client)
+      }
+    })
     return (
-      <select className="form-input" name="client" id="client" value={this.props.client_id} onChange={this.props.changeHandler} required>
-        {options}
-      </select>
+      <Select 
+        className="form-input" 
+        name="client" 
+        id="client" 
+        classNamePrefix="react-select"
+        options={options}
+        value={this.props.selectedClient} 
+        onChange={this.changeSelect} 
+        isSearchable
+        required
+      />
     )
   }
 
   render() {
     console.log('||||| card-form-fields-contract rendered with props: ', this.props)
+
+    //set selected client
+    const {user_clients, client_id } = this.props
+    user_clients 
+    && !this.props.selectedClient 
+    && this.props.passProps({
+      selectedClient: {
+        value: client_id,
+        label: this.contractClient(client_id, user_clients)
+      }
+    })
 
     !this.props.id && this.userIDandClients(this.props.auth0_id)
 

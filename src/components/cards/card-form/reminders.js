@@ -10,11 +10,11 @@ class Reminders extends Component {
 
     return(
       <div className="reminders">
-        <div className="reminders-buttons" style={{display: 'flex'}}>
-          Phone
-          Email
-          Text
-          Mail
+        <div className="reminders-buttons" style={{display: 'flex', justifyContent: 'stretch'}}>
+          <button class="reminder-row">Phone</button>
+          <button class="reminder-row">Email</button>
+          <button class="reminder-row">Text</button>
+          <button class="reminder-row">Mail</button>
         </div>
         <fieldset>
           <label className="form-label" htmlFor="frequency">Frequency *</label>

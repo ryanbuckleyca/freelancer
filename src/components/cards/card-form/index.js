@@ -18,7 +18,7 @@ class CardForm extends Component {
     // called when props are received from parent view (i.e. Profile, Client...)
     callAPI(`/api/${table}/${id}`)
     .then(result => {
-      if (result.due_date) {
+      if (result && result.due_date) {
         let date = new Date(result.due_date)
         result.due_date = (date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
       }
@@ -60,6 +60,7 @@ class CardForm extends Component {
   }
 
   passProps = (props) => {
+    console.log('passProps called with: ', props)
     this.setState(
       { ...props }, 
       console.log('props passed, state in card-form is now: ', this.state)

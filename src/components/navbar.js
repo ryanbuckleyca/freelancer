@@ -42,7 +42,7 @@ class Navbar extends Component {
 
   handleClick = (e) => {
     const profileMenu = document.querySelector('.profileMenu');
-    !profileMenu.contains(e.target) && this.closeProfileMenu();
+    profileMenu && !profileMenu.contains(e.target) && this.closeProfileMenu();
   }
 
   componentDidMount() {

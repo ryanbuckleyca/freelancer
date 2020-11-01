@@ -13,9 +13,7 @@ ReactDOM.render(
     clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
     audience={process.env.REACT_APP_AUDIENCE}
     redirectUri={process.env.REACT_APP_REDIRECT_URI}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <App />
   </Auth0Provider>,
   document.getElementById('root')
 );

@@ -1,9 +1,7 @@
-'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('Users', [{
-      auth0_id: 'auth0|5f8cab8973ef49007032e5b9',
+      auth0_id: 'auth0|5f94b28f73ef49007033b81a',
       name: "Ryan Buckley",
       number: "438-408-6340",
       email: "ryanbuckley@gmail.com",

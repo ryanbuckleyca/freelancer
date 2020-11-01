@@ -11,8 +11,8 @@ class CardFormTopsideProfile extends Component {
             <img className="avatar-lg" src={this.props.picture} alt="avatar" />
           </div>
           <div className="profile-buttons left">
-            <a className="btn btn-secondary">my clients</a>
-            <a className="btn btn-secondary">my contracts</a>
+            <a href="/clients/" className="btn btn-secondary">my clients</a>
+            <a href="/contracts/" className="btn btn-secondary">my contracts</a>
           </div>
           <div className="profile-buttons right">
             <Cloudinary text="edit image" options="avatar" handler={this.props.passProps} />

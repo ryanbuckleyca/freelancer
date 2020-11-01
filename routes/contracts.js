@@ -33,7 +33,7 @@ router.route("/:id")
     try {
       const contract = await db.Contract.findOne({
         where: { id: req.params.id },
-        include: [{ model: db.Reminder, as: 'Reminder'}]
+        include: [{ model: db.Reminder }]
       })
       console.log("SUCCESS: found contract by id: req.params.id = ", contract)
       contract && res.send(contract);

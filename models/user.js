@@ -1,5 +1,3 @@
-'use strict';
-
 const db = require('./index')
 // const Household = require('./household')
 

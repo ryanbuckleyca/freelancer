@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../cards.scss';
 import callAPI from '../../../scripts/callAPI';
 import Select from 'react-select';
+import Reminders from './reminders';
 
 class CardFormFieldsContract extends Component {
   // TODO: this should be inherited from a more global state
@@ -104,12 +105,15 @@ class CardFormFieldsContract extends Component {
               required />
           </fieldset>
           <fieldset>
-            <label className="form-label" htmlFor="paid">Paid?*</label>
-            <input className="form-input" type="checkbox" id="paid" name="paid"
-              value={this.props.paid || ''}
-              onChange={this.props.changeHandler} />
+            <label className="checkbox" htmlFor="paid">Paid?*<br />
+              <input className="form-input" type="checkbox" id="paid" name="paid"
+                value={this.props.paid || ''}
+                onChange={this.props.changeHandler} />
+              <span class="checkmark"></span>
+            </label>
           </fieldset>
         </span>
+        <Reminders />
         <button id="card-form-btn-bottom" onClick={this.props.handleSubmit} className="btn btn-primary">
           Update contract
         </button>

@@ -1,4 +1,3 @@
-'use strict';
 const {
   Model
 } = require('sequelize');
@@ -10,12 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Reminder.hasMany(models.Contract, {
-        foreignKey: 'reminder_id',
+      Reminder.belongsTo(models.Contract, {
+        foreignKey: 'contract_id',
       });
     };
   };
   Reminder.init({
+    contract_id: DataTypes.INTEGER,
+    active: DataTypes.BOOLEAN,
     type: DataTypes.STRING,
     frequency: DataTypes.INTEGER,
     tone: DataTypes.STRING,

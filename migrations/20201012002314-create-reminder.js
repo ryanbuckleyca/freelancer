@@ -1,4 +1,3 @@
-'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Reminders', {
@@ -7,6 +6,12 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+      },
+      contract_id: {
+        type: Sequelize.INTEGER
+      },
+      active: {
+        type: Sequelize.BOOLEAN
       },
       type: {
         type: Sequelize.STRING

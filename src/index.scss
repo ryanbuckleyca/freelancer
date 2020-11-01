@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Suez+One&display=swap');
 @import '_custom.scss';
+@import './components/form.scss';
+@import './components/buttons.scss';
 
 *:focus {
   outline: none !important;
@@ -83,40 +85,6 @@ a:visited {
   opacity: 0.7;
 }
 
-form .form-wrapper {
-  padding: 0 30px;
-}
-
-form .invalid {
-  border: 1px $red solid;
-}
-form .valid {
-  border: 1px $green solid;
-}
-input {
-  border-radius: 10px;
-  border: 1px solid rgba(1, 1, 1, .1);
-  box-shadow: 0 2px 5px rgba(1, 1, 1, 0.1);
-  padding: 10px;
-  background: white;
-}
-.react-select__control {
-  border-radius: 10px !important;
-  border: 1px solid rgba(1, 1, 1, .1) !important;
-  box-shadow: 0 2px 5px rgba(1, 1, 1, 0.1);
-  background: white;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-fieldset {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
 .underline {
   background: linear-gradient(
     180deg,
@@ -125,68 +93,4 @@ fieldset {
   );
   margin: 0 -2px 0 -2px;
   padding: 0 2px 0 2px;
-}
-
-/* BUTTONS */
-
-.btn {
-  border-color: rgba(1, 1, 1, 0.06);
-  text-decoration: none;
-  border-radius: 50px;
-  font-size: 100%;
-  padding: 0.5rem 1.5rem;
-  cursor: pointer;
-  box-shadow: 0px 3px 10px rgba(1, 1, 1, 0.05);
-  color: $white;
-}
-.btn:hover {
-  color: white;
-  .arrow { color: $white }
-}
-
-.btn-sm {
-  border-radius: 50px;
-  font-size: 80%;
-  padding: 0.3rem 1rem;
-}
-
-.btn-outline-primary {
-  text-decoration: none;
-  color: $blue;
-  .arrow { color: $red }
-}
-.btn-outline-primary:hover {
-  border-color: $blue;
-  background-color: $blue;
-}
-
-.btn-success {
-  background-color: $green;
-}
-.btn-success:hover {
-  background-color: lighten($green, 10%);
-}
-
-.btn-primary {
-  background-color: $blue;
-}
-.btn-primary:hover {
-  background-color: lighten($blue, 10%);
-}
-
-.btn-secondary {
-  background-color: #F6F8F7;
-  color: $blue;
-}
-.btn-secondary:hover {
-  background-color: lighten(#F6F8F7, 10%);
-}
-
-.btn-danger {
-  background-color: #F6F8F7;
-  color: $red;
-}
-.btn-danger:hover {
-  background-color: $red;
-  color: #F6F8F7;
 }

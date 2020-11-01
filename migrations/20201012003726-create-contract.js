@@ -1,4 +1,3 @@
-'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Contracts', {
@@ -12,9 +11,6 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
-        type: Sequelize.INTEGER
-      },
-      reminder_id: {
         type: Sequelize.INTEGER
       },
       due_date: {

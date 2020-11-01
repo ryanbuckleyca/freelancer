@@ -1,8 +1,8 @@
-'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('Reminders', [{
+      contract_id: 1,
+      active: true,
       type: 'email',
       frequency: 1,
       tone: 'stern',

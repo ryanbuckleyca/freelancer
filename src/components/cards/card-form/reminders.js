@@ -16,11 +16,6 @@ class Reminder extends Component {
     this.updateReminders({ active: status })
   }
 
-  updateMessage(e) {
-    console.log('why not?')
-    this.updateReminders({ text: e.target.value })
-  }
-
   render() {
     const { reminder } = this.props
     console.log('reminder rendered with props: ', this.props)
@@ -45,7 +40,7 @@ class Reminder extends Component {
           <div class="layer"></div>
         </label>
         <div style={{flexGrow: 1, marginLeft: '1em'}}>
-          reminders are {reminder.active ? 'ON' : 'OFF'} for this contract
+        {reminder.type} reminders are {reminder.active ? 'ON' : 'OFF'}
         </div>
         </duv>
         <fieldset>
@@ -92,7 +87,7 @@ class Reminder extends Component {
             Content *
           </label>
           <textarea rows="10" id="message" name="message"
-            onChange={(e) => this.updateMessage(e)}
+            onChange={(e) => this.updateReminders({ text: e.target.value })}
             value={reminder.text}>
           </textarea>
         </fieldset> 

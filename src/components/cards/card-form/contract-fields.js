@@ -3,6 +3,8 @@ import '../cards.scss';
 import callAPI from '../../../scripts/callAPI';
 import Select from 'react-select';
 import Reminders from './reminders';
+import InputField from './card-form-input-field';
+import Radio from './radio';
 
 class CardFormFieldsContract extends Component {
   // TODO: this should be inherited from a more global state
@@ -85,35 +87,49 @@ class CardFormFieldsContract extends Component {
 
     return(
       <div className="card-form-form">
+        <span className="d-xs-flex">
+          <InputField 
+            name="identifier" 
+            className="flex-item-fill"
+            title="Invoice ID or unique description: *" 
+            value={this.props.identifier}
+            changeHandler={this.props.changeHandler} 
+            required 
+          />
+          <div className="flex-item-small">
+            <Radio name="paid" value="paid" />
+            <Radio name="paid" value="unpaid" className="alert" />
+          </div>
+        </span>
+        <span className="d-xs-flex">
+          <InputField 
+            className="flex-item-fill"
+            type="date"
+            name="due_date" 
+            title="Due Date: *" 
+            value={this.props.due_date}
+            changeHandler={this.props.changeHandler} 
+            required 
+          />
+          <InputField 
+            className="flex-item-fill"
+            name="amount" 
+            title="Amount: *" 
+            value={this.props.amount}
+            changeHandler={this.props.changeHandler} 
+            required 
+          />
+        </span>
         <fieldset>
           <label className="form-label" htmlFor="client">Client*</label>
           {this.props.user_clients && this.clientList(this.props.user_clients)}
         </fieldset>
-        <fieldset>
-          <label className="form-label" htmlFor="idenfitier">Invoice ID or unique description:*</label>
-          <input className="form-input" type="text" id="idenfitier" name="identifier"
-            value={this.props.identifier || ''}
-            onChange={this.props.changeHandler}
-            required />
-        </fieldset>
-        <span className="d-sm-flex">
-          <fieldset className="mr-sm-3">
-            <label className="form-label" htmlFor="due_date">Due Date*</label>
-            <input className="form-input" type="date" id="due_date" name="due_date"
-              value={this.props.due_date || ''}
-              onChange={this.props.changeHandler}
-              required />
-          </fieldset>
-          <fieldset>
-            <label className="checkbox" htmlFor="paid">Paid?*<br />
-              <input className="form-input" type="checkbox" id="paid" name="paid"
-                value={this.props.paid || ''}
-                onChange={this.props.changeHandler} />
-              <span class="checkmark"></span>
-            </label>
-          </fieldset>
-        </span>
-        <Reminders />
+        <Reminders 
+          reminders={this.props.Reminders} 
+          passProps={this.props.passProps} 
+          changeHandler={this.props.changeHandler}
+          selectedReminder={this.props.selectedReminder}
+        />
         <button id="card-form-btn-bottom" onClick={this.props.handleSubmit} className="btn btn-primary">
           Update contract
         </button>

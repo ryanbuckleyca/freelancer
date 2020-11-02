@@ -1,3 +1,5 @@
+@import './onoffswitch.scss';
+
 form .form-wrapper {
   padding: 0 30px;
 }
@@ -20,16 +22,16 @@ input, textarea {
   padding: 10px;
   background: white;
 }
-input[type="radio"] {
-  display: inline;
-  border: 0;
-  box-shadow: 0;
-}
+
 .react-select__control {
   border-radius: 10px !important;
   border: 1px solid rgba(1, 1, 1, .1) !important;
   box-shadow: 0 2px 5px rgba(1, 1, 1, 0.1);
   background: white;
+  z-index: 2;
+}
+.react-select__menu {
+  z-index: 2;
 }
 
 code {
@@ -43,14 +45,14 @@ fieldset {
 }
 
 .form-label {
-  display: block;
+  display: inline-block;
 }
 
 /* Customize radios and checkboxes */
 .checkbox, .radio {
   display: inline-block;
   position: relative;
-  margin: 0 1em 1em 0;
+  margin-right: 1em;
   cursor: pointer;
   text-align: center;
   -webkit-user-select: none;
@@ -59,16 +61,18 @@ fieldset {
   user-select: none;
   input { display: none }
 }
+.checkbox:last-child, .radio:last-child {
+  margin-right: 0;
+}
 
 /* Create a custom checkbox */
-.checkmark, .dot {
+.checkmark, .dot, .alert {
   display: table;
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
   margin: 0 auto;
   border: 1px solid rgba(1, 1, 1, 0.1);
   box-shadow: 0 2px 5px rgba(1, 1, 1, 0.1);
-  padding: 10px;
   text-align: center;
   background-color: #fff;
 }
@@ -76,25 +80,30 @@ fieldset {
 .checkmark {
   border-radius: 10px;
 }
-.dot {
+.dot, .alert {
   border-radius: 50%;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "√";
-  color: white;
+.checkmark:after, .dot:after {
+  display: none;
+  content: "✓";
+}
+.alert:after {
+  display: none;
+  content: "!";
 }
 /* Show the checkmark when checked */
-.checkbox input:checked ~ .checkmark:after {
-  color: $blue;
-}
-/* Create the dot/indicator (hidden when not checked) */
-.dot:after {
-  content: "⬤";
-  color: white;
-}
-/* Show the dot when checked */
+.checkbox input:checked ~ .checkmark:after,
 .radio input:checked ~ .dot:after {
+  display: block;
+  font-size: 225%;
   color: $blue;
+}
+.radio input:checked ~ .alert:after {
+  display: block;
+  font-size: 225%;
+  font-weight: 900;
+  text-shadow: 1px 0px $red;
+  color: $red;
 }

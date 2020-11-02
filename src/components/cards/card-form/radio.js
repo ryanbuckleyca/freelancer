@@ -5,9 +5,15 @@ class Radio extends Component {
   render() {
     return(
     <label className="radio">
-      <input name={this.props.name} type="radio" value={this.props.value.toLowerCase()} />
+      <input 
+        name={this.props.name} 
+        type="radio" 
+        value={this.props.value.toLowerCase()}
+        onChange={this.props.onChange}
+        checked={this.props.checked}
+      />
       {this.props.value}
-      <span class="dot"></span>
+      <span class={this.props.className || "dot"}></span>
     </label>
     )
   }

@@ -19,6 +19,9 @@ module.exports = {
       paid: {
         type: Sequelize.BOOLEAN
       },
+      amount: {
+        type: Sequelize.INTEGER
+      },
       invoice: {
         type: Sequelize.STRING
       },

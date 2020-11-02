@@ -442,9 +442,18 @@
     padding: 2em;
     width: 75%;
     .d-sm-flex { display: block; }
+    .d-xs-flex { display: block; }
     @media (min-width: 576px) {
       padding: 1em 3em 3em;
       .d-sm-flex {
+        display: flex;
+        justify-content: space-between;
+        fieldset { width: calc(50% - 10px) !important }
+      }  
+    }
+    @media (min-width: 450px) {
+      padding: 1em 3em 3em;
+      .d-xs-flex {
         display: flex;
         justify-content: space-between;
         fieldset { width: calc(50% - 10px) !important }
@@ -504,9 +513,9 @@
   label {
     padding-bottom: 0;
     margin-bottom: 0;
-    @media (max-width: 767px) {
-      display: block;
-    }
+    // @media (max-width: 767px) {
+    //   display: block;
+    // }
   }
   input {
     /* 20px width from padding */
@@ -527,3 +536,37 @@
   height: 160px;
 }
 
+
+.reminder-row {
+  position: relative;
+  background-color: #F6F9F9;
+  border: 1px rgba(1, 1, 1, .1);
+  padding: 1em;
+  box-shadow: 0 2px 5px rgba(1, 1, 1, 0.1);
+}
+.reminder-selected {
+  z-index: 2;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(1, 1, 1, 0.1);
+}
+.reminder-selected:after {
+  content: "▼";
+  display: block;
+  position: absolute;
+  top: calc(100% - 0.35em);
+  left: 50%;
+  text-shadow: 0 4px 10px rgba(1, 1, 1, 0.1);
+  -webkit-transform: translateX(-50%) scale(2,1); /* Safari and Chrome */
+  -moz-transform: translateX(-50%) scale(2,1); /* Firefox */
+  -ms-transform: translateX(-50%) scale(2,1); /* IE 9 */
+  -o-transform: translateX(-50%) scale(2,1); /* Opera */
+  transform: translateX(-50%) scale(2,1); /* W3C */
+  color: white;
+  font-size: 150%;
+}
+.reminder-row:first-child {
+  border-radius: 10px 0 0 10px;
+}
+.reminder-row:last-child {
+  border-radius: 0 10px 10px 0;
+}

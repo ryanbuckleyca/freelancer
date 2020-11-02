@@ -1,32 +1,12 @@
 import React, {Component} from 'react';
 import '../cards.scss';
-
-class CardFormInput extends Component {
-  render() {
-    return(
-      <fieldset>
-        <label className="form-label" htmlFor={this.props.name}>
-          {this.props.title}
-        </label>
-        <input 
-          className="form-input" 
-          type="text" 
-          id={this.props.name} 
-          name={this.props.name}
-          value={this.props.value || ''}
-          onChange={this.props.changeHandler}
-          required
-        />
-      </fieldset>
-    )  
-  }
-}
+import InputField from './card-form-input-field'
 
 class CardFormFieldsPerson extends Component {
   render() {
     return(
       <div className="card-form-form">
-        <CardFormInput 
+        <InputField 
           name="name" 
           title="Full name *" 
           value={this.props.name}
@@ -34,14 +14,14 @@ class CardFormFieldsPerson extends Component {
           required 
         />
         <span className="d-sm-flex">
-          <CardFormInput 
+          <InputField 
             name="email" 
             title="Email Address *" 
             value={this.props.email}
             changeHandler={this.props.changeHandler} 
             required 
           />
-          <CardFormInput 
+          <InputField 
             name="number"
             title="Phone *" 
             value={this.props.number}
@@ -49,28 +29,28 @@ class CardFormFieldsPerson extends Component {
             required 
           />
         </span>
-        <CardFormInput 
+        <InputField 
             name="street1"
             title="Address 1 *" 
             value={this.props.street1}
             changeHandler={this.props.changeHandler} 
             required 
         />
-        <CardFormInput 
+        <InputField 
             name="street2"
             title="Address 2" 
             value={this.props.street2}
             changeHandler={this.props.changeHandler} 
         />
         <span className="d-sm-flex">
-          <CardFormInput 
+          <InputField 
               name="city"
               title="City/Town *" 
               value={this.props.city}
               changeHandler={this.props.changeHandler} 
               required 
           />
-          <CardFormInput 
+          <InputField 
               name="state"
               title="State/Province *" 
               value={this.props.state}
@@ -79,14 +59,14 @@ class CardFormFieldsPerson extends Component {
           />
         </span>
         <span className="d-sm-flex">
-          <CardFormInput 
+          <InputField 
               name="post_zip"
               title="Zip/Postal code *" 
               value={this.props.post_zip}
               changeHandler={this.props.changeHandler} 
               required 
           />
-          <CardFormInput 
+          <InputField 
               name="country"
               title="Country *" 
               value={this.props.country}

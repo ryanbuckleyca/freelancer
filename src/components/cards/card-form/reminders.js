@@ -19,9 +19,9 @@ class Reminder extends Component {
   render() {
     const { reminder } = this.props
     console.log('reminder rendered with props: ', this.props)
-
+    
     //TODO: if there is no reminder, create a new one
-    if (!reminder.type)
+    if (!reminder)
       return('^ select a reminder to configure')
 
     return(

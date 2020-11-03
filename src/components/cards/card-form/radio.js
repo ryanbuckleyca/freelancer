@@ -13,7 +13,7 @@ class Radio extends Component {
         checked={this.props.checked}
       />
       {this.props.value}
-      <span class={this.props.className || "dot"}></span>
+      <span className={this.props.className || "dot"}></span>
     </label>
     )
   }

@@ -6,7 +6,7 @@ class Reminder extends Component {
   updateReminders(newObject) {
     const { reminder, reminders } = this.props
     const type = reminder.type
-    const index = reminders.findIndex(x => x.type === type)
+    const index = reminders.findIndex(x => x.type === type) || reminders.length
     reminders[index] = { ...reminder, ...newObject }
     this.props.passProps({ Reminders: reminders })
   }
@@ -20,8 +20,9 @@ class Reminder extends Component {
     const { reminder } = this.props
     console.log('reminder rendered with props: ', this.props)
 
-    if (!reminder)
-      return('...render new form')
+    //TODO: if there is no reminder, create a new one
+    if (!reminder.type)
+      return('^ select a reminder to configure')
 
     return(
       <div id="reminder">
@@ -119,9 +120,9 @@ class Reminders extends Component {
         return <span className="text-red">x</span>
     }
 
-    const isSelected = (type) => type === selectedReminder ? ' reminder-selected' : ''
+    const isSelected = type => type === selectedReminder ? ' reminder-selected' : ''
 
-    const loadReminder = (type) => reminders.find(x => x.type === type)
+    const loadReminder = type => reminders.find(x => x.type === type)
 
     return(
       <div className="reminders">

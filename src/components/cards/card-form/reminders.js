@@ -4,7 +4,7 @@ import '../cards.scss';
 
 class Reminder extends Component {
   currentReminder() {
-    const type = this.props.reminder
+    const type = this.props.currentReminder
     let index = this.props.reminders.findIndex(x => x.type === type)
     if (index < 0)
       index = this.props.reminders.length;
@@ -12,7 +12,7 @@ class Reminder extends Component {
   }
 
   updateReminders(newObject) {
-    const newReminder = { ...this.currentReminder(), ...newObject, type: this.props.reminder }
+    const newReminder = { ...this.currentReminder(), ...newObject }
     this.props.passProps({ Reminders: newReminder })
   }
 
@@ -40,8 +40,8 @@ class Reminder extends Component {
         }}>
         <label class="button r" id="button-3">
           <input type="checkbox" class="checkbox" 
-            onChange={() => this.toggleReminder()} 
-            selected={reminder && reminder.active || false}
+            onChange={() => this.updateReminders({active: true})} 
+            selected={reminder && (reminder.active || false)}
           />
           <div class="knobs"></div>
           <div class="layer"></div>
@@ -95,7 +95,7 @@ class Reminder extends Component {
           </label>
           <textarea rows="10" id="message" name="message"
             onChange={(e) => this.updateReminders({ text: e.target.value })}
-            value={reminder && reminder.text || null}>
+            value={reminder && (reminder.text || null)}>
           </textarea>
         </fieldset> 
       </div> 
@@ -164,7 +164,6 @@ class Reminders extends Component {
           passProps={this.props.passProps}
           changeHandler={this.props.changeHandler}
           reminders={reminders}
-          // \/   = loadReminder('email')
           reminder={selectedReminder} 
         />
       </div>

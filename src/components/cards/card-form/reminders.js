@@ -3,14 +3,18 @@ import Radio from './radio';
 import '../cards.scss';
 
 class Reminder extends Component {
-  currentReminder() {
-    const type = this.props.currentReminder
-    let index = this.props.reminders.findIndex(x => x.type === type)
-    if (index < 0)
-      index = this.props.reminders.length;
-    return this.props.reminders[index]
-  }
-
+  // contracts may have ZERO reminders
+  // clicking on a reminder not yet associated with their contract
+  // create a new reminder, and save it on SUBMIT
+  // or, create blank reminders for every contract...seems like a waste
+  // so... how to do the former...
+  // contract.Reminders is an array
+  // gets stored in state and passed to Reminder as currentReminder
+  // when item gets clicked, it loads that reminder
+  // but what if is doesn't exist?
+  // if Phone isn't in reminders (which we need to use .find to get)
+  //    then, create a new reminder and store it in the array.
+  // so update state.Reminders with the current array plus one.
   updateReminders(newObject) {
     const newReminder = { ...this.currentReminder(), ...newObject }
     this.props.passProps({ Reminders: newReminder })
@@ -104,20 +108,34 @@ class Reminder extends Component {
 }
 
 class Reminders extends Component {
+
+  createReminder(type) {
+    return this.props.passProps(
+      { reminders: this.props.reminders.push({ type: type })},
+      this.props.reminders[this.props.reminders.length - 1]
+    )
+  }
+
   setReminder(e) {
     e.preventDefault();
     e.persist();
-    this.props.passProps({ selectedReminder: e.target.id })
+    const type = e.target.id
+    let index = this.props.reminders.findIndex(x => x.type === type)
+    if (index < 0)
+      this.createReminder(e.target.id)
+    else
+      this.props.passProps({ reminders: this.props.reminders[index] })
   }
 
   render() {
-    const { reminders, selectedReminder } = this.props
+    // props are passed from parent STATE (Contract)
+    // selectedType is a string set from here (Reminders)
+    // reminders is an array received from parent (Contract)
+    const { reminders, selectedType } = this.props
 
-    // wait for parent components to pass props
+    // wait for parent component to pass props
     if(!reminders)
       return "Loading..."
-
-    console.log("reminders prop is: ", reminders)
 
     const icon = (type) => {
       if (loadReminder(type) && loadReminder(type).active)
@@ -126,7 +144,7 @@ class Reminders extends Component {
         return <span className="text-red">x</span>
     }
 
-    const isSelected = type => type === selectedReminder ? ' reminder-selected' : ''
+    const isSelected = type => type === selectedType ? ' reminder-selected' : ''
 
     const loadReminder = type => reminders.find(x => x.type === type)
 
@@ -164,7 +182,7 @@ class Reminders extends Component {
           passProps={this.props.passProps}
           changeHandler={this.props.changeHandler}
           reminders={reminders}
-          reminder={selectedReminder} 
+          reminder={selectedType} 
         />
       </div>
     );

@@ -2,37 +2,38 @@ import React, {Component} from 'react';
 import Radio from './radio';
 import '../cards.scss';
 
+// contracts may have ZERO reminders
+// clicking on a reminder not yet associated with their contract
+// create a new reminder, and save it on SUBMIT
+// or, create blank reminders for every contract...seems like a waste
+// so... how to do the former...
+// contract.Reminders is an array
+// gets stored in state and passed to Reminder as currentReminder
+// when item gets clicked, it loads that reminder
+// but what if is doesn't exist?
+// if Phone isn't in reminders (which we need to use .find to get)
+//    then, create a new reminder and store it in the array.
+// so update state.Reminders with the current array plus one.
+
 class Reminder extends Component {
-  // contracts may have ZERO reminders
-  // clicking on a reminder not yet associated with their contract
-  // create a new reminder, and save it on SUBMIT
-  // or, create blank reminders for every contract...seems like a waste
-  // so... how to do the former...
-  // contract.Reminders is an array
-  // gets stored in state and passed to Reminder as currentReminder
-  // when item gets clicked, it loads that reminder
-  // but what if is doesn't exist?
-  // if Phone isn't in reminders (which we need to use .find to get)
-  //    then, create a new reminder and store it in the array.
-  // so update state.Reminders with the current array plus one.
+  // TODO: this.props.reminder is not updating
   updateReminders(newObject) {
-    const newReminder = { ...this.currentReminder(), ...newObject }
-    this.props.passProps({ Reminders: newReminder })
+    console.log("updateReminders called")
+    const newReminder = { ...this.props.reminder, ...newObject }
+    this.props.passProps({ reminder: newReminder }, console.log('reminder is now ', newReminder))
   }
 
   toggleReminder() {
-    const status = this.currentReminder().active ? false : true
+    const status = this.props.reminder.active ? false : true
     this.updateReminders({ active: status })
   }
 
   render() {
-    const { reminders } = this.props
+    const { reminder } = this.props
     console.log('reminder rendered with props: ', this.props)
     
     if (!this.props.reminder)
       return('^ select a reminder to configure')
-
-    const reminder = reminders.find(x => x.type === this.props.reminder)
 
     return(
       <div id="reminder">
@@ -110,12 +111,14 @@ class Reminder extends Component {
 class Reminders extends Component {
 
   createReminder(type) {
-    return this.props.passProps(
-      { reminders: this.props.reminders.push({ type: type })},
-      this.props.reminders[this.props.reminders.length - 1]
-    )
+    // this is returning undefined
+    const reminders = this.props.reminders;
+    reminders.push({ type: type })
+    console.log('new reminders array is: ', reminders)
+    this.props.passProps({ reminders: reminders, selectedType: type })
   }
 
+  //updates state in parent based on form modifications
   setReminder(e) {
     e.preventDefault();
     e.persist();
@@ -124,29 +127,28 @@ class Reminders extends Component {
     if (index < 0)
       this.createReminder(e.target.id)
     else
-      this.props.passProps({ reminders: this.props.reminders[index] })
+      this.props.passProps({ reminder: this.props.reminders[index], selectedType: e.target.id })
   }
 
   render() {
     // props are passed from parent STATE (Contract)
-    // selectedType is a string set from here (Reminders)
-    // reminders is an array received from parent (Contract)
+    //  selectedType is a string set from here (Reminders)
+    //  reminders is an array received from parent (Contract)
     const { reminders, selectedType } = this.props
 
     // wait for parent component to pass props
     if(!reminders)
       return "Loading..."
 
+    // render reminder tabs based on activeness and selectedness
+    const isSelected = type => type === selectedType ? ' reminder-selected' : ''
+    const loadReminder = type => reminders.find(x => x.type === type)
     const icon = (type) => {
       if (loadReminder(type) && loadReminder(type).active)
         return <span className="text-green">✓</span>
       else
         return <span className="text-red">x</span>
     }
-
-    const isSelected = type => type === selectedType ? ' reminder-selected' : ''
-
-    const loadReminder = type => reminders.find(x => x.type === type)
 
     return(
       <div className="reminders">

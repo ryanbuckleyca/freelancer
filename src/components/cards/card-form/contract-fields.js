@@ -16,10 +16,7 @@ class CardFormFieldsContract extends Component {
   }
   _usersClients(user_id) {
     callAPI(`/api/clients/user/${user_id}`)
-    .then(res => {
-      console.log("user's clients are: ", res)
-      this.props.passProps({ user_clients: res })
-    })
+    .then(res => this.props.passProps({ user_clients: res }))
     .catch(err => console.log("problem finding user's clients: ", err))
   }
 
@@ -36,7 +33,6 @@ class CardFormFieldsContract extends Component {
   }
 
   changeSelect = e => {
-    console.log('event in changeSelect() is: ', e)
     this.props.passProps({ 
       selectedClient: e,
       client_id: e.value
@@ -66,8 +62,6 @@ class CardFormFieldsContract extends Component {
   }
 
   render() {
-    console.log('||||| card-form-fields-contract rendered with props: ', this.props)
-
     //set selected client
     const {user_clients, client_id } = this.props
     user_clients 

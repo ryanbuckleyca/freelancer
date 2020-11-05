@@ -23,6 +23,7 @@ class Reminder extends Component {
     this.props.passProps({ reminder: newReminder }, console.log('reminder is now ', newReminder))
   }
 
+  // TODO: toggle isn't currently working
   toggleReminder() {
     const status = this.props.reminder.active ? false : true
     this.updateReminders({ active: status })
@@ -32,7 +33,7 @@ class Reminder extends Component {
     const { reminder } = this.props
     console.log('reminder rendered with props: ', this.props)
     
-    if (!this.props.reminder)
+    if (!reminder)
       return('^ select a reminder to configure')
 
     return(
@@ -45,14 +46,14 @@ class Reminder extends Component {
         }}>
         <label class="button r" id="button-3">
           <input type="checkbox" class="checkbox" 
-            onChange={() => this.updateReminders({active: true})} 
-            selected={reminder && (reminder.active || false)}
+            onChange={() => this.toggleReminder()} 
+            selected={reminder && reminder.active}
           />
           <div class="knobs"></div>
           <div class="layer"></div>
         </label>
         <div style={{flexGrow: 1, marginLeft: '1em'}}>
-        {this.props.reminder} reminders are {reminder && reminder.active ? 'ON' : 'OFF'}
+          {reminder.type} reminders are {reminder && reminder.active ? 'ON' : 'OFF'}
         </div>
         </div>
         <fieldset>
@@ -115,10 +116,15 @@ class Reminders extends Component {
     const reminders = this.props.reminders;
     reminders.push({ type: type })
     console.log('new reminders array is: ', reminders)
-    this.props.passProps({ reminders: reminders, selectedType: type })
+    this.props.passProps({ 
+      reminders: reminders, 
+      reminder: reminders[reminders.length - 1], 
+      selectedType: type 
+    })
   }
 
   //updates state in parent based on form modifications
+  // reminder value is passing to parent, but not being re-received by component
   setReminder(e) {
     e.preventDefault();
     e.persist();
@@ -134,15 +140,16 @@ class Reminders extends Component {
     // props are passed from parent STATE (Contract)
     //  selectedType is a string set from here (Reminders)
     //  reminders is an array received from parent (Contract)
-    const { reminders, selectedType } = this.props
 
     // wait for parent component to pass props
-    if(!reminders)
+    if(!this.props.reminders)
       return "Loading..."
 
+    console.log('remidnerSSS loaded with props: ', this.props)
+
     // render reminder tabs based on activeness and selectedness
-    const isSelected = type => type === selectedType ? ' reminder-selected' : ''
-    const loadReminder = type => reminders.find(x => x.type === type)
+    const isSelected = type => type === this.props.selectedType ? ' reminder-selected' : ''
+    const loadReminder = type => this.props.reminders.find(x => x.type === type)
     const icon = (type) => {
       if (loadReminder(type) && loadReminder(type).active)
         return <span className="text-green">✓</span>
@@ -183,8 +190,8 @@ class Reminders extends Component {
         <Reminder 
           passProps={this.props.passProps}
           changeHandler={this.props.changeHandler}
-          reminders={reminders}
-          reminder={selectedType} 
+          reminders={this.props.reminders}
+          reminder={loadReminder(this.props.selectedType)}
         />
       </div>
     );

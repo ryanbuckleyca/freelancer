@@ -122,7 +122,7 @@ class CardFormFieldsContract extends Component {
           reminders={this.props.Reminders} 
           passProps={this.props.passProps} 
           changeHandler={this.props.changeHandler}
-          selectedReminder={this.props.selectedReminder}
+          selectedType={this.props.selectedType}
         />
         <button id="card-form-btn-bottom" onClick={this.props.handleSubmit} className="btn btn-primary">
           Update contract

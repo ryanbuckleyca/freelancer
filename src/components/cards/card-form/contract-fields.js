@@ -33,7 +33,7 @@ class CardFormFieldsContract extends Component {
   }
 
   changeSelect = e => {
-    this.props.passProps({ 
+    this.props.passProps({
       selectedClient: e,
       client_id: e.value
     })
@@ -47,14 +47,14 @@ class CardFormFieldsContract extends Component {
       }
     })
     return (
-      <Select 
-        className="form-input" 
-        name="client" 
-        id="client" 
+      <Select
+        className="form-input"
+        name="client"
+        id="client"
         classNamePrefix="react-select"
         options={options}
-        value={this.props.selectedClient} 
-        onChange={this.changeSelect} 
+        value={this.props.selectedClient}
+        onChange={this.changeSelect}
         isSearchable
         required
       />
@@ -64,8 +64,8 @@ class CardFormFieldsContract extends Component {
   render() {
     //set selected client
     const {user_clients, client_id } = this.props
-    user_clients 
-    && !this.props.selectedClient 
+    user_clients
+    && !this.props.selectedClient
     && this.props.passProps({
       selectedClient: {
         value: client_id,
@@ -82,13 +82,13 @@ class CardFormFieldsContract extends Component {
     return(
       <div className="card-form-form">
         <span className="d-xs-flex">
-          <InputField 
-            name="identifier" 
+          <InputField
+            name="identifier"
             className="flex-item-fill"
-            title="Invoice ID or unique description: *" 
+            title="Invoice ID or unique description: *"
             value={this.props.identifier}
-            changeHandler={this.props.changeHandler} 
-            required 
+            changeHandler={this.props.changeHandler}
+            required
           />
           <div className="flex-item-small">
             <Radio name="paid" value="paid" />
@@ -96,31 +96,31 @@ class CardFormFieldsContract extends Component {
           </div>
         </span>
         <span className="d-xs-flex">
-          <InputField 
+          <InputField
             className="flex-item-fill"
             type="date"
-            name="due_date" 
-            title="Due Date: *" 
+            name="due_date"
+            title="Due Date: *"
             value={this.props.due_date}
-            changeHandler={this.props.changeHandler} 
-            required 
+            changeHandler={this.props.changeHandler}
+            required
           />
-          <InputField 
+          <InputField
             className="flex-item-fill"
-            name="amount" 
-            title="Amount: *" 
+            name="amount"
+            title="Amount: *"
             value={this.props.amount}
-            changeHandler={this.props.changeHandler} 
-            required 
+            changeHandler={this.props.changeHandler}
+            required
           />
         </span>
         <fieldset>
           <label className="form-label" htmlFor="client">Client*</label>
           {this.props.user_clients && this.clientList(this.props.user_clients)}
         </fieldset>
-        <Reminders 
-          reminders={this.props.Reminders} 
-          passProps={this.props.passProps} 
+        <Reminders
+          reminders={this.props.Reminders}
+          passProps={this.props.passProps}
           changeHandler={this.props.changeHandler}
           selectedType={this.props.selectedType}
         />

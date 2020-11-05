@@ -41,12 +41,13 @@
 }
 
 /* Button 3 */
-#button-3 .knobs:before
+.toggle-switch .knobs:before
 {
-    content: 'ON';
+    content: 'OFF';
+    left: 4px;
+    background-color: $red;
     position: absolute;
     top: 4px;
-    left: 4px;
     width: 20px;
     height: 10px;
     color: #fff;
@@ -55,25 +56,24 @@
     text-align: center;
     line-height: 1;
     padding: 9px 4px;
-    background-color: $green;
     border-radius: 50%;
     transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
 }
 
-#button-3 .checkbox:active + .knobs:before
+.toggle-switch .checkbox:active + .knobs:before
 {
     width: 46px;
     border-radius: 100px;
 }
 
-#button-3 .checkbox:checked:active + .knobs:before
+.toggle-switch .checkbox:checked:active + .knobs:before
 {
     margin-left: -26px;
 }
 
-#button-3 .checkbox:checked + .knobs:before
+.toggle-switch .checkbox:checked + .knobs:before
 {
-    content: 'OFF';
+    content: 'ON';
     left: 42px;
-    background-color: $red;
+    background-color: $green;
 }

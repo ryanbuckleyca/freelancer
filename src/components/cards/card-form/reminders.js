@@ -2,15 +2,28 @@ import React, {Component} from 'react';
 import Radio from './radio';
 import '../cards.scss';
 
+// contracts may have ZERO reminders
+// clicking on a reminder not yet associated with their contract
+// create a new reminder, and save it on SUBMIT
+// or, create blank reminders for every contract...seems like a waste
+// so... how to do the former...
+// contract.Reminders is an array
+// gets stored in state and passed to Reminder as currentReminder
+// when item gets clicked, it loads that reminder
+// but what if is doesn't exist?
+// if Phone isn't in reminders (which we need to use .find to get)
+//    then, create a new reminder and store it in the array.
+// so update state.Reminders with the current array plus one.
+
 class Reminder extends Component {
+  // TODO: this.props.reminder is not updating
   updateReminders(newObject) {
-    const { reminder, reminders } = this.props
-    const type = reminder.type
-    const index = reminders.findIndex(x => x.type === type)
-    reminders[index] = { ...reminder, ...newObject }
-    this.props.passProps({ Reminders: reminders })
+    console.log("updateReminders called")
+    const newReminder = { ...this.props.reminder, ...newObject }
+    this.props.passProps({ reminder: newReminder }, console.log('reminder is now ', newReminder))
   }
 
+  // TODO: toggle isn't currently working
   toggleReminder() {
     const status = this.props.reminder.active ? false : true
     this.updateReminders({ active: status })
@@ -19,13 +32,13 @@ class Reminder extends Component {
   render() {
     const { reminder } = this.props
     console.log('reminder rendered with props: ', this.props)
-
+    
     if (!reminder)
-      return('...render new form')
+      return('^ select a reminder to configure')
 
     return(
       <div id="reminder">
-        <duv style={{
+        <div style={{
           display: 'flex', 
           justifyContent: 'flex-start',
           alignItems: "center",
@@ -34,51 +47,51 @@ class Reminder extends Component {
         <label class="button r" id="button-3">
           <input type="checkbox" class="checkbox" 
             onChange={() => this.toggleReminder()} 
-            selected={reminder.active}
+            selected={reminder && reminder.active}
           />
           <div class="knobs"></div>
           <div class="layer"></div>
         </label>
         <div style={{flexGrow: 1, marginLeft: '1em'}}>
-        {reminder.type} reminders are {reminder.active ? 'ON' : 'OFF'}
+          {reminder.type} reminders are {reminder && reminder.active ? 'ON' : 'OFF'}
         </div>
-        </duv>
+        </div>
         <fieldset>
           <label className="form-label" htmlFor="frequency">Frequency *</label><br />
             <Radio name="frequency" value="Daily" 
               onChange={() => this.updateReminders({frequency: 1})}
-              checked={reminder.frequency === 1 ? 'checked' : ''}
+              checked={reminder && reminder.frequency === 1 ? 'checked' : ''}
             />
             <Radio name="frequency" value="Weekly" 
               onChange={() => this.updateReminders({frequency: 7})}
-              checked={reminder.frequency === 7 ? 'checked' : ''}
+              checked={reminder && reminder.frequency === 7 ? 'checked' : ''}
             />
             <Radio name="frequency" value="Bi-Weekly" 
               onChange={() => this.updateReminders({frequency: 14})}
-              checked={reminder.frequency === 14 ? 'checked' : ''}
+              checked={reminder && reminder.frequency === 14 ? 'checked' : ''}
             />
             <Radio name="frequency" value="Monthly" 
               onChange={() => this.updateReminders({frequency: 28})}
-              checked={reminder.frequency === 28 ? 'checked' : ''}
+              checked={reminder && reminder.frequency === 28 ? 'checked' : ''}
             />
         </fieldset>
         <fieldset>
           <label className="form-label" htmlFor="tone">Tone *</label><br />
             <Radio name="tone" value="Polite" 
               onChange={() => this.updateReminders({tone: 'polite'})}
-              checked={reminder.tone === 'polite' ? 'checked' : ''}
+              checked={reminder && reminder.tone === 'polite' ? 'checked' : ''}
             />
             <Radio name="tone" value="Understanding" 
               onChange={() => this.updateReminders({tone: 'understanding'})}
-              checked={reminder.tone === 'understanding' ? 'checked' : ''}
+              checked={reminder && reminder.tone === 'understanding' ? 'checked' : ''}
             />
             <Radio name="tone" value="Concerned" 
               onChange={() => this.updateReminders({tone: 'concerned'})}
-              checked={reminder.tone === 'concerned' ? 'checked' : ''}
+              checked={reminder && reminder.tone === 'concerned' ? 'checked' : ''}
             />
             <Radio name="tone"value="Stern" 
               onChange={() => this.updateReminders({tone: 'stern'})}
-              checked={reminder.tone === 'stern' ? 'checked' : ''}
+              checked={reminder && reminder.tone === 'stern' ? 'checked' : ''}
             />
         </fieldset>
         <fieldset>
@@ -88,7 +101,7 @@ class Reminder extends Component {
           </label>
           <textarea rows="10" id="message" name="message"
             onChange={(e) => this.updateReminders({ text: e.target.value })}
-            value={reminder.text}>
+            value={reminder && (reminder.text || null)}>
           </textarea>
         </fieldset> 
       </div> 
@@ -97,31 +110,52 @@ class Reminder extends Component {
 }
 
 class Reminders extends Component {
+
+  createReminder(type) {
+    // this is returning undefined
+    const reminders = this.props.reminders;
+    reminders.push({ type: type })
+    console.log('new reminders array is: ', reminders)
+    this.props.passProps({ 
+      reminders: reminders, 
+      reminder: reminders[reminders.length - 1], 
+      selectedType: type 
+    })
+  }
+
+  //updates state in parent based on form modifications
+  // reminder value is passing to parent, but not being re-received by component
   setReminder(e) {
     e.preventDefault();
     e.persist();
-    this.props.passProps({ selectedReminder: e.target.id })
+    const type = e.target.id
+    let index = this.props.reminders.findIndex(x => x.type === type)
+    if (index < 0)
+      this.createReminder(e.target.id)
+    else
+      this.props.passProps({ reminder: this.props.reminders[index], selectedType: e.target.id })
   }
 
   render() {
-    const { reminders, selectedReminder } = this.props
+    // props are passed from parent STATE (Contract)
+    //  selectedType is a string set from here (Reminders)
+    //  reminders is an array received from parent (Contract)
 
-    // wait for parent components to pass props
-    if(!reminders)
+    // wait for parent component to pass props
+    if(!this.props.reminders)
       return "Loading..."
 
-    console.log("reminders prop is: ", reminders)
+    console.log('remidnerSSS loaded with props: ', this.props)
 
+    // render reminder tabs based on activeness and selectedness
+    const isSelected = type => type === this.props.selectedType ? ' reminder-selected' : ''
+    const loadReminder = type => this.props.reminders.find(x => x.type === type)
     const icon = (type) => {
       if (loadReminder(type) && loadReminder(type).active)
         return <span className="text-green">✓</span>
       else
         return <span className="text-red">x</span>
     }
-
-    const isSelected = (type) => type === selectedReminder ? ' reminder-selected' : ''
-
-    const loadReminder = (type) => reminders.find(x => x.type === type)
 
     return(
       <div className="reminders">
@@ -156,8 +190,8 @@ class Reminders extends Component {
         <Reminder 
           passProps={this.props.passProps}
           changeHandler={this.props.changeHandler}
-          reminders={reminders}
-          reminder={loadReminder(selectedReminder)} 
+          reminders={this.props.reminders}
+          reminder={loadReminder(this.props.selectedType)}
         />
       </div>
     );

@@ -41,7 +41,7 @@ class CardForm extends Component {
     e.preventDefault();
     if (requiredFieldsValid()) {
       const saved =  await this.saveFormToDB();
-      console.log('database result: ', saved)
+      console.log('submitted: database result is ', saved)
       // redirect to new record if not updating
       // !this.state.id && (window.location.href = `/${this.props.table}/${saved.id}`)
     }
@@ -61,26 +61,16 @@ class CardForm extends Component {
 
   passProps = (props) => {
     console.log('passProps called with: ', props)
-    this.setState(
-      { ...props }, 
-      console.log('props passed, state in card-form is now: ', this.state)
-    )
+    this.setState({ ...props })
   }
 
   componentDidMount() {
-    // if record id prop has loaded from parent
-    // then get that record
-    console.log('||||| card-form mounted with props: ', this.props)
-    console.log('||||| card-form mounted with state: ', this.state)
     const { table, id } = this.props
     if (id && !this.state.recordLoaded)
       this.loadRecordState(table, id);
   }
 
   render() {
-    console.log('||||| card-form rendered with props: ', this.props)
-    console.log('||||| card-form rendered with state: ', this.state)
-
     if(!this.props.id)
       return "Loading..."
 

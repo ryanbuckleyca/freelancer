@@ -12,11 +12,6 @@ class Reminder extends Component {
     this.props.passProps({ reminders: newArray }, console.log('reminders is now ', reminders))
   }
 
-  toggleReminder() {
-    const status = this.props.reminder.active ? false : true
-    this.updateReminders({ active: status })
-  }
-
   render() {
     const { reminder } = this.props
 
@@ -35,7 +30,7 @@ class Reminder extends Component {
         }}>
         <label className="toggle-switch button r">
           <input type="checkbox" className="checkbox"
-            onChange={() => this.toggleReminder()}
+            onChange={() => this.updateReminders({active: !reminder.active})}
             checked={reminder && reminder.active}
           />
           <div className="knobs"></div>

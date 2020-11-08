@@ -1,3 +1,5 @@
+@import '../../_custom.scss';
+
 form .form-wrapper {
   padding: 0 30px;
 }
@@ -9,24 +11,37 @@ form .valid {
   border: 1px $green solid;
 }
 textarea {
-  width: 100%;
+  width: calc(100% - 2.5em);
   height: 100%;
   resize: none;
+  padding: 1em;
+}
+input {
+  padding: 0 10px;
+  height: 40px;
 }
 input, textarea {
   border-radius: 10px;
   border: 1px solid rgba(1, 1, 1, .1);
   box-shadow: 0 2px 5px rgba(1, 1, 1, 0.1);
-  padding: 10px;
-  background: white;
+  font-family: inherit;
+  font-size: 1em;
 }
 
 .react-select__control {
+  font-family: inherit;
+  font-size: 1em;
   border-radius: 10px !important;
   border: 1px solid rgba(1, 1, 1, .1) !important;
   box-shadow: 0 2px 5px rgba(1, 1, 1, 0.1);
   background: white;
   z-index: 2;
+}
+.react-select__value-container {
+  height: 40px;
+}
+.react-select__single-value {
+  color: black !important;
 }
 .react-select__menu {
   z-index: 2;
@@ -59,6 +74,7 @@ fieldset {
   user-select: none;
   input { display: none }
 }
+.disabled { opacity: 0.4 }
 .checkbox:last-child, .radio:last-child {
   margin-right: 0;
 }
@@ -104,4 +120,27 @@ fieldset {
   font-weight: 900;
   text-shadow: 1px 0px $red;
   color: $red;
+}
+
+.d-xs-flex {
+  display: block;
+  @media (min-width: 576px) {
+    display: flex;
+    justify-content: space-between;
+    > :first-child { padding-right: 15px }
+  }
+  @media (min-width: 450px) {
+    display: flex;
+    justify-content: space-between;
+    > :first-child { padding-right: 15px }
+  }
+  @media (min-width: 767px) {
+  }
+}
+
+.radio-grid {
+  font-size: .8em;
+  display: flex;
+  align-items: flex-end;
+  label { width: 25% }
 }

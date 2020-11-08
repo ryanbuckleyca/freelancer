@@ -27,43 +27,55 @@ class Reminder extends Component {
         />
 
         <fieldset>
-          <label className="form-label" htmlFor="frequency">Frequency *</label><br />
-            <Radio name="frequency" value="Daily"
-              onChange={() => updateReminders({frequency: 1})}
-              checked={reminder && reminder.frequency === 1 ? 'checked' : ''}
-            />
-            <Radio name="frequency" value="Weekly"
-              onChange={() => updateReminders({frequency: 7})}
-              checked={reminder && reminder.frequency === 7 ? 'checked' : ''}
-            />
-            <Radio name="frequency" value="Bi-Weekly"
-              onChange={() => updateReminders({frequency: 14})}
-              checked={reminder && reminder.frequency === 14 ? 'checked' : ''}
-            />
+          <label className="form-label" htmlFor="frequency">Frequency *</label>
+          <br />
+          <div className="radio-grid">
             <Radio name="frequency" value="Monthly"
               onChange={() => updateReminders({frequency: 28})}
               checked={reminder && reminder.frequency === 28 ? 'checked' : ''}
             />
+            <Radio name="frequency" value="Biweekly"
+              onChange={() => updateReminders({frequency: 14})}
+              checked={reminder && reminder.frequency === 14 ? 'checked' : ''}
+              disabled={reminder && reminder.type === 'mail'}
+            />
+            <Radio name="frequency" value="Weekly"
+              onChange={() => updateReminders({frequency: 7})}
+              checked={reminder && reminder.frequency === 7 ? 'checked' : ''}
+              disabled={reminder && reminder.type === 'mail'}
+            />
+            <Radio name="frequency" value="Daily"
+              onChange={() => updateReminders({frequency: 1})}
+              checked={reminder && reminder.frequency === 1 ? 'checked' : ''}
+              disabled={reminder && reminder.type === 'mail'}
+            />
+          </div>
         </fieldset>
-        <fieldset>
-          <label className="form-label" htmlFor="tone">Tone *</label><br />
-            <Radio name="tone" value="Polite"
-              onChange={() => updateReminders({tone: 'polite'})}
-              checked={reminder && reminder.tone === 'polite' ? 'checked' : ''}
-            />
-            <Radio name="tone" value="Understanding"
-              onChange={() => updateReminders({tone: 'understanding'})}
-              checked={reminder && reminder.tone === 'understanding' ? 'checked' : ''}
-            />
-            <Radio name="tone" value="Concerned"
-              onChange={() => updateReminders({tone: 'concerned'})}
-              checked={reminder && reminder.tone === 'concerned' ? 'checked' : ''}
-            />
-            <Radio name="tone"value="Stern"
-              onChange={() => updateReminders({tone: 'stern'})}
-              checked={reminder && reminder.tone === 'stern' ? 'checked' : ''}
-            />
-        </fieldset>
+
+        {/* TONE
+        // <fieldset>
+        //   <label className="form-label" htmlFor="tone">Tone *</label><br />
+        //   <div className="radio-grid">
+        //     <Radio name="tone" value="Polite"
+        //       onChange={() => updateReminders({tone: 'polite'})}
+        //       checked={reminder && reminder.tone === 'polite' ? 'checked' : ''}
+        //     />
+        //     <Radio name="tone" value="Considerate"
+        //       onChange={() => updateReminders({tone: 'understanding'})}
+        //       checked={reminder && reminder.tone === 'understanding' ? 'checked' : ''}
+        //     />
+        //     <Radio name="tone" value="Concerned"
+        //       onChange={() => updateReminders({tone: 'concerned'})}
+        //       checked={reminder && reminder.tone === 'concerned' ? 'checked' : ''}
+        //     />
+        //     <Radio name="tone"value="Stern"
+        //       onChange={() => updateReminders({tone: 'stern'})}
+        //       checked={reminder && reminder.tone === 'stern' ? 'checked' : ''}
+        //     />
+        //   </div>
+        // </fieldset>
+        */}
+
         <fieldset>
           <label className="form-label"
             htmlFor="msg-content">
@@ -121,7 +133,7 @@ class Reminders extends Component {
     return(
       <div className="reminders">
         Reminders:
-        <div className="reminders-buttons" style={{display: 'flex', justifyContent: 'stretch'}}>
+        <div className="reminders-buttons">
           <button
             className={"flex-item-fill reminder-row" + isSelected('phone')}
             id="phone"

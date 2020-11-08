@@ -5,11 +5,11 @@ import social_media from '../images/social_media.svg';
 import callAPI from '../scripts/callAPI';
 
 class ContractsAll extends Component {
-  state = {contracts: []};
+  state = { contracts: [] };
 
   async componentDidMount() {
     const contracts = await callAPI('/api/contracts/')
-    this.setState({contracts: contracts});
+    this.setState({ contracts: contracts });
   }
 
   contract(contract) {

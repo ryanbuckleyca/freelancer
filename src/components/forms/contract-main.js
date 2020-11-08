@@ -21,10 +21,13 @@ class CardFormFieldsContract extends Component {
   }
 
   clientInfo(client) {
-    return  client.name + ' | ' +
-    client.street1 + ', ' + (client.street2 ? client.street2 + ', ' : '') +
-    client.city + ', ' + client.state + ' ' +
-    client.post_zip + ' ' + client.country
+    return (
+      client.name + ' | ' +
+      client.street1 + ', ' +
+      (client.street2 ? client.street2 + ', ' : '') +
+      client.city + ', ' + client.state + ' ' +
+      client.post_zip + ' ' + client.country
+    )
   }
 
   contractClient(client_id, user_clients) {
@@ -62,8 +65,8 @@ class CardFormFieldsContract extends Component {
   }
 
   render() {
-    //set selected client
     const {user_clients, client_id } = this.props
+
     user_clients
     && !this.props.selectedClient
     && this.props.passProps({

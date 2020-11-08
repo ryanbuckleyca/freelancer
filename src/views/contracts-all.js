@@ -22,7 +22,8 @@ class ContractsAll extends Component {
         Client: {contract.Client.name}<br />
         Due: {contract.due_date}<br />
         ID: {contract.identifier}<br />
-        Amount: {contract.amount}
+        Amount: {contract.amount}<br />
+        Reminders: {contract.Reminders.map(x => x.type)}
       </div>
     )
   }

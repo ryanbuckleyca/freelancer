@@ -9,7 +9,10 @@ router.route("/")
   .get(async (req, res) => {
     const allContracts = await db.Contract.findAll({
       where: { user_id: 1 },
-      include: [{ model: db.Client }]
+      include: [
+        { model: db.Client },
+        { model: db.Reminder }
+      ]
     });
     res.send(allContracts)
   })

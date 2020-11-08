@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
-import CardForm from '../components/cards/card-form/';
-import CardFormTopSideContract from '../components/cards/card-form/contract-topside';
-import CardFormFieldsContract from '../components/cards/card-form/contract-fields';
+import CardForm from '../components/cards/card-form';
+import CardFormTopSideContract from '../components/forms/contract-topside';
+import CardFormFieldsContract from '../components/forms/contract-main';
 
 class Contract extends Component {
-  componentDidMount() {
-    console.log("||||| contract view mounted with props: ", this.props)
-  }
   render() {
-    console.log("||||| contract view rendered with props: ", this.props)
     return(
       <div className='profile'>
         <hr className='spacer' />

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
-import CardForm from '../components/cards/card-form/';
-import CardFormTopSideProfile from '../components/cards/card-form/profile-topside';
-import CardFormFieldsPerson from '../components/cards/card-form/person-fields';
+import CardForm from '../components/cards/card-form';
+import CardFormTopSideProfile from '../components/forms/profile-topside';
+import CardFormFieldsPerson from '../components/forms/person-main';
 import callAPI from '../scripts/callAPI';
 
 class Profile extends Component {

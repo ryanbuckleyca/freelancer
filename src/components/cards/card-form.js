@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
-import callAPI from '../../../scripts/callAPI';
-import requiredFieldsValid from '../../../scripts/requiredFieldsValid';
-import '../cards.scss';
+import callAPI from '../../scripts/callAPI';
+import requiredFieldsValid from '../../scripts/requiredFieldsValid';
+import './cards.scss';
 
 class CardForm extends Component {
   state = {recordLoaded: false}
@@ -56,7 +56,7 @@ class CardForm extends Component {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({ [name]: value }, console.log('new state is: ', this.state))
-    
+
   }
 
   passProps = (props) => {

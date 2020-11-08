@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Suez+One&display=swap');
 @import '_custom.scss';
-@import './components/form.scss';
+@import './components/forms/form.scss';
 @import './components/buttons.scss';
 
 *:focus {
@@ -81,7 +81,6 @@ a {
   color: $green;
 }
 a:visited {
-  color: $green;
   opacity: 0.7;
 }
 

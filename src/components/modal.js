@@ -5,7 +5,6 @@ import './modal.scss'
 const url = process.env.REACT_APP_API_URL || 'http://localhost:9000';
 
 class Modal extends Component {
-
   // TODO: extract into requiredFieldsValid for re-use
   validateEmail(email) {
     const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -40,6 +39,8 @@ class Modal extends Component {
   }
 
   render() {
+    console.log('toggleModal called')
+
     return(
       <div id="modal">
         <div id="modalDialog">

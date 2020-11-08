@@ -7,7 +7,7 @@ class Footer extends Component {
   render() {
     return(
       <div>
-        { !this.props.showTrial && <div className="container my-5 p-0"><Trial /></div> }
+        { !this.props.showTrial && <Trial /> }
         <div className="footer">
           <div className="footer-legal">
             <Logotype height='50' />

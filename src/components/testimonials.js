@@ -39,7 +39,7 @@ class Testimonials extends Component {
 
   render() {
     return(
-      <div class="carousel card-testimonials card-lg">
+      <div className="carousel card-testimonials card-lg">
         <span className="card-testimonials-head">
           <h2 className="m-0">Testimonials</h2>
           <div>
@@ -51,8 +51,8 @@ class Testimonials extends Component {
             </a>
           </div>
         </span>
-        
-        <div class="testimonials">
+
+        <div className="testimonials">
           <div className="card-testimony active">
             <div className="card-testimony-user">
               <img src="http://kitt.lewagon.com/placeholder/users/ryanbuckleyca"

@@ -1,80 +1,66 @@
 import React, {Component} from 'react';
 import Radio from './radio';
-import '../cards.scss';
+import ToggleSwitch from './toggle-switch';
+import './reminders.scss';
 
 class Reminder extends Component {
-
-  updateReminders(newObject) {
-    const { reminder, reminders } = this.props
-    const index = reminders.findIndex(x => x === reminder)
-    const newArray = reminders
-    newArray[index] = { ...reminder, ...newObject }
-    this.props.passProps({ reminders: newArray }, console.log('reminders is now ', reminders))
-  }
-
   render() {
-    const { reminder } = this.props
+    const { reminder, reminders } = this.props
+
+    const updateReminders = (newObject) => {
+      const index = reminders.findIndex(x => x === reminder)
+      const newArray = reminders
+      newArray[index] = { ...reminder, ...newObject }
+      this.props.passProps({ reminders: newArray })
+    }
 
     if (!reminder)
       return('^ select a reminder to configure')
 
-    console.log('reminder is ', reminder)
-
     return(
-      <div id="reminder">
-        <div style={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          alignItems: "center",
-          marginBottom: '1em'
-        }}>
-        <label className="toggle-switch button r">
-          <input type="checkbox" className="checkbox"
-            onChange={() => this.updateReminders({active: !reminder.active})}
-            checked={reminder && reminder.active}
-          />
-          <div className="knobs"></div>
-          <div className="layer"></div>
-        </label>
-        <div style={{flexGrow: 1, marginLeft: '1em'}}>
-          {reminder.type} reminders are {reminder && reminder.active ? 'ON' : 'OFF'}
-        </div>
-        </div>
+      <div class="reminder">
+
+        <ToggleSwitch
+          changeHandler={updateReminders}
+          value={reminder.active}
+          message={reminder.type + ' reminders'}
+        />
+
         <fieldset>
           <label className="form-label" htmlFor="frequency">Frequency *</label><br />
             <Radio name="frequency" value="Daily"
-              onChange={() => this.updateReminders({frequency: 1})}
+              onChange={() => updateReminders({frequency: 1})}
               checked={reminder && reminder.frequency === 1 ? 'checked' : ''}
             />
             <Radio name="frequency" value="Weekly"
-              onChange={() => this.updateReminders({frequency: 7})}
+              onChange={() => updateReminders({frequency: 7})}
               checked={reminder && reminder.frequency === 7 ? 'checked' : ''}
             />
             <Radio name="frequency" value="Bi-Weekly"
-              onChange={() => this.updateReminders({frequency: 14})}
+              onChange={() => updateReminders({frequency: 14})}
               checked={reminder && reminder.frequency === 14 ? 'checked' : ''}
             />
             <Radio name="frequency" value="Monthly"
-              onChange={() => this.updateReminders({frequency: 28})}
+              onChange={() => updateReminders({frequency: 28})}
               checked={reminder && reminder.frequency === 28 ? 'checked' : ''}
             />
         </fieldset>
         <fieldset>
           <label className="form-label" htmlFor="tone">Tone *</label><br />
             <Radio name="tone" value="Polite"
-              onChange={() => this.updateReminders({tone: 'polite'})}
+              onChange={() => updateReminders({tone: 'polite'})}
               checked={reminder && reminder.tone === 'polite' ? 'checked' : ''}
             />
             <Radio name="tone" value="Understanding"
-              onChange={() => this.updateReminders({tone: 'understanding'})}
+              onChange={() => updateReminders({tone: 'understanding'})}
               checked={reminder && reminder.tone === 'understanding' ? 'checked' : ''}
             />
             <Radio name="tone" value="Concerned"
-              onChange={() => this.updateReminders({tone: 'concerned'})}
+              onChange={() => updateReminders({tone: 'concerned'})}
               checked={reminder && reminder.tone === 'concerned' ? 'checked' : ''}
             />
             <Radio name="tone"value="Stern"
-              onChange={() => this.updateReminders({tone: 'stern'})}
+              onChange={() => updateReminders({tone: 'stern'})}
               checked={reminder && reminder.tone === 'stern' ? 'checked' : ''}
             />
         </fieldset>
@@ -84,7 +70,7 @@ class Reminder extends Component {
             Content *
           </label>
           <textarea rows="10" id="message" name="message"
-            onChange={(e) => this.updateReminders({ text: e.target.value })}
+            onChange={(e) => updateReminders({ text: e.target.value })}
             value={reminder && reminder.text}>
           </textarea>
         </fieldset>
@@ -110,28 +96,21 @@ class Reminders extends Component {
     e.preventDefault();
     e.persist();
     const type = e.target.id
-    let index = this.props.reminders.findIndex(x => x.type === type)
-    if (index < 0)
-      this.createReminder(e.target.id)
-    else
-      this.props.passProps({ reminder: this.props.reminders[index], selectedType: e.target.id })
+    const reminders = this.props.reminders
+    let index = reminders.findIndex(x => x.type === type)
+    index < 0
+    ? this.createReminder(type)
+    : this.props.passProps({ reminder: reminders[index], selectedType: type })
   }
 
   render() {
-    // props are passed from parent STATE (Contract)
-    //  selectedType is a string set from here (Reminders)
-    //  reminders is an array received from parent (Contract)
+    const { reminders, selectedType } = this.props
 
-    // wait for parent component to pass props
-    if(!this.props.reminders)
+    if(!reminders)
       return "Loading..."
 
-    console.log('remidnerSSS loaded with props: ', this.props)
-
-    // render reminder tabs based on activeness and selectedness
-    const isSelected = type => type === this.props.selectedType ? ' reminder-selected' : ''
-    const loadReminder = type => this.props.reminders.find(x => x.type === type)
-    console.log('loadReminder(email) is ', loadReminder("email"))
+    const isSelected = type => type === selectedType ? ' reminder-selected' : ''
+    const loadReminder = type => reminders.find(x => x.type === type)
     const icon = (type) => {
       if (loadReminder(type) && loadReminder(type).active)
         return <span className="text-green">✓</span>
@@ -169,13 +148,11 @@ class Reminders extends Component {
           </button>
         </div>
         <br />
-        { console.log('reminder passed to child is: ', loadReminder(this.props.selectedType))}
         <Reminder
           passProps={this.props.passProps}
           changeHandler={this.props.changeHandler}
           reminders={this.props.reminders}
           reminder={loadReminder(this.props.selectedType)}
-          //|--> reminder passed to child is { type: 'email' }
         />
       </div>
     );

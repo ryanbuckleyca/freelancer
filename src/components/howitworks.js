@@ -21,7 +21,7 @@ class HowItWorks extends Component {
             If we detect that you have been blocked, we will send from our own list of addresses and numbers, using dynamic content of 103,219,200 message variations that can’t be easily blocked or filtered.
         </p>
         <br />
-        <p className="card-email">
+        <div className="card-email">
         <p style={{position: 'absolute', top: 'calc(-5%)', right: 0, width: '70%', textAlign: 'center', backgroundColor: '#ececec', margin: '0 5px', borderRadius: '25px', padding: '2px'}}>message #<i name="msgID">362880</i></p>
           from: <i name="fakerEmail">youremail@emailaccount.com</i><br />
           to: yourclientsemail@yahoo.com<br />
@@ -34,7 +34,7 @@ class HowItWorks extends Component {
           <br /><br />
           <i name="thanks">Thanks</i>,<br />
           <i name="fakerName">Ryan Buckley</i>
-        </p>
+        </div>
         <br />
         <div className="card-bottom">
           <div className="card-bottom-img">

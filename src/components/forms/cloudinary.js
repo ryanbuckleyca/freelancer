@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 class Cloudinary extends Component {
-  required = 
+  required =
   {
     cloudName: 'ryanbuckleyca',
     maxFileSize: 5000000,
@@ -26,7 +26,7 @@ class Cloudinary extends Component {
       }
     }
   }
-  avatarOptions =  
+  avatarOptions =
   {
     uploadPreset: 'cheque-mate-avatars',
     clientAllowedFormats: ['png','gif','jpeg','jpg'],
@@ -53,7 +53,7 @@ class Cloudinary extends Component {
         this.props.handler({picture: res.info.url})
       }
     })
-    
+
     const cloudinaryWidget = (e) => {
       e.preventDefault();
       cloudinaryUpload.open();

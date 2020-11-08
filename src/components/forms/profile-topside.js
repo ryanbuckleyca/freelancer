@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import '../cards.scss';
-import Cloudinary from '../../cloudinary';
+import '../cards/cards.scss';
+import Cloudinary from './cloudinary';
 
 class CardFormTopsideProfile extends Component {
   render() {
@@ -31,4 +31,3 @@ class CardFormTopsideProfile extends Component {
 }
 
 export default CardFormTopsideProfile;
-

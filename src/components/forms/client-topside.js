@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import '../cards.scss';
-import late from '../../../images/late.svg'
-import robber from '../../../images/robber.svg'
-
+import '../cards/cards.scss';
+import late from '../../images/late.svg'
+import robber from '../../images/robber.svg'
+import Cloudinary from './cloudinary';
 
 class CardFormTopsideClient extends Component {
   cloudinaryUpload = window.cloudinary.createUploadWidget({
@@ -32,7 +32,7 @@ class CardFormTopsideClient extends Component {
             <img className="avatar-lg" src={this.props.picture} alt="avatar" />
           </div>
           <div className="profile-buttons left">
-            <a className="btn btn-secondary" onClick={this.cloudinaryWidget}>edit image</a>
+            <Cloudinary text="edit image" options="avatar" handler={this.props.passProps} />
             <a className="btn btn-secondary" onClick={this.cloudinaryWidget}>add client</a>
           </div>
           <div className="card-client-tags right">
@@ -52,4 +52,3 @@ class CardFormTopsideClient extends Component {
 }
 
 export default CardFormTopsideClient;
-

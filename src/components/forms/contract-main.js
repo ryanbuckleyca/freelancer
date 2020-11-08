@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import '../cards.scss';
-import callAPI from '../../../scripts/callAPI';
+import '../cards/cards.scss';
+import callAPI from '../../scripts/callAPI';
 import Select from 'react-select';
 import Reminders from './reminders';
-import InputField from './card-form-input-field';
+import InputField from './input';
 import Radio from './radio';
 
 class CardFormFieldsContract extends Component {
@@ -75,7 +75,6 @@ class CardFormFieldsContract extends Component {
 
     !this.props.id && this.userIDandClients(this.props.auth0_id)
 
-    // wait for parent components to pass props
     if(!this.props.id)
       return "Loading..."
 

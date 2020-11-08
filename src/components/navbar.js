@@ -75,16 +75,16 @@ class Navbar extends Component {
             <a onClick={() => toggleModal()} className="navbar-link">Browse Clients</a>
           </li>
           <li className="navbar-item">
-            <a onClick={() => toggleModal()} className="navbar-link">Invoices</a>
+            <a onClick={() => toggleModal()} className="navbar-link">Add Contract</a>
           </li>
           <li className="navbar-item">
             <a onClick={() => this.toggleProfileMenu()}>
               <img src={this.props.auth0.user.picture} className="avatar" alt={user.name} />
             </a>
             <div className={'profileMenu ' + this.state.profileClass} aria-label={this.state.profileToggle}>
-              <a onClick={() => toggleModal()} className="dropdown-item">My Invoices</a>
+              <Link to="/contracts" onClick={() => this.closeProfileMenu()} className="dropdown-item">My Contracts</Link>
               <Link to="/profile" onClick={() => this.closeProfileMenu()} className="dropdown-item">My Profile</Link>
-              <a onClick={() => logout({returnTo: window.location.origin })}>LOGOUT</a>
+              <Link onClick={() => logout({returnTo: window.location.origin })} className="dropdown-item">LOGOUT</Link>
             </div>
           </li>
         </ul>

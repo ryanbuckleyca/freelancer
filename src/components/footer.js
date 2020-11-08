@@ -10,7 +10,7 @@ class Footer extends Component {
         { !this.props.showTrial && <Trial /> }
         <div className="footer">
           <div className="footer-legal">
-            <Logotype height='50' />
+            <Logotype height='40' />
             <br />
             <small>info@chequemate.work</small>
             <small>

@@ -282,7 +282,7 @@
   padding: 2em;
   background-color: $light-gray;
   align-items: center;
-  @media (min-width: 400px) {
+  @media (min-width: 479px) {
     display: flex;
     flex-direction: row-reverse;
   }
@@ -298,7 +298,7 @@
   }
   text-align: center;
   width: 100%;
-  @media (min-width: 400px) {
+  @media (min-width: 479px) {
     img {
       display: block;
       width: 100%;
@@ -314,7 +314,7 @@
 .card-md-text {
   h2 { text-align: center }
   text-align: left;
-  @media (min-width: 400px) {
+  @media (min-width: 479px) {
     width: 200%;
     h2 { text-align: left }
   }
@@ -528,7 +528,7 @@
 }
 
 .avatar-lg {
-  border: 3px solid #666;
+  border: 2px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   display: block;
   margin: 0 auto 5px;

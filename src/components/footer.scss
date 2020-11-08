@@ -1,7 +1,7 @@
 @import '../_custom.scss';
 
 .footer {
-  border-top: 1px solid rgba(1, 1, 1, 0.2);
+  border-top: .5px solid lighten($blue, 50%);
   padding-top: 2em;
   display: flex;
   flex-direction: column-reverse;
@@ -13,6 +13,7 @@
   h4 {
     color: $blue;
     font-size: 100%;
+    margin-top: .5em;
   }
   p {
     color: $blue;

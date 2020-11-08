@@ -65,8 +65,8 @@ router
   });
 
 router
-  // GET ALL clients
   .route("/")
+  // GET ALL clients
   .get(async (req, res, next) => {
     const allClients = await db.Client.findAll();
     res.send(allClients)

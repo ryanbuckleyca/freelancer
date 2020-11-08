@@ -5,6 +5,14 @@ const db = require('../models');
 // TODO: should require authentication
 
 router.route("/")
+  // GET ALL CONTACTS
+  .get(async (req, res) => {
+    const allContracts = await db.Contract.findAll({
+      where: { user_id: 1 },
+      include: [{ model: db.Client }]
+    });
+    res.send(allContracts)
+  })
   // CREATE NEW CONTRACT
   .post(async (req, res) => {
     console.log('api/contracts/ POST called')

@@ -61,10 +61,14 @@ router.route("/:id")
         where: { id: req.body.id },
         returning: true
       })
-        .then(db.Reminder.update(req.body.Reminders, {
-          where: { contract_id: req.body.id }
+      // TODO: chain and refactor
+      req.body.reminders.forEach(reminder => {
+        db.Reminder.upsert(reminder, {
+          where: { contract_id: reminder.contract_id },
+          returning: true
         })
-      );
+      })
+
       const dbContract = updateResult[1][0];
       res.send(dbContract)
     }

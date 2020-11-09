@@ -5,12 +5,12 @@ import './reminders.scss';
 
 class Reminder extends Component {
   render() {
-    const { reminder, reminders } = this.props
+    const { reminder, reminders, contract_id } = this.props
 
     const updateReminders = (newObject) => {
       const index = reminders.findIndex(x => x === reminder)
       const newArray = reminders
-      newArray[index] = { ...reminder, ...newObject }
+      newArray[index] = { ...reminder, ...newObject, contract_id: contract_id }
       this.props.passProps({ reminders: newArray })
     }
 
@@ -165,6 +165,7 @@ class Reminders extends Component {
           changeHandler={this.props.changeHandler}
           reminders={this.props.reminders}
           reminder={loadReminder(this.props.selectedType)}
+          contract_id={this.props.contract_id}
         />
       </div>
     );

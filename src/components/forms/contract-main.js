@@ -137,6 +137,7 @@ class CardFormFieldsContract extends Component {
           {this.props.user_clients && this.clientList(this.props.user_clients)}
         </fieldset>
         <Reminders
+          contract_id={this.props.id}
           reminders={this.props.Reminders}
           passProps={this.props.passProps}
           changeHandler={this.props.changeHandler}

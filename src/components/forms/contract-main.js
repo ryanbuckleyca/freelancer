@@ -66,6 +66,9 @@ class CardFormFieldsContract extends Component {
 
   render() {
     const {user_clients, client_id } = this.props
+    const togglePaid = (val) => this.props.changeHandler({
+      target: {name: 'paid', value: val}
+    })
 
     user_clients
     && !this.props.selectedClient
@@ -93,8 +96,21 @@ class CardFormFieldsContract extends Component {
             required
           />
           <div className="flex-item-small">
-            <Radio name="paid" value="paid" />
-            <Radio name="paid" value="unpaid" className="alert" />
+            <Radio
+              name="paid"
+              value="true"
+              label="paid"
+              onChange={() => togglePaid(true)}
+              checked={this.props.paid}
+            />
+            <Radio
+              name="paid"
+              value="false"
+              label="unpaid"
+              className="alert"
+              onChange={() => togglePaid(false)}
+              checked={!this.props.paid}
+            />
           </div>
         </span>
         <span className="d-xs-flex">

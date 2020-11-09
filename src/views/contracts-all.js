@@ -13,11 +13,10 @@ class ContractsAll extends Component {
   }
 
   contract(contract) {
+    const id = contract.id
     return(
-      <div key={contract.id}>
-        <a href={contract.id}>
-          Contract#: {contract.id}
-        </a><br />
+      <div key={id}>
+        <a href={'/contracts/'+id}>Contract#: {id}</a><br />
         {contract.paid ? "paid" : "UNPAID"}<br />
         Client: {contract.Client.name}<br />
         Due: {contract.due_date}<br />

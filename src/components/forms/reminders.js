@@ -83,7 +83,7 @@ class Reminder extends Component {
           </label>
           <textarea rows="10" id="message" name="message"
             onChange={(e) => updateReminders({ text: e.target.value })}
-            value={reminder && reminder.text}>
+            value={(reminder && reminder.text) || ''}>
           </textarea>
         </fieldset>
       </div>
@@ -127,7 +127,7 @@ class Reminders extends Component {
       if (loadReminder(type) && loadReminder(type).active)
         return <span className="text-green">✓</span>
       else
-        return <span className="text-red">x</span>
+        return <span className="text-red" style={{fontSize:'1.1em'}}>x</span>
     }
 
     return(

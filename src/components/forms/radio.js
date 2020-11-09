@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../cards/cards.scss';
+import './form.scss';
 
 class Radio extends Component {
   render() {
@@ -13,7 +13,7 @@ class Radio extends Component {
         onChange={this.props.onChange}
         checked={this.props.checked}
       />
-      {this.props.value}
+      {this.props.label ? this.props.label : this.props.value}
       <span className={this.props.className || 'dot'}>
       </span>
     </label>

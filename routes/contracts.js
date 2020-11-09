@@ -60,7 +60,11 @@ router.route("/:id")
       const updateResult = await db.Contract.update(req.body, {
         where: { id: req.body.id },
         returning: true
-      });
+      })
+        .then(db.Reminder.update(req.body.Reminders, {
+          where: { contract_id: req.body.id }
+        })
+      );
       const dbContract = updateResult[1][0];
       res.send(dbContract)
     }

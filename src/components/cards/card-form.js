@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
 import callAPI from '../../scripts/callAPI';
+import dateToStr from '../../scripts/dateToStr';
 import requiredFieldsValid from '../../scripts/requiredFieldsValid';
 import './cards.scss';
 import '../forms/form.scss';
@@ -8,35 +9,27 @@ import '../forms/form.scss';
 
 class CardForm extends Component {
   state = {recordLoaded: false}
-  // renders form based on url where /table/id.
-  // gets called from views: Profile, Client, and Contract.
-  // takes two children components: (1) a form and (2) a top/side.
-  // state gets updated by children using changeHandler and/or passProps.
-  // this state gets sent to DB for new/update records
-  // this state gets passed to children as props
-  // TODO: currently runs in endless loop getting record
 
   loadRecordState(table, id) {
-    // called when props are received from parent view (i.e. Profile, Client...)
     callAPI(`/api/${table}/${id}`)
     .then(result => {
-      if (result && result.due_date) {
-        let date = new Date(result.due_date)
-        result.due_date = (date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
-      }
+      if (result && result.due_date)
+        result.due_date = dateToStr(result.due_date);
       this.setState({...result, recordLoaded: true })
     })
   }
 
   saveFormToDB() {
-    callAPI(
-      `/api/${this.props.table}/${this.props.id || ''}`,
-      this.props.id ? 'PUT' : 'POST',
-      this.state
-    ).then(res => {
-      console.log(`${this.props.table} saved`)
-      return res
-    }).catch(err => console.log('card-form saveFormToDB err: ', err))
+    console.log('saving to db with state: ', this.state)
+    const url = `/api/${this.props.table}/${this.props.id || ''}`
+    const method = this.props.id ? 'PUT' : 'POST'
+    const body = this.state
+
+    callAPI(url, method, body)
+      .then(res => {
+        console.log(`${this.props.table} saved`)
+        return res
+      }).catch(err => console.log('card-form saveFormToDB err: ', err))
   }
 
   handleSubmit = async (e) => {
@@ -44,8 +37,6 @@ class CardForm extends Component {
     if (requiredFieldsValid()) {
       const saved =  await this.saveFormToDB();
       console.log('submitted: database result is ', saved)
-      // redirect to new record if not updating
-      // !this.state.id && (window.location.href = `/${this.props.table}/${saved.id}`)
     }
     else {
       // TODO: render form to show errors

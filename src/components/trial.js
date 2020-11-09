@@ -6,7 +6,6 @@ class Trial extends Component {
   // TODO: toggleModal not being called but onclicks working
   // console.log(toggleModal) shows function fine
   render() {
-    console.log(toggleModal)
     return(
       <div className="trial">
         <div className="trial-text">

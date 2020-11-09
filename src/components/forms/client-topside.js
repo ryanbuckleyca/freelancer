@@ -35,7 +35,7 @@ class CardFormTopsideClient extends Component {
             <Cloudinary text="edit image" options="avatar" handler={this.props.passProps} />
             <a className="btn btn-secondary" onClick={this.cloudinaryWidget}>add client</a>
           </div>
-          <div className="card-client-tags right">
+          <div className="card-client-tags right" style={{flexDirection: 'column'}}>
             <div><img src={robber} height="20px" alt="robber" /><small>2/10 late</small></div>
             <div><img src={late} alt="hour-glass" /><small>48 weeks</small></div>
           </div>

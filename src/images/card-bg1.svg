@@ -1,24 +1,3 @@
-<svg width="390" height="340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
- <defs>
-  <path stroke="black" stroke-width="1px" fill="rosybrown" id="svgEditorClosePathDefs"/>
- </defs>
- <defs>
-  <polygon id="svgEditorIconDefs" fill="rosybrown"/>
-  <polygon fill="#2D9CDB" fill-opacity="0.1" id="svgEditorShapeDefs" stroke-width="1px" stroke="black"/>
- </defs>
- <g>
-  <title>background</title>
- </g>
- <g>
-  <title>Layer 1</title>
-  <path fill="#2D9CDB" fill-opacity="0.1" d="m386.23365,34.4991c-4.12556,-35.5604 -38.60156,-30.63043 -55.91241,-30.63043l-24.23519,0l-140.4194,0c-82.38408,0.78635 -83.56615,0.35706 -97.45546,47.23668l-63.68014,248.43264c-1.73109,19.73437 13.84868,36.699 33.58305,36.699l314.01882,0c19.73437,0 35.31413,-16.96463 33.58305,-36.699l0.1731,0l0.17311,0l0.17147,-265.03889z" id="e6_shape" stroke-width="1px"/>
-  <path fill="rosybrown" stroke="null" stroke-width="1px" stroke-opacity="null" fill-opacity="null" d="m334.00025,208.1332l-21.99955,-20.13278l21.99955,20.13278z" id="svg_1"/>
- </g>
- <g>
-  <title>background</title>
- </g>
- <g>
-  <title>background</title>
-  <rect fill="none" id="canvas_background" height="602" width="802" y="-1" x="-1"/>
- </g>
+<svg width="383" height="334" preserveAspectRatio="none" viewBox="0 0 383 334" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M382.234 31.499C378.108 -4.06141 343.632 0.868553 326.321 0.868553H302.086H161.667C79.2825 1.6549 78.1004 1.22561 64.2111 48.1052L0.530939 296.538C-1.20015 316.272 14.3796 333.237 34.114 333.237H348.133C367.867 333.237 383.447 316.272 381.716 296.538H381.889H382.062L382.234 31.499Z" fill="#2D9CDB" fill-opacity="0.05"/>
 </svg>

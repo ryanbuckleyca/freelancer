@@ -3,38 +3,29 @@ import './testimonials.scss';
 import './cards/cards.scss';
 
 class Testimonials extends Component {
+
+  intervalID = 0;
+
+  advSlide(dir) {
+    const slide = document.querySelector('.card-testimony.active')
+    const nextSlide = slide.nextSibling || slide.parentNode.firstChild
+    const prevSlide = slide.previousSibling || slide.parentNode.lastChild
+    slide.classList.remove('active');
+    dir > 0 ? nextSlide.classList.add('active') : prevSlide.classList.add('active')
+  }
+
+
   componentDidMount() {
-    let nextBtn = document.querySelector(".carousel-control-next"),
-        prevBtn = document.querySelector(".carousel-control-prev"),
-        slide = document.querySelectorAll(".card-testimony"),
-        i = 0;
+    const nextBtn = document.querySelector('.carousel-control-next')
+    const prevBtn = document.querySelector('.carousel-control-prev')
+    prevBtn.onclick = () => this.advSlide(-1)
+    nextBtn.onclick = () => this.advSlide(1)
 
-    const slider_callback = () => nextBtn.click();
-
-    prevBtn.onclick = (event) => {
-        event.preventDefault();
-        slide[i].classList.remove("active");
-        i--;
-        if (i < 0) {
-            i = slide.length - 1;
-        }
-        slide[i].classList.add("active");
-    };
-    nextBtn.onclick = (event) => {
-        event.preventDefault();
-        slide[i].classList.remove("active");
-        i++;
-        if (i >= slide.length) {
-            i = 0;
-        }
-        slide[i].classList.add("active");
-    };
-
-    window.setInterval(slider_callback, 5000);
+    this.intervalID = setInterval(this.advSlide, 5000);
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.slider_callback);
+    clearInterval(this.intervalID);
   }
 
   render() {

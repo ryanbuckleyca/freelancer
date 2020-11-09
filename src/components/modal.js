@@ -39,8 +39,6 @@ class Modal extends Component {
   }
 
   render() {
-    console.log('toggleModal called')
-
     return(
       <div id="modal">
         <div id="modalDialog">

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { withAuth0 } from '@auth0/auth0-react';
 import './navbar.scss';
 import Logotype from './logotype';
@@ -9,9 +9,14 @@ class Navbar extends Component {
 
   state = {
     navClass: '',
-    toggle: "Open navigation menu",
+    toggle: 'Open navigation menu',
     profileClass: '',
-    profileToggle: "Open navigation menu"
+    profileToggle: 'Open navigation menu'
+  }
+
+  closeBoth() {
+    this.closeMobileNavbar();
+    this.closeProfileMenu();
   }
 
   openMobileNavbar() {
@@ -21,10 +26,9 @@ class Navbar extends Component {
     this.setState({navClass: '', toggle: 'Open navigation menu.'})
   }
   toggleMenu() {
-    if (this.state.navClass === 'opened')
-      this.closeMobileNavbar();
-    else
-      this.openMobileNavbar();
+    this.state.navClass === 'opened'
+    ? this.closeMobileNavbar()
+    : this.openMobileNavbar()
   }
 
   openProfileMenu() {
@@ -34,10 +38,9 @@ class Navbar extends Component {
     this.setState({profileClass: '', profileToggle: 'Open profile menu.'})
   }
   toggleProfileMenu() {
-    if (this.state.profileClass === 'opened')
-      this.closeProfileMenu();
-    else
-      this.openProfileMenu();
+    this.state.profileClass === 'opened'
+    ? this.closeProfileMenu()
+    : this.openProfileMenu()
   }
 
   handleClick = (e) => {
@@ -60,9 +63,9 @@ class Navbar extends Component {
     }
 
     let navBar =
-      <ul className="navbar-links" onClick={(e) => e.stopPropagation()}>
-        <li className="navbar-item">
-          <Link to="/" onClick={() => loginWithRedirect()} className="navbar-link">
+      <ul className='navbar-links' onClick={(e) => e.stopPropagation()}>
+        <li className='navbar-item'>
+          <Link to='/' onClick={() => loginWithRedirect()} className='navbar-link'>
             Log In / Register
           </Link>
         </li>
@@ -70,38 +73,38 @@ class Navbar extends Component {
 
     if(user && isAuthenticated) {
     navBar =
-        <ul className="navbar-links" onClick={(e) => e.stopPropagation()}>
-          <li className="navbar-item">
-            <a onClick={() => toggleModal()} className="navbar-link">Browse Clients</a>
+        <ul className='navbar-links' onClick={(e) => e.stopPropagation()}>
+          <li className='navbar-item'>
+            <Link to='/clients' onClick={() => this.closeMobileNavbar()} className='navbar-link'>Browse Clients</Link>
           </li>
-          <li className="navbar-item">
-            <a onClick={() => toggleModal()} className="navbar-link">Add Contract</a>
+          <li className='navbar-item'>
+            <a onClick={() => toggleModal()} className='navbar-link'>Add Contract</a>
           </li>
-          <li className="navbar-item">
+          <li className='navbar-item'>
             <a onClick={() => this.toggleProfileMenu()}>
-              <img src={this.props.auth0.user.picture} className="avatar" alt={user.name} />
+              <img src={this.props.auth0.user.picture} className='avatar' alt={user.name} />
             </a>
             <div className={'profileMenu ' + this.state.profileClass} aria-label={this.state.profileToggle}>
-              <Link to="/contracts" onClick={() => this.closeProfileMenu()} className="dropdown-item">My Contracts</Link>
-              <Link to="/profile" onClick={() => this.closeProfileMenu()} className="dropdown-item">My Profile</Link>
-              <Link onClick={() => logout({returnTo: window.location.origin })} className="dropdown-item">LOGOUT</Link>
+              <Link to='/contracts' onClick={() => this.closeBoth()} className='dropdown-item'>My Contracts</Link>
+              <Link to='/profile' onClick={() => this.closeBoth()} className='dropdown-item'>My Profile</Link>
+              <Link onClick={() => logout({returnTo: window.location.origin })} className='dropdown-item'>LOGOUT</Link>
             </div>
           </li>
         </ul>
     }
 
     return (
-      <header id="navbar" className={this.state.navClass}>
-          <nav className="navbar-container">
-            <Link to="/" className="navbar-brand">
-              <Logotype height="60" />
+      <header id='navbar' className={this.state.navClass}>
+          <nav className='navbar-container'>
+            <Link to='/' className='navbar-brand'>
+              <Logotype height='60' />
             </Link>
-            <button type="button" className="navbar-toggle" aria-label={this.state.toggle} onClick={() => this.toggleMenu()}>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
+            <button type='button' className='navbar-toggle' aria-label={this.state.toggle} onClick={() => this.toggleMenu()}>
+                <span className='icon-bar'></span>
+                <span className='icon-bar'></span>
+                <span className='icon-bar'></span>
             </button>
-            <div className="navbar-menu" onClick={() => this.closeMobileNavbar()}>
+            <div className='navbar-menu' onClick={() => this.closeMobileNavbar()}>
               { navBar }
             </div>
           </nav>

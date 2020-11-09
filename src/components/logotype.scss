@@ -1,3 +1,5 @@
+@import '../_custom.scss';
+
 /* takes a height prop in component */
 .logotype {
   display: flex;
@@ -21,6 +23,7 @@
   text-align: left;
   white-space: nowrap;
   font-size: 100%;
-  padding: 0 10px;
+  padding: 0 10px 5px;
   margin: 0;
+  color: darken($blue, 10%);
 }

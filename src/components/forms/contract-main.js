@@ -21,10 +21,13 @@ class CardFormFieldsContract extends Component {
   }
 
   clientInfo(client) {
-    return  client.name + ' | ' +
-    client.street1 + ', ' + (client.street2 ? client.street2 + ', ' : '') +
-    client.city + ', ' + client.state + ' ' +
-    client.post_zip + ' ' + client.country
+    return (
+      client.name + ' | ' +
+      client.street1 + ', ' +
+      (client.street2 ? client.street2 + ', ' : '') +
+      client.city + ', ' + client.state + ' ' +
+      client.post_zip + ' ' + client.country
+    )
   }
 
   contractClient(client_id, user_clients) {
@@ -62,8 +65,11 @@ class CardFormFieldsContract extends Component {
   }
 
   render() {
-    //set selected client
     const {user_clients, client_id } = this.props
+    const togglePaid = (val) => this.props.changeHandler({
+      target: {name: 'paid', value: val}
+    })
+
     user_clients
     && !this.props.selectedClient
     && this.props.passProps({
@@ -90,8 +96,21 @@ class CardFormFieldsContract extends Component {
             required
           />
           <div className="flex-item-small">
-            <Radio name="paid" value="paid" />
-            <Radio name="paid" value="unpaid" className="alert" />
+            <Radio
+              name="paid"
+              value="true"
+              label="paid"
+              onChange={() => togglePaid(true)}
+              checked={this.props.paid}
+            />
+            <Radio
+              name="paid"
+              value="false"
+              label="unpaid"
+              className="alert"
+              onChange={() => togglePaid(false)}
+              checked={!this.props.paid}
+            />
           </div>
         </span>
         <span className="d-xs-flex">
@@ -118,6 +137,7 @@ class CardFormFieldsContract extends Component {
           {this.props.user_clients && this.clientList(this.props.user_clients)}
         </fieldset>
         <Reminders
+          contract_id={this.props.id}
           reminders={this.props.Reminders}
           passProps={this.props.passProps}
           changeHandler={this.props.changeHandler}

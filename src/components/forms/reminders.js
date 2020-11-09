@@ -5,12 +5,12 @@ import './reminders.scss';
 
 class Reminder extends Component {
   render() {
-    const { reminder, reminders } = this.props
+    const { reminder, reminders, contract_id } = this.props
 
     const updateReminders = (newObject) => {
       const index = reminders.findIndex(x => x === reminder)
       const newArray = reminders
-      newArray[index] = { ...reminder, ...newObject }
+      newArray[index] = { ...reminder, ...newObject, contract_id: contract_id }
       this.props.passProps({ reminders: newArray })
     }
 
@@ -27,43 +27,55 @@ class Reminder extends Component {
         />
 
         <fieldset>
-          <label className="form-label" htmlFor="frequency">Frequency *</label><br />
-            <Radio name="frequency" value="Daily"
-              onChange={() => updateReminders({frequency: 1})}
-              checked={reminder && reminder.frequency === 1 ? 'checked' : ''}
-            />
-            <Radio name="frequency" value="Weekly"
-              onChange={() => updateReminders({frequency: 7})}
-              checked={reminder && reminder.frequency === 7 ? 'checked' : ''}
-            />
-            <Radio name="frequency" value="Bi-Weekly"
-              onChange={() => updateReminders({frequency: 14})}
-              checked={reminder && reminder.frequency === 14 ? 'checked' : ''}
-            />
+          <label className="form-label" htmlFor="frequency">Frequency *</label>
+          <br />
+          <div className="radio-grid">
             <Radio name="frequency" value="Monthly"
               onChange={() => updateReminders({frequency: 28})}
               checked={reminder && reminder.frequency === 28 ? 'checked' : ''}
             />
+            <Radio name="frequency" value="Biweekly"
+              onChange={() => updateReminders({frequency: 14})}
+              checked={reminder && reminder.frequency === 14 ? 'checked' : ''}
+              disabled={reminder && reminder.type === 'mail'}
+            />
+            <Radio name="frequency" value="Weekly"
+              onChange={() => updateReminders({frequency: 7})}
+              checked={reminder && reminder.frequency === 7 ? 'checked' : ''}
+              disabled={reminder && reminder.type === 'mail'}
+            />
+            <Radio name="frequency" value="Daily"
+              onChange={() => updateReminders({frequency: 1})}
+              checked={reminder && reminder.frequency === 1 ? 'checked' : ''}
+              disabled={reminder && reminder.type === 'mail'}
+            />
+          </div>
         </fieldset>
-        <fieldset>
-          <label className="form-label" htmlFor="tone">Tone *</label><br />
-            <Radio name="tone" value="Polite"
-              onChange={() => updateReminders({tone: 'polite'})}
-              checked={reminder && reminder.tone === 'polite' ? 'checked' : ''}
-            />
-            <Radio name="tone" value="Understanding"
-              onChange={() => updateReminders({tone: 'understanding'})}
-              checked={reminder && reminder.tone === 'understanding' ? 'checked' : ''}
-            />
-            <Radio name="tone" value="Concerned"
-              onChange={() => updateReminders({tone: 'concerned'})}
-              checked={reminder && reminder.tone === 'concerned' ? 'checked' : ''}
-            />
-            <Radio name="tone"value="Stern"
-              onChange={() => updateReminders({tone: 'stern'})}
-              checked={reminder && reminder.tone === 'stern' ? 'checked' : ''}
-            />
-        </fieldset>
+
+        {/* TONE
+        // <fieldset>
+        //   <label className="form-label" htmlFor="tone">Tone *</label><br />
+        //   <div className="radio-grid">
+        //     <Radio name="tone" value="Polite"
+        //       onChange={() => updateReminders({tone: 'polite'})}
+        //       checked={reminder && reminder.tone === 'polite' ? 'checked' : ''}
+        //     />
+        //     <Radio name="tone" value="Considerate"
+        //       onChange={() => updateReminders({tone: 'understanding'})}
+        //       checked={reminder && reminder.tone === 'understanding' ? 'checked' : ''}
+        //     />
+        //     <Radio name="tone" value="Concerned"
+        //       onChange={() => updateReminders({tone: 'concerned'})}
+        //       checked={reminder && reminder.tone === 'concerned' ? 'checked' : ''}
+        //     />
+        //     <Radio name="tone"value="Stern"
+        //       onChange={() => updateReminders({tone: 'stern'})}
+        //       checked={reminder && reminder.tone === 'stern' ? 'checked' : ''}
+        //     />
+        //   </div>
+        // </fieldset>
+        */}
+
         <fieldset>
           <label className="form-label"
             htmlFor="msg-content">
@@ -71,7 +83,7 @@ class Reminder extends Component {
           </label>
           <textarea rows="10" id="message" name="message"
             onChange={(e) => updateReminders({ text: e.target.value })}
-            value={reminder && reminder.text}>
+            value={(reminder && reminder.text) || ''}>
           </textarea>
         </fieldset>
       </div>
@@ -115,13 +127,13 @@ class Reminders extends Component {
       if (loadReminder(type) && loadReminder(type).active)
         return <span className="text-green">✓</span>
       else
-        return <span className="text-red">x</span>
+        return <span className="text-red" style={{fontSize:'1.1em'}}>x</span>
     }
 
     return(
       <div className="reminders">
         Reminders:
-        <div className="reminders-buttons" style={{display: 'flex', justifyContent: 'stretch'}}>
+        <div className="reminders-buttons">
           <button
             className={"flex-item-fill reminder-row" + isSelected('phone')}
             id="phone"
@@ -153,6 +165,7 @@ class Reminders extends Component {
           changeHandler={this.props.changeHandler}
           reminders={this.props.reminders}
           reminder={loadReminder(this.props.selectedType)}
+          contract_id={this.props.contract_id}
         />
       </div>
     );

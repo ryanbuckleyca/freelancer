@@ -12,7 +12,7 @@
 }
 
 .navbar-item {
-    margin: 0.4em;
+    margin: 0.25em;
 }
 
 .home-link,
@@ -45,6 +45,10 @@
     color: $green;
 }
 
+.navbar-brand {
+  text-decoration: none;
+}
+
 .navbar-logo {
     border-radius: 50%;
     margin-right: 0.5em;
@@ -70,12 +74,12 @@
     transition: background-color 0.2s ease-in-out,
                 transform 0.2s ease-in-out,
                 opacity 0.2s ease-in-out;
-    background-color: $black;
+    background-color: $blue;
 }
 
 .navbar-toggle:focus .icon-bar,
 .navbar-toggle:hover .icon-bar {
-    background-color: #000;
+    background-color: $blue;
 }
 
 #navbar.opened .navbar-toggle .icon-bar:first-child,
@@ -87,6 +91,7 @@
 
 #navbar.opened .navbar-toggle .icon-bar:first-child {
     transform: rotate(45deg);
+    background-color: $red;
 }
 
 #navbar.opened .navbar-toggle .icon-bar:nth-child(2) {
@@ -95,25 +100,27 @@
 
 #navbar.opened .navbar-toggle .icon-bar:last-child {
     transform: rotate(-45deg);
+    background-color: $red;
 }
 
 .navbar-menu {
     z-index: 1;
-    position: fixed;
+    position: absolute;
     top: 100px;
     bottom: 0;
-    transition: opacity 0.2s ease-in-out,
-                visibility 0.2s ease-in-out;
-    opacity: 0;
-    visibility: hidden;
     left: 0;
     right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out,
+                visibility 0.2s ease-in-out;
 }
 
 #navbar.opened .navbar-menu {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.1);
     opacity: 1;
     visibility: visible;
+    font-size: 125%;
 }
 
 .navbar-links {
@@ -121,13 +128,13 @@
     list-style-type: none;
     max-height: 0;
     overflow: visible;
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     left: 0;
     right: 0;
-    margin: 1.4rem;
+    margin: 0;
     border-radius: 5px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
@@ -144,6 +151,8 @@
 }
 .profileMenu.opened {
     display: block;
+    padding: 1em;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 .profileMenu {
@@ -204,10 +213,18 @@
     }
 }
 
+.dropdown-item {
+  text-decoration: none;
+}
+.dropdown-item:hover {
+  font-weight: bolder;
+}
+
 .avatar {
   height: 50px;
   width: 50px;
   border-radius: 50%;
   float: right;
   margin-left: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.1)
 }

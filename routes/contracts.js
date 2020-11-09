@@ -5,6 +5,17 @@ const db = require('../models');
 // TODO: should require authentication
 
 router.route("/")
+  // GET ALL CONTACTS
+  .get(async (req, res) => {
+    const allContracts = await db.Contract.findAll({
+      where: { user_id: 1 },
+      include: [
+        { model: db.Client },
+        { model: db.Reminder }
+      ]
+    });
+    res.send(allContracts)
+  })
   // CREATE NEW CONTRACT
   .post(async (req, res) => {
     console.log('api/contracts/ POST called')
@@ -49,7 +60,15 @@ router.route("/:id")
       const updateResult = await db.Contract.update(req.body, {
         where: { id: req.body.id },
         returning: true
-      });
+      })
+      // TODO: chain and refactor
+      req.body.reminders.forEach(reminder => {
+        db.Reminder.upsert(reminder, {
+          where: { contract_id: reminder.contract_id },
+          returning: true
+        })
+      })
+
       const dbContract = updateResult[1][0];
       res.send(dbContract)
     }

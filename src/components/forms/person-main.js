@@ -13,7 +13,7 @@ class CardFormFieldsPerson extends Component {
           changeHandler={this.props.changeHandler}
           required
         />
-        <span className="d-sm-flex">
+        <span className="d-xs-flex">
           <InputField
             name="email"
             title="Email Address *"
@@ -42,7 +42,7 @@ class CardFormFieldsPerson extends Component {
             value={this.props.street2}
             changeHandler={this.props.changeHandler}
         />
-        <span className="d-sm-flex">
+        <span className="d-xs-flex">
           <InputField
               name="city"
               title="City/Town *"
@@ -58,7 +58,7 @@ class CardFormFieldsPerson extends Component {
               required
           />
         </span>
-        <span className="d-sm-flex">
+        <span className="d-xs-flex">
           <InputField
               name="post_zip"
               title="Zip/Postal code *"

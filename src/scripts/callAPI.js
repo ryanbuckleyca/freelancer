@@ -5,9 +5,8 @@ const callAPI = async (address, method = 'GET', params = null) => {
     method: method,
     headers: { 'Content-Type': 'application/json' }
   }
-  if(['POST', 'PUT', 'PATCH'].includes(method)) {
+  if(['POST', 'PUT', 'PATCH'].includes(method))
     attrs.body = JSON.stringify(params)
-  }
 
   try {
     const res = await fetch(`${url}${address}`, attrs)
@@ -16,7 +15,7 @@ const callAPI = async (address, method = 'GET', params = null) => {
   } catch(err) {
     // TODO: handle errors
     // returning null leads to unexpected results
-    console.log(`callAPI(${method},${address},${params}) error: `, err)
+    console.log(`callAPI(${address},${method},${params}) error: `, err)
     return null
   }
 }

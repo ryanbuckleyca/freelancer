@@ -7,6 +7,7 @@ import Footer from './components/footer';
 import Landing from './views/landing';
 import Profile from './views/profile';
 import Contract from './views/contract';
+import ContractsAll from './views/contracts-all';
 import Client from './views/client';
 import ClientsAll from './views/clients-all';
 import PrivacyPolicy from './views/privacy-policy';
@@ -25,7 +26,7 @@ class App extends Component {
           <Route path="/policy" component={PrivacyPolicy} />
           <PrivateRoute path="/contracts/new" component={Contract} />
           <PrivateRoute path="/contracts/:id" component={Contract} />
-          <PrivateRoute path="/contracts" component={Contract} />
+          <PrivateRoute path="/contracts" component={ContractsAll} />
           <PrivateRoute path="/clients/new" component={Client} />
           <PrivateRoute path="/clients/:id" component={Client} />
           <PrivateRoute path="/clients" component={ClientsAll} />

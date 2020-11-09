@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './logotype.scss';
-import logo from '../images/logo_k.png';
+import logo from '../images/logo.svg';
 
 class Logotype extends Component {
   render(props) {

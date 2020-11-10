@@ -8,7 +8,15 @@ class ClientsAll extends Component {
   state = {clients: []};
 
   async componentDidMount() {
-    const clients = await callAPI('/api/clients/')
+    let url = '/api/clients'
+    let title = "Clients"
+
+    if (this.props.match.path === '/clients/mine') {
+      // TODO: change this to this.props.auth0.user.user_metadata.id
+      url += '/user/1'
+      title = "My " + title
+    }
+    const clients = await callAPI(url)
     this.setState({clients: clients});
   }
 

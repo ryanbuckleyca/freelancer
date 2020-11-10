@@ -2,7 +2,16 @@ const express = require('express');
 let router = express.Router();
 const db = require('../models');
 
-// TODO: should require authentication
+// TODO: these routes should require authentication
+
+const upsertReminders = (reminders, contract_id) => {
+  return reminders.forEach(reminder => {
+    db.Reminder.upsert(reminder, {
+      where: { contract_id: contract_id },
+      returning: true
+    })
+  })
+}
 
 router.route("/")
   // GET ALL CONTACTS
@@ -32,10 +41,7 @@ router.route("/")
           amount: req.body.amount
         })
         .then(record => {
-          req.body.Reminders.forEach(reminder => {
-            reminder.contract_id = record.id
-            db.Reminder.create(reminder)
-          })
+          upsertReminders(req.body.Reminders, record.id)
           res.send(record);
         })
     }
@@ -49,7 +55,6 @@ router.route("/new")
   .get(async (req, res, next) => {
     const newContract = await db.Contract.build()
     newContract.dataValues.Reminders = []
-    console.log('newContract build is ', newContract)
     res.send(newContract)
   })
 
@@ -77,13 +82,7 @@ router.route("/:id")
         where: { id: req.body.id },
         returning: true
       })
-      // TODO: chain and refactor
-      req.body.reminders.forEach(reminder => {
-        db.Reminder.upsert(reminder, {
-          where: { contract_id: reminder.contract_id },
-          returning: true
-        })
-      })
+      .then(upsertReminders(req.body.reminders, red.body.id))
 
       const dbContract = updateResult[1][0];
       res.send(dbContract)

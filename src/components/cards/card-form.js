@@ -11,7 +11,7 @@ class CardForm extends Component {
   // state = {recordLoaded: false}
 
   // TODO: create Delete/Destroy actions
-  
+
   loadRecordState(table, id='') {
     console.log('on loadRecordState props is ', this.props)
     callAPI(`/api/${table}/${id}`)
@@ -27,11 +27,6 @@ class CardForm extends Component {
     const url = `/api/${this.props.table}/${this.props.id || ''}`
     const method = this.props.id ? 'PUT' : 'POST'
     const body = this.state
-
-    console.log('will save to db: ')
-    console.log('--- url: ', url)
-    console.log('--- method: ', method)
-    console.log('--- body: ', body)
 
     callAPI(url, method, body)
       .then(res => {

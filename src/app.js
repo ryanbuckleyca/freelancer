@@ -16,9 +16,8 @@ import { withAuth0 } from '@auth0/auth0-react';
 class App extends Component {
   render() {
     return (
-    <Router>
-      <Modal />
       <div className='wrapper'>
+        <Modal />
         <Navbar />
         <Switch>
           <Route exact path="/" component={Landing} />
@@ -28,12 +27,12 @@ class App extends Component {
           <PrivateRoute path="/contracts/:id" component={Contract} />
           <PrivateRoute path="/contracts" component={ContractsAll} />
           <PrivateRoute path="/clients/new" component={Client} />
+          <PrivateRoute path="/clients/mine" component={ClientsAll} />
           <PrivateRoute path="/clients/:id" component={Client} />
           <PrivateRoute path="/clients" component={ClientsAll} />
         </Switch>
         <Footer showTrial={this.props.auth0.isAuthenticated} />
       </div>
-    </Router>
     );
   }
 }

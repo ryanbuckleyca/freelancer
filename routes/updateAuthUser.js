@@ -1,7 +1,10 @@
 const updateAuthUser = (user) => {
-  var axios = require("axios").default;
+  // called from Users 'put' route
+  // called also from Users 'create' route
 
-  var options = {
+  const axios = require("axios").default;
+
+  const tokenRequest = {
     method: 'POST',
     url: 'https://chequemate.us.auth0.com/oauth/token',
     headers: {'content-type': 'application/json'},
@@ -13,31 +16,27 @@ const updateAuthUser = (user) => {
     }
   };
 
-  axios.request(options).then(function (response) {
-    console.log('token retrieved: ', response.data.access_token);
-    const token = response.data.access_token;
-
-    options = {
+  const updateUserReq = (token) => {
+    return ({
       method: 'PATCH',
       url: `https://chequemate.us.auth0.com/api/v2/users/${user.auth0_id}`,
       headers: {'content-type': 'application/json', authorization: `Bearer ${token}`, 'cache-control': 'no-cache'},
       data: {
+        user_metadata: { ...user.dataValues },
         name: user.name,
         picture: user.picture,
       }
-    };
+    })
+  }
 
-    axios.request(options).then(function (response) {
-
-    return(response.data)
-    }).catch(function (error) {
-      // updating user has failed
-      console.error(error);
-    });
-  }).catch(function (error) {
-    // getting token has failed
-    console.error(error);
-  });
+  axios.request(tokenRequest)
+    .then(res => {
+      const token = res.data.access_token;
+      axios.request(updateUserReq(token))
+      .then(response => response.data)
+      .catch(error => console.error(error));
+    })
+    .catch(error => console.error(error));
 }
 
 module.exports = updateAuthUser;

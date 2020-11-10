@@ -16,9 +16,8 @@ import { withAuth0 } from '@auth0/auth0-react';
 class App extends Component {
   render() {
     return (
-    <Router>
-      <Modal />
       <div className='wrapper'>
+        <Modal />
         <Navbar />
         <Switch>
           <Route exact path="/" component={Landing} />
@@ -34,7 +33,6 @@ class App extends Component {
         </Switch>
         <Footer showTrial={this.props.auth0.isAuthenticated} />
       </div>
-    </Router>
     );
   }
 }

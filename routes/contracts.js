@@ -17,25 +17,41 @@ router.route("/")
     res.send(allContracts)
   })
   // CREATE NEW CONTRACT
-  .post(async (req, res) => {
+  .post((req, res) => {
     console.log('api/contracts/ POST called')
     try {
       console.log('{...req.body} is: ', {...req.body})
-      const newContract = await db.Contract.create({
-        client_id: req.body.client_id,
-        user_id: req.body.user_id,
-        due_date: req.body.due_date,
-        paid: req.body.paid,
-        invoice: req.body.invoice,
-        identifier: req.body.idenfitier
-      });
-      const save = await newContract.save();
-      res.send(save);
+      db.Contract
+        .create({
+          client_id: req.body.client_id,
+          user_id: req.body.user_id,
+          due_date: req.body.due_date,
+          invoice: req.body.invoice,
+          identifier: req.body.identifier,
+          paid: req.body.paid,
+          amount: req.body.amount
+        })
+        .then(record => {
+          req.body.Reminders.forEach(reminder => {
+            reminder.contract_id = record.id
+            db.Reminder.create(reminder)
+          })
+          res.send(record);
+        })
     }
     catch(err) {
       console.log('add new contract error: ', err)
     }
   });
+
+router.route("/new")
+  // NEW contract
+  .get(async (req, res, next) => {
+    const newContract = await db.Contract.build()
+    newContract.dataValues.Reminders = []
+    console.log('newContract build is ', newContract)
+    res.send(newContract)
+  })
 
 router.route("/:id")
   // GET CONTRACT

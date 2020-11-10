@@ -8,22 +8,30 @@ import '../forms/form.scss';
 
 
 class CardForm extends Component {
-  state = {recordLoaded: false}
+  // state = {recordLoaded: false}
 
-  loadRecordState(table, id) {
+  // TODO: create Delete/Destroy actions
+  
+  loadRecordState(table, id='') {
+    console.log('on loadRecordState props is ', this.props)
     callAPI(`/api/${table}/${id}`)
     .then(result => {
       if (result && result.due_date)
         result.due_date = dateToStr(result.due_date);
-      this.setState({...result, recordLoaded: true })
+      // setState used to include {recordLoaded: false}
+      this.setState(result)
     })
   }
 
   saveFormToDB() {
-    console.log('saving to db with state: ', this.state)
     const url = `/api/${this.props.table}/${this.props.id || ''}`
     const method = this.props.id ? 'PUT' : 'POST'
     const body = this.state
+
+    console.log('will save to db: ')
+    console.log('--- url: ', url)
+    console.log('--- method: ', method)
+    console.log('--- body: ', body)
 
     callAPI(url, method, body)
       .then(res => {
@@ -59,12 +67,12 @@ class CardForm extends Component {
 
   componentDidMount() {
     const { table, id } = this.props
-    if (id && !this.state.recordLoaded)
-      this.loadRecordState(table, id);
+    // if (!this.state.recordLoaded)
+      this.loadRecordState(table, id || 'new');
   }
 
   render() {
-    if(!this.props.id)
+    if(!this.props.table)
       return "Loading..."
 
     return(

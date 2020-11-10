@@ -19,17 +19,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Client.init({
-    user_id: DataTypes.INTEGER,
-    name: DataTypes.STRING,
-    number: DataTypes.STRING,
-    email: DataTypes.STRING,
-    street1: DataTypes.STRING,
-    street2: DataTypes.STRING,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    post_zip: DataTypes.STRING,
-    country: DataTypes.STRING,
-    picture: DataTypes.STRING
+    user_id: { type: DataTypes.INTEGER, defaultValue: '', allowNull: false, unique: false },
+    name: { type: DataTypes.STRING, defaultValue: '', allowNull: false, unique: true },
+    number: { type: DataTypes.STRING, defaultValue: '', allowNull: true, unique: true },
+    email: { type: DataTypes.STRING, defaultValue: '', allowNull: true, unique: true },
+    street1: { type: DataTypes.STRING, defaultValue: '', allowNull: true, unique: false },
+    street2: { type: DataTypes.STRING, defaultValue: '', allowNull: true, unique: false },
+    city: { type: DataTypes.STRING, defaultValue: '', allowNull: true, unique: false },
+    state: { type: DataTypes.STRING, defaultValue: '', allowNull: true, unique: false },
+    post_zip: { type: DataTypes.STRING, defaultValue: '', allowNull: true, unique: false },
+    country: { type: DataTypes.STRING, defaultValue: '', allowNull: true, unique: false },
+    picture: { type: DataTypes.STRING, defaultValue: '', allowNull: true, unique: false }
   }, {
     sequelize,
     modelName: 'Client',

@@ -3,8 +3,6 @@ import toggleModal from '../scripts/toggleModal';
 import './trial.scss';
 
 class Trial extends Component {
-  // TODO: toggleModal not being called but onclicks working
-  // console.log(toggleModal) shows function fine
   render() {
     return(
       <div className="trial">

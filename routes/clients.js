@@ -5,18 +5,18 @@ const db = require('../models');
 // TODO: should require authentication
 
 router.route("/user/:user_id")
-  // GET user's clients - api/clients/user/:id
+  // GET user's clients - api/clients/user/:user_id
   .get(async (req, res, next) => {
-    console.log('GET clients from user/:user_id: ', req.params.user_id)
+    console.log('GET clients from /api/clients/user/:user_id: ', req.params.user_id)
     try {
       const clients = await db.Client.findAll({
         where: { user_id: req.params.user_id }
       })
-      console.log("SUCCESS: found clients by user/:user_id where req.params.user_id = ", clients)
+      console.log("SUCCESS: found clients by /api/clients/user/:user_id where req.params.user_id = ", clients)
       clients && res.send(clients);
     }
     catch(err) {
-      console.log("ERROR: find clients by user/:id where req.params.id = ", err);
+      console.log("ERROR: find clients by /api/clients/user/:user_id where req.params.id = ", err);
     }
   })
   // UPDATE client
@@ -67,6 +67,19 @@ router.route("/:id")
       res.send(dbclient)
     }
     catch(err) { console.log('update client error: ', err) }
+  })
+  // DELETE client
+  .delete(async (req, res) => {
+    console.log('destroy client called with req.params.id:', req.params.id);
+    try {
+      const destroyResult = await db.Client.destroy({
+        where: { id: req.params.id },
+        returning: true
+      })
+      .then(res => console.log('deleted record: ', res))
+      // TODO: redirect to created record
+    }
+    catch(err) { console.log('delete client error: ', err) }
   });
 
 router.route("/")

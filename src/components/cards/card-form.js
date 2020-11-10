@@ -8,18 +8,18 @@ import '../forms/form.scss';
 
 
 class CardForm extends Component {
-  // state = {recordLoaded: false}
 
   // TODO: create Delete/Destroy actions
+  // consider renaming to form controller
 
   loadRecordState(table, id='') {
+    const user_id = 1; // TODO: get this from auth0 props
     console.log('on loadRecordState props is ', this.props)
     callAPI(`/api/${table}/${id}`)
     .then(result => {
       if (result && result.due_date)
         result.due_date = dateToStr(result.due_date);
-      // setState used to include {recordLoaded: false}
-      this.setState(result)
+      this.setState({ ...result, user_id: user_id })
     })
   }
 
@@ -33,6 +33,21 @@ class CardForm extends Component {
         console.log(`${this.props.table} saved`)
         return res
       }).catch(err => console.log('card-form saveFormToDB err: ', err))
+  }
+
+  deleteFromDB = () => {
+    const confirm = window.confirm('Are you sure you want to delete this record?')
+    if(!confirm)
+      return
+
+    const url = `/api/${this.props.table}/${this.props.id}`
+    const method = 'DELETE'
+
+    callAPI(url, method)
+      .then(res => {
+        console.log(`record ${this.props.id} from ${this.props.table} deleted`)
+        return res
+      }).catch(err => console.log('card-form deleteFromDB err: ', err))
   }
 
   handleSubmit = async (e) => {
@@ -62,7 +77,6 @@ class CardForm extends Component {
 
   componentDidMount() {
     const { table, id } = this.props
-    // if (!this.state.recordLoaded)
       this.loadRecordState(table, id || 'new');
   }
 
@@ -77,6 +91,7 @@ class CardForm extends Component {
           {React.cloneElement(this.props.children[0], {
             changeHandler: this.changeHandler,
             handleSubmit: this.handleSubmit,
+            handleDelete: this.deleteFromDB,
             passProps: this.passProps,
             auth0_id: this.props.auth0.user.sub,
             ...this.state

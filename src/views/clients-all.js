@@ -8,28 +8,34 @@ class ClientsAll extends Component {
   state = {clients: []};
 
   async componentDidMount() {
-    let url = '/api/clients'
-    let title = "Clients"
-
-    if (this.props.match.path === '/clients/mine') {
-      // TODO: change this to this.props.auth0.user.user_metadata.id
-      url += '/user/1'
-      title = "My " + title
-    }
-    const clients = await callAPI(url)
+    console.log('this.props.match.url is ', this.props.match.url)
+    // TODO: replace with user_id from auth0 props
+    let user = this.props.match.url === '/clients/mine' ? `user/1` : ''
+    const clients = await callAPI('/api/clients/' + user)
     this.setState({clients: clients});
   }
 
   render() {
     let clients = this.state.clients
+    let title = this.props.match.path === '/clients/mine'
+      ? 'My clients'
+      : 'Clients'
+    let text = this.props.match.path === '/clients/mine'
+      ? "Below are clients you have create or added to your account."
+      : "Check this ongoing list for clients who may be known for late or unpaid invoices."
+
     return (
       <div>
         <hr className="spacer" />
         <CardTitle
           img={social_media}
           thisClass="card-md"
-          title={<span>Clients</span>}
-          text="Check this ongoing list for clients who may be known for late or unpaid invoices."
+          title={<span>{title}</span>}
+          text={
+            <div>{text}<br /><br />
+            <a href="/clients/new" className="btn btn-outline">+ add new</a>
+            </div>
+          }
         />
         <hr className="spacer" />
         <div className="card-client-grid">

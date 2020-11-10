@@ -22,7 +22,7 @@ const updateAuthUser = (user) => {
       url: `https://chequemate.us.auth0.com/api/v2/users/${user.auth0_id}`,
       headers: {'content-type': 'application/json', authorization: `Bearer ${token}`, 'cache-control': 'no-cache'},
       data: {
-        user_metadata: { ...user },
+        user_metadata: { ...user.dataValues },
         name: user.name,
         picture: user.picture,
       }

@@ -35,6 +35,21 @@ class CardForm extends Component {
       }).catch(err => console.log('card-form saveFormToDB err: ', err))
   }
 
+  deleteFromDB = () => {
+    const confirm = window.confirm('Are you sure you want to delete this record?')
+    if(!confirm)
+      return
+
+    const url = `/api/${this.props.table}/${this.props.id}`
+    const method = 'DELETE'
+
+    callAPI(url, method)
+      .then(res => {
+        console.log(`record ${this.props.id} from ${this.props.table} deleted`)
+        return res
+      }).catch(err => console.log('card-form deleteFromDB err: ', err))
+  }
+
   handleSubmit = async (e) => {
     e.preventDefault();
     if (requiredFieldsValid()) {
@@ -76,6 +91,7 @@ class CardForm extends Component {
           {React.cloneElement(this.props.children[0], {
             changeHandler: this.changeHandler,
             handleSubmit: this.handleSubmit,
+            handleDelete: this.deleteFromDB,
             passProps: this.passProps,
             auth0_id: this.props.auth0.user.sub,
             ...this.state

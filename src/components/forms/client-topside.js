@@ -33,7 +33,7 @@ class CardFormTopsideClient extends Component {
           </div>
           <div className="profile-buttons left">
             <Cloudinary text="edit image" options="avatar" handler={this.props.passProps} />
-            <a className="btn btn-secondary" onClick={this.cloudinaryWidget}>add client</a>
+            <a className="btn btn-secondary">add client</a>
           </div>
           <div className="card-client-tags right" style={{flexDirection: 'column'}}>
             <div><img src={robber} height="20px" alt="robber" /><small>2/10 late</small></div>
@@ -41,7 +41,7 @@ class CardFormTopsideClient extends Component {
           </div>
         </div>
         <div id="card-form-btn-side">
-          <a className="btn btn-danger">delete account</a><br />
+          <a className="btn btn-danger" onClick={this.props.handleDelete}>delete account</a><br />
           <a className="btn btn-primary" onClick={this.props.handleSubmit}>
           Update profile
           </a>

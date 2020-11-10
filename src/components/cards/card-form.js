@@ -8,17 +8,15 @@ import '../forms/form.scss';
 
 
 class CardForm extends Component {
-  // state = {recordLoaded: false}
 
   // TODO: create Delete/Destroy actions
-
+  
   loadRecordState(table, id='') {
     console.log('on loadRecordState props is ', this.props)
     callAPI(`/api/${table}/${id}`)
     .then(result => {
       if (result && result.due_date)
         result.due_date = dateToStr(result.due_date);
-      // setState used to include {recordLoaded: false}
       this.setState(result)
     })
   }
@@ -62,7 +60,6 @@ class CardForm extends Component {
 
   componentDidMount() {
     const { table, id } = this.props
-    // if (!this.state.recordLoaded)
       this.loadRecordState(table, id || 'new');
   }
 

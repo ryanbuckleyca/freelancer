@@ -15,7 +15,7 @@ class Profile extends Component {
       email: authUser.email,
       picture: authUser.picture
     })
-    .then(res => console.log('new user created: ', res))
+    .then(res => console.log('result of create new user: ', res))
     .catch(err => console.log('problem creating user in profile.js: ', err))
   }
 

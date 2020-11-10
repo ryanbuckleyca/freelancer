@@ -8,15 +8,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       number: {
+        unique: true,
         type: Sequelize.STRING
       },
       email: {
+        unique: true,
         type: Sequelize.STRING
       },
       street1: {

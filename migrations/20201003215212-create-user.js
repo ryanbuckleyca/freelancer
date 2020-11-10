@@ -8,15 +8,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       auth0_id: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       number: {
+        unique: true,
         type: Sequelize.STRING
       },
       email: {
+        allowNull: false,
+        unique: true,
         type: Sequelize.STRING
       },
       street1: {

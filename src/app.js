@@ -28,6 +28,7 @@ class App extends Component {
           <PrivateRoute path="/contracts/:id" component={Contract} />
           <PrivateRoute path="/contracts" component={ContractsAll} />
           <PrivateRoute path="/clients/new" component={Client} />
+          <PrivateRoute path="/clients/mine" component={ClientsAll} />
           <PrivateRoute path="/clients/:id" component={Client} />
           <PrivateRoute path="/clients" component={ClientsAll} />
         </Switch>

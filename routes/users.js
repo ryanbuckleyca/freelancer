@@ -48,6 +48,8 @@ router
     const save = await newUser.save();
     console.log("inserted into database: ", save);
     res.send(newUser);
+    const updateAuthRes = await updateAuthUser(newUser);
+    console.log('result of updateAuthUser(): ', updateAuthRes)
   });
 
 

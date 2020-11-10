@@ -1,19 +1,14 @@
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Reminder extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       Reminder.belongsTo(models.Contract, {
         foreignKey: 'contract_id',
       });
     };
   };
+
   Reminder.init({
     contract_id: { type: DataTypes.INTEGER, allowNull: false, unique: false },
     active: { type: DataTypes.BOOLEAN, defaultValue: false, allowNull: false, unique: false },
@@ -25,5 +20,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Reminder',
   });
+
   return Reminder;
 };

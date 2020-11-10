@@ -6,8 +6,8 @@ class CardFormTopsideContract extends Component {
   render() {
     const invoice =
       this.props.invoice
-      ? <embed src={this.props.invoice} width="200" height="200" alt="invoice"
-          pluginspage="http://www.adobe.com/products/acrobat/readstep2.html" />
+      ? <embed src={"https://drive.google.com/viewerng/viewer?embedded=true&url=" + this.props.invoice}
+          width="200" height="200" alt="invoice"></embed>
       : <div style={{width: 200, height: 200, textAlign: 'center', lineHeight: '200px',
           verticalAlign: 'middle', background: '#ececec', borderRadius: '15px'}}>
           upload an invoice

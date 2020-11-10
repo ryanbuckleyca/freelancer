@@ -4,8 +4,7 @@ const db = require('../models');
 
 // TODO: should require authentication
 
-router
-  .route("/user/:user_id")
+router.route("/user/:user_id")
   // GET user's clients - api/clients/user/:id
   .get(async (req, res, next) => {
     console.log('GET clients from user/:user_id: ', req.params.user_id)
@@ -34,8 +33,14 @@ router
     catch(err) { console.log('update client error: ', err) }
   });
 
-router
-  .route("/:id")
+router.route("/new")
+  // NEW client
+  .get(async (req, res, next) => {
+    const newClient = db.Client.build()
+    res.send(newClient)
+  })
+
+router.route("/:id")
   // GET client - api/clients/:id
   .get(async (req, res, next) => {
     console.log('GET client by id: ', req.params.id)
@@ -64,8 +69,7 @@ router
     catch(err) { console.log('update client error: ', err) }
   });
 
-router
-  .route("/")
+router.route("/")
   // GET ALL clients
   .get(async (req, res, next) => {
     const allClients = await db.Client.findAll();

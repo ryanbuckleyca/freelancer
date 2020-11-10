@@ -16,7 +16,10 @@ class CardFormFieldsContract extends Component {
   }
   _usersClients(user_id) {
     callAPI(`/api/clients/user/${user_id}`)
-    .then(res => this.props.passProps({ user_clients: res }))
+    .then(res => this.props.passProps({
+      user_clients: res,
+      user_id: user_id
+    }))
     .catch(err => console.log("problem finding user's clients: ", err))
   }
 
@@ -64,25 +67,33 @@ class CardFormFieldsContract extends Component {
     )
   }
 
-  render() {
-    const {user_clients, client_id } = this.props
-    const togglePaid = (val) => this.props.changeHandler({
+  togglePaid(val) {
+      this.props.changeHandler({
       target: {name: 'paid', value: val}
     })
+  }
 
-    user_clients
-    && !this.props.selectedClient
-    && this.props.passProps({
-      selectedClient: {
-        value: client_id,
-        label: this.contractClient(client_id, user_clients)
-      }
-    })
+  componentDidMount() {
+    this.userIDandClients(this.props.auth0_id)
+  }
 
-    !this.props.id && this.userIDandClients(this.props.auth0_id)
-
-    if(!this.props.id)
+  render() {
+    if(!this.props)
       return "Loading..."
+
+    const {user_clients, client_id } = this.props
+
+    console.log("user_clients ", user_clients)
+    console.log("client_id ", client_id)
+
+    if(user_clients && client_id && !this.props.selectedClient) {
+      this.props.passProps({
+        selectedClient: {
+          value: client_id,
+          label: this.contractClient(client_id, user_clients)
+        }
+      })
+    }
 
     return(
       <div className="card-form-form">
@@ -100,7 +111,7 @@ class CardFormFieldsContract extends Component {
               name="paid"
               value="true"
               label="paid"
-              onChange={() => togglePaid(true)}
+              onChange={() => this.togglePaid(true)}
               checked={this.props.paid}
             />
             <Radio
@@ -108,7 +119,7 @@ class CardFormFieldsContract extends Component {
               value="false"
               label="unpaid"
               className="alert"
-              onChange={() => togglePaid(false)}
+              onChange={() => this.togglePaid(false)}
               checked={!this.props.paid}
             />
           </div>

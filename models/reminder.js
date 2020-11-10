@@ -15,12 +15,12 @@ module.exports = (sequelize, DataTypes) => {
     };
   };
   Reminder.init({
-    contract_id: DataTypes.INTEGER,
-    active: DataTypes.BOOLEAN,
-    type: DataTypes.STRING,
-    frequency: DataTypes.INTEGER,
-    tone: DataTypes.STRING,
-    text: DataTypes.TEXT
+    contract_id: { type: DataTypes.INTEGER, allowNull: false, unique: false },
+    active: { type: DataTypes.BOOLEAN, defaultValue: false, allowNull: false, unique: false },
+    type: { type: DataTypes.STRING, defaultValue: false, allowNull: false, unique: false },
+    frequency: { type: DataTypes.INTEGER, defaultValue: 28, allowNull: false, unique: false },
+    tone: { type: DataTypes.STRING, defaultValue: '', allowNull: true, unique: false },
+    text: { type: DataTypes.STRING, defaultValue: 'Gentle reminder...', allowNull: false, unique: false },
   }, {
     sequelize,
     modelName: 'Reminder',

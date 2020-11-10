@@ -16,18 +16,19 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'client_id'
       });
       Contract.hasMany(models.Reminder, {
-        foreignKey: 'contract_id'
+        foreignKey: 'contract_id',
+        onDelete: 'CASCADE'
       });
     }
   };
   Contract.init({
-    client_id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER,
-    due_date: DataTypes.DATE,
-    invoice: DataTypes.STRING,
-    identifier: DataTypes.STRING,
-    paid: DataTypes.BOOLEAN,
-    amount: DataTypes.INTEGER
+    client_id: { type: DataTypes.INTEGER, allowNull: false, unique: false },
+    user_id: { type: DataTypes.INTEGER, allowNull: false, unique: false },
+    due_date: { type: DataTypes.DATE, defaultValue: '', allowNull: false, unique: false },
+    invoice: { type: DataTypes.STRING, defaultValue: '', allowNull: false, unique: true },
+    identifier: { type: DataTypes.STRING, defaultValue: '', allowNull: false, unique: true },
+    paid: { type: DataTypes.BOOLEAN, defaultValue: false, allowNull: false, unique: false },
+    amount: { type: DataTypes.INTEGER, defaultValue: '', allowNull: false, unique: false }
   }, {
     sequelize,
     modelName: 'Contract',

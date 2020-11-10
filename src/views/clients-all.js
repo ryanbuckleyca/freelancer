@@ -10,7 +10,7 @@ class ClientsAll extends Component {
   async componentDidMount() {
     console.log('this.props.match.url is ', this.props.match.url)
     // TODO: replace with user_id from auth0 props
-    let user = this.props.match.url === '/clients/mine' ? `user/1` : null
+    let user = this.props.match.url === '/clients/mine' ? `user/1` : ''
     const clients = await callAPI('/api/clients/' + user)
     this.setState({clients: clients});
   }

@@ -10,14 +10,16 @@ import '../forms/form.scss';
 class CardForm extends Component {
 
   // TODO: create Delete/Destroy actions
-  
+  // consider renaming to form controller
+
   loadRecordState(table, id='') {
+    const user_id = 1; // TODO: get this from auth0 props
     console.log('on loadRecordState props is ', this.props)
     callAPI(`/api/${table}/${id}`)
     .then(result => {
       if (result && result.due_date)
         result.due_date = dateToStr(result.due_date);
-      this.setState(result)
+      this.setState({ ...result, user_id: user_id })
     })
   }
 

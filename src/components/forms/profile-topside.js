@@ -20,7 +20,7 @@ class CardFormTopsideProfile extends Component {
           </div>
         </div>
         <div id="card-form-btn-side">
-          <a className="btn btn-danger">delete account</a><br />
+          <a className="btn btn-danger" onClick={this.props.handleDelete}>delete account</a><br />
           <a className="btn btn-primary" onClick={this.props.handleSubmit}>
           Update profile
           </a>

@@ -19,7 +19,7 @@ class CardFormTopsideContract extends Component {
           {invoice} <br />
           <div className="profile-buttons">
             <Cloudinary text="upload invoice" options="invoice" handler={this.props.passProps} />
-            <a className="btn btn-danger">delete contract</a>
+            <a className="btn btn-danger" onClick={this.props.handleDelete}>delete contract</a>
             <br />
           </div>
         </div>

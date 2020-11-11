@@ -87,7 +87,7 @@ class Navbar extends Component {
             <div className={'profileMenu ' + this.state.profileClass} aria-label={this.state.profileToggle}>
               <Link to='/contracts' onClick={() => this.closeBoth()} className='dropdown-item'>My Contracts</Link>
               <Link to='/profile' onClick={() => this.closeBoth()} className='dropdown-item'>My Profile</Link>
-              <Link onClick={() => logout({returnTo: window.location.origin })} className='dropdown-item'>LOGOUT</Link>
+              <Link to='#' onClick={() => logout({returnTo: window.location.origin })} className='dropdown-item'>LOGOUT</Link>
             </div>
           </li>
         </ul>

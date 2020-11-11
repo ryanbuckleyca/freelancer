@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
-import CardForm from '../components/cards/card-form';
+import CardForm from '../components/forms';
 import CardFormTopSideClient from '../components/forms/client-topside';
 import CardFormFieldsPerson from '../components/forms/person-main';
 

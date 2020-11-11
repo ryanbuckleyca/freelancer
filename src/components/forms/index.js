@@ -3,14 +3,14 @@ import { withAuth0 } from '@auth0/auth0-react';
 import callAPI from '../../scripts/callAPI';
 import dateToStr from '../../scripts/dateToStr';
 import requiredFieldsValid from '../../scripts/requiredFieldsValid';
-import './cards.scss';
-import '../forms/form.scss';
+import '../cards/cards.scss';
+import './form.scss';
 
 
 class CardForm extends Component {
 
-  // TODO: create Delete/Destroy actions
-  // consider renaming to form controller
+  // TODO: delete auth0 user instance on "delete"
+  // TODO: handle callAPI returns of null
 
   loadRecordState(table, id='') {
     const user_id = 1; // TODO: get this from auth0 props

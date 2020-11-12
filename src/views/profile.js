@@ -25,10 +25,12 @@ class Profile extends Component {
       .then(res => !res && this.createUser(user))
 
     // TODO: incorporate secureAPI test into other api calls
+    // TODO: figure out how to generate token from inside of callAPI
+    //        callAPI needs to be a React component
     const token = await getAccessTokenSilently()
-    const tokenHeader = { headers: { Authorization: `Bearer ${token}`} }
-    fetch('http://localhost:9000/api/secure', tokenHeader)
-      .then(res => res.json())
+    const tokenHeader = { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
+    callAPI('/api/secure', 'GET', null, tokenHeader)
+      .then(res => res)
       .then(data => console.log('auth path res is: ', data))
   }
 

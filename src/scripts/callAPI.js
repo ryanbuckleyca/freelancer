@@ -1,9 +1,10 @@
 const url = process.env.REACT_APP_API_URL || 'http://localhost:9000';
 
-const callAPI = async (address, method = 'GET', params = null) => {
+let json = { 'Content-Type': 'application/json' }
+const callAPI = async (address, method = 'GET', params = null, headers = json) => {
   let attrs = {
     method: method,
-    headers: { 'Content-Type': 'application/json' }
+    headers: headers
   }
   if(['POST', 'PUT', 'PATCH'].includes(method))
     attrs.body = JSON.stringify(params)

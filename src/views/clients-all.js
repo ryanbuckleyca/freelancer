@@ -34,6 +34,7 @@ class ClientsAll extends Component {
           text={
             <div>{text}<br /><br />
             <a href="/clients/new" className="btn btn-outline">+ add new</a>
+            <a href="/clients/mine" className="btn btn-outline">only mine</a>
             </div>
           }
         />

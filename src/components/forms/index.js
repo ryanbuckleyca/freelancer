@@ -45,9 +45,10 @@ class CardForm extends Component {
 
     callAPI(url, method)
       .then(res => {
+        // TODO: this still gets called when there are errors
         console.log(`record ${this.props.id} from ${this.props.table} deleted`)
         return res
-      }).catch(err => console.log('card-form deleteFromDB err: ', err))
+      }).catch(err => console.log('form deleteFromDB err: ', err))
   }
 
   handleSubmit = async (e) => {

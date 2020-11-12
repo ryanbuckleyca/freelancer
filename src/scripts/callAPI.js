@@ -10,9 +10,12 @@ const callAPI = async (address, method = 'GET', params = null, headers = json) =
     attrs.body = JSON.stringify(params)
 
   try {
+    // TODO: change routes to handle null responses from db calls
     const res = await fetch(`${url}${address}`, attrs)
-    const data = await res.json()
-    return data
+    const data = await res.text()
+    if(!data)
+      throw('no results')
+    return JSON.parse(data)
   } catch(err) {
     // TODO: handle errors
     // returning null leads to unexpected results

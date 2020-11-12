@@ -49,6 +49,8 @@ router.route("/:id")
         where: { id: req.params.id }
       })
       console.log("SUCCESS: found client by id: req.params.id = ", client)
+      if (!client)
+        res.send(null)
       client && res.send(client);
     }
     catch(err) {

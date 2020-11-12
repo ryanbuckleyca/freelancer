@@ -78,7 +78,7 @@ class Navbar extends Component {
             <Link to='/clients' onClick={() => this.closeMobileNavbar()} className='navbar-link'>Browse Clients</Link>
           </li>
           <li className='navbar-item'>
-            <a onClick={() => toggleModal()} className='navbar-link'>Add Contract</a>
+            <Link to='/contracts/new' onClick={() => this.closeBoth()} className='navbar-link'>Add Contract</Link>
           </li>
           <li className='navbar-item'>
             <a onClick={() => this.toggleProfileMenu()}>

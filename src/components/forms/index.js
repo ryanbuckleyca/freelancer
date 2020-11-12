@@ -14,16 +14,19 @@ class CardForm extends Component {
 
   loadRecordState(table, id='') {
     const user_id = 1; // TODO: get this from auth0 props
-    console.log('on loadRecordState props is ', this.props)
     callAPI(`/api/${table}/${id}`)
     .then(result => {
+      if (!result)
+        window.location.href = `../${table}`
       if (result && result.due_date)
         result.due_date = dateToStr(result.due_date);
       this.setState({ ...result, user_id: user_id })
     })
+    .catch(err => console.log('problem with loading record: ', err))
   }
 
   saveFormToDB() {
+    console.log('state to save to db is: ', this.state)
     const url = `/api/${this.props.table}/${this.props.id || ''}`
     const method = this.props.id ? 'PUT' : 'POST'
     const body = this.state
@@ -48,7 +51,9 @@ class CardForm extends Component {
         // TODO: this still gets called when there are errors
         console.log(`record ${this.props.id} from ${this.props.table} deleted`)
         return res
-      }).catch(err => console.log('form deleteFromDB err: ', err))
+      })
+      .catch(err => console.log('form deleteFromDB err: ', err))
+      .finally(window.location.href = `../${this.props.table}`)
   }
 
   handleSubmit = async (e) => {

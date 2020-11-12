@@ -82,7 +82,7 @@ router.route("/:id")
         where: { id: req.body.id },
         returning: true
       })
-      .then(upsertReminders(req.body.reminders, red.body.id))
+      .then(upsertReminders(req.body.reminders, req.body.id))
 
       const dbContract = updateResult[1][0];
       res.send(dbContract)

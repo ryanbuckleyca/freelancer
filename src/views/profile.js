@@ -19,9 +19,17 @@ class Profile extends Component {
     .catch(err => console.log('problem creating user in profile.js: ', err))
   }
 
-  componentDidMount() {
-    this.props.auth0 && callAPI(`/api/users/${this.props.auth0.user.sub}`)
-      .then(res => !res && this.createUser(this.props.auth0.user))
+  async componentDidMount() {
+    const {user, getAccessTokenSilently} = this.props.auth0
+    this.props.auth0 && callAPI(`/api/users/${user.sub}`)
+      .then(res => !res && this.createUser(user))
+
+    // TODO: incorporate secureAPI test into other api calls
+    const token = await getAccessTokenSilently()
+    const tokenHeader = { headers: { Authorization: `Bearer ${token}`} }
+    fetch('http://localhost:9000/api/secure', tokenHeader)
+      .then(res => res.json())
+      .then(data => console.log('auth path res is: ', data))
   }
 
   render() {

@@ -1,6 +1,7 @@
 const express = require('express');
 let router = express.Router();
 const db = require('../models');
+const checkJwt = require('./authenticate');
 const updateAuthUser = require('./updateAuthUser')
 const deleteAuthUser = require('./deleteAuthUser')
 

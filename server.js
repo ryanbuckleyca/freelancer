@@ -7,6 +7,7 @@ const express = require('express');
 const app = express();
 
 const checkJwt = require('./routes/authenticate');
+const secureRoute = require('./routes/secure');
 const userRoutes = require('./routes/users');
 const clientRoutes = require('./routes/clients');
 const contractRoutes = require('./routes/contracts');
@@ -17,25 +18,15 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+app.use(cors())
+app.use(logger('dev'));
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.static(root));
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(logger('dev'));
-app.use(cors())
 
 // ROUTES (secured ones require checkJwt middleware)
-// Auth0 test
-app.get("/api/db", checkJwt, async (req, res) => {
-  try {
-    const ryan = await db.User.findOne(
-      { where: { id: 1 } } // should return Ryan Buckley
-    );
-    res.send({'res': ryan});
-  } catch (error) {
-    res.send({'res':`error: ${error}`});
-  }
-});
+app.use("/api/secure", checkJwt, secureRoute);
 app.use("/api/users", userRoutes);
 app.use("/api/clients", clientRoutes);
 app.use("/api/contracts", contractRoutes);

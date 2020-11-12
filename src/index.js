@@ -8,6 +8,10 @@ import './index.scss';
 
 require('dotenv').config()
 
+// TODO: add scope?
+// could obviate need for getting token for delete/update
+// https://auth0.com/blog/complete-guide-to-react-user-authentication/#Configure.React.to.connect.with.the.Express.API
+
 ReactDOM.render(
   <Router>
     <Auth0Provider

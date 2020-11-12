@@ -24,6 +24,7 @@ class CardForm extends Component {
   }
 
   saveFormToDB() {
+    console.log('state to save to db is: ', this.state)
     const url = `/api/${this.props.table}/${this.props.id || ''}`
     const method = this.props.id ? 'PUT' : 'POST'
     const body = this.state

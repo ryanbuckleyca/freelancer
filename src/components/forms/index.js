@@ -40,6 +40,7 @@ class CardForm extends Component {
   }
 
   deleteFromDB = () => {
+    console.log('deleteFromDB called')
     const confirm = window.confirm('Are you sure you want to delete this record?')
     if(!confirm)
       return

@@ -2,6 +2,7 @@
 // and link to this script from modals instead
 const requiredFieldsValid = () => {
   const formInputs = [...document.getElementsByTagName("input")]
+  console.log('formInputs are ', formInputs)
   const reqFields = formInputs.filter(el => el.required)
 
   const allValid = reqFields.map(el => {

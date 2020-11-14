@@ -59,17 +59,11 @@ class CardForm extends Component {
   }
 
   handleSubmit = async (e) => {
-    e.preventDefault();
-    if (requiredFieldsValid()) {
-      const saved =  await this.saveFormToDB();
-      flashAlert('success', 'form submitted successfully')
-      console.log('submitted: database result is ', saved)
-    }
-    else {
-      // TODO: render form to show errors
-      flashAlert('warning', 'Fields null or undefined')
-      console.log('Fields null or undefined')
-    }
+    console.log('handleSubmit called')
+    e.preventDefault()
+    requiredFieldsValid()
+    ? this.saveFormToDB()
+    : flashAlert('warning', 'Fields null or undefined')
   }
 
   changeHandler = (e) => {

@@ -6,18 +6,16 @@ const background = {
 }
 
 const flashAlert = (type, message) => {
-    const alert = document.getElementById('alert');
-    const alertText = document.getElementById('alert-text');
+  let alert = document.getElementById('alert');
+  let alertText = document.getElementById('alert-text');
 
-    alertText.innerText = message
-    alert.style.background = background[type]
-
-    if(alert.style.bottom === '-100%') {
-      alert.style.bottom = '0';
-      setTimeout(() => alert.style.bottom = '-100%', 5000)
-    } else {
-      alert.style.bottom = '-100%';
-    }
+  alertText.innerText = message
+  alert.style.transition = 'bottom 1s ease 0s'
+  alert.style.background = background[type]
+  console.log(alert.style.transition)
+  alert.style.bottom = 0;
+  setTimeout(() => alert.style.transition = 'bottom 5s ease 0s', 1000)
+  setTimeout(() => alert.style.bottom = '-100%', 5000)
 }
 
 export default flashAlert;

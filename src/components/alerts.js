@@ -15,7 +15,7 @@ class Alerts extends Component {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      transition: 'bottom .7s ease-out, bottom 2s ease-in',
+      transition: 'bottom 0.5s ease 0s',
       background: '#ff789d'
     },
     close: {

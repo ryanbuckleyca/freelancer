@@ -3,6 +3,7 @@ import { withAuth0 } from '@auth0/auth0-react';
 import callAPI from '../../scripts/callAPI';
 import dateToStr from '../../scripts/dateToStr';
 import requiredFieldsValid from '../../scripts/requiredFieldsValid';
+import flashAlert from '../../scripts/flashAlert';
 import '../cards/cards.scss';
 import './form.scss';
 
@@ -33,9 +34,9 @@ class CardForm extends Component {
 
     callAPI(url, method, body)
       .then(res => {
-        console.log(`${this.props.table} saved`)
+        flashAlert('success', `${this.props.table} saved`);
         return res
-      }).catch(err => console.log('card-form saveFormToDB err: ', err))
+      }).catch(err => flashAlert('warning', `card-form saveFormToDB err: ${err}`))
   }
 
   deleteFromDB = () => {
@@ -49,10 +50,10 @@ class CardForm extends Component {
     callAPI(url, method)
       .then(res => {
         // TODO: this still gets called when there are errors
-        console.log(`record ${this.props.id} from ${this.props.table} deleted`)
+        flashAlert('success', `record ${this.props.id} from ${this.props.table} deleted`);
         return res
       })
-      .catch(err => console.log('form deleteFromDB err: ', err))
+      .catch(err => flashAlert('warning', `form deleteFromDB err: ${err}`))
       .finally(window.location.href = `../${this.props.table}`)
   }
 
@@ -60,10 +61,12 @@ class CardForm extends Component {
     e.preventDefault();
     if (requiredFieldsValid()) {
       const saved =  await this.saveFormToDB();
+      flashAlert('success', 'form submitted successfully')
       console.log('submitted: database result is ', saved)
     }
     else {
       // TODO: render form to show errors
+      flashAlert('warning', 'Fields null or undefined')
       console.log('Fields null or undefined')
     }
   }

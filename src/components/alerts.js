@@ -15,7 +15,7 @@ class Alerts extends Component {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      transition: 'bottom 3s ease',
+      transition: 'bottom .7s ease-out, bottom 2s ease-in',
       background: '#ff789d'
     },
     close: {
@@ -30,13 +30,6 @@ class Alerts extends Component {
   closeAlert() {
     const alert = document.getElementById('alert');
     alert.style.bottom = '-100%'
-  }
-
-  componentDidMount() {
-    flashAlert('warning', 'this is a text');
-    flashAlert('success', 'this is a success test');
-    flashAlert('notice', 'this is a notice test');
-
   }
 
   render() {

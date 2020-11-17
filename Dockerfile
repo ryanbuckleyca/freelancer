@@ -1,13 +1,21 @@
 FROM node:13-alpine
 
-RUN mkdir -p /usr/src/app
+WORKDIR /
 
-WORKDIR /usr/src/app
+# copy everything except React /src
+COPY [^src]* .
 
-COPY . .
+RUN npm install
+
+EXPOSE 9000
+
+CMD npm start api
+
+# copy React /src
+COPY /src /src
 
 RUN npm install
 
 EXPOSE 3000
 
-CMD node ./bin/www
+CMD npm start react

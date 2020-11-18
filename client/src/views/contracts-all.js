@@ -9,10 +9,11 @@ class ContractsAll extends Component {
 
   async componentDidMount() {
     const contracts = await callAPI('/api/contracts/')
+    console.log('api call /api/contracts/ result: ', contracts)
     this.setState({ contracts: contracts });
   }
 
-  contract(contract) {
+  displayContract(contract) {
     const id = contract.id
     return(
       <div key={id}>
@@ -40,7 +41,7 @@ class ContractsAll extends Component {
         />
         <hr className="spacer" />
         <div className="card-client-grid">
-          { contracts.map(contract => this.contract(contract)) }
+          { contracts.map(contract => this.displayContract(contract)) }
         </div>
 
         <hr className="spacer" />

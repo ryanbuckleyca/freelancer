@@ -14,7 +14,7 @@ const upsertReminders = (reminders, contract_id) => {
 }
 
 router.route("/")
-  // GET ALL CONTACTS
+  // GET ALL USER'S CONTACTS
   .get(async (req, res) => {
     const allContracts = await db.Contract.findAll({
       where: { user_id: 1 },

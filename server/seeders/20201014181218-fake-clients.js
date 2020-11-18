@@ -4,6 +4,7 @@ module.exports = {
     let clientsArray = []
     clients.forEach((client, i) => {
       clientsArray.push({
+        user_id: 0,
         name: client['name'],
         number: client['number'],
         email: client['email'],

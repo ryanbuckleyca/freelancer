@@ -7,15 +7,14 @@ COPY [^src]* .
 
 RUN npm install
 
-EXPOSE 9000
+CMD npm start
 
-CMD npm start api
-
-# copy React /src
-COPY /src /src
+# now copy React /src
+COPY ./src ./src
 
 RUN npm install
 
 EXPOSE 3000
 
-CMD npm start react
+CMD npm run build
+CMD npm run react

@@ -2,6 +2,10 @@ application:
   name: cheque-mate
   project: Cheque-Mate
   cloud_region: aws/ca-central-1
+databases:
+- type: postgresql
+  version: 12
+  name: cheque-mate
 routers:
 - name: main
   routes:

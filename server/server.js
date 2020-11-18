@@ -15,12 +15,10 @@ const mailingListRoute = require('./routes/mailingList');
 
 const createError = require('http-errors');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 app.use(cors())
 app.use(logger('dev'));
-app.use(cookieParser());
 app.use(express.json());
 app.use(express.static(root));
 app.use(express.urlencoded({ extended: false }));

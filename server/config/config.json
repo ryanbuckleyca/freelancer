@@ -1,9 +1,10 @@
 {
   "development": {
-    "username": "apinrise",
-    "password": null,
+    "client": "pg",
+    "host": "db",
     "database": "cheque-mate",
-    "host": "localhost",
+    "username": "user",
+    "password": null,
     "dialect": "postgres"
   },
   "production": {

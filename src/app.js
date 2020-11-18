@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PrivateRoute from './components/private-route';
 import Modal from './components/modal';
+import Alerts from './components/alerts';
 import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Landing from './views/landing';
@@ -17,6 +18,7 @@ class App extends Component {
   render() {
     return (
       <div className='wrapper'>
+        <Alerts />
         <Modal />
         <Navbar />
         <Switch>

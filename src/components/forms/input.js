@@ -14,7 +14,7 @@ class InputField extends Component {
           name={this.props.name}
           value={this.props.value || ''}
           onChange={this.props.changeHandler}
-          required
+          required={this.props.required}
         />
       </fieldset>
     )

@@ -10,6 +10,7 @@ import pr from '../images/pr.svg';
 import emails from '../images/sending_emails.svg';
 import currency from '../images/currency.svg';
 import imgCoins from '../images/coins_nobg.svg';
+import callAPI from '../scripts';
 
 class Landing extends Component {
   render() {

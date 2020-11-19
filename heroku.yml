@@ -1,17 +1,13 @@
-# Resources to provision on app creation
 setup:
   addons:
     - plan: heroku-postgresql
       as: db
-# Reference the Dockerfiles to build into Docker images
 build:
   docker:
     server: server/Dockerfile
     web: client/Dockerfile
-# Overwrite server to use node rather than nodemon
 run:
   server: npm run start
-# Handle new released
 release:
   image: server
   command:

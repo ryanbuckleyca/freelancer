@@ -11,4 +11,3 @@ build:
 # Overwrite client to use build/ rather than dev server
 run:
   server: npm run start
-  client: npm run start

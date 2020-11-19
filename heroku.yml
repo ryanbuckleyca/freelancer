@@ -10,5 +10,11 @@ build:
     web: client/Dockerfile
 # Overwrite server to use node rather than nodemon
 run:
+  server: pip3 install nibabel pydicom matplotlib pillow
+  server: pip3 install med2image
+  server: apt install iproute2
+  server: apt-get install openssh-server
+  server: apt-get update; apt-get install curl
+  server: apk add --no-cache bash
   server: rm /bin/sh && ln -s /bin/bash /bin/sh
   server: npm run start

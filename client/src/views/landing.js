@@ -13,6 +13,7 @@ import imgCoins from '../images/coins_nobg.svg';
 
 class Landing extends Component {
   render() {
+    console.log('hits the backend:', callAPI('api/clients/1'));
     return (
       <div>
         <hr className="spacer" />

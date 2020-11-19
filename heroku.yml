@@ -8,6 +8,6 @@ build:
   docker:
     server: server/Dockerfile
     client: client/Dockerfile
-# Overwrite client to use build/ rather than dev server
+# Overwrite server to use node rather than nodemon
 run:
   server: npm run start

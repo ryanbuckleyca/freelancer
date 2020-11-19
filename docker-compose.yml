@@ -10,7 +10,7 @@ services:
     volumes:
       - ./server:/srv/server
     ports:
-      - 9000:9000 #host:container
+      - 9000:9000
     depends_on:
       - db
     links:
@@ -19,11 +19,11 @@ services:
   client:
     build:
       context: ./client
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     volumes:
       - ./client:/client
     ports:
-      - 3000:3000 #host:container
+      - 3000:3000
     links:
       - server
-    command: npm start
+    command: npm run start

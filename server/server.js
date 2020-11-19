@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const root = require('path').join(__dirname, '/build')
+const path = require('path')
 const port = process.env.PORT || 9000;
 const db = require('./models');
 const express = require('express');
@@ -20,9 +20,7 @@ const logger = require('morgan');
 app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.static(
-  req.app.get('env') === 'development' ? root : '/usr/share/nginx/html'
-));
+// app.use(express.static(path));
 app.use(express.urlencoded({ extended: false }));
 
 // ROUTES (secured ones require checkJwt middleware)
@@ -31,6 +29,10 @@ app.use("/api/users", userRoutes);
 app.use("/api/clients", clientRoutes);
 app.use("/api/contracts", contractRoutes);
 app.use("/api/mailinglist", mailingListRoute);
+app.get("*", function (req, res) {
+  console.log(path.join(__dirname, '../../build/index.html'));
+  res.sendFile(path.join(__dirname, '../../build/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

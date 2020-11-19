@@ -1,21 +1,11 @@
-# build environment
-
 FROM node:13-alpine
 
 WORKDIR /
 
 COPY . .
 
-RUN npm install --silent
+RUN npm install
 
-RUN npm run build
+EXPOSE 3000
 
-# production environment
-
-FROM nginx:1.16.0-alpine
-
-COPY /build /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["sudo", "nginx", "-g", "daemon off;"]
+CMD npm run start

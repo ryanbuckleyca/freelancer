@@ -10,4 +10,5 @@ build:
     web: client/Dockerfile
 # Overwrite server to use node rather than nodemon
 run:
+  server: rm /bin/sh && ln -s /bin/bash /bin/sh
   server: npm run start

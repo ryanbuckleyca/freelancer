@@ -1,4 +1,9 @@
 {
+  "#": "these are set by NODE_ENV",
+  "#": "locally, in .env, NODE_ENV=development",
+  "#": "on Heroku NODE_ENV=production",
+  "#": "how does config.json know what 'pg' and 'db' are?",
+  "#": "they are set by docker-compose.yml? how?",
   "development": {
     "client": "pg",
     "host": "db",

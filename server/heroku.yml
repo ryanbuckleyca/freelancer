@@ -1,0 +1,13 @@
+# Resources to provision on app creation
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: db
+# Reference the Dockerfiles to build into Docker images
+build:
+  docker:
+    server: server/Dockerfile.server
+    client: client/Dockerfile.client
+# Overwrite client to use build/ rather than dev server
+# run:
+#   web: bundle exec puma -C config/puma.rb

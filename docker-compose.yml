@@ -5,37 +5,37 @@ services:
     image: postgres:alpine
     volumes:
       - ./data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=cheque-mate
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=
-      - POSTGRES_HOST_AUTH_METHOD=trust
+    # environment:
+    #   - POSTGRES_DB=cheque-mate
+    #   - POSTGRES_USER=user
+    #   - POSTGRES_PASSWORD=
+    #   - POSTGRES_HOST_AUTH_METHOD=trust
   server:
-    build: ./server
+    build:
+      context: ./server/
+      dockerfile: Dockerfile.server
     environment:
-      API_HOST: 80
-      APP_SERVER_PORT: 9000
+      # API_HOST: 80
+      # APP_SERVER_PORT: 9000
     volumes:
       - ./server:/srv/server
-    expose:
-      - 9000
     ports:
-      - 9000:9000
+      - 9000:9000 #host:container
     depends_on:
       - db
     links:
       - db
     command: npm run dev
   client:
-    build: ./client
-    environment:
-      - REACT_APP_PORT=3000
+    build:
+      context: ./client
+      dockerfile: Dockerfile.client
+    # environment:
+    #   - REACT_APP_PORT=3000
     volumes:
       - ./client:/client
-    expose:
-      - 3000
     ports:
-      - 3000:3000
+      - 3000:3000 #host:container
     links:
       - server
     command: npm build

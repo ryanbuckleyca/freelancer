@@ -14,7 +14,7 @@ services:
     build:
       context: ./server/
       dockerfile: Dockerfile.server
-    environment:
+    # environment:
       # API_HOST: 80
       # APP_SERVER_PORT: 9000
     volumes:

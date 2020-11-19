@@ -2,9 +2,9 @@
 
 FROM node:13-alpine
 
-WORKDIR /app
+WORKDIR /
 
-COPY . /app
+COPY . .
 
 RUN npm install --silent
 
@@ -14,7 +14,7 @@ RUN npm run build
 
 FROM nginx:1.16.0-alpine
 
-COPY /app/build /usr/share/nginx/html
+COPY /build /usr/share/nginx/html
 
 EXPOSE 80
 

@@ -20,7 +20,9 @@ const logger = require('morgan');
 app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.static(root));
+app.use(express.static(
+  req.app.get('env') === 'development' ? root : '/usr/share/nginx/html'
+));
 app.use(express.urlencoded({ extended: false }));
 
 // ROUTES (secured ones require checkJwt middleware)

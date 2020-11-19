@@ -6,8 +6,13 @@ setup:
 # Reference the Dockerfiles to build into Docker images
 build:
   docker:
-    server: server/Dockerfile
+    server: server/Dockerfile.heroku
     web: client/Dockerfile
 # Overwrite server to use node rather than nodemon
 run:
-  server: pip3 install nibabel pydicom matplotlib pillow; pip3 install med2image; apt install iproute2; apt-get install openssh-server; apt-get update; apt-get install curl; apk add --no-cache bash; rm /bin/sh && ln -s /bin/bash /bin/sh; npm run start
+  server: npm run start
+# Handle new released
+release:
+  image: server
+  command:
+    - ./reboot_db.sh

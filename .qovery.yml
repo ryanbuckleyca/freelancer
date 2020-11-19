@@ -12,3 +12,6 @@ routers:
   - application_name: cheque-mate
     paths:
     - /
+  custom_domains:
+  - branch: master
+    domain: chequemate.work

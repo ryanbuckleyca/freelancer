@@ -7,7 +7,7 @@ setup:
 build:
   docker:
     server: server/Dockerfile
-    client: client/Dockerfile
+    web: client/Dockerfile
 # Overwrite server to use node rather than nodemon
 run:
   server: npm run start

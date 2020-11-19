@@ -6,7 +6,7 @@ setup:
 # Reference the Dockerfiles to build into Docker images
 build:
   docker:
-    server: server/Dockerfile.heroku
+    server: server/Dockerfile
     web: client/Dockerfile
 # Overwrite server to use node rather than nodemon
 run:

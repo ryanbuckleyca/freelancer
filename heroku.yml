@@ -6,8 +6,8 @@ setup:
 # Reference the Dockerfiles to build into Docker images
 build:
   docker:
-    server: server/Dockerfile.server
-    client: client/Dockerfile.client
+    server: server/Dockerfile
+    client: client/Dockerfile
 # Overwrite client to use build/ rather than dev server
 run:
   server: npm run start

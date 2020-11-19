@@ -9,5 +9,6 @@ build:
     server: server/Dockerfile.server
     client: client/Dockerfile.client
 # Overwrite client to use build/ rather than dev server
-# run:
-#   web: bundle exec puma -C config/puma.rb
+run:
+  server: npm run start
+  client: npm run start

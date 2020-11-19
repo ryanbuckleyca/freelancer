@@ -1,2 +1,2 @@
-sequelize db:migrate
-sequelize db:seed:all --debug
+# sequelize db:migrate
+# sequelize db:seed:all --debug

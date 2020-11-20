@@ -14,11 +14,11 @@ class CardForm extends Component {
   // TODO: handle callAPI returns of null
 
   loadRecordState(table, id='') {
-    const user_id = 1; // TODO: get this from auth0 props
-    callAPI(`/api/${table}/${id}`)
+    const user_id = this.props.auth0.user['http:id'];
+    callAPI(`/api/${table}/${user_id}`)
     .then(result => {
       if (!result)
-        window.location.href = `../${table}`
+        window.location.href = `../${table === 'users' ? 'clients' : table}`
       if (result && result.due_date)
         result.due_date = dateToStr(result.due_date);
       this.setState({ ...result, user_id: user_id })
@@ -81,7 +81,7 @@ class CardForm extends Component {
 
   componentDidMount() {
     const { table, id } = this.props
-      this.loadRecordState(table, id || 'new');
+    this.loadRecordState(table, id || 'new');
   }
 
   render() {

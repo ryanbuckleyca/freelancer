@@ -1,1 +1,1 @@
-docker-compose run server npx sequelize-cli db:migrate
+sequelize db:migrate

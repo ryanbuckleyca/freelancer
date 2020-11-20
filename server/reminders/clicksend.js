@@ -1,56 +1,49 @@
 require('dotenv').config();
 
-const twilioSID = process.env.TWILIO_ACCOUNT_SID;
-const twilioToken = process.env.TWILIO_AUTH_TOKEN;
-const twilio = require('twilio')(twilioSID, twilioToken);
-const twilioNumber = '+18588793879'
-const ryanNumber = '+14384086340'
-
 const clicksendUser = process.env.CLICKSEND_USER
 const clicksendPass = process.env.CLICKSEND_PASS
 const clicksendKey = process.env.CLICKSEND_KEY
 const clicksendNumber = '+61411111111'
 const clicksendEmail = 'test2@test.com'
-const clicksend = 'https://rest.clicksend.com/v3/email/send'
+const api = require('./clicksendAPI.js')
 
 
-const date = new Date()
+var emailTransactionalApi = new api.TransactionalEmailApi(clicksendUser, clicksendKey);
 
+var emailRecipient = new api.EmailRecipient();
 
-twilio.messages
-  .create({
-    body: `Today is ${date}`,
-    from: twilioNumber,
-    to: ryanNumber
-  })
-  .then(message => console.log(message))
-  .catch(error => console.log('error: ', error))
+emailRecipient.email = clicksendEmail;
+emailRecipient.name = "John doe";
 
-twilio.calls
-  .create({
-    twiml: '<Response><Say>Ahoy there!</Say></Response>',
-    from: twilioNumber,
-    to: ryanNumber
-   })
-  .then(call => console.log(call));
-  .catch(error => console.log('error: ', error))
+var emailFrom = new api.EmailFrom();
 
-//
-// // CLICKSEND EMAIL
-// const send_email = () => {
-//   api_instance = ClickSendClient::TransactionalEmailApi.new
-//   email_to_send = ClickSendClient::Email.new # Email | Email model
-//   email_to_send.to = [ClickSendClient::EmailRecipient.new("name": name, "email": email)]
-//   email_to_send.from = ClickSendClient::EmailFrom.new("name": Faker::Name.name, "email_address_id": emails_fr_clicksend['email_address_id'])
-//   email_to_send.subject = 'Friendly reminder'
-//   email_to_send.body = 'Hey Ryan, how\'s it going? Just wanted to drop you a friendly reminder about the overdue invoice. If you could go ahead and make sure you get that off to me sometime today that would be great. Hope you\'re doing well. Thanks, and warm wishes.'
-//   begin
-//     result = api_instance.email_send_post(email_to_send)
-//     JSON.parse(result)
-//   rescue ClickSendClient::ApiError => e
-//     "Exception when calling TransactionalEmailApi->email_send_post: #{e.response_body}"
-//   end
-// }
+emailFrom.emailAddressId = 12137;
+emailFrom.name = "john";
+
+var attachment = new api.Attachment();
+
+attachment.content = "ZmlsZSBjb250ZW50cw==";
+attachment.type = "text/plain";
+attachment.filename = "text.txt";
+attachment.disposition = "attachment";
+attachment.contentId = "text";
+
+var email = new api.Email();
+
+email.to = [emailRecipient];
+email.cc = [emailRecipient];
+email.bcc = [emailRecipient];
+email.from = emailFrom;
+email.subject = "subject";
+email.body = "body";
+email.attachments = [attachment];
+
+emailTransactionalApi.emailSendPost(email).then(function(response) {
+  console.log(response.body);
+}).catch(function(err){
+  console.error(err.body);
+});
+
 //
 // // CLICKSEND LETTER
 // const letter_cost = (file) => {

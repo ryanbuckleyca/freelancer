@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import { withAuth0 } from '@auth0/auth0-react';
 import CardTitle from '../components/cards/card-title';
 import CardClient from '../components/cards/card-client';
+import NotFound from '../components/not-found';
 import social_media from '../images/social_media.svg';
 import callAPI from '../scripts/callAPI';
 
@@ -8,14 +10,17 @@ class ClientsAll extends Component {
   state = {clients: []};
 
   async componentDidMount() {
-    console.log('this.props.match.url is ', this.props.match.url)
-    // TODO: replace with user_id from auth0 props
-    let user = this.props.match.url === '/clients/mine' ? `user/1` : ''
+    console.log(this.props)
+    const user_id = this.props.auth0.user['http:id']
+    let user = this.props.match.url === '/clients/mine' ? `user/${user_id}` : ''
     const clients = await callAPI('/api/clients/' + user)
-    this.setState({clients: clients});
+    clients && this.setState({clients: clients})
   }
 
   render() {
+    if(this.state.clients.length < 1)
+          return <NotFound type="clients" />
+
     let clients = this.state.clients
     let title = this.props.match.path === '/clients/mine'
       ? 'My clients'
@@ -51,4 +56,4 @@ class ClientsAll extends Component {
   }
 }
 
-export default ClientsAll;
+export default withAuth0(ClientsAll);

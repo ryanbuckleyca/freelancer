@@ -10,14 +10,12 @@ const deleteAuthUser = require('./deleteAuthUser')
 // login redirects to GET /:auth0_id
 // user does not yet exist in debug
 // user must submit in order to complete registration
-// TODO: create an alert for this
 // posting profile will get Auth0 token
 
 router
   .route("/:auth0_id")
   // GET USER - api/users/:auth0_id
   .get(async (req, res, next) => {
-    console.log('GET USER by auth_id: ', req.params.auth0_id)
     try {
       const user = await db.User.findOne({
         where: { auth0_id: req.params.auth0_id }

@@ -10,7 +10,7 @@
 
 body {
   margin: 0;
-  padding: 2em 0;
+  padding: 0;
   background: linear-gradient(180deg, rgba(246,250,253,1) 0%, rgba(255,255,255,1) 100%);
   font-family: Avenir, Helvetica, sans-serif;
   font-size: 12px;
@@ -21,8 +21,12 @@ body {
 
 .wrapper {
   width: 80vw;
+  min-height: 100vh;
+  padding: 0;
   margin: 0 auto;
-  padding: 1em 0 3em;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media(min-width: 360px) {

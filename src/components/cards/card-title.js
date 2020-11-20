@@ -11,7 +11,7 @@ class CardTitle extends Component {
         </div>
         <div className={thisClass + '-text'}>
           <h2>{this.props.title}</h2>
-          <p>{this.props.text}</p>
+          <div>{this.props.text}</div>
         </div>
       </div>
     )

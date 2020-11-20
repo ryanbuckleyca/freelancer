@@ -14,7 +14,6 @@ import callAPI from '../scripts/callAPI';
 
 class Landing extends Component {
   render() {
-    console.log('hits the backend:', callAPI('api/clients/1'));
     return (
       <div>
         <hr className="spacer" />

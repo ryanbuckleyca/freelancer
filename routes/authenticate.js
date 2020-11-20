@@ -1,3 +1,8 @@
+const path = require('path')
+require('dotenv').config({
+  path: path.resolve(__dirname, '../.env')
+});
+
 // Auth0 authentication middleware
 const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");

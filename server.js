@@ -1,3 +1,4 @@
+const path = require('path')
 require('dotenv').config();
 
 // const path = require('path')
@@ -29,6 +30,9 @@ app.use("/api/users", userRoutes);
 app.use("/api/clients", clientRoutes);
 app.use("/api/contracts", contractRoutes);
 app.use("/api/mailinglist", mailingListRoute);
+app.get("/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, '/build/index.html'))
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

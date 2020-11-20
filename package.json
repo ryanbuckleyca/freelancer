@@ -1,5 +1,5 @@
 {
-  "name": "Cheque-Mate-API",
+  "name": "Cheque-Mate",
   "version": "0.0.0",
   "engines": {
     "node": "10.20.x",
@@ -7,10 +7,14 @@
   },
   "private": true,
   "scripts": {
-    "dev": "nodemon server.js",
+    "heroku-postbuild": "npm run build",
+    "build": "react-scripts build",
+    "react": "react-scripts start",
+    "api": "nodemon server.js -i /src -i /public",
     "start": "node server.js"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^1.1.0",
     "@types/node": "^14.14.9",
     "bluebird": "^3.7.2",
     "clicksend": "^5.0.37",
@@ -19,12 +23,19 @@
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "express-jwt": "^6.0.0",
+    "faker": "^5.1.0",
     "http": "0.0.1-security",
     "http-errors": "~1.6.3",
     "jwks-rsa": "^1.10.1",
+    "node-sass": "^4.14.1",
     "nodemon": "^2.0.6",
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.0",
+    "react-select": "^3.1.0",
     "request": "^2.88.2",
     "sequelize": "^6.3.5",
     "twilio": "^3.52.0",
@@ -34,5 +45,20 @@
     "morgan": "~1.9.1",
     "debug": "~2.6.9",
     "sequelize-cli": "^6.2.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

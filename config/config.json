@@ -1,9 +1,9 @@
 {
   "development": {
     "client": "pg",
-    "host": "db",
+    "host": "localhost",
     "database": "cheque-mate",
-    "username": "user",
+    "username": "apinrise",
     "password": null,
     "dialect": "postgres"
   },

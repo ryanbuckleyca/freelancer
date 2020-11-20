@@ -1,41 +1,40 @@
 require('dotenv').config();
 
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = require('twilio')(accountSid, authToken);
-const fromNumber = '+18588793879'
+const twilioSID = process.env.TWILIO_ACCOUNT_SID;
+const twilioToken = process.env.TWILIO_AUTH_TOKEN;
+const twilio = require('twilio')(twilioSID, twilioToken);
+const twilioNumber = '+18588793879'
 const ryanNumber = '+14384086340'
+
+const clicksendUser = process.env.CLICKSEND_USER
+const clicksendPass = process.env.CLICKSEND_PASS
+const clicksendKey = process.env.CLICKSEND_KEY
+const clicksendNumber = '+61411111111'
+const clicksendEmail = 'test2@test.com'
+const clicksend = 'https://rest.clicksend.com/v3/email/send'
+
 
 const date = new Date()
 
 
-client.messages
+twilio.messages
   .create({
     body: `Today is ${date}`,
-    from: fromNumber,
+    from: twilioNumber,
     to: ryanNumber
   })
   .then(message => console.log(message))
   .catch(error => console.log('error: ', error))
 
-client.calls
+twilio.calls
   .create({
     twiml: '<Response><Say>Ahoy there!</Say></Response>',
-    from: fromNumber,
+    from: twilioNumber,
     to: ryanNumber
    })
   .then(call => console.log(call));
   .catch(error => console.log('error: ', error))
 
-//
-// // CLICKSEND CONNECT
-// const connect_clicksend = () => {
-//   ClickSendClient.configure do |config|
-//     config.username = ENV['CLICKSEND_USER']
-//     config.password = ENV['CLICKSEND_PASS']
-//     config.api_key = ENV['CLICKSEND_KEY']
-//   end
-// }
 //
 // // CLICKSEND EMAIL
 // const send_email = () => {

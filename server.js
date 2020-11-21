@@ -16,7 +16,7 @@ const mailingListRoute = require('./routes/mailingList');
 
 const createError = require('http-errors');
 const cors = require('cors');
-if(req.app.get('env') === 'development') {
+if(process.env.NODE_ENV === 'development') {
   const logger = require('morgan');
   app.use(logger('dev'));
 }

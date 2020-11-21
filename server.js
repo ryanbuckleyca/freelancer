@@ -32,7 +32,7 @@ app.use("/api/clients", clientRoutes);
 app.use("/api/contracts", contractRoutes);
 app.use("/api/mailinglist", mailingListRoute);
 app.get("/*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, '/public/index.html'))
+  res.sendFile(path.resolve(__dirname, '/build/index.html'))
 })
 
 // catch 404 and forward to error handler

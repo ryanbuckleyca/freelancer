@@ -8,7 +8,7 @@ import './index.scss';
 
 require('dotenv').config()
 
-console.log(process.env.NODE_ENV)
+const { NODE_ENV, REACT_APP_REDIRECT_URI } = process.env
 
 // TODO: add scope?
 // could obviate need for getting token for delete/update
@@ -20,7 +20,7 @@ ReactDOM.render(
       domain={process.env.REACT_APP_AUTH0_DOMAIN}
       clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
       audience={process.env.REACT_APP_AUDIENCE}
-      redirectUri={process.env.REACT_APP_REDIRECT_URI}>
+      redirectUri={NODE_ENV === 'production' ? 'http://localhost:9000' : REACT_APP_REDIRECT_URI}>
       <App />
     </Auth0Provider>
   </Router>,

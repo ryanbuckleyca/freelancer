@@ -16,12 +16,13 @@ const mailingListRoute = require('./routes/mailingList');
 
 const createError = require('http-errors');
 const cors = require('cors');
-const logger = require('morgan');
+if(req.app.get('env') === 'development') {
+  const logger = require('morgan');
+  app.use(logger('dev'));
+}
 
 app.use(cors())
-app.use(logger('dev'));
 app.use(express.json());
-// app.use(express.static(path));
 app.use(express.urlencoded({ extended: false }));
 
 // ROUTES (secured ones require checkJwt middleware)

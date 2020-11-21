@@ -7,7 +7,6 @@
   },
   "private": true,
   "scripts": {
-    "heroku-postbuild": "npm run build",
     "build": "react-scripts build",
     "react": "react-scripts start",
     "api": "nodemon server.js -i /src -i /public",

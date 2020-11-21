@@ -8,8 +8,7 @@ import './index.scss';
 
 require('dotenv').config()
 
-const { NODE_ENV, REACT_APP_REDIRECT_URI } = process.env
-
+console.log('NODE_ENV is ', process.env.NODE_ENV, 'redirect url is ', process.env.REACT_APP_REDIRECT_URI)
 // TODO: add scope?
 // could obviate need for getting token for delete/update
 // https://auth0.com/blog/complete-guide-to-react-user-authentication/#Configure.React.to.connect.with.the.Express.API
@@ -20,7 +19,7 @@ ReactDOM.render(
       domain={process.env.REACT_APP_AUTH0_DOMAIN}
       clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
       audience={process.env.REACT_APP_AUDIENCE}
-      redirectUri={NODE_ENV === 'production' ? 'http://localhost:9000' : REACT_APP_REDIRECT_URI}>
+      redirectUri={process.env.REACT_APP_REDIRECT_URI}>
       <App />
     </Auth0Provider>
   </Router>,

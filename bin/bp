@@ -1,0 +1,7 @@
+#!/bin/bash
+git checkout -b "build"
+npm run build
+git add .
+git commit -m 'build'
+git push heroku build
+open https://dashboard.heroku.com/apps/cheque-mate-app/activity

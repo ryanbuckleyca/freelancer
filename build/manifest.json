@@ -1,0 +1,6 @@
+{
+  "name": "Cheque Mate",
+  "short_name": "ChequeMate",
+  "display": "standalone",
+  "start_url": "."
+}

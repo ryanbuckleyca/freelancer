@@ -1,3 +1,4 @@
+#!/bin/bash
 git checkout -b "build"
 npm run build
 git add .

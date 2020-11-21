@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.fa30964d.chunk.css",
-    "main.js": "/static/js/main.536da1a8.chunk.js",
-    "main.js.map": "/static/js/main.536da1a8.chunk.js.map",
+    "main.js": "/static/js/main.4577c41a.chunk.js",
+    "main.js.map": "/static/js/main.4577c41a.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.ed43c334.js",
     "runtime-main.js.map": "/static/js/runtime-main.ed43c334.js.map",
     "static/js/2.4f007478.chunk.js": "/static/js/2.4f007478.chunk.js",
     "static/js/2.4f007478.chunk.js.map": "/static/js/2.4f007478.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.a92e4fcee7838f2e26c1ddf80b59680e.js": "/precache-manifest.a92e4fcee7838f2e26c1ddf80b59680e.js",
+    "precache-manifest.47ae49c330be562b86196eb59e5ba21e.js": "/precache-manifest.47ae49c330be562b86196eb59e5ba21e.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.fa30964d.chunk.css.map": "/static/css/main.fa30964d.chunk.css.map",
     "static/js/2.4f007478.chunk.js.LICENSE.txt": "/static/js/2.4f007478.chunk.js.LICENSE.txt",
@@ -18,7 +18,7 @@
     "static/media/coins_nobg.svg": "/static/media/coins_nobg.ccbae4df.svg",
     "static/media/currency.svg": "/static/media/currency.a8627d78.svg",
     "static/media/late.svg": "/static/media/late.00130116.svg",
-    "static/media/logo.svg": "/static/media/logo.7d8ac417.svg",
+    "static/media/logo.svg": "/static/media/logo.b4c001ad.svg",
     "static/media/mailchimp.svg": "/static/media/mailchimp.6c33bd82.svg",
     "static/media/pr.svg": "/static/media/pr.575be7db.svg",
     "static/media/revenue_2.svg": "/static/media/revenue_2.10bb314a.svg",
@@ -30,6 +30,6 @@
     "static/js/runtime-main.ed43c334.js",
     "static/js/2.4f007478.chunk.js",
     "static/css/main.fa30964d.chunk.css",
-    "static/js/main.536da1a8.chunk.js"
+    "static/js/main.4577c41a.chunk.js"
   ]
 }

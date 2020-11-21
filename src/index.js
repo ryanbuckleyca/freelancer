@@ -8,6 +8,8 @@ import './index.scss';
 
 require('dotenv').config()
 
+console.log(process.env.NODE_ENV)
+
 // TODO: add scope?
 // could obviate need for getting token for delete/update
 // https://auth0.com/blog/complete-guide-to-react-user-authentication/#Configure.React.to.connect.with.the.Express.API

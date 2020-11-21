@@ -14,14 +14,13 @@ class CardForm extends Component {
   // TODO: handle callAPI returns of null
 
   loadRecordState(table, id='') {
-    const user_id = this.props.auth0.user['http:id'];
-    callAPI(`/api/${table}/${user_id}`)
+    callAPI(`/api/${table}/${id}`)
     .then(result => {
       if (!result)
-        window.location.href = `../${table === 'users' ? 'clients' : table}`
+        window.location.href = `/${table}`
       if (result && result.due_date)
         result.due_date = dateToStr(result.due_date);
-      this.setState({ ...result, user_id: user_id })
+      this.setState({ ...result, id: id })
     })
     .catch(err => console.log('problem with loading record: ', err))
   }

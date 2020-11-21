@@ -20,13 +20,13 @@ class Profile extends Component {
   }
 
   async componentDidMount() {
+    // Does user exist? If not, create
     const {user, getAccessTokenSilently} = this.props.auth0
     this.props.auth0 && callAPI(`/api/users/${user.sub}`)
       .then(res => !res && this.createUser(user))
 
     // TODO: incorporate secureAPI test into other api calls
     // TODO: figure out how to generate token from inside of callAPI
-    //        callAPI needs to be a React component
     const token = await getAccessTokenSilently()
     const tokenHeader = { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
     callAPI('/api/secure', 'GET', null, tokenHeader)

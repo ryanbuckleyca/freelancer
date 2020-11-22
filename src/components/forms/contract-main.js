@@ -5,6 +5,7 @@ import Select from 'react-select';
 import Reminders from './reminders';
 import InputField from './input';
 import Radio from './radio';
+import Loading from '../loading';
 
 class CardFormFieldsContract extends Component {
   // TODO: this should be inherited from a more global state
@@ -79,7 +80,7 @@ class CardFormFieldsContract extends Component {
 
   render() {
     if(!this.props)
-      return "Loading..."
+      return <Loading type="contract" />
 
     const {user_clients, client_id } = this.props
 

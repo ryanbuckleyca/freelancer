@@ -76,10 +76,12 @@ class CardFormFieldsPerson extends Component {
         </span>
         <div id="card-form-btn-bottom">
           <a className="btn btn-primary" onClick={this.props.handleSubmit}>
-          Update profile
+            Update profile
           </a>
           <br />
-          <a className="btn btn-danger">delete account</a>
+          <a className="btn btn-danger" onClick={this.props.handleDelete}>
+            delete account
+          </a>
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Radio from './radio';
 import ToggleSwitch from './toggle-switch';
+import Loading from '../loading';
 import './reminders.scss';
 
 class Reminder extends Component {
@@ -119,7 +120,7 @@ class Reminders extends Component {
     const { reminders, selectedType } = this.props
 
     if(!reminders)
-      return "Loading..."
+      return <Loading type="reminders" />
 
     const isSelected = type => type === selectedType ? ' reminder-selected' : ''
     const loadReminder = type => reminders.find(x => x.type === type)

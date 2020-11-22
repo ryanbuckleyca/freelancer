@@ -6,10 +6,15 @@ import CardFormFieldsPerson from '../components/forms/person-main';
 
 class Client extends Component {
   render() {
+
+    const redirect = (location) => {
+      this.props.history.push(location);
+    }
+
     return(
       <div className="profile">
         <hr className="spacer" />
-        <CardForm table='clients' id={this.props.match.params.id}>
+        <CardForm table='clients' id={this.props.match.params.id} redirect={redirect}>
           <CardFormTopSideClient />
           <CardFormFieldsPerson />
         </CardForm>

@@ -16,6 +16,7 @@ router
   .route("/:auth0_id")
   // GET USER - api/users/:auth0_id
   .get(async (req, res, next) => {
+    console.log('route /:auth0_id hit')
     try {
       const user = await db.User.findOne({
         where: { auth0_id: req.params.auth0_id }
@@ -31,15 +32,17 @@ router
   // UPDATE/NEW USER
   .put(async (req, res, next) => {
     console.log('update user called with req.body:', req.body);
+    req.body && delete req.body.id // prevent overwriting id
     try {
       const updateResult = await db.User.update(req.body, {
-        where: { id: req.body.id },
+        where: { auth0_id: req.body.auth0_id },
         returning: true
       });
       const dbUser = updateResult[1][0];
-      res.send(dbUser)
+      console.log('dbUser = ', dbUser)
       const updateAuthRes = await updateAuthUser(dbUser);
       console.log('result of updateAuthUser(): ', updateAuthRes)
+      res.send(dbUser)
     }
     catch(err) { console.log('update user error: ', err) }
   })

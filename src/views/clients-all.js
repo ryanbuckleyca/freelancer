@@ -3,29 +3,34 @@ import { withAuth0 } from '@auth0/auth0-react';
 import CardTitle from '../components/cards/card-title';
 import CardClient from '../components/cards/card-client';
 import NotFound from '../components/not-found';
+import Loading from '../components/loading';
 import social_media from '../images/social_media.svg';
 import callAPI from '../scripts/callAPI';
 
 class ClientsAll extends Component {
-  state = {clients: []};
-
-  async componentDidMount() {
-    console.log(this.props)
+  componentDidMount() {
     const user_id = this.props.auth0.user['http:id']
     let user = this.props.match.url === '/clients/mine' ? `user/${user_id}` : ''
-    const clients = await callAPI('/api/clients/' + user)
-    clients && this.setState({clients: clients})
+    callAPI('/api/clients/' + user)
+      .then(clients => this.setState({clients: clients}))
   }
 
   render() {
-    if(this.state.clients.length < 1)
-          return <NotFound type="clients" />
+    if(!this.state)
+      return <Loading type="clients" />
+
+    if(this.state && this.state.clients.error)
+      return <NotFound type="clients" />
 
     let clients = this.state.clients
-    let title = this.props.match.path === '/clients/mine'
+    let mine = this.props.match.path === '/clients/mine'
+    let button = mine
+      ? <a href="/clients/" className="btn btn-outline">show all</a>
+      : <a href="/clients/mine" className="btn btn-outline">only mine</a>
+    let title = mine
       ? 'My clients'
       : 'Clients'
-    let text = this.props.match.path === '/clients/mine'
+    let text = mine
       ? "Below are clients you have create or added to your account."
       : "Check this ongoing list for clients who may be known for late or unpaid invoices."
 
@@ -39,7 +44,7 @@ class ClientsAll extends Component {
           text={
             <div>{text}<br /><br />
             <a href="/clients/new" className="btn btn-outline">+ add new</a>
-            <a href="/clients/mine" className="btn btn-outline">only mine</a>
+            {button}
             </div>
           }
         />

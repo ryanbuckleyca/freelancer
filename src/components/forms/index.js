@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import NotFound from '../not-found';
+import Loading from '../loading';
 import { withAuth0 } from '@auth0/auth0-react';
 import callAPI from '../../scripts/callAPI';
 import dateToStr from '../../scripts/dateToStr';
@@ -9,21 +11,12 @@ import './form.scss';
 
 
 class CardForm extends Component {
+  // Makes GET call to API based on URL
+  // Loads a form with existing record
+  // or creates a new one
 
   // TODO: delete auth0 user instance on "delete"
   // TODO: handle callAPI returns of null
-
-  loadRecordState(table, id='') {
-    callAPI(`/api/${table}/${id}`)
-    .then(result => {
-      if (!result)
-        window.location.href = `/${table}`
-      if (result && result.due_date)
-        result.due_date = dateToStr(result.due_date);
-      this.setState({ ...result, id: id })
-    })
-    .catch(err => console.log('problem with loading record: ', err))
-  }
 
   saveFormToDB() {
     console.log('state to save to db is: ', this.state)
@@ -33,9 +26,11 @@ class CardForm extends Component {
 
     callAPI(url, method, body)
       .then(res => {
+        console.log('call flashAlert')
         flashAlert('success', `${this.props.table} saved`);
         return res
-      }).catch(err => flashAlert('warning', `card-form saveFormToDB err: ${err}`))
+      })
+      .catch(err => flashAlert('warning', `card-form saveFormToDB err: ${err}`))
   }
 
   deleteFromDB = () => {
@@ -54,15 +49,15 @@ class CardForm extends Component {
         return res
       })
       .catch(err => flashAlert('warning', `form deleteFromDB err: ${err}`))
-      .finally(window.location.href = `../${this.props.table}`)
+      .finally(this.props.redirect(`../${this.props.table}`))
   }
 
   handleSubmit = async (e) => {
     console.log('handleSubmit called')
     e.preventDefault()
     requiredFieldsValid()
-    ? this.saveFormToDB()
-    : flashAlert('warning', 'Fields null or undefined')
+      ? this.saveFormToDB()
+      : flashAlert('warning', 'Fields null or undefined')
   }
 
   changeHandler = (e) => {
@@ -70,7 +65,6 @@ class CardForm extends Component {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({ [name]: value }, console.log('new state is: ', this.state))
-
   }
 
   passProps = (props) => {
@@ -78,14 +72,33 @@ class CardForm extends Component {
     this.setState({ ...props })
   }
 
+  parseData = (data) => {
+    // for fields such as date
+    if (data.due_date) data.due_date = dateToStr(data.due_date);
+    return data
+  }
+
   componentDidMount() {
+    console.log('componentDidMount')
     const { table, id } = this.props
-    this.loadRecordState(table, id || 'new');
+    callAPI(`/api/${table}/${id || 'new'}`)
+      .then(res => {
+        console.log('result is: ', res)
+        if(!res) throw('no results')
+        this.setState({ ...this.parseData(res), id: id })
+      })
+      .catch(err => {
+        console.log('problem with loading record: ', err)
+        this.setState({error: err, id: id })
+      })
   }
 
   render() {
-    if(!this.props.table)
-      return "Loading..."
+    if(!this.props.table || !this.state)
+      return <Loading type={this.props.table} />
+
+    if(this.state && this.state.error)
+      return <NotFound type={this.props.table} />
 
     return(
       <form className="form-wrapper">

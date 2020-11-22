@@ -6,13 +6,13 @@ const background = {
 }
 
 const flashAlert = (type, message) => {
+  console.log('flashAlert called')
   let alert = document.getElementById('alert');
   let alertText = document.getElementById('alert-text');
 
   alertText.innerText = message
   alert.style.transition = 'bottom 1s ease 0s'
   alert.style.background = background[type]
-  console.log(alert.style.transition)
   alert.style.bottom = 0;
   setTimeout(() => alert.style.transition = 'bottom 5s ease 0s', 1000)
   setTimeout(() => alert.style.bottom = '-100%', 5000)

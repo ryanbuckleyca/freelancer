@@ -16,6 +16,7 @@ router
   .route("/:auth0_id")
   // GET USER - api/users/:auth0_id
   .get(async (req, res, next) => {
+    console.log('route /:auth0_id hit')
     try {
       const user = await db.User.findOne({
         where: { auth0_id: req.params.auth0_id }

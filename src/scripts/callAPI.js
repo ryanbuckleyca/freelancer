@@ -1,6 +1,6 @@
 const url = process.env.REACT_APP_API_URL || 'http://localhost:9000';
-
 let json = { 'Content-Type': 'application/json' }
+
 const callAPI = async (address, method = 'GET', params = null, headers = json) => {
   let attrs = {
     method: method,
@@ -12,15 +12,15 @@ const callAPI = async (address, method = 'GET', params = null, headers = json) =
   try {
     // TODO: change routes to handle null responses from db calls
     const res = await fetch(`${url}${address}`, attrs)
-    const data = await res.text()
-    if(!data)
-      throw('no results')
-    return JSON.parse(data)
+    const data = await res.json()
+    if(data.error) throw(data.error)
+    console.log('call api result is: ', data)
+    return data
   } catch(err) {
     // TODO: handle errors
     // returning null leads to unexpected results
     console.log(`callAPI(${address},${method},${params}) error: `, err)
-    return null
+    return {error: err}
   }
 }
 

@@ -7,8 +7,11 @@ import callAPI from '../scripts/callAPI';
 
 class Profile extends Component {
 
+  redirect(location) {
+    this.props.history.push(location);
+  }
+
   createUser(authUser) {
-    console.log('creating new user account from auth0')
     callAPI('/api/users/', 'POST', {
       auth0_id: authUser.sub,
       name: authUser.name,
@@ -38,7 +41,7 @@ class Profile extends Component {
     return(
       <div className='profile'>
         <hr className='spacer' />
-        <CardForm table='users' id={this.props.auth0.user.sub}>
+        <CardForm table='users' id={this.props.auth0.user.sub} redirect={this.redirect}>
           <CardFormTopSideProfile />
           <CardFormFieldsPerson />
         </CardForm>

@@ -88,7 +88,10 @@ router.route("/")
   // GET ALL clients
   .get(async (req, res, next) => {
     const allClients = await db.Client.findAll();
-    res.send(allClients)
+    if (!allClients)
+      res.send({error: 'no clients found'})
+    else
+      res.send(allClients)
   })
   // CREATE client
   .post(async (req, res, next) => {

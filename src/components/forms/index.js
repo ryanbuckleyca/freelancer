@@ -25,7 +25,7 @@ class CardForm extends Component {
 
     callAPI(url, method, body)
       .then(res => {
-        console.log('call flashAlert')
+        console.log('record updated')
         flashAlert('success', `${this.props.table} saved`);
         return res
       })
@@ -47,7 +47,7 @@ class CardForm extends Component {
       .then(res => {
         // TODO: success alert still gets called when there are errors
         console.log('record deleted')
-        window.flashAlert('success', `record ${this.props.id} from ${this.props.table} deleted`);
+        flashAlert('success', `record ${this.props.id} from ${this.props.table} deleted`);
         return res
       })
       .catch(err => flashAlert('warning', `form deleteFromDB err: ${err}`))
@@ -96,7 +96,6 @@ class CardForm extends Component {
   }
 
   render() {
-    flashAlert('netrual', 'hello world!')
 
     if(!this.props.table || !this.state)
       return <Loading type={this.props.table} />

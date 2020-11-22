@@ -4,7 +4,9 @@ import '../cards/cards.scss';
 import Cloudinary from './cloudinary';
 
 class CardFormTopsideProfile extends Component {
+
   render() {
+    console.log('profile-topside props: ', this.props)
     return(
       <div className="card-form-img">
         <div className="card-form-avatar">

@@ -14,7 +14,6 @@ const callAPI = async (address, method = 'GET', params = null, headers = json) =
     const res = await fetch(`${url}${address}`, attrs)
     const data = await res.json()
     if(data.error) throw(data.error)
-    console.log('call api result is: ', data)
     return data
   } catch(err) {
     // TODO: handle errors

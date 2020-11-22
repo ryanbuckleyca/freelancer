@@ -27,8 +27,8 @@ class Navbar extends Component {
   }
   toggleMenu() {
     this.state.navClass === 'opened'
-    ? this.closeMobileNavbar()
-    : this.openMobileNavbar()
+      ? this.closeMobileNavbar()
+      : this.openMobileNavbar()
   }
 
   openProfileMenu() {
@@ -39,8 +39,8 @@ class Navbar extends Component {
   }
   toggleProfileMenu() {
     this.state.profileClass === 'opened'
-    ? this.closeProfileMenu()
-    : this.openProfileMenu()
+      ? this.closeProfileMenu()
+      : this.openProfileMenu()
   }
 
   handleClick = (e) => {
@@ -72,10 +72,10 @@ class Navbar extends Component {
         </nav>
     </header>
 
-  guestMenu = (login = false) =>
+  guestMenu = (login = () => alert('coming soon')) =>
     <ul className='navbar-links' onClick={(e) => e.stopPropagation()}>
       <li className='navbar-item'>
-        <Link to='/' onClick={() => login} className='navbar-link'>
+        <Link to='/' onClick={login} className='navbar-link'>
           Log In / Register
         </Link>
       </li>
@@ -111,7 +111,7 @@ class Navbar extends Component {
       return this.baseNavbar(userMenu())
     }
     else {
-      return this.baseNavbar(this.guestMenu(loginWithRedirect))
+      return this.baseNavbar(this.guestMenu(() => loginWithRedirect()))
     }
   };
 };

@@ -55,24 +55,41 @@ class Navbar extends Component {
     window.removeEventListener('click', this.handleClick)
   }
 
+  baseNavbar = (menu) =>
+    <header id='navbar' className={this.state.navClass}>
+        <nav className='navbar-container'>
+          <Link to='/' className='navbar-brand'>
+            <Logotype height='60' />
+          </Link>
+          <button type='button' className='navbar-toggle' aria-label={this.state.toggle} onClick={() => this.toggleMenu()}>
+              <span className='icon-bar'></span>
+              <span className='icon-bar'></span>
+              <span className='icon-bar'></span>
+          </button>
+          <div className='navbar-menu' onClick={() => this.closeMobileNavbar()}>
+            { menu }
+          </div>
+        </nav>
+    </header>
+
+  guestMenu = (login = false) =>
+    <ul className='navbar-links' onClick={(e) => e.stopPropagation()}>
+      <li className='navbar-item'>
+        <Link to='/' onClick={() => login} className='navbar-link'>
+          Log In / Register
+        </Link>
+      </li>
+    </ul>
+
   render() {
     const { user, isAuthenticated, isLoading, logout, loginWithRedirect } = this.props.auth0;
 
     if (isLoading) {
-      return <div>Loading ...</div>;
+      return this.baseNavbar(this.guestMenu());
     }
 
-    let navBar =
-      <ul className='navbar-links' onClick={(e) => e.stopPropagation()}>
-        <li className='navbar-item'>
-          <Link to='/' onClick={() => loginWithRedirect()} className='navbar-link'>
-            Log In / Register
-          </Link>
-        </li>
-      </ul>
-
     if(user && isAuthenticated) {
-    navBar =
+      const userMenu = () =>
         <ul className='navbar-links' onClick={(e) => e.stopPropagation()}>
           <li className='navbar-item'>
             <Link to='/clients' onClick={() => this.closeMobileNavbar()} className='navbar-link'>Browse Clients</Link>
@@ -91,25 +108,12 @@ class Navbar extends Component {
             </div>
           </li>
         </ul>
+      console.log('user is authenticated. userMenu is ', userMenu)
+      return this.baseNavbar(userMenu())
     }
-
-    return (
-      <header id='navbar' className={this.state.navClass}>
-          <nav className='navbar-container'>
-            <Link to='/' className='navbar-brand'>
-              <Logotype height='60' />
-            </Link>
-            <button type='button' className='navbar-toggle' aria-label={this.state.toggle} onClick={() => this.toggleMenu()}>
-                <span className='icon-bar'></span>
-                <span className='icon-bar'></span>
-                <span className='icon-bar'></span>
-            </button>
-            <div className='navbar-menu' onClick={() => this.closeMobileNavbar()}>
-              { navBar }
-            </div>
-          </nav>
-      </header>
-    );
+    else {
+      return this.baseNavbar(this.guestMenu(loginWithRedirect))
+    }
   };
 };
 

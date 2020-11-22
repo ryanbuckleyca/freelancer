@@ -108,7 +108,6 @@ class Navbar extends Component {
             </div>
           </li>
         </ul>
-      console.log('user is authenticated. userMenu is ', userMenu)
       return this.baseNavbar(userMenu())
     }
     else {

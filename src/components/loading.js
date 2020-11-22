@@ -6,7 +6,7 @@ class Loading extends Component {
   render() {
     return(
       <div className="loading">
-        Loading {this.props.type} records. Please wait...
+        Loading {this.props.type || 'records'}. Please wait...
       </div>
     );
   }

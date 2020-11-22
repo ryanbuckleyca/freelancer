@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import late from '../../images/late.svg'
 import robber from '../../images/robber.svg'
 
@@ -23,7 +24,7 @@ class CardClient extends Component {
           This client currently has <strong>2</strong> outstanding invoices of <strong>10</strong> records in total with an average of <strong>48 weeks</strong> overdue.
         </div>
         <div className="card-client-footer">
-          <p><a href={'/clients/' + this.props.client.id}>details ⟶</a></p>
+          <p><Link to={'/clients/' + this.props.client.id}>details ⟶</Link></p>
         </div>
       </div>
     )

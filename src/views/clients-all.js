@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 import CardTitle from '../components/cards/card-title';
 import CardClient from '../components/cards/card-client';
 import NotFound from '../components/not-found';
@@ -25,8 +26,8 @@ class ClientsAll extends Component {
     let clients = this.state.clients
     let mine = this.props.match.path === '/clients/mine'
     let button = mine
-      ? <a href="/clients/" className="btn btn-outline">show all</a>
-      : <a href="/clients/mine" className="btn btn-outline">only mine</a>
+      ? <Link to="/clients/" className="btn btn-outline">show all</Link>
+      : <Link to="/clients/mine" className="btn btn-outline">only mine</Link>
     let title = mine
       ? 'My clients'
       : 'Clients'
@@ -43,7 +44,7 @@ class ClientsAll extends Component {
           title={<span>{title}</span>}
           text={
             <div>{text}<br /><br />
-            <a href="/clients/new" className="btn btn-outline">+ add new</a>
+            <Link to="/clients/new" className="btn btn-outline">+ add new</Link>
             {button}
             </div>
           }

@@ -6,19 +6,19 @@ import Loading from '../components/loading';
 import social_media from '../images/social_media.svg';
 import callAPI from '../scripts/callAPI';
 import { withAuth0 } from '@auth0/auth0-react';
-
+import { Link } from 'react-router-dom';
 
 class ContractsAll extends Component {
-  async componentDidMount() {
-    const contracts = await callAPI('/api/contracts/')
-    contracts && this.setState({ contracts: contracts });
+  componentDidMount() {
+    callAPI('/api/contracts/')
+      .then(contracts => this.setState({ contracts: contracts }));
   }
 
   displayContract(contract) {
     const id = contract.id
     return(
       <div key={id}>
-        <a href={'/contracts/'+id}>Contract#: {id}</a><br />
+        <Link to={'/contracts/'+id}>Contract#: {id}</Link><br />
         {contract.paid ? "paid" : "UNPAID"}<br />
         Client: {contract.Client.name}<br />
         Due: {contract.due_date}<br />

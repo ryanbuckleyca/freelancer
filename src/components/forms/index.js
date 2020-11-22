@@ -15,7 +15,6 @@ class CardForm extends Component {
   // Loads a form with existing record
   // or creates a new one
 
-  // TODO: delete auth0 user instance on "delete"
   // TODO: handle callAPI returns of null
 
   saveFormToDB() {
@@ -37,19 +36,22 @@ class CardForm extends Component {
     console.log('deleteFromDB called')
     const confirm = window.confirm('Are you sure you want to delete this record?')
     if(!confirm)
-      return
+      return false
 
     const url = `/api/${this.props.table}/${this.props.id}`
     const method = 'DELETE'
 
+    const redirect = this.props.redirect(`../${this.props.table}`)
+
     callAPI(url, method)
       .then(res => {
-        // TODO: this still gets called when there are errors
-        flashAlert('success', `record ${this.props.id} from ${this.props.table} deleted`);
+        // TODO: success alert still gets called when there are errors
+        console.log('record deleted')
+        window.flashAlert('success', `record ${this.props.id} from ${this.props.table} deleted`);
         return res
       })
       .catch(err => flashAlert('warning', `form deleteFromDB err: ${err}`))
-      .finally(this.props.redirect(`../${this.props.table}`))
+      .finally(redirect)
   }
 
   handleSubmit = async (e) => {
@@ -94,6 +96,8 @@ class CardForm extends Component {
   }
 
   render() {
+    flashAlert('netrual', 'hello world!')
+
     if(!this.props.table || !this.state)
       return <Loading type={this.props.table} />
 
@@ -117,6 +121,7 @@ class CardForm extends Component {
           {React.cloneElement(this.props.children[1], {
             changeHandler: this.changeHandler,
             handleSubmit: this.handleSubmit,
+            handleDelete: this.deleteFromDB,
             passProps: this.passProps,
             auth0_id: this.props.auth0.user.sub,
             ...this.state

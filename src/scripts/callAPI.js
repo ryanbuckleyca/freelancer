@@ -6,7 +6,7 @@ const callAPI = async (address, method = 'GET', params = null, headers = json) =
     method: method,
     headers: headers
   }
-  if(['POST', 'PUT', 'PATCH'].includes(method))
+  if(method !== 'GET')
     attrs.body = JSON.stringify(params)
 
   try {
@@ -20,7 +20,7 @@ const callAPI = async (address, method = 'GET', params = null, headers = json) =
     // TODO: handle errors
     // returning null leads to unexpected results
     console.log(`callAPI(${address},${method},${params}) error: `, err)
-    return {error: err}
+    return { error: err }
   }
 }
 

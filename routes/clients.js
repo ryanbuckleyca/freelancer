@@ -75,13 +75,17 @@ router.route("/:id")
     console.log('destroy client called with req.params.id:', req.params.id);
     try {
       const destroyResult = await db.Client.destroy({
-        where: { id: req.params.id },
-        returning: true
+        where: { id: req.params.id }
       })
-      .then(res => console.log('deleted record: ', res))
-      // TODO: redirect to created record
+      .then(res => {
+        console.log('deleted record: ', res)
+        return { success: `${res} records deleted` }
+      })
     }
-    catch(err) { console.log('delete client error: ', err) }
+    catch(err) {
+      console.log('delete client error: ', err)
+      return { error: err }
+    }
   });
 
 router.route("/")

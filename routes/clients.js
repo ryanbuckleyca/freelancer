@@ -100,6 +100,7 @@ router.route("/")
   // CREATE client
   .post(async (req, res, next) => {
     console.log('create client called with req.body:', req.body);
+    delete req.body.id
     const newclient = await db.Client.build({...req.body})
     console.log("built new unsaved client: ", newclient);
     const save = await newclient.save();
